@@ -1,0 +1,9 @@
+{
+  "repositoryName": "cost-segregation",
+  "routes": [
+    {
+      "type": "home",
+      "path": "/home"
+    }
+  ]
+}

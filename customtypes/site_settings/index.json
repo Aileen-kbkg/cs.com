@@ -1,0 +1,127 @@
+{
+  "format": "custom",
+  "id": "site_settings",
+  "json": {
+    "Main": {
+      "logo": {
+        "config": {
+          "constraint": {},
+          "label": "Logo",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "navigation": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            },
+            "has_dropdown": {
+              "config": {
+                "default_value": false,
+                "label": "Has Dropdown",
+                "placeholder_false": "false",
+                "placeholder_true": "true"
+              },
+              "type": "Boolean"
+            },
+            "dropdown_label_1": {
+              "config": {
+                "label": "Dropdown Label 1",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "dropdown_link_1": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Dropdown Link 1",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            },
+            "dropdown_label_2": {
+              "config": {
+                "label": "Dropdown Label 2",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "dropdown_link_2": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Dropdown Link 2",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Navigation",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "sign_in_label": {
+        "config": {
+          "label": "Sign In Label",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "sign_in_link": {
+        "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
+          "label": "Sign In Link",
+          "placeholder": "",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
+      },
+      "get_started_label": {
+        "config": {
+          "label": "Get Started Label",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "get_started_link": {
+        "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
+          "label": "Get Started Link",
+          "placeholder": "",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
+      }
+    }
+  },
+  "label": "Site Settings",
+  "repeatable": false,
+  "status": true
+}
