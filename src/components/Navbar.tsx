@@ -53,19 +53,7 @@ export default function Navbar({ settings }: Props) {
 
   return (
     <>
-      {/* Announcement Bar */}
-      <div
-        style={{
-          background: NAVY,
-          color: "#fff",
-          textAlign: "center",
-          padding: "9px 20px",
-          fontSize: "13px",
-          lineHeight: "1.4",
-        }}
-      >
-        Making accessibility simple for everyone.
-      </div>
+     
 
       {/* Navbar */}
       <header
@@ -469,6 +457,19 @@ export default function Navbar({ settings }: Props) {
             </nav>
           </div>
         )}
+         {/* Announcement Bar */}
+      <div
+        style={{
+          background: "#277CE6",
+          color: "#fff",
+          textAlign: "center",
+          padding: "9px 20px",
+          fontSize: "13px",
+          lineHeight: "1.4",
+        }}
+      >
+        Join our newsletter to get the latest Cost Segregation insights | Subscribe Here
+      </div>
       </header>
 
       {/* Responsive styles */}
