@@ -27,3 +27,29 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.elementor-header {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+
+  /* Add the original Elementor background image here. */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: opacity 100ms ease;
+}
+
+.elementor-header__container {
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (max-width: 767px) {
+  .elementor-header__container {
+    padding-inline: 16px;
+  }
+}
