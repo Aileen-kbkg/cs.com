@@ -1,5 +1,7 @@
 
 // app/layout.tsx — Root layout: fetches site settings and renders Navbar + Footer on every page.
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -30,6 +32,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Navbar settings={settings} />
         {children}
+        <PrismicPreview repositoryName="cost-segregation" />
         <Footer settings={settings} />
       </body>
     </html>
