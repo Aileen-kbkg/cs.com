@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { isFilled } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-
+import { PrismicRichText } from "@prismicio/react";
 import type { SiteSettingsDocument } from "../../types.generated";
 
 const LOGO_SRC = "/images/logo.svg";
@@ -458,18 +458,20 @@ export default function Navbar({ settings }: Props) {
           </div>
         )}
          {/* Announcement Bar */}
-      <div
-        style={{
-          background: "#277CE6",
-          color: "#fff",
-          textAlign: "center",
-          padding: "9px 20px",
-          fontSize: "13px",
-          lineHeight: "1.4",
-        }}
-      >
-        Join our newsletter to get the latest Cost Segregation insights | Subscribe Here
-      </div>
+    {d?.announcement && (
+  <div
+    style={{
+      background: "#277CE6",
+      color: "#fff",
+      textAlign: "center",
+      padding: "9px 20px",
+      fontSize: "13px",
+      lineHeight: "1.4",
+    }}
+  >
+    <PrismicRichText field={d.announcement} />
+  </div>
+)}
       </header>
 
       {/* Responsive styles */}
