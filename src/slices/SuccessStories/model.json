@@ -1,0 +1,75 @@
+{
+  "id": "success_stories",
+  "type": "SharedSlice",
+  "name": "SuccessStories",
+  "description": "Case-study stat cards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Section title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        }
+      },
+      "items": {
+        "property_type": {
+          "type": "Text",
+          "config": {
+            "label": "Property type",
+            "placeholder": ""
+          }
+        },
+        "purchase_price": {
+          "type": "Text",
+          "config": {
+            "label": "Purchase price",
+            "placeholder": ""
+          }
+        },
+        "first_year_deduction": {
+          "type": "Text",
+          "config": {
+            "label": "First-year deduction",
+            "placeholder": ""
+          }
+        },
+        "summary": {
+          "type": "Text",
+          "config": {
+            "label": "Summary",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        }
+      }
+    }
+  ]
+}

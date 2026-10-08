@@ -1,0 +1,160 @@
+{
+  "id": "pricing",
+  "type": "SharedSlice",
+  "name": "Pricing",
+  "description": "Pricing cards, included features and basis slider",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Section title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "slider_label": {
+          "type": "Text",
+          "config": {
+            "label": "Slider label",
+            "placeholder": ""
+          }
+        },
+        "slider_min": {
+          "type": "Number",
+          "config": {
+            "label": "Slider min (USD)",
+            "placeholder": ""
+          }
+        },
+        "slider_max": {
+          "type": "Number",
+          "config": {
+            "label": "Slider max (USD)",
+            "placeholder": ""
+          }
+        },
+        "slider_step": {
+          "type": "Number",
+          "config": {
+            "label": "Slider step (USD)",
+            "placeholder": ""
+          }
+        },
+        "included_title": {
+          "type": "Text",
+          "config": {
+            "label": "Included list title",
+            "placeholder": ""
+          }
+        },
+        "included_features": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Included features",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "loyalty_note": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Loyalty or discount note",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "custom_quote_label": {
+          "type": "Text",
+          "config": {
+            "label": "Custom quote label",
+            "placeholder": ""
+          }
+        },
+        "custom_quote_link": {
+          "type": "Link",
+          "config": {
+            "label": "Custom quote link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        }
+      },
+      "items": {
+        "plan_name": {
+          "type": "Text",
+          "config": {
+            "label": "Plan name",
+            "placeholder": ""
+          }
+        },
+        "property_type": {
+          "type": "Text",
+          "config": {
+            "label": "Property type",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "Price",
+            "placeholder": ""
+          }
+        },
+        "price_note": {
+          "type": "Text",
+          "config": {
+            "label": "Price note",
+            "placeholder": ""
+          }
+        },
+        "basis_label": {
+          "type": "Text",
+          "config": {
+            "label": "Basis label",
+            "placeholder": ""
+          }
+        },
+        "cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA label",
+            "placeholder": ""
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        }
+      }
+    }
+  ]
+}

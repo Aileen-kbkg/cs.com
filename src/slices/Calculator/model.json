@@ -1,0 +1,74 @@
+{
+  "id": "calculator",
+  "type": "SharedSlice",
+  "name": "Calculator",
+  "description": "Savings calculator wrapper (logic lives in a client component)",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "property_types": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Property types (one per list item)",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "disclaimer": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Disclaimer",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "email_form_title": {
+          "type": "Text",
+          "config": {
+            "label": "Email form title",
+            "placeholder": ""
+          }
+        },
+        "email_button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Email button label",
+            "placeholder": ""
+          }
+        },
+        "success_message": {
+          "type": "Text",
+          "config": {
+            "label": "Success message",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

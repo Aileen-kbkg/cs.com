@@ -1,0 +1,60 @@
+{
+  "id": "post_list",
+  "type": "SharedSlice",
+  "name": "PostList",
+  "description": "Feed of recent blog posts or articles",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "post_count": {
+          "type": "Number",
+          "config": {
+            "label": "Number of posts",
+            "placeholder": ""
+          }
+        },
+        "view_all_label": {
+          "type": "Text",
+          "config": {
+            "label": "View all label",
+            "placeholder": ""
+          }
+        },
+        "view_all_link": {
+          "type": "Link",
+          "config": {
+            "label": "View all link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
