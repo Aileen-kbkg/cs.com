@@ -12,7 +12,7 @@
     "@prismicio/client": "^7.22.1",
     "@prismicio/next": "^2.3.3",
     "@prismicio/react": "^3.5.1",
-    "next": "16.4.0",
+    "next": "^16.3.8",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
@@ -23,7 +23,8 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "^16.3.8",
+    "prismic-ts-codegen": "^0.1.30",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
