@@ -1,3 +1,4 @@
+
 // app/layout.tsx — Root layout: fetches site settings and renders Navbar + Footer on every page.
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -19,7 +20,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const client = createClient();
-  const settings = await client.getSingle("settings").catch(() => null);
+
+  const settings = await client
+    .getSingle("site_settings")
+    .catch(() => null);
 
   return (
     <html lang="en">
@@ -31,3 +35,4 @@ export default async function RootLayout({
     </html>
   );
 }
+

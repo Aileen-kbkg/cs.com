@@ -44,6 +44,14 @@
             "select": null
           },
           "type": "Link"
+        },
+        "banner_image": {
+          "config": {
+            "constraint": {},
+            "label": "Banner Image",
+            "thumbnails": []
+          },
+          "type": "Image"
         }
       },
       "version": "initial"

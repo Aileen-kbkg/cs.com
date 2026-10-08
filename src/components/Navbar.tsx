@@ -1,200 +1,504 @@
-// components/Navbar.tsx — 1:1 match of costsegregation.com navbar. Uses inline styles
-// so it renders correctly regardless of Tailwind config/scanning setup.
+
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import type { SettingsDocument } from "@/prismicio-types";
+import { isFilled } from "@prismicio/client";
+import { PrismicNextImage } from "@prismicio/next";
 
-const LOGO_SRC = "https://www.costsegregation.com/wp-content/uploads/2025/10/CScom-Lock-up-484x238-1-300x148.png";
-const NAVY = "#1a2e5a";
-const NAVY_DARK = "#0f1e3d";
+import type { SiteSettingsDocument } from "../../types.generated";
+
+const LOGO_SRC = "/images/logo.svg";
+
+const NAVY = "#102A43";
+const NAVY_DARK = "#0B1F33";
 
 const NAV_LINKS = [
-  { label: "For Tax Advisors", href: "/for-tax-advisors/" },
-  { label: "Calculator",       href: "/#calculator" },
-  { label: "Pricing",          href: "/#pricing" },
-  { label: "FAQ",              href: "/faq/" },
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
-const RESOURCES = [
-  { label: "Blog",      href: "/resources/blog/" },
-  { label: "Education", href: "/resources/what-is-cost-segregation/" },
-];
-const SIGN_IN     = "https://app.costsegregation.com/sign-in";
-const GET_STARTED = "https://app.costsegregation.com/sign-up";
 
-type Props = { settings: SettingsDocument | null };
+const RESOURCES = [
+  { label: "Help Center", href: "/help-center" },
+  { label: "Resources", href: "/resources" },
+];
+
+const SIGN_IN = "https://accounts.accessbit.io";
+const GET_STARTED = "https://accessbit.io/#waitlist";
+
+type Props = {
+  settings: SiteSettingsDocument | null;
+};
 
 export default function Navbar({ settings }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [resOpen,    setResOpen]    = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+
   const d = settings?.data;
 
-  // Build nav items from Prismic or fallback
-  const navItems = (d?.navigation as any[])?.length
+  const navigation = d?.navigation
     ? (d.navigation as any[])
-    : NAV_LINKS.map(l => ({ label: l.label, link: { url: l.href }, has_dropdown: false }));
+    : NAV_LINKS;
+
+  const signInUrl = isFilled.link(d?.sign_in_link)
+    ? d.sign_in_link.url
+    : SIGN_IN;
+
+  const getStartedUrl = isFilled.link(d?.get_started_link)
+    ? d.get_started_link.url
+    : GET_STARTED;
 
   return (
-    <header style={{ position: "sticky", top: 0, zIndex: 50, width: "100%" }}>
+    <>
+      {/* Announcement Bar */}
+      <div
+        style={{
+          background: NAVY,
+          color: "#fff",
+          textAlign: "center",
+          padding: "9px 20px",
+          fontSize: "13px",
+          lineHeight: "1.4",
+        }}
+      >
+        Making accessibility simple for everyone.
+      </div>
 
-     
-
-      {/* Main nav bar */}
-      <nav style={{ backgroundColor: "#fff", borderBottom: "1px solid #e5e7eb" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-
+      {/* Navbar */}
+      <header
+        style={{
+          position: "relative",
+          zIndex: 100,
+          background: "#fff",
+          borderBottom: "1px solid #e5e7eb",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "0 24px",
+            height: "78px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           {/* Logo */}
-          <Link href="/" style={{ flexShrink: 0 }}>
-            {d?.logo?.url ? (
-              <PrismicNextImage field={d.logo as any}
-                style={{ height: 48, width: "auto" }} />
+          <Link
+            href="/"
+            aria-label="Cost Segregation home"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexShrink: 0,
+            }}
+          >
+            {d?.logo ? (
+              <PrismicNextImage
+                field={d.logo}
+                style={{
+                  width: "180px",
+                  height: "auto",
+                  display: "block",
+                }}
+              />
             ) : (
-              <Image src={LOGO_SRC} alt="CostSegregation.com" width={180} height={56}
-                     style={{ height: 48, width: "auto" }} priority />
+              <Image
+                src={LOGO_SRC}
+                alt="Cost Segregation"
+                width={180}
+                height={50}
+                priority
+                style={{
+                  width: "180px",
+                  height: "auto",
+                }}
+              />
             )}
           </Link>
 
-          {/* Desktop nav hidden on mobile via media query workaround using a class */}
-          <ul className="cs-desktop-nav" style={{ display: "flex", alignItems: "center", gap: 24, listStyle: "none", margin: 0, padding: 0, fontSize: 15, fontWeight: 500, color: "#374151" }}>
-            {navItems.map((item: any, i: number) => (
-              item.has_dropdown ? null : (
-                <li key={i}>
-                  <Link href={item.link?.url ?? "#"}
-                        style={{ color: "#374151", textDecoration: "none" }}
-                        onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
-                        onMouseLeave={e => (e.currentTarget.style.color = "#374151")}>
-                    {item.label}
-                  </Link>
-                </li>
-              )
-            ))}
+          {/* Desktop Navigation */}
+          <nav
+            className="desktop-nav"
+            aria-label="Main navigation"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "30px",
+            }}
+          >
+            {navigation.map((item: any, index: number) => {
+              const label = item?.label ?? item?.name ?? "";
+              const href = item?.link?.url ?? item?.href ?? "#";
 
-            {/* Resources dropdown */}
-            <li style={{ position: "relative" }}
-                onMouseEnter={() => setResOpen(true)}
-                onMouseLeave={() => setResOpen(false)}>
-              <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4, fontSize: 15, fontWeight: 500, color: "#374151", padding: 0 }}>
+              if (!label) return null;
+
+              return (
+                <Link
+                  key={`${label}-${index}`}
+                  href={href}
+                  style={{
+                    color: NAVY,
+                    textDecoration: "none",
+                    fontSize: "15px",
+                    fontWeight: 500,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+
+            {/* Resources */}
+            <div
+              style={{
+                position: "relative",
+              }}
+              onMouseEnter={() => setResourcesOpen(true)}
+              onMouseLeave={() => setResourcesOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={resourcesOpen}
+                onClick={() => setResourcesOpen((value) => !value)}
+                style={{
+                  border: "none",
+                  background: "transparent",
+                  color: NAVY,
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  padding: "8px 0",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 Resources
-                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transition: "transform .2s", transform: resOpen ? "rotate(180deg)" : "none" }}>
-                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    transform: resourcesOpen
+                      ? "rotate(180deg)"
+                      : "rotate(0deg)",
+                    transition: "transform 0.2s ease",
+                  }}
+                >
+                  ▼
+                </span>
               </button>
-              {resOpen && (
-                <ul style={{ position: "absolute", top: "100%", left: 0, width: 200, background: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, boxShadow: "0 4px 16px rgba(0,0,0,.1)", padding: "6px 0", listStyle: "none", margin: 0, zIndex: 100 }}>
-                  {RESOURCES.map((r, i) => (
-                    <li key={i}>
-                      <Link href={r.href}
-                            style={{ display: "block", padding: "8px 16px", fontSize: 14, color: "#374151", textDecoration: "none" }}
-                            onMouseEnter={e => { e.currentTarget.style.background = "#f9fafb"; e.currentTarget.style.color = NAVY; }}
-                            onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = "#374151"; }}>
-                        {r.label}
-                      </Link>
-                    </li>
+
+              {resourcesOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "100%",
+                    left: "-20px",
+                    minWidth: "190px",
+                    background: "#fff",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: "8px",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.10)",
+                    padding: "8px",
+                  }}
+                >
+                  {RESOURCES.map((resource) => (
+                    <Link
+                      key={resource.label}
+                      href={resource.href}
+                      onClick={() => setResourcesOpen(false)}
+                      style={{
+                        display: "block",
+                        padding: "10px 12px",
+                        color: NAVY,
+                        textDecoration: "none",
+                        fontSize: "14px",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      {resource.label}
+                    </Link>
                   ))}
-                </ul>
+                </div>
               )}
-            </li>
+            </div>
+          </nav>
 
-            <li>
-              <Link href="/about/"
-                    style={{ color: "#374151", textDecoration: "none" }}
-                    onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
-                    onMouseLeave={e => (e.currentTarget.style.color = "#374151")}>
-                About
-              </Link>
-            </li>
-          </ul>
-
-          {/* Desktop CTAs */}
-          <div className="cs-desktop-nav" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <a href={d?.sign_in_link?.url ?? SIGN_IN}
-               style={{ fontSize: 15, fontWeight: 500, color: "#374151", textDecoration: "none" }}
-               onMouseEnter={e => (e.currentTarget.style.color = NAVY)}
-               onMouseLeave={e => (e.currentTarget.style.color = "#374151")}>
-              {d?.sign_in_label ?? "Sign In"}
+          {/* Desktop CTA Buttons */}
+          <div
+            className="desktop-actions"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <a
+              href={signInUrl}
+              style={{
+                color: NAVY,
+                textDecoration: "none",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: "11px 17px",
+                border: `1px solid ${NAVY}`,
+                borderRadius: "6px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Sign In
             </a>
-            <a href={d?.get_started_link?.url ?? GET_STARTED}
-               style={{ backgroundColor: NAVY, color: "#fff", padding: "10px 20px", borderRadius: 999, fontSize: 14, fontWeight: 600, textDecoration: "none", transition: "background .2s" }}
-               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#253f7a")}
-               onMouseLeave={e => (e.currentTarget.style.backgroundColor = NAVY)}>
-              {d?.get_started_label ?? "Get Started"}
+
+            <a
+              href={getStartedUrl}
+              style={{
+                color: "#fff",
+                background: NAVY,
+                textDecoration: "none",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: "12px 18px",
+                border: `1px solid ${NAVY}`,
+                borderRadius: "6px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Get Started
             </a>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile Menu Button */}
           <button
-            className="cs-mobile-menu-btn"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}
-            aria-label="Toggle menu"
-            onClick={() => setMobileOpen(v => !v)}
+            className="mobile-menu-button"
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((value) => !value)}
+            style={{
+              display: "none",
+              border: "none",
+              background: "transparent",
+              cursor: "pointer",
+              padding: "8px",
+            }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              {mobileOpen
-                ? <path d="M6 6l12 12M6 18L18 6" stroke="#374151" strokeWidth="2" strokeLinecap="round"/>
-                : <path d="M3 6h18M3 12h18M3 18h18" stroke="#374151" strokeWidth="2" strokeLinecap="round"/>
-              }
-            </svg>
+            <span
+              style={{
+                display: "block",
+                width: "25px",
+                height: "2px",
+                background: NAVY,
+                marginBottom: "5px",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "25px",
+                height: "2px",
+                background: NAVY,
+                marginBottom: "5px",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "25px",
+                height: "2px",
+                background: NAVY,
+              }}
+            />
           </button>
         </div>
 
-        {/* Mobile menu  */}
+        {/* Mobile Navigation */}
         {mobileOpen && (
-          <div style={{ borderTop: "1px solid #e5e7eb", backgroundColor: "#fff", padding: "16px 24px 24px" }}>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16, fontSize: 16, fontWeight: 500 }}>
-              {NAV_LINKS.map((l, i) => (
-                <li key={i}><Link href={l.href} onClick={() => setMobileOpen(false)} style={{ color: "#374151", textDecoration: "none" }}>{l.label}</Link></li>
-              ))}
-              <li>
-                <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#9ca3af", marginBottom: 8 }}>Resources</p>
-                <ul style={{ listStyle: "none", padding: "0 0 0 12px", margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-                  {RESOURCES.map((r, i) => (
-                    <li key={i}><Link href={r.href} onClick={() => setMobileOpen(false)} style={{ color: "#374151", textDecoration: "none" }}>{r.label}</Link></li>
-                  ))}
-                </ul>
-              </li>
-              <li><Link href="/about/" onClick={() => setMobileOpen(false)} style={{ color: "#374151", textDecoration: "none" }}>About</Link></li>
-              <li style={{ borderTop: "1px solid #e5e7eb", paddingTop: 16 }}>
-                <a href={SIGN_IN} style={{ color: "#374151", textDecoration: "none", display: "block", marginBottom: 12 }}>Sign In</a>
-                <a href={GET_STARTED}
-                   style={{ backgroundColor: NAVY, color: "#fff", padding: "12px 20px", borderRadius: 999, fontSize: 14, fontWeight: 600, textDecoration: "none", display: "block", textAlign: "center" }}>
+          <div
+            className="mobile-nav"
+            style={{
+              background: "#fff",
+              borderTop: "1px solid #e5e7eb",
+              padding: "20px 24px 25px",
+            }}
+          >
+            <nav
+              aria-label="Mobile navigation"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+              }}
+            >
+              {navigation.map((item: any, index: number) => {
+                const label = item?.label ?? item?.name ?? "";
+                const href = item?.link?.url ?? item?.href ?? "#";
+
+                if (!label) return null;
+
+                return (
+                  <Link
+                    key={`${label}-${index}`}
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    style={{
+                      color: NAVY,
+                      textDecoration: "none",
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      padding: "12px 0",
+                    }}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
+
+              {/* Mobile Resources */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setResourcesOpen((value) => !value)
+                  }
+                  style={{
+                    width: "100%",
+                    border: "none",
+                    background: "transparent",
+                    color: NAVY,
+                    cursor: "pointer",
+                    padding: "12px 0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                  }}
+                >
+                  Resources
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      transform: resourcesOpen
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
+                    }}
+                  >
+                    ▼
+                  </span>
+                </button>
+
+                {resourcesOpen && (
+                  <div
+                    style={{
+                      paddingLeft: "15px",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    {RESOURCES.map((resource) => (
+                      <Link
+                        key={resource.label}
+                        href={resource.href}
+                        onClick={() => {
+                          setMobileOpen(false);
+                          setResourcesOpen(false);
+                        }}
+                        style={{
+                          color: NAVY,
+                          textDecoration: "none",
+                          fontSize: "15px",
+                          padding: "10px 0",
+                        }}
+                      >
+                        {resource.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Buttons */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                  marginTop: "15px",
+                }}
+              >
+                <a
+                  href={signInUrl}
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    color: NAVY,
+                    textDecoration: "none",
+                    textAlign: "center",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    padding: "12px 18px",
+                    border: `1px solid ${NAVY}`,
+                    borderRadius: "6px",
+                  }}
+                >
+                  Sign In
+                </a>
+
+                <a
+                  href={getStartedUrl}
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    color: "#fff",
+                    background: NAVY,
+                    textDecoration: "none",
+                    textAlign: "center",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    padding: "13px 18px",
+                    border: `1px solid ${NAVY}`,
+                    borderRadius: "6px",
+                  }}
+                >
                   Get Started
                 </a>
-              </li>
-            </ul>
+              </div>
+            </nav>
           </div>
         )}
-      </nav>
- {/* Announcement bar */}
-     <div
-  style={{
-    backgroundColor: "#277CE6",
-    padding: "8px 16px",
-    textAlign: "center",
-    fontSize: 13,
-    fontWeight: 500,
-    color: "#fff",
-  }}
->
-        Join our newsletter to get the latest Cost Segregation insights{" "}|{" "}
-        <button
-          style={{ background: "none", border: "none", color: "#fff", fontWeight: 700, textDecoration: "underline", cursor: "pointer", padding: 0, fontSize: 13 }}
-          onClick={() => {/* open newsletter modal */}}
-        >
-          Subscribe Here
-        </button>
-      </div>
-      {/* Responsive: hide desktop nav on mobile, show hamburger */}
-      <style>{`
-        .cs-desktop-nav { display: flex !important; }
-        .cs-mobile-menu-btn { display: none !important; }
-        @media (max-width: 1023px) {
-          .cs-desktop-nav { display: none !important; }
-          .cs-mobile-menu-btn { display: flex !important; }
+      </header>
+
+      {/* Responsive styles */}
+      <style jsx>{`
+        @media (max-width: 991px) {
+          .desktop-nav,
+          .desktop-actions {
+            display: none !important;
+          }
+
+          .mobile-menu-button {
+            display: block !important;
+          }
+        }
+
+        @media (min-width: 992px) {
+          .mobile-nav,
+          .mobile-menu-button {
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          header > div:first-child {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
         }
       `}</style>
-    </header>
+    </>
   );
 }
+

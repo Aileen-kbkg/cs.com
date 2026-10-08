@@ -382,6 +382,16 @@ export interface HeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Banner Image field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.banner_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	banner_image: prismic.ImageField<never>;
 }
 
 /**

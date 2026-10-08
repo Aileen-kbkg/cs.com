@@ -1,3 +1,5 @@
+
+import { isFilled } from "@prismicio/client";
 import type { Content } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import type { SliceComponentProps } from "@prismicio/react";
@@ -17,7 +19,10 @@ export default function Hero({ slice }: HeroProps) {
     banner_image,
   } = slice.primary;
 
-  const ctaUrl = cta_link?.url ?? "/#calculator";
+  // Prismic LinkField can be empty, so check it before accessing .url
+  const ctaUrl = isFilled.link(cta_link)
+    ? cta_link.url
+    : "/#calculator";
 
   return (
     <>
@@ -33,13 +38,12 @@ export default function Hero({ slice }: HeroProps) {
 
         .cs-hero-overlay {
           position: absolute;
-    pointer-events: none;
-    width: 101vw;
-    height: 101vh;
-    background
-: rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    z-index: -1;
+          pointer-events: none;
+          width: 101vw;
+          height: 101vh;
+          background: rgba(0, 0, 0, 0.7);
+          opacity: 0;
+          z-index: -1;
         }
 
         .cs-hero-inner {
@@ -265,7 +269,10 @@ export default function Hero({ slice }: HeroProps) {
           padding: "85px 24px",
           backgroundImage: banner_image?.url
             ? `url(${banner_image.url})`
-            : undefined,backgroundPosition:"654px 50px", backgroundSize:"52% auto", backgroundRepeat:"no-repeat"
+            : undefined,
+          backgroundPosition: "654px 50px",
+          backgroundSize: "52% auto",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Background overlay */}
@@ -349,7 +356,7 @@ export default function Hero({ slice }: HeroProps) {
                   fill="none"
                 >
                   <path
-                    d="M6.92603 0.520094C6.03066 1.06932 4.44866 1.72572 2.01249 1.72572C1.57579 1.72572 1.12261 1.70429 0.658446 1.65874C0.619995 1.65606 0.581543 1.66678 0.551332 1.69357C0.52112 1.71768 0.50464 1.75519 0.50464 1.7927C0.493654 2.6795 0.496401 3.94407 0.578797 4.92733C0.957818 9.57301 2.61947 12.0727 6.93153 14.4812C6.9535 14.492 6.97822 14.5 7.00019 14.5C7.02216 14.5 7.04688 14.4946 7.06885 14.4812C11.3809 12.0727 13.0426 9.57301 13.4216 4.92733C13.5012 3.94407 13.5067 2.6795 13.4957 1.7927C13.4957 1.75519 13.4793 1.71768 13.449 1.69357C13.4188 1.66678 13.3804 1.65606 13.3419 1.65874C12.8805 1.70161 12.4246 1.72572 11.9879 1.72572C9.55172 1.72572 7.96972 1.06932 7.07435 0.520094C7.02766 0.493302 6.96998 0.493302 6.92603 0.520094ZM13.1442 4.90589C12.7707 9.47924 11.2189 11.8342 7.00019 14.2053C2.78152 11.8342 1.22973 9.47924 0.856197 4.90589C0.78204 3.98426 0.773801 2.81346 0.78204 1.94273C1.20226 1.97756 1.61424 1.99632 2.00974 1.99632C4.44866 1.99632 6.05813 1.35332 6.99744 0.793369C7.93676 1.35332 9.54897 1.99632 11.9851 1.99632C12.3834 1.99632 12.7954 1.97756 13.2128 1.94273C13.2211 2.81346 13.2128 3.98426 13.1387 4.90589H13.1442Z"
+                    d="M6.92603 0.520094C6.03066 1.06932 4.44866 1.72572 2.01249 1.72572C1.57579 1.72572 1.12261 1.70429 0.658446 1.65874C0.619995 1.65606 0.581543 1.66678 0.551332 1.69357C0.52112 1.71768 0.50464 1.75519 0.50464 1.7927C0.493654 2.6795 0.496401 3.94407 0.578797 4.92733C0.957818 9.57301 2.61947 12.0727 6.93153 14.4812C6.9535 14.492 6.97822 14.5 7.00019 14.5C7.02216 14.4946 7.04688 14.4812C11.3809 12.0727 13.0426 9.57301 13.4216 4.92733C13.5012 3.94407 13.5067 2.6795 13.4957 1.7927C13.4957 1.75519 13.4793 1.71768 13.449 1.69357C13.4188 1.66678 13.3804 1.65606 13.3419 1.65874C12.8805 1.70161 12.4246 1.72572 11.9879 1.72572C9.55172 1.72572 7.96972 1.06932 7.07435 0.520094C7.02766 0.493302 6.96998 0.493302 6.92603 0.520094ZM13.1442 4.90589C12.7707 9.47924 11.2189 11.8342 7.00019 14.2053C2.78152 11.8342 1.22973 9.47924 0.856197 4.90589C0.78204 3.98426 0.773801 2.81346 0.78204 1.94273C1.20226 1.97756 1.61424 1.99632 2.00974 1.99632C4.44866 1.99632 6.05813 1.35332 6.99744 0.793369C7.93676 1.35332 9.54897 1.99632 11.9851 1.99632C12.3834 1.99632 12.7954 1.97756 13.2128 1.94273C13.2211 2.81346 13.2128 3.98426 13.1387 4.90589H13.1442Z"
                     fill={BLUE}
                     stroke={BLUE}
                   />
@@ -362,7 +369,7 @@ export default function Hero({ slice }: HeroProps) {
 
             {/* CTA */}
             <Link
-              href={ctaUrl}
+              href={ctaUrl || "/#calculator"}
               className="cs-hero-cta"
             >
               <span>
