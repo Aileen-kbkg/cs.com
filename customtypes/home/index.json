@@ -8,6 +8,33 @@
           "choices": {
             "hero": {
               "type": "SharedSlice"
+            },
+            "feature_grid": {
+              "type": "SharedSlice"
+            },
+            "steps": {
+              "type": "SharedSlice"
+            },
+            "pricing": {
+              "type": "SharedSlice"
+            },
+            "testimonials": {
+              "type": "SharedSlice"
+            },
+            "success_stories": {
+              "type": "SharedSlice"
+            },
+            "calculator": {
+              "type": "SharedSlice"
+            },
+            "video_embed": {
+              "type": "SharedSlice"
+            },
+            "post_list": {
+              "type": "SharedSlice"
+            },
+            "cta_banner": {
+              "type": "SharedSlice"
             }
           }
         },
