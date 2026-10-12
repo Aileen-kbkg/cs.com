@@ -128,20 +128,22 @@ export default function Hero({ slice }: HeroProps) {
           display: inline-flex;
           align-items: center;
           gap: 12px;
-          background: ${BLUE};
-          color: #fff;
+          background-color: #B5EBA2;
+          fill: #3D8120;
+          color: #3D8120;
           padding: 15px 25px;
-          border-radius: 6px;
-          font-size: 15px;
+          border-radius: 10px;
+          font-family: "Inter", Sans-serif;
+          font-size: 16px;
           font-weight: 700;
           text-decoration: none;
           transition: all 0.2s ease;
         }
+      .cs-hero-cta:hover {
+        background-color: #9ED88A;
+      }
 
-        .cs-hero-cta:hover {
-          background: #176dcc;
-          transform: translateY(-1px);
-        }
+        
 
         .cs-hero-cta svg {
           width: 12px;
