@@ -69,7 +69,9 @@ export default function Navbar({ settings }: Props) {
             maxWidth: "1280px",
             margin: "0 auto",
             padding: "0 24px",
-            height: "78px",
+            width: "auto",
+    height: "auto",
+            
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",

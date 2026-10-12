@@ -1,444 +1,134 @@
-
+// src/components/Footer.tsx
+// Server component. Fetches the logo from Prismic "site_settings" and the 3 latest blog posts.
+// Accepts (and ignores) any props, so it works with the existing <Footer settings={...} /> call.
+import { asText } from "@prismicio/client";
+import { PrismicNextImage } from "@prismicio/next";
 import Link from "next/link";
-import Image from "next/image";
-import type { SiteSettingsDocument } from "../../types.generated";
+import { createClient } from "@/prismicio";
 
-type Props = { settings: SiteSettingsDocument | null };
+/* ---- Edit these to change the footer without touching the layout ---- */
+const SUPPORT_EMAIL = "Support@costsegregation.com";
+const INFO_EMAIL = "Info@costsegregation.com";
+const KBKG_LOGO_SRC = "/kbkg-logo-white.svg"; // put the white KBKG logo in /public (leave "" to hide)
+const SITE_LOGO_FALLBACK_SRC = "/costsegregation-logo-white.svg"; // used only if no Prismic logo is set
 
-const SOCIAL = [
-  {
-    name: "Instagram",
-    href: "https://www.instagram.com/costsegregationdotcom",
-  },
-  {
-    name: "Facebook",
-    href: "https://www.facebook.com/people/Cost-Seg-Pro/61583176327168/",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/showcase/cost-seg-pro/",
-  },
-  { name: "X", href: "https://x.com/KBKG" },
-  {
-    name: "YouTube",
-    href: "https://www.youtube.com/@KBKGTaxIncentives",
-  },
-  { name: "Email", href: "mailto:info@costsegregation.com" },
+const SOCIAL: { name: string; href: string; path: string }[] = [
+  { name: "Instagram", href: "#", path: "M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2ZM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.700 0 15.300 0 12 0Zm0 5.800a6.200 6.200 0 1 0 0 12.400A6.200 6.200 0 0 0 12 5.800Zm0 10.200a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.400-11.800a1.400 1.400 0 1 0 0 2.900 1.400 1.400 0 0 0 0-2.900Z" },
+  { name: "Facebook", href: "#", path: "M24 12a12 12 0 1 0-13.900 11.900v-8.400H7.100V12h3V9.400c0-3 1.800-4.700 4.500-4.700 1.300 0 2.700.2 2.700.2v3h-1.500c-1.500 0-2 .9-2 1.900V12h3.400l-.5 3.500h-2.800v8.400A12 12 0 0 0 24 12Z" },
+  { name: "LinkedIn", href: "#", path: "M20.400 20.500h-3.600v-5.600c0-1.300 0-3-1.800-3s-2.100 1.400-2.100 2.900v5.700H9.400V9h3.400v1.600c.5-.9 1.600-1.800 3.400-1.800 3.600 0 4.300 2.400 4.300 5.500v6.200ZM5.300 7.400a2.100 2.100 0 1 1 0-4.100 2.100 2.100 0 0 1 0 4.100Zm1.800 13.100H3.600V9h3.600v11.500ZM22.200 0H1.800C.8 0 0 .8 0 1.700v20.600c0 .9.800 1.700 1.800 1.700h20.400c1 0 1.800-.8 1.800-1.700V1.700C24 .8 23.200 0 22.200 0Z" },
+  { name: "X", href: "#", path: "M18.200 2.300h3.300l-7.200 8.300L22.800 21.700h-6.700l-5.200-6.800-6 6.800H1.600l7.700-8.800L1.200 2.300H8l4.700 6.200 5.500-6.200Zm-1.200 17.500h1.800L7 4.100H5L17 19.800Z" },
+  { name: "YouTube", href: "#", path: "M23.500 6.200a3 3 0 0 0-2.100-2.100C19.500 3.600 12 3.600 12 3.600s-7.500 0-9.400.5A3 3 0 0 0 .5 6.200C0 8.100 0 12 0 12s0 3.900.5 5.800a3 3 0 0 0 2.100 2.100c1.900.5 9.400.5 9.400.5s7.500 0 9.400-.5a3 3 0 0 0 2.100-2.100c.5-1.900.5-5.800.5-5.800s0-3.900-.5-5.800ZM9.600 15.600V8.400l6.200 3.600-6.200 3.600Z" },
+  { name: "Email", href: `mailto:${INFO_EMAIL}`, path: "M0 5.200C0 4 1 3 2.200 3h19.600C23 3 24 4 24 5.200v.5l-12 7.400L0 5.700v-.5Zm0 3.100v10.500C0 20 1 21 2.200 21h19.600c1.200 0 2.200-1 2.200-2.200V8.300l-11.400 7a1.200 1.200 0 0 1-1.200 0L0 8.300Z" },
 ];
 
-function SocialIcon({ name }: { name: string }) {
-  const p = {
-    width: 20,
-    height: 20,
-    viewBox: "0 0 24 24",
-    fill: "currentColor",
-    "aria-hidden": true as const,
-  };
+const FALLBACK_POSTS = [
+  { title: "Case Study: Cost Segregation for a $1,200,000 Office Building", href: "/resources/cost-segregation-office-building/" },
+  { title: "Cost Segregation vs. Bonus Depreciation: What\u2019s the Difference?", href: "/resources/cost-segregation-vs-bonus-depreciation/" },
+  { title: "Cost Segregation for a Prior-Year Property: How to Catch Up with Form 3115", href: "/resources/cost-segregation-for-prior-year/" },
+];
 
-  switch (name) {
-    case "Instagram":
-      return (
-        <svg {...p}>
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg>
-      );
+type Props = Record<string, unknown>;
 
-    case "Facebook":
-      return (
-        <svg {...p}>
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-      );
+export default async function Footer(_props: Props) {
+  const client = createClient();
+  const [settings, posts] = await Promise.all([
+    client.getSingle("site_settings").catch(() => null),
+    client.getAllByType("blog_post", { limit: 3, orderings: [{ field: "my.blog_post.date", direction: "desc" }] }).catch(() => []),
+  ]);
 
-    case "LinkedIn":
-      return (
-        <svg {...p}>
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-      );
+  const recent = posts.length
+    ? posts.map((p) => ({ title: asText(p.data.title), href: `/resources/${p.uid}/` }))
+    : FALLBACK_POSTS;
 
-    case "X":
-      return (
-        <svg {...p}>
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-      );
+  const logo = settings?.data?.logo;
+  const year = new Date().getFullYear();
 
-    case "YouTube":
-      return (
-        <svg {...p}>
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-        </svg>
-      );
+  const heading = "text-[1.65rem] font-bold leading-tight text-white";
+  const link = "text-white transition hover:text-[#8fbcf5]";
 
-    default:
-      return (
-        <svg {...p}>
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </svg>
-      );
-  }
-}
-
-export default function Footer({ settings }: Props) {
   return (
-    <footer style={{ backgroundColor: "#1a2e5a", color: "#fff" }}>
-      <style>{`
-        .cs-footer-link { color: #c2d4ea; text-decoration: none; }
-        .cs-footer-link:hover { color: #fff; }
-        .cs-footer-social { color: #93afd4; display: flex; align-items: center; }
-        .cs-footer-social:hover { color: #fff; }
-        .cs-footer-legal { color: #6b8db5; text-decoration: none; }
-        .cs-footer-legal:hover { color: #c2d4ea; }
-        .cs-footer-news { color: #c2d4ea; text-decoration: none; display: block; margin-bottom: 2px; }
-        .cs-footer-news:hover { color: #fff; }
-      `}</style>
+    <footer className="bg-[#2a4073] text-white">
+      <div className="mx-auto grid max-w-[1700px] gap-14 px-6 py-16 text-lg md:px-16 lg:grid-cols-[1fr_380px] lg:gap-24 xl:px-[150px] xl:text-xl">
+        {/* ---------- Left column ---------- */}
+        <div className="lg:pt-[50px]">
+          <div className="flex items-center gap-8">
+            {logo?.url ? (
+              <PrismicNextImage field={logo} className="h-[96px] w-auto" alt="" />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={SITE_LOGO_FALLBACK_SRC} alt="" className="h-[96px] w-auto" />
+            )}
+            {KBKG_LOGO_SRC && (
+              <>
+                <span className="h-[100px] w-px bg-white" aria-hidden />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={KBKG_LOGO_SRC} alt="KBKG" className="h-[96px] w-auto" />
+              </>
+            )}
+          </div>
 
-      {/* Banner */}
-      <div
-        style={{
-          backgroundColor: "#0f1e3d",
-          padding: "12px 0",
-          textAlign: "center",
-          fontSize: 14,
-          fontWeight: 500,
-        }}
-      >
-        CostSegregation.com Now Includes Residential Cost Segregator®
-      </div>
-
-      {/* Main grid */}
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "48px 32px",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: 40,
-        }}
-      >
-        {/* Col 1 — Brand + social */}
-        <div>
-          <Image
-            src="https://www.costsegregation.com/wp-content/uploads/2025/10/CostSegregation_logo_white-1024x406.png"
-            alt="CostSegregation.com"
-            width={180}
-            height={72}
-            style={{
-              height: "auto",
-              width: 160,
-              marginBottom: 12,
-            }}
-          />
-
-          <Image
-            src="https://www.costsegregation.com/wp-content/uploads/2025/10/KBKG-PRINT-logo-white-1.svg"
-            alt="KBKG"
-            width={110}
-            height={44}
-            style={{
-              height: "auto",
-              width: 100,
-              marginBottom: 16,
-            }}
-          />
-
-          <p
-            style={{
-              fontSize: 13,
-              color: "#93afd4",
-              marginBottom: 4,
-            }}
-          >
-            Residential Cost Segregator®
+          <p className="mt-9 flex flex-wrap gap-x-7">
+            <span>Residential Cost Segregator&reg;</span>
+            <span>&copy; {year} all rights reserved</span>
           </p>
 
-          <p
-            style={{
-              fontSize: 12,
-              color: "#6b8db5",
-              marginBottom: 20,
-            }}
-          >
-            © 2026 all rights reserved
+          <h2 className={heading + " mt-12"}>Contact Us</h2>
+          <p className="mt-1 leading-[1.5]">
+            For technical or product related questions contact{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="font-bold hover:text-[#8fbcf5]">{SUPPORT_EMAIL}</a>
+            <br />
+            For general inquiries contact{" "}
+            <a href={`mailto:${INFO_EMAIL}`} className="font-bold hover:text-[#8fbcf5]">{INFO_EMAIL}</a>
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              gap: 12,
-              flexWrap: "wrap",
-            }}
-          >
+          <p className="mt-9">Please note, we currently provide support via email and do not offer phone support.</p>
+
+          <p className="mt-7">
+            <Link href="/affiliate-program/" className={link}>Affiliate Program</Link>
+          </p>
+
+          <ul className="mt-7 flex items-center gap-5" aria-label="Social media">
             {SOCIAL.map((s) => (
-              <a
-                key={s.name}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.name}
-                className="cs-footer-social"
-              >
-                <SocialIcon name={s.name} />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Col 2 — Contact */}
-        <div>
-          <h3
-            style={{
-              fontSize: 12,
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "#93afd4",
-              marginBottom: 16,
-            }}
-          >
-            Contact Us
-          </h3>
-
-          <div
-            style={{
-              fontSize: 14,
-              color: "#c2d4ea",
-              lineHeight: 1.75,
-            }}
-          >
-            <p>
-              For technical or product related questions contact{" "}
-              <a
-                href="mailto:Support@costsegregation.com"
-                style={{
-                  color: "#fff",
-                  fontWeight: 600,
-                  textDecoration: "underline",
-                }}
-              >
-                Support@costsegregation.com
-              </a>
-            </p>
-
-            <p style={{ marginTop: 8 }}>
-              For general inquiries contact{" "}
-              <a
-                href="mailto:Info@costsegregation.com"
-                style={{
-                  color: "#fff",
-                  fontWeight: 600,
-                  textDecoration: "underline",
-                }}
-              >
-                Info@costsegregation.com
-              </a>
-            </p>
-
-            <p
-              style={{
-                marginTop: 8,
-                fontSize: 12,
-                color: "#6b8db5",
-              }}
-            >
-              Please note, we currently provide support via email and do not
-              offer phone support.
-            </p>
-
-            <p style={{ marginTop: 12 }}>
-              <Link
-                href="/affiliate-program/"
-                className="cs-footer-link"
-                style={{ textDecoration: "underline" }}
-              >
-                Affiliate Program
-              </Link>
-            </p>
-          </div>
-        </div>
-
-        {/* Col 3 — Recent News */}
-        <div>
-          <h3
-            style={{
-              fontSize: 12,
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "#93afd4",
-              marginBottom: 16,
-            }}
-          >
-            Recent News
-          </h3>
-
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: 16,
-            }}
-          >
-            {[
-              {
-                title:
-                  "Case Study: Cost Segregation for a $1,200,000 Office Building",
-                href: "/resources/cost-segregation-office-building/",
-              },
-              {
-                title:
-                  "Cost Segregation vs. Bonus Depreciation: What's the Difference?",
-                href: "/resources/cost-segregation-vs-bonus-depreciation/",
-              },
-              {
-                title:
-                  "Cost Segregation for a Prior-Year Property: How to Catch Up with Form 3115",
-                href: "/resources/cost-segregation-for-prior-year/",
-              },
-            ].map((post) => (
-              <li key={post.href}>
-                <Link
-                  href={post.href}
-                  className="cs-footer-news"
-                >
-                  {post.title}
-                </Link>
-
-                <Link
-                  href={post.href}
-                  style={{
-                    fontSize: 12,
-                    color: "#6b8db5",
-                    textDecoration: "none",
-                  }}
-                >
-                  Read More »
-                </Link>
+              <li key={s.name}>
+                <a href={s.href} aria-label={s.name} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="block text-white transition hover:text-[#8fbcf5]">
+                  <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden><path d={s.path} /></svg>
+                </a>
               </li>
             ))}
           </ul>
+
+          <p className="mt-9">CostSegregation.com Now Includes Residential Cost Segregator&reg;</p>
+
+          <p className="mt-7 text-[#277ce6]">
+            <a href="https://privacy.cptn.co/privacy-policy/f7adcbbd-7982-4fab-92ad-efc8b1cb7ed8" target="_blank" rel="noopener noreferrer" className="hover:underline">Privacy Policy</a>
+            <span className="text-white"> | </span>
+            <a href="https://www.kbkg.com/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="hover:underline">Terms and Conditions</a>
+          </p>
         </div>
 
-        {/* Col 4 — Software + Stay connected */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 32,
-          }}
-        >
-          <div>
-            <h3
-              style={{
-                fontSize: 12,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "#93afd4",
-                marginBottom: 16,
-              }}
-            >
-              Software
-            </h3>
-
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: 8,
-              }}
-            >
-              <li>
-                <a
-                  href="https://www.kbkg.com/481a-calculator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cs-footer-link"
-                >
-                  481(a)
-                </a>
+        {/* ---------- Right column ---------- */}
+        <div className="lg:pt-[10px]">
+          <h2 className={heading}>Recent News</h2>
+          <ul className="mt-9 space-y-9">
+            {recent.map((p) => (
+              <li key={p.href}>
+                <Link href={p.href} className={link + " block text-[1.05rem] leading-[1.6]"}>{p.title}</Link>
+                <Link href={p.href} className="mt-0.5 inline-block text-sm font-bold text-[#277ce6] hover:underline">Read More &raquo;</Link>
               </li>
+            ))}
+          </ul>
 
-              <li>
-                <a
-                  href="https://www.kbkg.com/partial-disposition-calculator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cs-footer-link"
-                >
-                  Partial Disposition Calculator
-                </a>
-              </li>
-            </ul>
-          </div>
+          <h2 className={heading + " mt-9"}>Software</h2>
+          <ul className="mt-7 space-y-6 text-[1.05rem]">
+            <li><a href="https://www.kbkg.com/481a-calculator" target="_blank" rel="noopener noreferrer" className={link}>481(a)</a></li>
+            <li><a href="https://www.kbkg.com/partial-disposition-calculator" target="_blank" rel="noopener noreferrer" className={link}>Partial Disposition Calculator</a></li>
+          </ul>
 
-          <div>
-            <h3
-              style={{
-                fontSize: 12,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "#93afd4",
-                marginBottom: 16,
-              }}
-            >
-              Stay Connected
-            </h3>
-
-            <Link
-              href="/stay-connected/"
-              className="cs-footer-link"
-              style={{
-                fontSize: 14,
-                textDecoration: "underline",
-              }}
-            >
-              Subscribe to SMS Notifications
-            </Link>
-          </div>
+          <h2 className={heading + " mt-12"}>Stay connected</h2>
+          <p className="mt-7 text-[1.05rem]">
+            <Link href="/stay-connected/" className={link}>Subscribe to SMS Notifications</Link>
+          </p>
         </div>
-      </div>
-
-      {/* Legal bar */}
-      <div
-        style={{
-          borderTop: "1px solid #2d4a7a",
-          padding: "20px 32px",
-          display: "flex",
-          justifyContent: "center",
-          gap: 24,
-          fontSize: 12,
-          flexWrap: "wrap",
-        }}
-      >
-        <a
-          href="https://privacy.cptn.co/privacy-policy/f7adcbbd-7982-4fab-92ad-efc8b1cb7ed8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cs-footer-legal"
-        >
-          Privacy Policy
-        </a>
-
-        <span style={{ color: "#6b8db5" }}>|</span>
-
-        <a
-          href="https://www.kbkg.com/terms-and-conditions"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cs-footer-legal"
-        >
-          Terms and Conditions
-        </a>
       </div>
     </footer>
   );

@@ -14,10 +14,7 @@
       "primary": {
         "title": {
           "type": "Text",
-          "config": {
-            "label": "Section title",
-            "placeholder": ""
-          }
+          "config": { "label": "Section title", "placeholder": "" }
         },
         "intro": {
           "type": "StructuredText",
@@ -28,44 +25,85 @@
             "allowTargetBlank": true
           }
         },
+        "cta_label": {
+          "type": "Text",
+          "config": { "label": "Card CTA label", "placeholder": "Learn More >" }
+        },
+        "back_label": {
+          "type": "Text",
+          "config": { "label": "Detail back button label", "placeholder": "Back to all benefits" }
+        },
+        "detail_eyebrow": {
+          "type": "Text",
+          "config": { "label": "Detail eyebrow", "placeholder": "Feature" }
+        },
+        "detail_panel_title": {
+          "type": "Text",
+          "config": { "label": "Detail panel heading", "placeholder": "What you get" }
+        },
         "columns": {
-          "type": "Select",
+          "type": "Group",
           "config": {
             "label": "Columns",
-            "placeholder": "",
-            "options": [
-              "2",
-              "3",
-              "4"
-            ],
-            "default_value": "3"
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Icon",
+                  "placeholder": "",
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                  "allowTargetBlank": true
+                }
+              },
+              "title": { "type": "Text", "config": { "label": "Title", "placeholder": "" } },
+              "text": { "type": "Text", "config": { "label": "Text", "placeholder": "" } }
+            }
           }
         }
       },
       "items": {
         "icon": {
           "type": "Image",
-          "config": {
-            "label": "Icon",
-            "constraint": {},
-            "thumbnails": []
-          }
+          "config": { "label": "Icon", "constraint": {}, "thumbnails": [] }
         },
         "title": {
           "type": "Text",
-          "config": {
-            "label": "Card title",
-            "placeholder": ""
-          }
+          "config": { "label": "Card title", "placeholder": "" }
         },
         "text": {
           "type": "StructuredText",
           "config": {
             "label": "Card text",
-            "placeholder": "",
+            "placeholder": "Short description shown on the card",
             "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
             "allowTargetBlank": true
           }
+        },
+        "detail_intro": {
+          "type": "Text",
+          "config": { "label": "Detail intro", "placeholder": "Lead sentence shown in the detail view" }
+        },
+        "detail_list": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Detail list (\"What you get\" bullets)",
+            "placeholder": "One bullet per line. Leave empty to use Detail paragraph.",
+            "multi": "list-item,strong,em,hyperlink"
+          }
+        },
+        "detail_paragraph": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Detail paragraph (used when list is empty)",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink",
+            "allowTargetBlank": true
+          }
+        },
+        "detail_note": {
+          "type": "Text",
+          "config": { "label": "Detail note (optional callout)", "placeholder": "" }
         }
       }
     }
