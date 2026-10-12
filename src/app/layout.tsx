@@ -1,15 +1,14 @@
-
-// app/layout.tsx — Root layout: fetches site settings and renders Navbar + Footer on every page.
 import { PrismicPreview } from "@prismicio/next";
-import { repositoryName } from "@/prismicio";
+import { repositoryName, createClient } from "@/prismicio";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { createClient } from "@/prismicio";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Best Cost Segregation Software - Cost Segregation",
@@ -18,9 +17,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const client = createClient();
 
   const settings = await client
@@ -31,11 +30,13 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar settings={settings} />
+
         {children}
-        <PrismicPreview repositoryName="cost-segregation" />
-        <Footer settings={settings} />
+
+        <Footer />
+
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
   );
 }
-
