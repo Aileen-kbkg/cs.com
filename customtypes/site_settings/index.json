@@ -136,6 +136,222 @@
           "placeholder": ""
         },
         "type": "StructuredText"
+      },
+      "footer_logo": {
+        "config": {
+          "constraint": {},
+          "label": "Footer Logo (white)",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "partner_logo": {
+        "config": {
+          "constraint": {},
+          "label": "Footer Partner Logo (KBKG)",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "footer_tagline": {
+        "config": {
+          "label": "Footer Tagline",
+          "placeholder": "Residential Cost Segregator®"
+        },
+        "type": "Text"
+      },
+      "copyright_text": {
+        "config": {
+          "label": "Copyright Text",
+          "placeholder": "© 2026 all rights reserved"
+        },
+        "type": "Text"
+      },
+      "contact_heading": {
+        "config": {
+          "label": "Contact Heading",
+          "placeholder": "Contact Us"
+        },
+        "type": "Text"
+      },
+      "contact_email": {
+        "config": {
+          "label": "Contact Email (envelope icon)",
+          "placeholder": "info@costsegregation.com"
+        },
+        "type": "Text"
+      },
+      "footer_navigation": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Footer Navigation",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "social_links": {
+        "config": {
+          "fields": {
+            "platform": {
+              "config": {
+                "label": "Platform",
+                "options": [
+                  "Instagram",
+                  "Facebook",
+                  "LinkedIn",
+                  "X",
+                  "YouTube"
+                ],
+                "placeholder": ""
+              },
+              "type": "Select"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Social Links",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "footer_note": {
+        "config": {
+          "label": "Footer Note",
+          "placeholder": "CostSegregation.com Now Includes Residential Cost Segregator®"
+        },
+        "type": "Text"
+      },
+      "legal_links": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Legal Links",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "recent_news_heading": {
+        "config": {
+          "label": "Recent News Heading",
+          "placeholder": "Recent News"
+        },
+        "type": "Text"
+      },
+      "read_more_label": {
+        "config": {
+          "label": "Read More Label",
+          "placeholder": "Read More »"
+        },
+        "type": "Text"
+      },
+      "resources_heading": {
+        "config": {
+          "label": "Resources Heading",
+          "placeholder": "Software"
+        },
+        "type": "Text"
+      },
+      "footer_resources": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Footer Resources",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "stay_connected_heading": {
+        "config": {
+          "label": "Stay Connected Heading",
+          "placeholder": "Stay connected"
+        },
+        "type": "Text"
+      },
+      "stay_connected_links": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Stay Connected Links",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
   },

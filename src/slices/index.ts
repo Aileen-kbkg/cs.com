@@ -17,3 +17,4 @@ export const components = {
 	calculator: Calculator,
 	post_list: PostList,
 };
+
