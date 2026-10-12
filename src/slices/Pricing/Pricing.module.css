@@ -1,0 +1,542 @@
+/*
+ * "Transparent, All Inclusive Pricing" — values from the live costsegregation.com
+ * Elementor section f991d66 (#pricing) and its two calculator HTML widgets.
+ * Elementor defaults reproduced: nested containers 10px padding / 20px gap,
+ * heading line-height 1, kit buttons (Inter 16px bold, capitalize, radius 10px).
+ * Colors: primary #284074, secondary #277ce6, light #f6f9ff, icon bg #cfe2f9.
+ * Breakpoints: tablet ≤1024px, mobile ≤767px.
+ */
+
+.section {
+  background-color: #f4f7fb;
+  color: #333333;
+  padding: 60px 20px;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+  font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+  line-height: 1.5;
+}
+
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.inner p {
+  margin: 0 0 0.9rem;
+}
+
+.heading,
+.includedTitle,
+.planName,
+.customQuoteTitle {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  color: #284074;
+}
+
+.heading {
+  text-align: center;
+  font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+}
+
+.intro {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Buttons (Elementor kit) */
+.button {
+  display: inline-block;
+  min-height: 40px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background-color: #277ce6;
+  color: #ffffff;
+  fill: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #284074;
+  color: #ffffff;
+}
+
+.planButton,
+.quoteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.quoteButton {
+  gap: 10px;
+}
+
+.buttonIcon {
+  display: flex;
+  align-items: center;
+}
+
+.buttonIcon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+/* Summary box 1cdfe40 */
+.summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Included list ef4d78e */
+.included {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 630px;
+  max-width: 100%;
+  flex-shrink: 1;
+  padding: 10px;
+}
+
+.includedTitle {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(0.94rem, 0.83rem + 0.47vw, 1.25rem);
+}
+
+/* f940fc8 */
+.featureLists {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.featureList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  text-align: start;
+  font-size: 16px;
+  color: #284074;
+}
+
+.featureIcon {
+  display: flex;
+  position: relative;
+}
+
+.featureIcon svg {
+  width: 14px;
+  height: 14px;
+  margin: 0 3.5px 0 0;
+  fill: #284074;
+}
+
+.featureText {
+  align-self: center;
+  padding-inline-start: 5px;
+}
+
+/* Loyalty box ff90e93 */
+.loyalty {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  width: 45%;
+  padding: 0;
+  border-radius: 20px;
+}
+
+.medal img {
+  display: block;
+  width: 120px;
+  height: auto;
+  max-width: 100%;
+}
+
+/* f568153 */
+.loyaltyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+  max-width: 100%;
+  flex-shrink: 1;
+  padding: 10px;
+}
+
+.loyaltyButton {
+  background-color: #b5eba2;
+  color: #3d8120;
+}
+
+.loyaltyButton:hover,
+.loyaltyButton:focus {
+  background-color: #9ed88a;
+  color: #3d8120;
+}
+
+.inner .loyaltyNote p {
+  margin: 0;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  color: #3d8120;
+}
+
+/* Plan grid 09c0da1 */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: row;
+  gap: 40px;
+}
+
+/* Plan card 9fe9b39 / 7d0dfaf */
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 0 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Card header b4bbbe4 / 4b6cc37 */
+.planHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 20px;
+  background-color: #f6f9ff;
+}
+
+.planIcon {
+  flex: 0 0 auto;
+  display: inline-block;
+  padding: 25px;
+  border-radius: 50px;
+  background-color: #cfe2f9;
+  line-height: 1;
+  font-size: 50px;
+}
+
+.planIcon img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* d0be73c / 8b63270 */
+.planText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px;
+}
+
+.planName {
+  font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+}
+
+.planTypes {
+  color: #284074;
+}
+
+/* Calculator HTML widget (inline styles on live) */
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 40px 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.priceBlock {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.inner .price {
+  margin: 0;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: #4a90e2;
+}
+
+.inner .priceNote {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #284074;
+}
+
+.sliderBlock {
+  margin-top: 35px;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.inner .sliderText {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #284074;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #e0e0e0;
+}
+
+.fill {
+  position: absolute;
+  height: 100%;
+  border-radius: 10px;
+  background: #333333;
+  transition: width 0.1s ease;
+}
+
+.range {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #333333;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Firefox equivalent of the live WebKit thumb */
+.range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #333333;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.range::-moz-range-track {
+  background: transparent;
+}
+
+.range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #277ce6;
+  outline-offset: 2px;
+}
+
+.sliderEnds {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #666666;
+}
+
+/* "Start Your Study" (d264d17 / 83bb2e2): white, 2px primary border */
+.planButton {
+  border: 2px solid #284074;
+  background-color: #ffffff;
+  color: #284074;
+}
+
+.planButton:hover,
+.planButton:focus {
+  background-color: #284074;
+  color: #ffffff;
+}
+
+/* Custom quote box 3c11b06 */
+.customQuote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  border: 2px solid #e6e6e6;
+  border-radius: 10px;
+}
+
+.customQuoteTitle {
+  text-align: center;
+  font-size: clamp(1.17rem, 1.03rem + 0.59vw, 1.56rem);
+}
+
+.customQuoteText {
+  width: 59%;
+  max-width: 59%;
+  text-align: center;
+  color: #284074;
+}
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .planHeader {
+    min-height: 186px;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .planIcon {
+    order: -99999;
+  }
+
+  .planTypes {
+    font-size: 16px;
+  }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+  .summary {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .included,
+  .loyalty,
+  .loyaltyContent {
+    width: 100%;
+  }
+
+  .loyalty {
+    flex-wrap: wrap;
+  }
+
+  .includedTitle {
+    text-align: start;
+  }
+
+  .featureLists {
+    flex-wrap: wrap;
+  }
+
+  .featureList {
+    width: 100%;
+  }
+
+  .plans {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .planHeader {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .planIcon {
+    padding: 20px;
+    font-size: 40px;
+  }
+
+  .planIcon img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .planName,
+  .planTypes {
+    text-align: center;
+  }
+
+  .customQuoteTitle {
+    line-height: 1.1em;
+  }
+
+  .customQuoteText {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .quoteButton {
+    line-height: 1.2em;
+  }
+}

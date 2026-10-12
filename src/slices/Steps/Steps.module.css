@@ -1,0 +1,228 @@
+/*
+ * "How it Works" — reproduces the live costsegregation.com section:
+ * Elementor container 74c4993 + Unlimited Elements "Step Process" widget 4ca0654.
+ * Elementor breakpoints: tablet ≤1024px, mobile ≤767px; the widget itself
+ * switches to its vertical layout at ≤768px.
+ */
+
+.section {
+  background-color: #f6f9ff;
+  padding: 60px 20px;
+  color: #333333;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+  font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+  line-height: 1.5;
+}
+
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Heading cc47da1 */
+.heading {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+  line-height: 1;
+  color: #284074;
+}
+
+/* Text aad2fe9: 41% wide, centered */
+.intro {
+  width: 41%;
+  max-width: 41%;
+  text-align: center;
+}
+
+.intro p {
+  margin: 0 0 0.9rem;
+}
+
+.intro p:last-child {
+  margin-bottom: 0.9rem;
+}
+
+/* Step Process widget 4ca0654 */
+.steps {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #284074;
+}
+
+.step:first-child .highlight > .line:first-child,
+.step:last-child .highlight > .line:last-child {
+  opacity: 0;
+}
+
+.icon {
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  background-color: #cfe2f9;
+  color: #ffffff;
+  line-height: 1em;
+  transition: 0.3s;
+  transition-property: transform, background-color;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.step:hover .icon {
+  background-color: #284074;
+}
+
+.iconImage {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.label {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #284074;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.spacer {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+}
+
+.content {
+  padding: 10px;
+  text-align: center;
+}
+
+.title {
+  margin-top: 10px;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.text {
+  margin-top: 10px;
+  color: #aeaeae;
+}
+
+.text p {
+  margin: 0;
+}
+
+.cta {
+  display: inline-block;
+}
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .intro {
+    width: 369.469px;
+    max-width: 369.469px;
+  }
+
+  .steps {
+    width: 45%;
+    max-width: 45%;
+  }
+
+  .content {
+    text-align: left;
+  }
+}
+
+/* Step widget vertical layout (≤768px) */
+@media only screen and (max-width: 768px) {
+  .steps {
+    flex-direction: column;
+  }
+
+  .step {
+    flex-direction: row;
+  }
+
+  .highlight {
+    flex-direction: column;
+  }
+
+  .highlight > .line:first-child {
+    display: none;
+  }
+
+  .line {
+    width: 2px;
+    height: 100%;
+  }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+  .intro,
+  .steps {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .label {
+    padding: 8px 10px;
+    border-radius: 16px;
+  }
+}

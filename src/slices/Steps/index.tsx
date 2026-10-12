@@ -1,42 +1,96 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { Content, isFilled } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { PrismicNextLink } from "@prismicio/next";
 
+import styles from "./Steps.module.css";
+
+/**
+ * Props for `Steps` ("How it Works").
+ */
 export type StepsProps = SliceComponentProps<Content.StepsSlice>;
 
-const Steps: FC<StepsProps> = ({ slice }) => {
-  const p = slice.primary;
+/**
+ * Live step icons, used until a Step image is set in Prismic
+ * (files in /public/icons/how-it-works, copied from costsegregation.com).
+ */
+const fallbackIcon = (stepNumber: number) =>
+  stepNumber >= 1 && stepNumber <= 4 ? `/icons/how-it-works/step-${stepNumber}.svg` : null;
+
+/**
+ * "How it Works" — numbered steps joined by a line, matching the live
+ * costsegregation.com section (horizontal on desktop/tablet, vertical ≤768px).
+ */
+const Steps = ({ slice }: StepsProps) => {
+  const { primary, items } = slice;
+  const hasCta = Boolean(primary.cta_label) && isFilled.link(primary.cta_link);
+
   return (
     <section
+      className={styles.section}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-slate-50"
     >
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">{p.title}</h2>
-        <div className="mt-3 max-w-2xl text-slate-700">
-          <PrismicRichText field={p.intro} />
-        </div>
-        <ol className="mt-10 grid gap-6 md:grid-cols-4">
-          {slice.items.map((item, i) => (
-            <li key={i} className="rounded-lg border border-slate-200 bg-white p-5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-700 font-semibold text-white">
-                {i + 1}
-              </span>
-              <h3 className="mt-4 font-semibold text-slate-900">{item.step_title}</h3>
-              <div className="mt-1 text-sm text-slate-700">
-                <PrismicRichText field={item.step_text} />
-              </div>
-            </li>
-          ))}
-        </ol>
-        {p.cta_label && (
-          <PrismicNextLink
-            field={p.cta_link}
-            className="mt-10 inline-block rounded-md bg-blue-700 px-6 py-3 font-semibold text-white hover:bg-blue-800"
-          >
-            {p.cta_label}
+      <div className={styles.inner}>
+        {primary.title && <h2 className={styles.heading}>{primary.title}</h2>}
+
+        {isFilled.richText(primary.intro) && (
+          <div className={styles.intro}>
+            <PrismicRichText field={primary.intro} />
+          </div>
+        )}
+
+        {items.length > 0 && (
+          <ol className={styles.steps}>
+            {items.map((item, index) => {
+              const stepNumber = index + 1;
+              const fallback = fallbackIcon(stepNumber);
+
+              return (
+                <li key={`${item.step_title ?? "step"}-${index}`} className={styles.step}>
+                  <div className={styles.highlight}>
+                    <div className={styles.line} />
+                    <div className={styles.icon}>
+                      {isFilled.image(item.step_image) ? (
+                        <PrismicNextImage
+                          field={item.step_image}
+                          className={styles.iconImage}
+                          fallbackAlt=""
+                          unoptimized
+                        />
+                      ) : (
+                        fallback && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={fallback}
+                            alt=""
+                            width={48}
+                            height={48}
+                            className={styles.iconImage}
+                          />
+                        )
+                      )}
+                      <div className={styles.label}>{stepNumber}</div>
+                    </div>
+                    <div className={styles.line} />
+                  </div>
+                  <div className={styles.spacer} />
+                  <div className={styles.content}>
+                    {item.step_title && <div className={styles.title}>{item.step_title}</div>}
+                    {isFilled.richText(item.step_text) && (
+                      <div className={styles.text}>
+                        <PrismicRichText field={item.step_text} />
+                      </div>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        )}
+
+        {hasCta && (
+          <PrismicNextLink field={primary.cta_link} className={styles.cta}>
+            {primary.cta_label}
           </PrismicNextLink>
         )}
       </div>

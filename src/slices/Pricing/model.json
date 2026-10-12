@@ -98,6 +98,48 @@
             "allowText": false,
             "repeat": false
           }
+        },
+        "loyalty_image": {
+          "type": "Image",
+          "config": {
+            "label": "Loyalty image (medal)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "loyalty_cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "Loyalty button label",
+            "placeholder": "Explore Loyalty discounts for repeat users!"
+          }
+        },
+        "loyalty_cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "Loyalty button link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        },
+        "custom_quote_title": {
+          "type": "Text",
+          "config": {
+            "label": "Custom quote heading",
+            "placeholder": "Properties Over $1.5M in Building Basis (less land)"
+          }
+        },
+        "custom_quote_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Custom quote text",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
         }
       },
       "items": {
@@ -126,7 +168,7 @@
           "type": "Text",
           "config": {
             "label": "Price note",
-            "placeholder": ""
+            "placeholder": "For {basis} tax basis"
           }
         },
         "basis_label": {
@@ -152,6 +194,65 @@
             "allowTargetBlank": true,
             "allowText": false,
             "repeat": false
+          }
+        },
+        "plan_icon": {
+          "type": "Image",
+          "config": {
+            "label": "Plan icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "property_types_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Property types (formatted; overrides Property type)",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "default_basis": {
+          "type": "Number",
+          "config": {
+            "label": "Default tax basis (USD)",
+            "placeholder": "750000"
+          }
+        },
+        "base_price": {
+          "type": "Number",
+          "config": {
+            "label": "Base price (USD)",
+            "placeholder": "495"
+          }
+        },
+        "base_limit": {
+          "type": "Number",
+          "config": {
+            "label": "Base price applies up to basis (USD)",
+            "placeholder": "750000"
+          }
+        },
+        "rate_per_dollar": {
+          "type": "Number",
+          "config": {
+            "label": "Price increase per $1 of basis above the base limit",
+            "placeholder": "0.0015556"
+          }
+        },
+        "cap_limit": {
+          "type": "Number",
+          "config": {
+            "label": "Price stops increasing above basis (USD)",
+            "placeholder": "1200000"
+          }
+        },
+        "cap_price": {
+          "type": "Number",
+          "config": {
+            "label": "Price above that limit (USD)",
+            "placeholder": "1195"
           }
         }
       }
