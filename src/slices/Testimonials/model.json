@@ -7,10 +7,10 @@
     {
       "id": "default",
       "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
       "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
       "primary": {
         "title": {
           "type": "Text",
@@ -38,6 +38,24 @@
           "config": {
             "label": "Source label",
             "placeholder": ""
+          }
+        },
+        "review_cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "Review button label",
+            "placeholder": "Leave a Review"
+          }
+        },
+        "review_cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "Review button link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
           }
         }
       },
