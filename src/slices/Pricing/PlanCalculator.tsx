@@ -16,14 +16,30 @@ type PlanCalculatorProps = {
   priceNote: string;
 };
 
+/**
+ * Renders the note under the price with the current basis. Supports the
+ * "{basis}" placeholder; a note that still holds a fixed amount
+ * (e.g. "For $750,000 tax basis") has that amount replaced, so the text
+ * always follows the slider instead of showing a stale value.
+ */
+const CURRENCY_AMOUNT = /\$[\d,]+(?:\.\d+)?/;
+
 const renderNote = (note: string, basis: string) => {
-  const [before, after] = note.includes("{basis}") ? note.split("{basis}") : [note, null];
-  if (after === null) return note;
+  let parts: string[] | null = null;
+  if (note.includes("{basis}")) {
+    parts = note.split("{basis}");
+  } else {
+    const match = note.match(CURRENCY_AMOUNT);
+    if (match && match.index !== undefined) {
+      parts = [note.slice(0, match.index), note.slice(match.index + match[0].length)];
+    }
+  }
+  if (!parts) return note;
   return (
     <>
-      {before}
+      {parts[0]}
       <span>{basis}</span>
-      {after}
+      {parts.slice(1).join(basis)}
     </>
   );
 };
