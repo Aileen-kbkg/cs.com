@@ -91,6 +91,15 @@ export default function NavbarMenu({
             onMouseLeave={
               variant === "main" && hasChildren ? () => setOpenDropdown(null) : undefined
             }
+            onBlur={
+              hasChildren
+                ? (event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                      setOpenDropdown((current) => (current === index ? null : current));
+                    }
+                  }
+                : undefined
+            }
           >
             <div className={styles.itemRow}>
               {item.link ? (

@@ -7,6 +7,7 @@
 
 .header {
   position: relative;
+  max-width: 100vw;
   z-index: 100;
   font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "Noto Sans", sans-serif;
@@ -162,6 +163,11 @@
 }
 
 .subMenuOpen {
+  display: block;
+}
+
+/* Keyboard users: show the dropdown while focus is inside the item */
+.menu .menuItem:focus-within > .subMenu {
   display: block;
 }
 
