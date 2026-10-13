@@ -41,6 +41,7 @@
   font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
   line-height: 1;
   color: #284074;
+  text-align: center;
 }
 
 .intro {
