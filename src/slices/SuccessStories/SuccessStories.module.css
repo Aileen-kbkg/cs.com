@@ -1,0 +1,168 @@
+/*
+ * "Success Stories" — values from the live costsegregation.com Elementor
+ * section ba3bab4 (grid 519e49a, cards 40d69a5 / 504dc00 / 0ecc6e5).
+ * Breakpoints: 3 columns down to 768px, 1 column ≤767px.
+ */
+
+.section {
+  background-color: #f4f7fb;
+  color: #333333;
+  padding: 60px 20px;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+  font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+  line-height: 1.5;
+}
+
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Heading 3819935: left on desktop/tablet, centered on mobile (as on live) */
+.heading {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+  line-height: 1;
+  color: #284074;
+}
+
+.intro {
+  width: 100%;
+}
+
+.intro p {
+  margin: 0 0 0.9rem;
+}
+
+/* Grid 519e49a */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: row;
+  gap: 40px;
+  width: 100%;
+  padding: 10px;
+}
+
+/* Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Photo header 5a92aaf */
+.media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 171px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.mediaImage {
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+/* Property-type pill 5496e95 */
+.pill {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+  width: fit-content;
+  min-width: 165px;
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: rgba(255, 250, 250, 0.9);
+}
+
+.pill p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  color: #284074;
+}
+
+/* Purchase-price band a1f4b54 (.blurBG) */
+.band {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(40, 64, 116, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.band p {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* "First Year Tax Deductions" b31bc86 */
+.label {
+  padding: 20px 0 0;
+  text-align: center;
+}
+
+/* Amount 8cd97b3 */
+.amount {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  color: #284074;
+}
+
+@media (max-width: 767px) {
+  .heading {
+    text-align: center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .pill {
+    min-width: 180px;
+  }
+}

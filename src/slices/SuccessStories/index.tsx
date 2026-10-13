@@ -1,32 +1,107 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { Content, ImageField, isFilled, KeyTextField } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
+import styles from "./SuccessStories.module.css";
+
+/**
+ * Props for `SuccessStories`.
+ */
 export type SuccessStoriesProps = SliceComponentProps<Content.SuccessStoriesSlice>;
 
-const SuccessStories: FC<SuccessStoriesProps> = ({ slice }) => {
+/**
+ * Fields added to the model for the live card design. Optional so this file
+ * compiles before and after `prismicio-types.d.ts` is regenerated.
+ */
+type PrimaryExtras = {
+  price_label?: KeyTextField;
+  price_note?: KeyTextField;
+  deduction_label?: KeyTextField;
+};
+type ItemExtras = { image?: ImageField };
+
+type Primary = Omit<Content.SuccessStoriesSlice["primary"], keyof PrimaryExtras> & PrimaryExtras;
+type Item = Omit<Content.SuccessStoriesSlice["items"][number], keyof ItemExtras> & ItemExtras;
+
+/**
+ * "Success Stories" — three stat cards matching the live costsegregation.com
+ * section: photo header with property-type pill and purchase-price band,
+ * then the first-year deduction figure.
+ */
+const SuccessStories = ({ slice }: SuccessStoriesProps) => {
+  const primary = slice.primary as Primary;
+  const items = slice.items as Item[];
+
   return (
     <section
+      className={styles.section}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-white"
     >
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">{slice.primary.title}</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {slice.items.map((item, i) => (
-            <article key={i} className="rounded-lg border border-slate-200 p-6">
-              <h3 className="font-semibold text-slate-900">{item.property_type}</h3>
-              <p className="mt-1 text-sm text-slate-600">
-                {item.purchase_price} purchase price (less land)
-              </p>
-              <p className="mt-5 text-4xl font-bold text-blue-800">
-                {item.first_year_deduction}
-              </p>
-              <p className="text-sm text-slate-600">First year tax deductions</p>
-            </article>
-          ))}
-        </div>
+      <div className={styles.inner}>
+        {primary.title && <h2 className={styles.heading}>{primary.title}</h2>}
+        {isFilled.richText(primary.intro) && (
+          <div className={styles.intro}>
+            <PrismicRichText field={primary.intro} />
+          </div>
+        )}
+
+        {items.length > 0 && (
+          <div className={styles.grid}>
+            {items.map((item, index) => {
+              const card = (
+                <>
+                  <div className={styles.media}>
+                    {isFilled.image(item.image) && (
+                      <PrismicNextImage
+                        field={item.image}
+                        fill
+                        sizes="(max-width: 767px) 100vw, 33vw"
+                        className={styles.mediaImage}
+                        fallbackAlt=""
+                      />
+                    )}
+                    {item.property_type && (
+                      <div className={styles.pill}>
+                        <p>{item.property_type}</p>
+                      </div>
+                    )}
+                    {(item.purchase_price || primary.price_note) && (
+                      <div className={styles.band}>
+                        <p>
+                          {item.purchase_price && (
+                            <strong>
+                              {item.purchase_price}
+                              {primary.price_label ? ` ${primary.price_label}` : ""}
+                            </strong>
+                          )}
+                          {primary.price_note ? ` ${primary.price_note}` : ""}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  {primary.deduction_label && (
+                    <div className={styles.label}>{primary.deduction_label}</div>
+                  )}
+                  {item.first_year_deduction && (
+                    <h2 className={styles.amount}>{item.first_year_deduction}</h2>
+                  )}
+                </>
+              );
+
+              const key = `${item.property_type ?? "story"}-${index}`;
+              return isFilled.link(item.link) ? (
+                <PrismicNextLink key={key} field={item.link} className={styles.card}>
+                  {card}
+                </PrismicNextLink>
+              ) : (
+                <div key={key} className={styles.card}>
+                  {card}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
