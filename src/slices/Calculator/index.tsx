@@ -34,29 +34,89 @@ type Primary = Omit<Content.CalculatorSlice["primary"], keyof Extras> & Extras;
 const toList = (field: RichTextField | undefined) =>
   (field ?? []).map((node) => ("text" in node ? node.text.trim() : "")).filter(Boolean);
 
+/**
+ * Live costsegregation.com text, used whenever the matching Prismic field is
+ * missing or empty, so the section never renders blank labels.
+ */
+const LIVE_DEFAULTS = {
+  estimateButtonLabel: "Estimate Savings",
+  deductionsLabel: "Total Year 1 Deductions",
+  deductionsDescription: "Deductions offset taxable income and reduce tax liability.",
+  savingsLabel: "Year 1 Tax Savings From Depreciation",
+  savingsNote:
+    "Potential cash savings in your first year. State income tax benefits may be higher.",
+  helperText: "Enter your property details and click Estimate Savings.",
+  emailButtonLabel: "Email My Estimate",
+  emailFormTitle: "Email Your Results",
+  emailFormSubtitle:
+    "You'll receive a professionally formatted email from CostSegregation.com with your complete estimate.",
+  successMessage: "Email sent successfully! Check your inbox.",
+  contactTitle: "Get Your Estimate",
+  contactText:
+    "Enter your info to instantly view your results! We'll also email you a detailed summary of tax benefits for your records.",
+  contactButtonLabel: "View My Estimate",
+  shortTermRentalTypes: [
+    "Single Family Home",
+    "Townhouse",
+    "Condo - High Rise",
+    "Condo - SFH",
+    "ADU - Freestanding",
+    "ADU - Interior Conversion",
+    "Duplex",
+    "Triplex",
+    "Fourplex",
+    "Apartment",
+  ],
+  discoverySources: [
+    "ChatGPT/AI",
+    "Conference/Event",
+    "Postcard/Mail",
+    "Marketing Email",
+    "Online Advertising",
+    "Organic Search",
+    "Other",
+    "Publication / PR",
+    "Referral - Client",
+    "Referral - CPA",
+    "Referral - Internal",
+    "Referral - Partner",
+    "Sales Email / Outreach",
+    "Social Media",
+    "Webinar",
+    "Influencer",
+    "Podcast/Radio",
+  ],
+};
+
+const listOr = (field: RichTextField | undefined, fallback: string[]) => {
+  const list = toList(field);
+  return list.length > 0 ? list : fallback;
+};
+
 const Calculator = ({ slice }: CalculatorProps) => {
   const p = slice.primary as Primary;
 
+  const d = LIVE_DEFAULTS;
   const content: EstimatorContent = {
     title: p.title,
     intro: isFilled.richText(p.intro) ? <PrismicRichText field={p.intro} /> : null,
     propertyTypes: toList(p.property_types),
-    shortTermRentalTypes: toList(p.short_term_rental_types),
-    discoverySources: toList(p.discovery_sources),
-    estimateButtonLabel: p.estimate_button_label || "Estimate Savings",
-    deductionsLabel: p.deductions_label || "",
-    deductionsDescription: p.deductions_description || "",
-    savingsLabel: p.savings_label || "",
-    savingsNote: p.savings_note || "",
-    helperText: p.helper_text || "",
+    shortTermRentalTypes: listOr(p.short_term_rental_types, d.shortTermRentalTypes),
+    discoverySources: listOr(p.discovery_sources, d.discoverySources),
+    estimateButtonLabel: p.estimate_button_label || d.estimateButtonLabel,
+    deductionsLabel: p.deductions_label || d.deductionsLabel,
+    deductionsDescription: p.deductions_description || d.deductionsDescription,
+    savingsLabel: p.savings_label || d.savingsLabel,
+    savingsNote: p.savings_note || d.savingsNote,
+    helperText: p.helper_text || d.helperText,
     disclaimer: asText(p.disclaimer),
-    emailButtonLabel: p.email_button_label || "",
-    emailFormTitle: p.email_form_title || "",
-    emailFormSubtitle: p.email_form_subtitle || "",
-    successMessage: p.success_message || "",
-    contactTitle: p.contact_title || "",
-    contactText: p.contact_text || "",
-    contactButtonLabel: p.contact_button_label || "View My Estimate",
+    emailButtonLabel: p.email_button_label || d.emailButtonLabel,
+    emailFormTitle: p.email_form_title || d.emailFormTitle,
+    emailFormSubtitle: p.email_form_subtitle || d.emailFormSubtitle,
+    successMessage: p.success_message || d.successMessage,
+    contactTitle: p.contact_title || d.contactTitle,
+    contactText: p.contact_text || d.contactText,
+    contactButtonLabel: p.contact_button_label || d.contactButtonLabel,
   };
 
   return (
