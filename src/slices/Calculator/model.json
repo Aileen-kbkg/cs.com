@@ -7,10 +7,10 @@
     {
       "id": "default",
       "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
       "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
       "primary": {
         "title": {
           "type": "Text",
@@ -65,6 +65,94 @@
           "config": {
             "label": "Success message",
             "placeholder": ""
+          }
+        },
+        "estimate_button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Estimate button label",
+            "placeholder": "Estimate Savings"
+          }
+        },
+        "deductions_label": {
+          "type": "Text",
+          "config": {
+            "label": "Deductions card label",
+            "placeholder": "Total Year 1 Deductions"
+          }
+        },
+        "deductions_description": {
+          "type": "Text",
+          "config": {
+            "label": "Deductions card description",
+            "placeholder": "Deductions offset taxable income and reduce tax liability."
+          }
+        },
+        "savings_label": {
+          "type": "Text",
+          "config": {
+            "label": "Savings card label",
+            "placeholder": "Year 1 Tax Savings From Depreciation"
+          }
+        },
+        "savings_note": {
+          "type": "Text",
+          "config": {
+            "label": "Savings note (shown with results)",
+            "placeholder": "Potential cash savings in your first year. State income tax benefits may be higher."
+          }
+        },
+        "helper_text": {
+          "type": "Text",
+          "config": {
+            "label": "Helper text (before results)",
+            "placeholder": "Enter your property details and click Estimate Savings."
+          }
+        },
+        "email_form_subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Email form subtitle",
+            "placeholder": ""
+          }
+        },
+        "contact_title": {
+          "type": "Text",
+          "config": {
+            "label": "Contact form title",
+            "placeholder": "Get Your Estimate"
+          }
+        },
+        "contact_text": {
+          "type": "Text",
+          "config": {
+            "label": "Contact form text",
+            "placeholder": ""
+          }
+        },
+        "contact_button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Contact form button label",
+            "placeholder": "View My Estimate"
+          }
+        },
+        "short_term_rental_types": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Property types that show the short-term rental question (one per list item)",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "discovery_sources": {
+          "type": "StructuredText",
+          "config": {
+            "label": "'How did you hear about us' options (one per list item)",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
           }
         }
       },

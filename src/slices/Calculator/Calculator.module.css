@@ -1,0 +1,243 @@
+/*
+ * "Estimate Your First Year Tax Savings" — the live costsegregation.com
+ * estimator stylesheet (Elementor HTML widget 1b54566), scoped to this slice.
+ * Selectors keep the original kbkg-* class names inside `.root`.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #f4f7fb;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* State helpers (the live script toggles these with inline !important styles) */
+.root :global(.kbkg-toggle-row.kbkg-hidden) { display: none !important; }
+.root :global(.kbkg-email-btn.kbkg-shown) { display: flex !important; }
+
+.root :global(.kbkg-estimator-wrapper) { max-width: 100% !important; margin: 0px auto !important; background: rgb(255, 255, 255) !important; border-radius: 16px !important; box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 12px !important; padding: 48px 48px 40px !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; color: rgb(30, 41, 59) !important; box-sizing: border-box !important; }
+
+.root :global(.kbkg-estimator-wrapper *), .root :global(.kbkg-estimator-wrapper ::before), .root :global(.kbkg-estimator-wrapper ::after) { box-sizing: border-box !important; }
+
+.root :global(.kbkg-estimator-wrapper h2.kbkg-estimator-title) { text-align: center !important; font-size: 24px !important; font-weight: 700 !important; color: rgb(15, 23, 42) !important; margin: 0px 0px 28px !important; padding: 0px !important; line-height: 1.3 !important; letter-spacing: -0.01em !important; }
+
+.root :global(.kbkg-estimator-body) { display: flex !important; gap: 40px !important; align-items: flex-start !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; }
+
+.root :global(.kbkg-estimator-wrapper svg) { max-width: 100% !important; height: auto !important; }
+
+.root :global(.kbkg-estimator-wrapper svg.kbkg-icon) { width: 18px !important; height: 18px !important; min-width: 18px !important; min-height: 18px !important; max-width: 18px !important; max-height: 18px !important; flex-shrink: 0 !important; color: rgb(71, 85, 105) !important; display: inline-block !important; vertical-align: middle !important; }
+
+.root :global(.kbkg-estimator-form) { flex: 1 1 0% !important; min-width: 0px !important; }
+
+.root :global(.kbkg-field-group) { margin-bottom: 16px !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-field-label) { display: flex !important; align-items: center !important; gap: 6px !important; font-size: 13px !important; font-weight: 600 !important; color: rgb(15, 23, 42) !important; margin-bottom: 6px !important; line-height: 1.4 !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-field-input), .root :global(.kbkg-estimator-wrapper .kbkg-field-select) { width: 100% !important; padding: 10px 12px !important; font-size: 13px !important; border: 1px solid rgb(226, 232, 240) !important; border-radius: 8px !important; background: rgb(255, 255, 255) !important; color: rgb(30, 41, 59) !important; outline: none !important; transition: border-color 0.2s !important; box-sizing: border-box !important; line-height: 1.4 !important; height: auto !important; margin: 0px !important; appearance: none !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-field-input:focus), .root :global(.kbkg-estimator-wrapper .kbkg-field-select:focus) { border-color: rgb(30, 58, 95) !important; box-shadow: rgba(30, 58, 95, 0.08) 0px 0px 0px 3px !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-field-input::placeholder) { color: rgb(148, 163, 184) !important; }
+
+.root :global(.kbkg-input-with-prefix) { position: relative !important; }
+
+.root :global(.kbkg-input-prefix) { position: absolute !important; left: 14px !important; top: 50% !important; transform: translateY(-50%) !important; font-size: 15px !important; color: rgb(148, 163, 184) !important; pointer-events: none !important; z-index: 1 !important; }
+
+.root :global(.kbkg-input-with-prefix .kbkg-field-input) { padding-left: 30px !important; }
+
+.root :global(.kbkg-input-with-icon) { position: relative !important; }
+
+.root :global(.kbkg-estimator-wrapper svg.kbkg-input-icon) { position: absolute !important; left: 14px !important; top: 50% !important; transform: translateY(-50%) !important; width: 16px !important; height: 16px !important; min-width: 16px !important; max-width: 16px !important; color: rgb(148, 163, 184) !important; pointer-events: none !important; z-index: 1 !important; }
+
+.root :global(.kbkg-input-with-icon .kbkg-field-input) { padding-left: 38px !important; }
+
+.root :global(.kbkg-date-wrapper) { position: relative !important; }
+
+.root :global(.kbkg-estimator-wrapper input[type="text"].kbkg-date-input) { cursor: text !important; padding-right: 40px !important; }
+
+.root :global(.kbkg-date-cal-btn) { position: absolute !important; right: 8px !important; top: 50% !important; transform: translateY(-50%) !important; background: none !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; cursor: pointer !important; padding: 4px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+
+.root :global(.kbkg-date-cal-btn svg) { width: 18px !important; height: 18px !important; min-width: 18px !important; max-width: 18px !important; color: rgb(148, 163, 184) !important; stroke: rgb(148, 163, 184) !important; }
+
+.root :global(.kbkg-date-cal-btn:hover svg) { color: rgb(71, 85, 105) !important; stroke: rgb(71, 85, 105) !important; }
+
+.root :global(.kbkg-field-error) { font-size: 11px !important; color: rgb(220, 38, 38) !important; margin-top: 4px !important; display: none !important; }
+
+.root :global(.kbkg-field-error.kbkg-visible) { display: block !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-field-input.kbkg-input-error), .root :global(.kbkg-estimator-wrapper .kbkg-field-select.kbkg-input-error) { border-color: rgb(220, 38, 38) !important; }
+
+.root :global(.kbkg-toggle-row) { display: flex !important; align-items: center !important; justify-content: space-between !important; margin-bottom: 24px !important; flex-wrap: nowrap !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-toggle-label) { display: flex !important; align-items: center !important; gap: 6px !important; font-size: 13px !important; font-weight: 600 !important; color: rgb(15, 23, 42) !important; line-height: 1.4 !important; flex-shrink: 1 !important; min-width: 0px !important; }
+
+.root :global(.kbkg-toggle-control) { display: flex !important; align-items: center !important; gap: 8px !important; flex-shrink: 0 !important; }
+
+.root :global(.kbkg-toggle) { position: relative !important; width: 44px !important; min-width: 44px !important; height: 24px !important; cursor: pointer !important; display: inline-block !important; }
+
+.root :global(.kbkg-toggle input) { opacity: 0 !important; width: 0px !important; height: 0px !important; position: absolute !important; }
+
+.root :global(.kbkg-toggle-slider) { position: absolute !important; inset: 0px !important; background: rgb(203, 213, 225) !important; border-radius: 12px !important; transition: background 0.2s !important; }
+
+.root :global(.kbkg-toggle-slider::before) { content: "" !important; position: absolute !important; width: 18px !important; height: 18px !important; left: 3px !important; top: 3px !important; background: rgb(255, 255, 255) !important; border-radius: 50% !important; transition: transform 0.2s !important; }
+
+.root :global(.kbkg-toggle input:checked + .kbkg-toggle-slider) { background: rgb(30, 58, 95) !important; }
+
+.root :global(.kbkg-toggle input:checked + .kbkg-toggle-slider::before) { transform: translateX(20px) !important; }
+
+.root :global(.kbkg-toggle-text) { font-size: 14px !important; color: rgb(100, 116, 139) !important; min-width: 28px !important; }
+
+.root :global(.kbkg-estimator-wrapper button.kbkg-submit-btn) { width: 100% !important; padding: 14px !important; font-size: 14px !important; font-weight: 700 !important; color: rgb(255, 255, 255) !important; background: rgb(30, 58, 95) !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; border-radius: 8px !important; cursor: pointer !important; transition: background 0.2s !important; line-height: 1.4 !important; text-transform: none !important; letter-spacing: normal !important; }
+
+.root :global(.kbkg-estimator-wrapper button.kbkg-submit-btn:hover) { background: rgb(22, 45, 74) !important; }
+
+.root :global(.kbkg-estimator-wrapper button.kbkg-submit-btn:active) { background: rgb(15, 32, 53) !important; }
+
+.root :global(.kbkg-estimator-wrapper button.kbkg-submit-btn:disabled) { background: rgb(148, 163, 184) !important; cursor: not-allowed !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-estimator-results) { flex: 1 1 0% !important; min-width: 0px !important; display: flex !important; flex-direction: column !important; gap: 20px !important; padding-top: 8px !important; border-left: 1px solid rgb(226, 232, 240) !important; padding-left: 40px !important; }
+
+.root :global(.kbkg-result-card) { border: 2px solid rgb(22, 163, 74) !important; border-radius: 12px !important; padding: 20px 24px !important; background: rgb(240, 253, 244) !important; }
+
+.root :global(.kbkg-result-header) { display: flex !important; align-items: center !important; gap: 12px !important; margin-bottom: 4px !important; }
+
+.root :global(.kbkg-result-icon) { width: 36px !important; min-width: 36px !important; height: 36px !important; min-height: 36px !important; border-radius: 50% !important; background: rgb(209, 231, 221) !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; }
+
+.root :global(.kbkg-result-icon svg) { width: 16px !important; height: 16px !important; min-width: 16px !important; max-width: 16px !important; color: rgb(22, 163, 74) !important; stroke: rgb(22, 163, 74) !important; }
+
+.root :global(.kbkg-result-label) { font-size: 13px !important; font-weight: 600 !important; color: rgb(22, 163, 74) !important; line-height: 1.3 !important; }
+
+.root :global(.kbkg-estimator-wrapper .kbkg-result-value) { font-size: 24px !important; font-weight: 800 !important; color: rgb(22, 163, 74) !important; margin: 6px 0px 4px !important; line-height: 1.2 !important; padding: 0px !important; }
+
+.root :global(.kbkg-result-description) { font-size: 11px !important; color: rgb(100, 116, 139) !important; line-height: 1.5 !important; }
+
+.root :global(.kbkg-result-assumption) { font-size: 12px !important; color: rgb(148, 163, 184) !important; font-style: italic !important; margin-top: 2px !important; }
+
+.root :global(.kbkg-results-helper) { text-align: center !important; font-size: 14px !important; color: rgb(148, 163, 184) !important; margin-top: 4px !important; }
+
+.root :global(.kbkg-disclaimer) { display: none; font-size: 12px !important; color: rgb(148, 163, 184) !important; line-height: 1.5 !important; margin-top: 0px !important; }
+
+.root :global(.kbkg-email-btn) { display: none; width: 100% !important; padding: 14px !important; font-size: 14px !important; font-weight: 600 !important; color: rgb(30, 41, 59) !important; background: rgb(255, 255, 255) !important; border: 1px solid rgb(226, 232, 240) !important; border-radius: 8px !important; cursor: pointer !important; transition: background 0.2s, border-color 0.2s !important; align-items: center !important; justify-content: center !important; gap: 8px !important; }
+
+.root :global(.kbkg-email-btn:hover) { background: rgb(248, 250, 252) !important; border-color: rgb(203, 213, 225) !important; }
+
+.root :global(.kbkg-email-btn svg) { width: 18px !important; height: 18px !important; min-width: 18px !important; max-width: 18px !important; }
+
+.root :global(.kbkg-modal-overlay) { display: none; position: fixed !important; inset: 0px !important; background: rgba(0, 0, 0, 0.5) !important; z-index: 99999 !important; align-items: center !important; justify-content: center !important; }
+
+.root :global(.kbkg-modal-overlay.kbkg-modal-open) { display: flex !important; }
+
+.root :global(.kbkg-modal) { background: rgb(255, 255, 255) !important; border-radius: 16px !important; padding: 28px !important; max-width: 480px !important; width: 90% !important; max-height: none !important; overflow-y: visible !important; position: relative !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; color: rgb(30, 41, 59) !important; }
+
+.root :global(.kbkg-modal-close) { position: absolute !important; top: 16px !important; right: 16px !important; background: none !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; font-size: 24px !important; color: rgb(148, 163, 184) !important; cursor: pointer !important; line-height: 1 !important; padding: 4px !important; }
+
+.root :global(.kbkg-modal-close:hover) { color: rgb(71, 85, 105) !important; }
+
+.root :global(.kbkg-modal-title) { display: flex !important; align-items: center !important; gap: 10px !important; font-size: 18px !important; font-weight: 700 !important; color: rgb(15, 23, 42) !important; margin: 0px 0px 6px !important; }
+
+.root :global(.kbkg-modal-title svg) { width: 24px !important; height: 24px !important; min-width: 24px !important; max-width: 24px !important; color: rgb(30, 58, 95) !important; }
+
+.root :global(.kbkg-modal-subtitle) { font-size: 13px !important; color: rgb(100, 116, 139) !important; margin: 0px 0px 16px !important; line-height: 1.5 !important; }
+
+.root :global(.kbkg-modal-summary) { border: 1px solid rgb(226, 232, 240) !important; border-radius: 10px !important; padding: 16px 20px !important; margin-bottom: 20px !important; }
+
+.root :global(.kbkg-modal-summary-title) { display: flex !important; align-items: center !important; gap: 8px !important; font-size: 14px !important; font-weight: 600 !important; color: rgb(30, 58, 95) !important; margin-bottom: 12px !important; }
+
+.root :global(.kbkg-modal-summary-title svg) { width: 18px !important; height: 18px !important; min-width: 18px !important; max-width: 18px !important; color: rgb(30, 58, 95) !important; }
+
+.root :global(.kbkg-modal-summary-row) { display: flex !important; justify-content: space-between !important; padding: 4px 0px !important; font-size: 13px !important; }
+
+.root :global(.kbkg-modal-summary-label) { color: rgb(148, 163, 184) !important; }
+
+.root :global(.kbkg-modal-summary-value) { color: rgb(30, 41, 59) !important; font-weight: 500 !important; }
+
+.root :global(.kbkg-modal-summary-value.kbkg-green) { color: rgb(22, 163, 74) !important; font-weight: 600 !important; }
+
+.root :global(.kbkg-modal-summary-divider) { border-width: 1px medium medium !important; border-style: solid none none !important; border-color: rgb(226, 232, 240) currentcolor currentcolor !important; border-image: none !important; margin: 10px 0px !important; }
+
+.root :global(.kbkg-modal-form-row) { display: flex !important; gap: 12px !important; margin-bottom: 12px !important; }
+
+.root :global(.kbkg-modal-form-group) { flex: 1 1 0% !important; }
+
+.root :global(.kbkg-modal-form-group label) { display: block !important; font-size: 13px !important; font-weight: 600 !important; color: rgb(15, 23, 42) !important; margin-bottom: 6px !important; }
+
+.root :global(.kbkg-modal-form-group input) { width: 100% !important; padding: 10px 12px !important; font-size: 13px !important; border: 1px solid rgb(226, 232, 240) !important; border-radius: 8px !important; background: rgb(255, 255, 255) !important; color: rgb(30, 41, 59) !important; outline: none !important; transition: border-color 0.2s !important; box-sizing: border-box !important; }
+
+.root :global(.kbkg-modal-form-group input:focus) { border-color: rgb(30, 58, 95) !important; box-shadow: rgba(30, 58, 95, 0.08) 0px 0px 0px 3px !important; }
+
+.root :global(.kbkg-modal-form-group input::placeholder) { color: rgb(148, 163, 184) !important; }
+
+.root :global(.kbkg-modal-form-group input.kbkg-input-error) { border-color: rgb(220, 38, 38) !important; }
+
+.root :global(.kbkg-modal-buttons) { display: flex !important; gap: 12px !important; margin-top: 16px !important; }
+
+.root :global(.kbkg-modal-cancel-btn) { flex: 1 1 0% !important; padding: 12px !important; font-size: 14px !important; font-weight: 600 !important; color: rgb(30, 41, 59) !important; background: rgb(255, 255, 255) !important; border: 1px solid rgb(226, 232, 240) !important; border-radius: 8px !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; }
+
+.root :global(.kbkg-modal-cancel-btn:hover) { background: rgb(248, 250, 252) !important; }
+
+.root :global(.kbkg-modal-send-btn) { flex: 1 1 0% !important; padding: 12px !important; font-size: 14px !important; font-weight: 700 !important; color: rgb(255, 255, 255) !important; background: rgb(30, 58, 95) !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; border-radius: 8px !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; }
+
+.root :global(.kbkg-modal-send-btn:hover) { background: rgb(22, 45, 74) !important; }
+
+.root :global(.kbkg-modal-send-btn:disabled) { background: rgb(148, 163, 184) !important; cursor: not-allowed !important; }
+
+.root :global(.kbkg-modal-disclaimer) { font-size: 10px !important; color: rgb(148, 163, 184) !important; line-height: 1.5 !important; margin-top: 12px !important; text-align: center !important; }
+
+.root :global(.kbkg-modal-error) { display: none; font-size: 13px !important; color: rgb(220, 38, 38) !important; text-align: center !important; margin-top: 8px !important; }
+
+.root :global(.kbkg-modal-success) { display: none; font-size: 14px !important; color: rgb(22, 163, 74) !important; text-align: center !important; margin-top: 8px !important; }
+
+.root :global(.kbkg-error-msg) { text-align: center !important; font-size: 14px !important; color: rgb(220, 38, 38) !important; margin-top: 4px !important; }
+
+.root :global(.kbkg-contact-modal-overlay) { display: none; position: fixed !important; inset: 0px !important; background: rgba(0, 0, 0, 0.5) !important; z-index: 99998 !important; align-items: center !important; justify-content: center !important; }
+
+.root :global(.kbkg-contact-modal-overlay.kbkg-modal-open) { display: flex !important; }
+
+.root :global(.kbkg-contact-modal) { background: rgb(255, 255, 255) !important; border-radius: 16px !important; padding: 28px !important; max-width: 480px !important; width: 90% !important; position: relative !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; color: rgb(30, 41, 59) !important; }
+
+.root :global(.kbkg-contact-modal-close) { position: absolute !important; top: 16px !important; right: 16px !important; background: none !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; font-size: 24px !important; color: rgb(148, 163, 184) !important; cursor: pointer !important; line-height: 1 !important; padding: 4px !important; }
+
+.root :global(.kbkg-contact-modal-close:hover) { color: rgb(71, 85, 105) !important; }
+
+.root :global(.kbkg-contact-modal-title) { font-size: 20px !important; font-weight: 700 !important; color: rgb(15, 23, 42) !important; margin: 0px 0px 16px !important; }
+
+.root :global(.kbkg-contact-modal-info) { background: rgb(248, 250, 252) !important; border: 1px solid rgb(226, 232, 240) !important; border-radius: 10px !important; padding: 16px 20px !important; margin-bottom: 20px !important; display: flex !important; align-items: flex-start !important; gap: 12px !important; }
+
+.root :global(.kbkg-contact-modal-info svg) { width: 20px !important; height: 20px !important; min-width: 20px !important; max-width: 20px !important; color: rgb(30, 58, 95) !important; margin-top: 2px !important; }
+
+.root :global(.kbkg-contact-modal-info p) { font-size: 13px !important; color: rgb(71, 85, 105) !important; line-height: 1.5 !important; margin: 0px !important; }
+
+.root :global(.kbkg-contact-form-row) { display: flex !important; gap: 12px !important; margin-bottom: 12px !important; }
+
+.root :global(.kbkg-contact-form-group) { flex: 1 1 0% !important; margin-bottom: 12px !important; }
+
+.root :global(.kbkg-contact-form-group label) { display: block !important; font-size: 13px !important; font-weight: 600 !important; color: rgb(15, 23, 42) !important; margin-bottom: 6px !important; }
+
+.root :global(.kbkg-contact-form-group input), .root :global(.kbkg-contact-form-group select) { width: 100% !important; padding: 10px 12px !important; font-size: 13px !important; border: 1px solid rgb(226, 232, 240) !important; border-radius: 8px !important; background: rgb(255, 255, 255) !important; color: rgb(30, 41, 59) !important; outline: none !important; transition: border-color 0.2s !important; box-sizing: border-box !important; }
+
+.root :global(.kbkg-contact-form-group input:focus), .root :global(.kbkg-contact-form-group select:focus) { border-color: rgb(30, 58, 95) !important; box-shadow: rgba(30, 58, 95, 0.08) 0px 0px 0px 3px !important; }
+
+.root :global(.kbkg-contact-form-group input::placeholder) { color: rgb(148, 163, 184) !important; }
+
+.root :global(.kbkg-contact-form-group input.kbkg-input-error), .root :global(.kbkg-contact-form-group select.kbkg-input-error) { border-color: rgb(220, 38, 38) !important; }
+
+.root :global(.kbkg-contact-submit-btn) { width: 100% !important; padding: 14px !important; font-size: 14px !important; font-weight: 700 !important; color: rgb(255, 255, 255) !important; background: rgb(30, 58, 95) !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; border-radius: 8px !important; cursor: pointer !important; transition: background 0.2s !important; margin-top: 4px !important; }
+
+.root :global(.kbkg-contact-submit-btn:hover) { background: rgb(22, 45, 74) !important; }
+
+.root :global(.kbkg-contact-submit-btn:disabled) { background: rgb(148, 163, 184) !important; cursor: not-allowed !important; }
+
+.root :global(.kbkg-contact-error) { display: none; font-size: 13px !important; color: rgb(220, 38, 38) !important; text-align: center !important; margin-top: 8px !important; }
+
+@media (max-width: 768px) {
+  .root :global(.kbkg-estimator-wrapper) { padding: 28px 20px 24px !important; }
+  .root :global(.kbkg-estimator-wrapper h2.kbkg-estimator-title) { font-size: 24px !important; }
+  .root :global(.kbkg-estimator-body) { flex-direction: column !important; gap: 32px !important; }
+  .root :global(.kbkg-estimator-wrapper .kbkg-result-value) { font-size: 20px !important; }
+}

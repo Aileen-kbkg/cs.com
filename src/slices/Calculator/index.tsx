@@ -1,34 +1,73 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { asText, Content, isFilled, KeyTextField, RichTextField } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
+import Estimator, { type EstimatorContent } from "./Estimator";
+import styles from "./Calculator.module.css";
+
+/**
+ * Props for `Calculator` ("Estimate Your First Year Tax Savings").
+ */
 export type CalculatorProps = SliceComponentProps<Content.CalculatorSlice>;
 
-const Calculator: FC<CalculatorProps> = ({ slice }) => {
-  const p = slice.primary;
+/**
+ * Fields added to the model for the live estimator. Optional so this file
+ * compiles before and after `prismicio-types.d.ts` is regenerated.
+ */
+type Extras = {
+  estimate_button_label?: KeyTextField;
+  deductions_label?: KeyTextField;
+  deductions_description?: KeyTextField;
+  savings_label?: KeyTextField;
+  savings_note?: KeyTextField;
+  helper_text?: KeyTextField;
+  email_form_subtitle?: KeyTextField;
+  contact_title?: KeyTextField;
+  contact_text?: KeyTextField;
+  contact_button_label?: KeyTextField;
+  short_term_rental_types?: RichTextField;
+  discovery_sources?: RichTextField;
+};
+
+type Primary = Omit<Content.CalculatorSlice["primary"], keyof Extras> & Extras;
+
+/** One option per list item (paragraphs are accepted too). */
+const toList = (field: RichTextField | undefined) =>
+  (field ?? []).map((node) => ("text" in node ? node.text.trim() : "")).filter(Boolean);
+
+const Calculator = ({ slice }: CalculatorProps) => {
+  const p = slice.primary as Primary;
+
+  const content: EstimatorContent = {
+    title: p.title,
+    intro: isFilled.richText(p.intro) ? <PrismicRichText field={p.intro} /> : null,
+    propertyTypes: toList(p.property_types),
+    shortTermRentalTypes: toList(p.short_term_rental_types),
+    discoverySources: toList(p.discovery_sources),
+    estimateButtonLabel: p.estimate_button_label || "Estimate Savings",
+    deductionsLabel: p.deductions_label || "",
+    deductionsDescription: p.deductions_description || "",
+    savingsLabel: p.savings_label || "",
+    savingsNote: p.savings_note || "",
+    helperText: p.helper_text || "",
+    disclaimer: asText(p.disclaimer),
+    emailButtonLabel: p.email_button_label || "",
+    emailFormTitle: p.email_form_title || "",
+    emailFormSubtitle: p.email_form_subtitle || "",
+    successMessage: p.success_message || "",
+    contactTitle: p.contact_title || "",
+    contactText: p.contact_text || "",
+    contactButtonLabel: p.contact_button_label || "View My Estimate",
+  };
+
   return (
     <section
       id="calculator"
+      className={styles.root}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-slate-50"
     >
-      <div className="mx-auto max-w-3xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">{p.title}</h2>
-        <div className="mt-3 text-slate-700">
-          <PrismicRichText field={p.intro} />
-        </div>
-        <details className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
-          <summary className="cursor-pointer font-semibold text-slate-900">
-            Supported property types
-          </summary>
-          <div className="mt-3 text-sm text-slate-700 [&_ul]:grid [&_ul]:gap-1 [&_ul]:sm:grid-cols-2 [&_li]:list-inside [&_li]:list-disc">
-            <PrismicRichText field={p.property_types} />
-          </div>
-        </details>
-        <div className="mt-6 text-xs text-slate-600">
-          <PrismicRichText field={p.disclaimer} />
-        </div>
+      <div className={styles.inner}>
+        <Estimator content={content} />
       </div>
     </section>
   );
