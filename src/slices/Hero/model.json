@@ -1,60 +1,118 @@
 {
-  "description": "Hero",
   "id": "hero",
-  "name": "Hero",
   "type": "SharedSlice",
+  "name": "Hero",
+  "description": "Hero",
   "variations": [
     {
-      "description": "Default",
-      "docURL": "...",
       "id": "default",
-      "imageUrl": "",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
       "primary": {
         "head": {
+          "type": "Text",
           "config": {
             "label": "head",
             "placeholder": ""
-          },
-          "type": "Text"
+          }
         },
         "description": {
+          "type": "StructuredText",
           "config": {
-            "allowTargetBlank": true,
             "label": "Description",
+            "placeholder": "",
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
-            "placeholder": ""
-          },
-          "type": "StructuredText"
+            "allowTargetBlank": true
+          }
         },
         "cta_label": {
+          "type": "Text",
           "config": {
             "label": "cta_label",
             "placeholder": ""
-          },
-          "type": "Text"
+          }
         },
         "cta_link": {
+          "type": "Link",
           "config": {
-            "allowTargetBlank": true,
-            "allowText": true,
             "label": "cta_link",
             "placeholder": "",
-            "repeat": false,
-            "select": null
-          },
-          "type": "Link"
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
         },
         "banner_image": {
+          "type": "Image",
           "config": {
-            "constraint": {},
             "label": "Banner Image",
+            "constraint": {},
             "thumbnails": []
-          },
-          "type": "Image"
+          }
+        },
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": "Maximize Your Tax Savings"
+          }
+        },
+        "badges": {
+          "type": "Group",
+          "config": {
+            "label": "Badges",
+            "repeat": true,
+            "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": "IRS Audit Ready"
+                }
+              }
+            }
+          }
+        },
+        "stat_prefix": {
+          "type": "Text",
+          "config": {
+            "label": "Stat prefix",
+            "placeholder": "$"
+          }
+        },
+        "stat_value": {
+          "type": "Number",
+          "config": {
+            "label": "Stat value (counts up from 0)",
+            "placeholder": "23600"
+          }
+        },
+        "stat_suffix": {
+          "type": "Text",
+          "config": {
+            "label": "Stat suffix",
+            "placeholder": "*"
+          }
+        },
+        "stat_title": {
+          "type": "Text",
+          "config": {
+            "label": "Stat title",
+            "placeholder": "Average First Year Tax Savings"
+          }
+        },
+        "stat_note": {
+          "type": "Text",
+          "config": {
+            "label": "Stat note",
+            "placeholder": "*Based on $300,000 Building Purchase"
+          }
         }
-      },
-      "version": "initial"
+      }
     }
   ]
 }

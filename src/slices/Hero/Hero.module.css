@@ -1,0 +1,372 @@
+/*
+ * Hero — values from the live costsegregation.com Elementor hero
+ * (458bc5b → 8ec7022 → 6406e06 / aa654f1). Breakpoints 1366 / 1024 / 767px.
+ */
+
+.section {
+  display: flex;
+  min-height: 671px;
+  padding: 10px;
+  background-color: #f6f9ff;
+  color: #284074;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+  font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+  line-height: 1.5;
+}
+
+.section *,
+.section *::before,
+.section *::after {
+  box-sizing: border-box;
+}
+
+.inner {
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* 8ec7022: row, centered, illustration as background */
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  padding: 0;
+  background-image: var(--hero-bg, none);
+  background-position: 654px 50px;
+  background-repeat: no-repeat;
+  background-size: 52% auto;
+}
+
+/* 6406e06 */
+.left {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 54%;
+}
+
+/* Eyebrow pill d729c26 */
+.eyebrow {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 275px;
+  max-width: 100%;
+  padding: 10px 20px 5px;
+  border-radius: 1000px;
+  background-color: #ffffff;
+}
+
+.eyebrowIcon {
+  display: inline-block;
+  line-height: 1;
+  font-size: 24px;
+}
+
+.eyebrowIcon svg {
+  display: block;
+  width: 1em;
+  height: 24px;
+}
+
+.eyebrowText {
+  flex: 0 0 auto;
+  margin: 0;
+  color: #284074;
+}
+
+/* H1 3f1f2d4 */
+.title {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #284074;
+}
+
+/* b0099b2 */
+.description {
+  width: 100%;
+  max-width: 100%;
+  color: #284074;
+}
+
+.description p {
+  margin: 0 0 0.9rem;
+}
+
+/* Badges 138c897 */
+.badges {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  border-radius: 1000px;
+}
+
+.badgeFirst {
+  width: 130px;
+}
+
+.badgeSecond {
+  width: 160px;
+}
+
+.badgeIcon {
+  display: inline-block;
+  line-height: 1;
+  font-size: 12px;
+}
+
+.badgeIcon svg {
+  display: block;
+  width: 1em;
+  height: 12px;
+}
+
+.badgeText {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 12px;
+  color: #284074;
+}
+
+/* CTA 487223b (kit button, green) */
+.cta {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background-color: #b5eba2;
+  color: #3d8120;
+  fill: #3d8120;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.cta:hover,
+.cta:focus {
+  background-color: #9ed88a;
+  color: #3d8120;
+}
+
+.ctaIcon {
+  display: flex;
+  align-items: center;
+}
+
+.ctaIcon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+/* aa654f1 */
+.right {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Stat card 4354331 (.blurBG + 64% white overlay) */
+.stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 412px;
+  max-width: 100%;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: #ffffff;
+  opacity: 0.64;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.stat > * {
+  position: relative;
+}
+
+/* Counter 36890cf */
+.statNumber {
+  display: flex;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(2.81rem, 2.48rem + 1.41vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #284074;
+}
+
+.statPrefix {
+  flex-grow: 1;
+  text-align: end;
+  white-space: pre-wrap;
+}
+
+.statSuffix {
+  flex-grow: 1;
+  text-align: start;
+  white-space: pre-wrap;
+}
+
+/* 5a60b4e */
+.statTitle {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #284074;
+}
+
+.statTitle p {
+  margin: 0;
+}
+
+/* f66a076 */
+.statNote {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #284074;
+}
+
+@media (max-width: 1366px) {
+  .content {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .left {
+    width: 59%;
+  }
+
+  .stat {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    gap: 40px;
+    padding: 60px 20px;
+    background-position: 407px 124px;
+    background-size: 553px auto;
+  }
+
+  .statNote {
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 20px 0 60px;
+  }
+
+  .content {
+    flex-wrap: wrap;
+    padding: 20px 20px 60px;
+    background-position: 192px 231px;
+    background-size: 373px auto;
+  }
+
+  .left {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .eyebrow {
+    width: 285px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .eyebrowText {
+    width: 175px;
+    max-width: 175px;
+  }
+
+  .description {
+    width: 164.188px;
+    max-width: 164.188px;
+    margin-top: 20px;
+  }
+
+  .badges {
+    flex-direction: column;
+  }
+
+  .badge,
+  .badgeFirst,
+  .badgeSecond {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .badgeIcon {
+    align-self: center;
+  }
+
+  .badgeText {
+    width: 164.188px;
+    max-width: 164.188px;
+  }
+
+  .right {
+    width: 90%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}
