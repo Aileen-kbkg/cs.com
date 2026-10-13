@@ -1,0 +1,361 @@
+{
+  "id": "site_settings",
+  "label": "Site Settings",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Navigation",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "has_dropdown": {
+              "type": "Boolean",
+              "config": {
+                "label": "Has Dropdown",
+                "default_value": false,
+                "placeholder_true": "true",
+                "placeholder_false": "false"
+              }
+            },
+            "dropdown_label_1": {
+              "type": "Text",
+              "config": {
+                "label": "Dropdown Label 1",
+                "placeholder": ""
+              }
+            },
+            "dropdown_link_1": {
+              "type": "Link",
+              "config": {
+                "label": "Dropdown Link 1",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "dropdown_label_2": {
+              "type": "Text",
+              "config": {
+                "label": "Dropdown Label 2",
+                "placeholder": ""
+              }
+            },
+            "dropdown_link_2": {
+              "type": "Link",
+              "config": {
+                "label": "Dropdown Link 2",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "sign_in_label": {
+        "type": "Text",
+        "config": {
+          "label": "Sign In Label",
+          "placeholder": ""
+        }
+      },
+      "sign_in_link": {
+        "type": "Link",
+        "config": {
+          "label": "Sign In Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "get_started_label": {
+        "type": "Text",
+        "config": {
+          "label": "Get Started Label",
+          "placeholder": ""
+        }
+      },
+      "get_started_link": {
+        "type": "Link",
+        "config": {
+          "label": "Get Started Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "announcement": {
+        "type": "StructuredText",
+        "config": {
+          "label": "announcement",
+          "placeholder": "",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "allowTargetBlank": true
+        }
+      },
+      "footer_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Footer Description",
+          "placeholder": "",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "allowTargetBlank": true
+        }
+      },
+      "footer_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Footer Logo (white)",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "partner_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Footer Partner Logo (KBKG)",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "footer_tagline": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Tagline",
+          "placeholder": "Residential Cost Segregator®"
+        }
+      },
+      "copyright_text": {
+        "type": "Text",
+        "config": {
+          "label": "Copyright Text",
+          "placeholder": "© 2026 all rights reserved"
+        }
+      },
+      "contact_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Heading",
+          "placeholder": "Contact Us"
+        }
+      },
+      "contact_email": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Email (envelope icon)",
+          "placeholder": "info@costsegregation.com"
+        }
+      },
+      "footer_navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Footer Navigation",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "social_links": {
+        "type": "Group",
+        "config": {
+          "label": "Social Links",
+          "repeat": true,
+          "fields": {
+            "platform": {
+              "type": "Select",
+              "config": {
+                "label": "Platform",
+                "placeholder": "",
+                "options": [
+                  "Instagram",
+                  "Facebook",
+                  "LinkedIn",
+                  "X",
+                  "YouTube"
+                ]
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "footer_note": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Note",
+          "placeholder": "CostSegregation.com Now Includes Residential Cost Segregator®"
+        }
+      },
+      "legal_links": {
+        "type": "Group",
+        "config": {
+          "label": "Legal Links",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "recent_news_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Recent News Heading",
+          "placeholder": "Recent News"
+        }
+      },
+      "read_more_label": {
+        "type": "Text",
+        "config": {
+          "label": "Read More Label",
+          "placeholder": "Read More »"
+        }
+      },
+      "resources_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Resources Heading",
+          "placeholder": "Software"
+        }
+      },
+      "footer_resources": {
+        "type": "Group",
+        "config": {
+          "label": "Footer Resources",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "stay_connected_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Stay Connected Heading",
+          "placeholder": "Stay connected"
+        }
+      },
+      "stay_connected_links": {
+        "type": "Group",
+        "config": {
+          "label": "Stay Connected Links",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

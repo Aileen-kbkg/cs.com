@@ -1,0 +1,1176 @@
+{
+  "id": "asVvuRIAAC4A3vVK",
+  "uid": null,
+  "url": null,
+  "type": "home",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22asVvuRIAAC4A3vVK%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-06T22:09:07+0000",
+  "last_publication_date": "2026-10-13T12:46:35+0000",
+  "slugs": [
+    "home"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "slices": [
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [],
+        "primary": {
+          "head": "Don’t Wait 30+ Years. Put Your Money to Work Now!",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Self-guided software for properties up to $1.5M (not including land). Save thousands on taxes by accelerating depreciation on your acquired real estate investments.",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "cta_label": "Estimate your tax savings Instantly",
+          "cta_link": {
+            "link_type": "Web",
+            "key": "fc0fcf57-996d-461d-92c9-98aaeb7697ea",
+            "url": "/#calculator"
+          },
+          "banner_image": {
+            "dimensions": {
+              "width": 889,
+              "height": 694
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/K1oAEmwV9YSg52fQ_hero_animated-2.svg",
+            "id": "K1oAEmwV9YSg52fQ",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          }
+        },
+        "id": "hero$5935ea57-7da0-4325-ad9d-cd165354118b",
+        "slice_type": "hero",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [
+          {
+            "icon": {
+              "dimensions": {
+                "width": 89,
+                "height": 84
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/hkgi-aXWm4KZmhVv_why-choose-instant-report.svg",
+              "id": "hkgi-aXWm4KZmhVv",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "title": "Instant Report",
+            "text": [
+              {
+                "type": "paragraph",
+                "text": "Only pay to download your report. Results in minutes!",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Instant access to every document required to substantiate your deductions.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Detailed cost segregation methodology memo",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Schedules allocating real, personal, and land improvement property",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Excel depreciation schedule for easy upload to tax compliance software",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "481(a) calculations included when necessary",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Immediately available upon purchase",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ]
+          },
+          {
+            "icon": {
+              "dimensions": {
+                "width": 89,
+                "height": 84
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/8tsoRe7Ya94C1frz_why-choose-ai-assistance.svg",
+              "id": "8tsoRe7Ya94C1frz",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "title": "AI-Assistance",
+            "text": [
+              {
+                "type": "paragraph",
+                "text": "Our AI will do the heavy lifting when you need to provide property details!",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Scours the web for public record to help pre-populate the data that normally takes hours to collect.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "County assessor land/improvement splits",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Building and site sizes",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Bedrooms, bathrooms, and amenity counts",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "list-item",
+                "text": "Wall, roof, and structural material details",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ]
+          },
+          {
+            "icon": {
+              "dimensions": {
+                "width": 87,
+                "height": 65
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/f6v4IaWF8TiaGIZP_why-choose-land-building.svg",
+              "id": "f6v4IaWF8TiaGIZP",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "title": "Land vs Building Allocation Advisor",
+            "text": [
+              {
+                "type": "paragraph",
+                "text": "Guidance on supportable land and building basis numbers, a complex step that requires deep expertise.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "\"How do I determine my tax basis?\" is the most common question we get. Our advisor automates the county assessment allocation for you whenever available.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "An appraisal is always best, but most do not include a land and building split. We pull assessor data to allocate based on the county assessment so you do not have to.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ]
+          },
+          {
+            "icon": {
+              "dimensions": {
+                "width": 89,
+                "height": 84
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/aAPzUo49fattz6ja_why-choose-corrections.svg",
+              "id": "aAPzUo49fattz6ja",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "title": "Corrections on Completed Reports",
+            "text": [
+              {
+                "type": "paragraph",
+                "text": "Up to 5 corrections after downloading your report.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Mistakes happen. Now you can correct them without starting over.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Adjust up to five items after purchase and generation of the report so the final deliverable always reflects the most accurate information.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ]
+          },
+          {
+            "icon": {
+              "dimensions": {
+                "width": 107,
+                "height": 100
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/rw5Sv2RQVXCdpcpl_why-choose-catch-up.svg",
+              "id": "rw5Sv2RQVXCdpcpl",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "title": "Catch Up Adjustment Schedule - 481(a)",
+            "text": [
+              {
+                "type": "paragraph",
+                "text": "This is required for IRS Form 3115 and saves your tax preparer time.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Purchased a property years ago? We can still help.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Calculate the difference between what you should have taken with the cost segregation study and what you actually took, then add that amount to your current year deductions—free with every study.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ]
+          },
+          {
+            "icon": {
+              "dimensions": {
+                "width": 56,
+                "height": 62
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/-R9o8QV79oGH4LyH_why-choose-audit-support.svg",
+              "id": "-R9o8QV79oGH4LyH",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "title": "Audit Support",
+            "text": [
+              {
+                "type": "paragraph",
+                "text": "Backed by KBKG, the #1 cost segregation company in the country.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "Full IRS audit defense is included.",
+                "spans": [],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "text": "We provide written responses to IRS inquiries as needed through the Field Level of examination so you are never on your own.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ]
+          }
+        ],
+        "primary": {
+          "title": "Why Choose CostSegregation.com?",
+          "intro": [
+            {
+              "type": "paragraph",
+              "text": "Our platform offers unique advantages that set us apart from traditional cost segregation services and competitors.",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "columns": []
+        },
+        "id": "feature_grid$30c90966-100a-4060-b1c7-00d3ffee4a4b",
+        "slice_type": "feature_grid",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [
+          {
+            "step_title": "Enter Address to begin the process",
+            "step_text": [],
+            "step_image": {
+              "dimensions": {
+                "width": 49,
+                "height": 61
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/vgHXgAWFmpjvslMz_step-1.svg",
+              "id": "vgHXgAWFmpjvslMz",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          },
+          {
+            "step_title": "Let AI find public property info. You fill in the rest!",
+            "step_text": [],
+            "step_image": {
+              "dimensions": {
+                "width": 63,
+                "height": 60
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/6WJADc7FAJTc1oNp_step-2.svg",
+              "id": "6WJADc7FAJTc1oNp",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          },
+          {
+            "step_title": "Invite your CPA in the software if needed",
+            "step_text": [],
+            "step_image": {
+              "dimensions": {
+                "width": 74,
+                "height": 60
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/TcJk2YA9n8in-RC-_step-3.svg",
+              "id": "TcJk2YA9n8in-RC-",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          },
+          {
+            "step_title": "Download Report",
+            "step_text": [],
+            "step_image": {
+              "dimensions": {
+                "width": 49,
+                "height": 60
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/1jmAnIW5zzbk6WmY_step-4.svg",
+              "id": "1jmAnIW5zzbk6WmY",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          }
+        ],
+        "primary": {
+          "title": "How it Works",
+          "intro": [
+            {
+              "type": "paragraph",
+              "text": "Get your cost segregation study completed in 4 simple steps with our AI-powered platform.",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "cta_label": null,
+          "cta_link": {
+            "link_type": "Any"
+          }
+        },
+        "id": "steps$bebb4749-993c-44c9-8fc6-a41020e7cc52",
+        "slice_type": "steps",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [
+          {
+            "plan_name": "Residential",
+            "property_type": "Condos • Townhomes • SFR • Multifamily • ADU",
+            "price": "$495",
+            "price_note": "For {basis} tax basis",
+            "basis_label": "Property Tax Basis",
+            "cta_label": "Start Your Study",
+            "cta_link": {
+              "link_type": "Web",
+              "key": "1f968ab9-3073-4129-b9cc-63971251ad30",
+              "url": "https://app.costsegregation.com/sign-up",
+              "target": "_blank"
+            },
+            "plan_icon": {
+              "dimensions": {
+                "width": 34,
+                "height": 32
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/QFcvSptBfxEA9Ptc_residential.svg",
+              "id": "QFcvSptBfxEA9Ptc",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "property_types_text": [],
+            "default_basis": 750000,
+            "base_price": 495,
+            "base_limit": 750000,
+            "rate_per_dollar": 0.0015556,
+            "cap_limit": 1200000,
+            "cap_price": 1195
+          },
+          {
+            "plan_name": "Commercial",
+            "property_type": "Warehouse • Storage • Office • Hotel/Motel • Restaurant… And More Coming!",
+            "price": "$1,295",
+            "price_note": "For {basis} tax basis",
+            "basis_label": "Property Tax Basis",
+            "cta_label": "Start Your Study",
+            "cta_link": {
+              "link_type": "Web",
+              "key": "5f7eda44-eb02-4b37-a2ff-b222a5f68884",
+              "url": "https://app.costsegregation.com/sign-up",
+              "target": "_blank"
+            },
+            "plan_icon": {
+              "dimensions": {
+                "width": 36,
+                "height": 31
+              },
+              "alt": null,
+              "copyright": null,
+              "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/D8pRrvmaIjRpKycL_commercial.svg",
+              "id": "D8pRrvmaIjRpKycL",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "property_types_text": [
+              {
+                "type": "paragraph",
+                "text": "Warehouse • Storage • Office • Hotel/Motel • Restaurant… And More Coming!",
+                "spans": [
+                  {
+                    "start": 57,
+                    "end": 73,
+                    "type": "strong"
+                  }
+                ],
+                "direction": "ltr"
+              }
+            ],
+            "default_basis": 1000000,
+            "base_price": 1295,
+            "base_limit": 1000000,
+            "rate_per_dollar": 0.001,
+            "cap_limit": 1500000,
+            "cap_price": 1795
+          }
+        ],
+        "primary": {
+          "title": "Transparent, All Inclusive Pricing",
+          "intro": [],
+          "slider_label": "Property Tax Basis",
+          "slider_min": 0,
+          "slider_max": 1500000,
+          "slider_step": 10000,
+          "included_title": "Every CostSegregation.com Report Includes:",
+          "included_features": [
+            {
+              "type": "list-item",
+              "text": "Audit Support",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "AI Property Data",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Report Corrections",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "481a Calc Schedule",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Land vs. Building Allocation Advisor",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Backed by #1 Cost Seg firm in the US!",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "loyalty_note": [
+            {
+              "type": "paragraph",
+              "text": "Return Customers can Receive up to a 20% discount!",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "custom_quote_label": "Contact Us For Custom Quote",
+          "custom_quote_link": {
+            "link_type": "Web",
+            "key": "e725f111-589b-461a-9ad4-789e8663005a",
+            "url": "https://www.kbkg.com/request-a-proposal",
+            "target": "_blank"
+          },
+          "loyalty_image": {
+            "dimensions": {
+              "width": 420,
+              "height": 375
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://images.prismic.io/cost-segregation/-pRWDItF98DmshOG_cs-medal3_420x375.png?auto=format,compress",
+            "id": "-pRWDItF98DmshOG",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "loyalty_cta_label": "Explore Loyalty discounts for repeat users!",
+          "loyalty_cta_link": {
+            "link_type": "Web",
+            "key": "c3a1d2e4-5b6f-4a7c-8d9e-0f1a2b3c4d01",
+            "url": "https://www.costsegregation.com/faq/#loyalty-program"
+          },
+          "custom_quote_title": "Properties Over $1.5M in Building Basis (less land)",
+          "custom_quote_text": [
+            {
+              "type": "paragraph",
+              "text": "CostSegregation.com only supports properties up to $1.5M. For larger properties, our professional services team will provide a custom quote.",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ]
+        },
+        "id": "pricing$af24cd3a-75ff-49c4-8dd3-6b2ebb7ceb81",
+        "slice_type": "pricing",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [
+          {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "I am a small real estate investor. I used CostSegregation.com for a cost segregation analysis (for bonus depreciation). I think this software is a cost-effective approach and KBKG is credible. My CPA is okay with it. I am also satisfied with the customer service from KBKG.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "author": "John Z.",
+            "role": null
+          },
+          {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "I conducted a cost segregation analysis for one of my clients through the website. Their staff was helpful throughout the process. There is a good bit of work to develop the data that you need for the inputs, but the KBKG web interface makes it easy to input the data and gives you a quality […]",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "author": "Brian R.",
+            "role": null
+          },
+          {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "KBKG’s CostSegregation.com software is an absolute game-changer! Not only is it incredibly easy to use, but it also comes at a much lower cost compared to hiring an engineering firm–easily saving me at least $2,000. The interface is straightforward, making the process smooth and efficient.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "author": "Shawn G.",
+            "role": null
+          },
+          {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "Been using this for my personal cost segregation studies for my multi and strs for 5 years now and the software continues to get better and better throughout the years.. I recommend to all my friends.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "author": "Ramsey K.",
+            "role": null
+          },
+          {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "I love being able to have control over getting my own Cost Segregation Study completed for my properties. This is a great online tool!",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "author": "Elizabeth D.",
+            "role": null
+          },
+          {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "CostSegregation.com is an easy to use tool for real estate owners to maximize their deductions early on in the ownership of the property. You don’t need to be an accountant to use the tool, you can share the output with the accountant. You have to know some details about the home.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "author": "Jungwoo K.",
+            "role": null
+          }
+        ],
+        "primary": {
+          "title": "What Our Clients Are Saying",
+          "rating": 4.9,
+          "review_count": 100,
+          "source_label": "Based on 100+ Reviews",
+          "review_cta_label": "Leave a Review",
+          "review_cta_link": {
+            "link_type": "Web",
+            "key": "d4b2e6f1-7a3c-4e5d-9b8a-1c2d3e4f5a61",
+            "url": "https://www.google.com/search?q=kbkg+google+reviews&rlz=1C1GCEU_enUS1121US1129&oq=kbkg+google+reviews&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQIxgnMgoIAhAAGIAEGKIEMgoIAxAAGIAEGKIEMgoIBBAAGIAEGKIEMgoIBRAAGKIEGIkFMgcIBhAAGO8F0gEIMzY4N2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x89c2591d42f864eb:0x8492ca0cd04ab0d,1",
+            "target": "_blank"
+          }
+        },
+        "id": "testimonials$9cff49a6-26d7-43ab-bb0b-f70324e15e71",
+        "slice_type": "testimonials",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [
+          {
+            "property_type": "Residential Rental",
+            "purchase_price": "$370K",
+            "first_year_deduction": "$80K",
+            "summary": "Purchase Price (Less Land) · First Year Tax Deductions",
+            "link": {
+              "link_type": "Any"
+            },
+            "image": {
+              "dimensions": {
+                "width": 1600,
+                "height": 898
+              },
+              "alt": "Residential rental property",
+              "copyright": null,
+              "url": "https://images.prismic.io/cost-segregation/5VrfmBForfb7Kf2-_pexels-curtis-adams-1694007-12700439.jpg?auto=format,compress",
+              "id": "5VrfmBForfb7Kf2-",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          },
+          {
+            "property_type": "Office Building",
+            "purchase_price": "$1.2M",
+            "first_year_deduction": "$218K",
+            "summary": "Purchase Price (Less Land) · First Year Tax Deductions",
+            "link": {
+              "link_type": "Any"
+            },
+            "image": {
+              "dimensions": {
+                "width": 1600,
+                "height": 897
+              },
+              "alt": "Office building",
+              "copyright": null,
+              "url": "https://images.prismic.io/cost-segregation/C1OglO2DIkg7s4Lg_AdobeStock_1208751406.jpg?auto=format,compress",
+              "id": "C1OglO2DIkg7s4Lg",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          },
+          {
+            "property_type": "Self-Storage Facility",
+            "purchase_price": "$830K",
+            "first_year_deduction": "$192K",
+            "summary": "Purchase Price (Less Land) · First Year Tax Deductions",
+            "link": {
+              "link_type": "Any"
+            },
+            "image": {
+              "dimensions": {
+                "width": 1365,
+                "height": 1024
+              },
+              "alt": "Self-storage facility",
+              "copyright": null,
+              "url": "https://images.prismic.io/cost-segregation/m5Wz6OuTyHGPqU9k_adam-winger-OpV94f2edwE-unsplash.jpg?auto=format,compress",
+              "id": "m5Wz6OuTyHGPqU9k",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          }
+        ],
+        "primary": {
+          "title": "Success Stories",
+          "intro": [],
+          "price_label": "Purchase Price",
+          "price_note": "(Less Land)",
+          "deduction_label": "First Year Tax Deductions"
+        },
+        "id": "success_stories$871668bf-4836-4555-92ba-773c75d53c9d",
+        "slice_type": "success_stories",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "initial",
+        "items": [],
+        "primary": {
+          "title": "Estimate Your First Year Tax Savings",
+          "intro": [],
+          "property_types": [
+            {
+              "type": "list-item",
+              "text": "Single Family Home",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Townhouse",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Condo - High Rise",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Condo - SFH",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "ADU - Freestanding",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "ADU - Interior Conversion",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Duplex",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Triplex",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Fourplex",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Apartment",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Assisted Living",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Auto Dealership",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Bank, Branch Office",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Car / Truck Repair",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Car Wash",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Casino",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Cold Storage",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Distribution Center",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Food Processing Facility",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Golf Course/Country Club",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Hospital / Medical Center",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Hotel - Extended Stay",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Hotel - Full Service",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Hotel - Limited Service",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Motel - Exterior Access Units",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Motel - Interior Access Units",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Industrial",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Industrial/Flex - Mixed Use",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Lube/Oil Change Facility",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Manufacturing - Heavy",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Manufacturing - Light",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Manufacturing - Medium",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Mixed Use (Apt & Other)",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Nursing Home",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Office - General",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Office - Medical",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Office Condo",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "R & D Facility",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Restaurant - Average",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Restaurant - Fast Food",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Restaurant - Upscale",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Retail - Department Store",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Retail - General",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Retail - Regional Mall",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Retail - Shopping Center",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Self Storage Facility - Drive Up Access",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Self Storage Facility - Interior Access",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Service (Gas) Stations",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Supermarket",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Theater / Cinema",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Veterinary Facility",
+              "spans": [],
+              "direction": "ltr"
+            },
+            {
+              "type": "list-item",
+              "text": "Warehouse",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "disclaimer": [
+            {
+              "type": "paragraph",
+              "text": "This high-level estimate is intended for informational purposes only and should not be used for filing tax returns. It assumes bonus depreciation applies and a tax rate of 35%. Actual results will depend on your specific property facts and circumstances. State income tax benefits may be higher. Please consult with a qualified tax professional for advice tailored to your situation.",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ],
+          "email_form_title": "Email Your Results",
+          "email_button_label": "Email My Estimate",
+          "success_message": null
+        },
+        "id": "calculator$075bef06-8f5e-42e5-bcd8-0654feb69dbe",
+        "slice_type": "calculator",
+        "slice_label": null
+      }
+    ],
+    "meta_title": "Best Cost Segregation Software - Cost Segregation",
+    "meta_description": "Maximize Your Tax Savings",
+    "meta_image": {}
+  }
+}

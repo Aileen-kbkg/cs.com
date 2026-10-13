@@ -1,0 +1,40 @@
+{
+  "destination": "costsegregationcom",
+  "documents": [
+    "blog_post:cost-segregation-for-a-rental:en-us",
+    "blog_post:cost-segregation-for-prior-year:en-us",
+    "blog_post:cost-segregation-office-building:en-us",
+    "blog_post:cost-segregation-vs-bonus-depreciation:en-us",
+    "blog_post:str-cost-segregation-timing:en-us",
+    "home:(singleton):en-us",
+    "site_settings:(singleton):en-us"
+  ],
+  "media": [
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/-R9o8QV79oGH4LyH_why-choose-audit-support.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/1jmAnIW5zzbk6WmY_step-4.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/6WJADc7FAJTc1oNp_step-2.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/8tsoRe7Ya94C1frz_why-choose-ai-assistance.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/D8pRrvmaIjRpKycL_commercial.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/K1oAEmwV9YSg52fQ_hero_animated-2.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/KER8rwWIDwPpT9BF_KBKG-PRINT-logo-white.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/QFcvSptBfxEA9Ptc_residential.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/TcJk2YA9n8in-RC-_step-3.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/aAPzUo49fattz6ja_why-choose-corrections.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/f6v4IaWF8TiaGIZP_why-choose-land-building.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/hkgi-aXWm4KZmhVv_why-choose-instant-report.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/rw5Sv2RQVXCdpcpl_why-choose-catch-up.svg",
+    "https://cost-segregation.cdn.prismic.io/cost-segregation/vgHXgAWFmpjvslMz_step-1.svg",
+    "https://images.prismic.io/cost-segregation/-pRWDItF98DmshOG_cs-medal3_420x375.png",
+    "https://images.prismic.io/cost-segregation/2U4Sy0HfIqKH_QW9_Designer-4.png",
+    "https://images.prismic.io/cost-segregation/5VrfmBForfb7Kf2-_pexels-curtis-adams-1694007-12700439.jpg",
+    "https://images.prismic.io/cost-segregation/84gf0FqYju0rKvN7_CScom-Lock-up-484x238-1.png.webp",
+    "https://images.prismic.io/cost-segregation/C1OglO2DIkg7s4Lg_AdobeStock_1208751406.jpg",
+    "https://images.prismic.io/cost-segregation/ShFSy0hu5gfaJvCG_com-office-case-study.png",
+    "https://images.prismic.io/cost-segregation/Tmzz3LWNobJrToRe_ChatGPT-Image-Sep-22-2026-03_42_17-PM.png",
+    "https://images.prismic.io/cost-segregation/adiOKGaSRIl5DuQi_cost-seg-vs-bonus-dep.png",
+    "https://images.prismic.io/cost-segregation/ea_eCPYZjS24CfEo_CostSegregation_logo_white.png",
+    "https://images.prismic.io/cost-segregation/m5Wz6OuTyHGPqU9k_adam-winger-OpV94f2edwE-unsplash.jpg",
+    "https://images.prismic.io/cost-segregation/v5hUlPa1sdROgI2d_ChatGPT-Image-Sep-22-2026-03_03_53-PM.png"
+  ],
+  "createdAt": "2026-10-13T20:33:52.836Z"
+}

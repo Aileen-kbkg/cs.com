@@ -1,0 +1,342 @@
+{
+  "id": "asZaYxIAAC4A4Th0",
+  "uid": null,
+  "url": null,
+  "type": "site_settings",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22asZaYxIAAC4A4Th0%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-07T15:15:55+0000",
+  "last_publication_date": "2026-10-12T18:47:36+0000",
+  "slugs": [
+    "site-settings"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "logo": {
+      "dimensions": {
+        "width": 484,
+        "height": 238
+      },
+      "alt": "CostSegregation.com",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/84gf0FqYju0rKvN7_CScom-Lock-up-484x238-1.png.webp?auto=format,compress",
+      "id": "84gf0FqYju0rKvN7",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "navigation": [
+      {
+        "label": "For Tax Advisors",
+        "link": {
+          "link_type": "Web",
+          "key": "7c9553a7-eca6-40b2-bf0f-1cb5783a0e25",
+          "url": "/for-tax-advisors/",
+          "text": "/"
+        },
+        "has_dropdown": false,
+        "dropdown_label_1": "",
+        "dropdown_link_1": {
+          "link_type": "Any"
+        },
+        "dropdown_label_2": "",
+        "dropdown_link_2": {
+          "link_type": "Any"
+        }
+      },
+      {
+        "label": "Calculator",
+        "link": {
+          "link_type": "Web",
+          "key": "fa2d9ac1-7e90-496d-bf7c-c273f4504f1f",
+          "url": "/#calculator"
+        },
+        "has_dropdown": false,
+        "dropdown_label_1": "",
+        "dropdown_link_1": {
+          "link_type": "Any"
+        },
+        "dropdown_label_2": "",
+        "dropdown_link_2": {
+          "link_type": "Any"
+        }
+      },
+      {
+        "label": "Pricing",
+        "link": {
+          "link_type": "Web",
+          "key": "43c8c96c-d952-483a-963c-00f6cf4150cb",
+          "url": "/#pricing"
+        },
+        "has_dropdown": false,
+        "dropdown_label_1": "",
+        "dropdown_link_1": {
+          "link_type": "Any"
+        },
+        "dropdown_label_2": "",
+        "dropdown_link_2": {
+          "link_type": "Any"
+        }
+      },
+      {
+        "label": "FAQ",
+        "link": {
+          "link_type": "Web",
+          "key": "6de08c39-399e-4bd8-b292-8d779ed7e677",
+          "url": "/faq/"
+        },
+        "has_dropdown": false,
+        "dropdown_label_1": "",
+        "dropdown_link_1": {
+          "link_type": "Any"
+        },
+        "dropdown_label_2": "",
+        "dropdown_link_2": {
+          "link_type": "Any"
+        }
+      },
+      {
+        "label": "Resources",
+        "link": {
+          "link_type": "Web",
+          "key": "acf91701-c9d3-4bb3-b27f-619933eca506",
+          "url": "/resources/"
+        },
+        "has_dropdown": true,
+        "dropdown_label_1": "Blog",
+        "dropdown_link_1": {
+          "link_type": "Web",
+          "key": "4ad740e8-8422-47e3-ad18-653235729e51",
+          "url": "/resources/blog/"
+        },
+        "dropdown_label_2": "Education",
+        "dropdown_link_2": {
+          "link_type": "Web",
+          "key": "07b2404e-2fd9-40cc-9c9b-f4f71e9dd6b4",
+          "url": "/resources/what-is-cost-segregation/"
+        }
+      },
+      {
+        "label": "About",
+        "link": {
+          "link_type": "Web",
+          "key": "e3f6d8aa-b92a-4fb4-ab43-95246162eff7",
+          "url": "/about/"
+        },
+        "has_dropdown": false,
+        "dropdown_label_1": "",
+        "dropdown_link_1": {
+          "link_type": "Any"
+        },
+        "dropdown_label_2": "",
+        "dropdown_link_2": {
+          "link_type": "Any"
+        }
+      }
+    ],
+    "sign_in_label": "Sign In",
+    "sign_in_link": {
+      "link_type": "Web",
+      "key": "d8cd0fa5-4589-489d-9121-cc3529b283d9",
+      "url": "https://app.costsegregation.com/sign-in"
+    },
+    "get_started_label": "Get Started",
+    "get_started_link": {
+      "link_type": "Web",
+      "key": "d5df11d1-489f-4d74-bd7f-1664d4553baf",
+      "url": "https://app.costsegregation.com/sign-up"
+    },
+    "announcement": [
+      {
+        "type": "paragraph",
+        "text": "Join our newsletter to get the latest Cost Segregation insights | Subscribe Here",
+        "spans": [
+          {
+            "start": 0,
+            "end": 80,
+            "type": "strong"
+          }
+        ],
+        "direction": "ltr"
+      }
+    ],
+    "footer_description": [
+      {
+        "type": "paragraph",
+        "text": "For technical or product related questions contact Support@costsegregation.com\nFor general inquiries contact Info@costsegregation.com",
+        "spans": [
+          {
+            "start": 51,
+            "end": 78,
+            "type": "strong"
+          },
+          {
+            "start": 109,
+            "end": 133,
+            "type": "strong"
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Please note, we currently provide support via email and do not offer phone support.",
+        "spans": [],
+        "direction": "ltr"
+      }
+    ],
+    "footer_logo": {
+      "dimensions": {
+        "width": 1492,
+        "height": 592
+      },
+      "alt": "CostSegregation.com",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/ea_eCPYZjS24CfEo_CostSegregation_logo_white.png?auto=format,compress",
+      "id": "ea_eCPYZjS24CfEo",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "partner_logo": {
+      "dimensions": {
+        "width": 103,
+        "height": 60
+      },
+      "alt": "KBKG",
+      "copyright": null,
+      "url": "https://cost-segregation.cdn.prismic.io/cost-segregation/KER8rwWIDwPpT9BF_KBKG-PRINT-logo-white.svg",
+      "id": "KER8rwWIDwPpT9BF",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "footer_tagline": "Residential Cost Segregator®",
+    "copyright_text": "© 2026 all rights reserved",
+    "contact_heading": "Contact Us",
+    "contact_email": "info@costsegregation.com",
+    "footer_navigation": [
+      {
+        "label": "Affiliate Program",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b01",
+          "url": "https://www.costsegregation.com/affiliate-program/"
+        }
+      }
+    ],
+    "social_links": [
+      {
+        "platform": "Instagram",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b11",
+          "url": "https://www.instagram.com/costsegregationdotcom",
+          "target": "_blank"
+        }
+      },
+      {
+        "platform": "Facebook",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b12",
+          "url": "https://www.facebook.com/people/Cost-Seg-Pro/61583176327168/",
+          "target": "_blank"
+        }
+      },
+      {
+        "platform": "LinkedIn",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b13",
+          "url": "https://www.linkedin.com/showcase/cost-seg-pro/",
+          "target": "_blank"
+        }
+      },
+      {
+        "platform": "X",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b14",
+          "url": "https://x.com/KBKG",
+          "target": "_blank"
+        }
+      },
+      {
+        "platform": "YouTube",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b15",
+          "url": "https://www.youtube.com/@KBKGTaxIncentives",
+          "target": "_blank"
+        }
+      }
+    ],
+    "footer_note": "CostSegregation.com Now Includes Residential Cost Segregator®",
+    "legal_links": [
+      {
+        "label": "Privacy Policy",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b21",
+          "url": "https://privacy.cptn.co/privacy-policy/f7adcbbd-7982-4fab-92ad-efc8b1cb7ed8",
+          "target": "_blank"
+        }
+      },
+      {
+        "label": "Terms and Conditions",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b22",
+          "url": "https://www.kbkg.com/terms-and-conditions",
+          "target": "_blank"
+        }
+      }
+    ],
+    "recent_news_heading": "Recent News",
+    "read_more_label": "Read More »",
+    "resources_heading": "Software",
+    "footer_resources": [
+      {
+        "label": "481(a)",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b31",
+          "url": "https://www.kbkg.com/481a-calculator",
+          "target": "_blank"
+        }
+      },
+      {
+        "label": "Partial Disposition Calculator",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b32",
+          "url": "https://www.kbkg.com/partial-disposition-calculator",
+          "target": "_blank"
+        }
+      }
+    ],
+    "stay_connected_heading": "Stay connected",
+    "stay_connected_links": [
+      {
+        "label": "Subscribe to SMS Notifications",
+        "link": {
+          "link_type": "Web",
+          "key": "b1f0c6c2-6f2a-4b1e-9d1a-0f1e2d3c4b41",
+          "url": "https://www.costsegregation.com/stay-connected/"
+        }
+      }
+    ]
+  }
+}

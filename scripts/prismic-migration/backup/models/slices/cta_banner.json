@@ -1,0 +1,73 @@
+{
+  "id": "cta_banner",
+  "type": "SharedSlice",
+  "name": "CtaBanner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA label",
+            "placeholder": ""
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        },
+        "small_print": {
+          "type": "Text",
+          "config": {
+            "label": "Small print",
+            "placeholder": ""
+          }
+        },
+        "style": {
+          "type": "Select",
+          "config": {
+            "label": "Style",
+            "placeholder": "",
+            "default_value": "brand",
+            "options": [
+              "light",
+              "dark",
+              "brand"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ],
+  "description": "Call-to-action banner"
+}
