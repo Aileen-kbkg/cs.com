@@ -1,5 +1,5 @@
 {
-    "repositoryName": "costsegregation",
+    "repositoryName": "costsegregationcom",
     "adapter": "@slicemachine/adapter-next",
     "libraries": [
         "./src/slices"
