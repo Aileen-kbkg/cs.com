@@ -12,4 +12,3 @@ export function createClient(config: CreateClientConfig = {}) {
 
 	return client;
 }
-
