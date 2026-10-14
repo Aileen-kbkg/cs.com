@@ -25,6 +25,7 @@
     "eslint": "^9",
     "eslint-config-next": "^16.3.8",
     "prismic-ts-codegen": "^0.1.30",
+    "slice-machine-ui": "^2.21.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

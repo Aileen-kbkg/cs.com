@@ -86,10 +86,7 @@ export default async function Page({ searchParams }: Props) {
 									<p className={styles.excerpt}>{post.data.excerpt}</p>
 								) : null}
 
-								<Link
-									href={`/resources/${post.uid}`}
-									className={styles.more}
-								>
+								<Link href={`/resources/${post.uid}`} className={styles.more}>
 									Learn more
 								</Link>
 							</div>
@@ -105,10 +102,11 @@ export default async function Page({ searchParams }: Props) {
 							pageNumber === currentPage ? (
 								<span
 									key={pageNumber}
-									className={`${styles.pageLink} ${styles.pageCurrent}`}
+									className={styles.pageCurrent}
 									aria-current="page"
 								>
-									Page{pageNumber}
+									<span className={styles.srOnly}>Page </span>
+									{pageNumber}
 								</span>
 							) : (
 								<Link
@@ -120,7 +118,8 @@ export default async function Page({ searchParams }: Props) {
 									}
 									className={styles.pageLink}
 								>
-									Page{pageNumber}
+									<span className={styles.srOnly}>Page </span>
+									{pageNumber}
 								</Link>
 							),
 					)}
