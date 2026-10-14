@@ -1,9 +1,32 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { asText } from "@prismicio/client";
+import {
+	asText,
+	type GroupField,
+	type ImageField,
+	type KeyTextField,
+	type RichTextField,
+} from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { createClient } from "@/prismicio";
+
+/**
+ * Fields that exist on the `blog_post` custom type in Prismic but are missing
+ * from the generated types. Remove this once prismicio-types.d.ts is
+ * regenerated from the current custom type definition.
+ */
+type BlogPostExtras = {
+	faq_title: KeyTextField;
+	faqs: GroupField<{
+		question: KeyTextField;
+		answer: RichTextField;
+	}>;
+	after_faq: RichTextField;
+	meta_title: KeyTextField;
+	meta_description: KeyTextField;
+	meta_image: ImageField;
+};
 
 type Props = {
 	params: Promise<{ uid: string }>;
@@ -36,10 +59,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		return { title: "Post not found" };
 	}
 
-	const title = post.data.meta_title || asText(post.data.title) || undefined;
-	const description =
-		post.data.meta_description || post.data.excerpt || undefined;
-	const image = post.data.meta_image?.url || post.data.featured_image?.url;
+	const data = post.data as typeof post.data & BlogPostExtras;
+
+	const title = data.meta_title || asText(data.title) || undefined;
+	const description = data.meta_description || data.excerpt || undefined;
+	const image = data.meta_image?.url || data.featured_image?.url;
 
 	return {
 		title,
@@ -51,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			type: "article",
 			title,
 			description,
-			publishedTime: post.data.date ?? undefined,
+			publishedTime: data.date ?? undefined,
 			images: image ? [{ url: image }] : undefined,
 		},
 	};
@@ -67,23 +91,25 @@ export default async function Page({ params }: Props) {
 		notFound();
 	}
 
-	const published = formatDate(post.data.date);
-	const faqs = post.data.faqs ?? [];
+	const data = post.data as typeof post.data & BlogPostExtras;
+
+	const published = formatDate(data.date);
+	const faqs = data.faqs ?? [];
 
 	return (
 		<article>
 			<header>
 				<h1>
-					<PrismicText field={post.data.title} />
+					<PrismicText field={data.title} />
 				</h1>
 
 				{published ? (
-					<time dateTime={post.data.date ?? undefined}>{published}</time>
+					<time dateTime={data.date ?? undefined}>{published}</time>
 				) : null}
 
-				{post.data.featured_image?.url ? (
+				{data.featured_image?.url ? (
 					<PrismicNextImage
-						field={post.data.featured_image}
+						field={data.featured_image}
 						priority
 						sizes="(max-width: 1024px) 100vw, 1024px"
 					/>
@@ -91,7 +117,7 @@ export default async function Page({ params }: Props) {
 			</header>
 
 			<PrismicRichText
-				field={post.data.body}
+				field={data.body}
 				components={{
 					image: ({ node, key }) => (
 						<PrismicNextImage key={key} field={node} sizes="100vw" />
@@ -101,7 +127,7 @@ export default async function Page({ params }: Props) {
 
 			{faqs.length > 0 ? (
 				<section>
-					<h2>{post.data.faq_title || "Frequently Asked Questions"}</h2>
+					<h2>{data.faq_title || "Frequently Asked Questions"}</h2>
 
 					{faqs.map((faq, index) => (
 						<details key={index}>
@@ -112,7 +138,7 @@ export default async function Page({ params }: Props) {
 				</section>
 			) : null}
 
-			<PrismicRichText field={post.data.after_faq} />
+			<PrismicRichText field={data.after_faq} />
 		</article>
 	);
 }
