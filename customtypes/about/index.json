@@ -1,0 +1,61 @@
+{
+    "format": "custom",
+    "id": "about",
+    "label": "About",
+    "repeatable": false,
+    "status": true,
+    "json": {
+        "Main": {
+            "slices": {
+                "type": "Slices",
+                "fieldset": "Slice Zone",
+                "config": {
+                    "choices": {
+                        "hero": {
+                            "type": "SharedSlice"
+                        },
+                        "text_with_image": {
+                            "type": "SharedSlice"
+                        },
+                        "feature_grid": {
+                            "type": "SharedSlice"
+                        },
+                        "product_cards": {
+                            "type": "SharedSlice"
+                        },
+                        "rich_text": {
+                            "type": "SharedSlice"
+                        },
+                        "cta_banner": {
+                            "type": "SharedSlice"
+                        }
+                    }
+                }
+            }
+        },
+        "SEO & Metadata": {
+            "meta_title": {
+                "type": "Text",
+                "config": {
+                    "label": "Meta title",
+                    "placeholder": "Shown in search results"
+                }
+            },
+            "meta_description": {
+                "type": "Text",
+                "config": {
+                    "label": "Meta description",
+                    "placeholder": "Shown in search results"
+                }
+            },
+            "meta_image": {
+                "type": "Image",
+                "config": {
+                    "label": "Meta image",
+                    "constraint": {},
+                    "thumbnails": []
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "lead_form",
+  "type": "SharedSlice",
+  "name": "LeadForm",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "form_type": {
+          "type": "Select",
+          "config": {
+            "label": "Form type",
+            "placeholder": "",
+            "default_value": "affiliate",
+            "options": [
+              "affiliate",
+              "tax_advisor",
+              "sms",
+              "newsletter"
+            ]
+          }
+        },
+        "submit_label": {
+          "type": "Text",
+          "config": {
+            "label": "Submit label",
+            "placeholder": ""
+          }
+        },
+        "success_message": {
+          "type": "Text",
+          "config": {
+            "label": "Success message",
+            "placeholder": ""
+          }
+        },
+        "privacy_note": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Privacy note",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ],
+  "description": "Lead capture or sign-up form"
+}

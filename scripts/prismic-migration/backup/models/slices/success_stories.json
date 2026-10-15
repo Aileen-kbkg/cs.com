@@ -1,0 +1,104 @@
+{
+  "id": "success_stories",
+  "type": "SharedSlice",
+  "name": "SuccessStories",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Section title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "price_label": {
+          "type": "Text",
+          "config": {
+            "label": "Purchase price label",
+            "placeholder": "Purchase Price"
+          }
+        },
+        "price_note": {
+          "type": "Text",
+          "config": {
+            "label": "Purchase price note",
+            "placeholder": "(Less Land)"
+          }
+        },
+        "deduction_label": {
+          "type": "Text",
+          "config": {
+            "label": "Deduction label",
+            "placeholder": "First Year Tax Deductions"
+          }
+        }
+      },
+      "items": {
+        "property_type": {
+          "type": "Text",
+          "config": {
+            "label": "Property type",
+            "placeholder": ""
+          }
+        },
+        "purchase_price": {
+          "type": "Text",
+          "config": {
+            "label": "Purchase price",
+            "placeholder": ""
+          }
+        },
+        "first_year_deduction": {
+          "type": "Text",
+          "config": {
+            "label": "First-year deduction",
+            "placeholder": ""
+          }
+        },
+        "summary": {
+          "type": "Text",
+          "config": {
+            "label": "Summary",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Card image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      }
+    }
+  ],
+  "description": "Case-study stat cards"
+}

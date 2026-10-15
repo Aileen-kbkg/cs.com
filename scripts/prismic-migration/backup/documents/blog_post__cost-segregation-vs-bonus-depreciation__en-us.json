@@ -1,0 +1,371 @@
+{
+  "id": "as6JjBEAACwAODYR",
+  "uid": "cost-segregation-vs-bonus-depreciation",
+  "url": null,
+  "type": "blog_post",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22as6JjBEAACwAODYR%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-13T19:42:16+0000",
+  "last_publication_date": "2026-10-13T19:42:16+0000",
+  "slugs": [
+    "cost-segregation-vs.-bonus-depreciation-whats-the-difference"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Cost Segregation vs. Bonus Depreciation: What’s the Difference?",
+        "spans": []
+      }
+    ],
+    "date": "2026-10-01",
+    "excerpt": "Learn about the difference between cost segregation and bonus depreciation, and why each element is important for your investment property!",
+    "featured_image": {
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alt": "cost segregation vs. bonus depreciation",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/adiOKGaSRIl5DuQi_cost-seg-vs-bonus-dep.png?auto=format,compress",
+      "id": "adiOKGaSRIl5DuQi",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "By Amar Patel | Principal, Cost Segregation",
+        "spans": [
+          {
+            "start": 0,
+            "end": 43,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Real estate investors often hear cost segregation and bonus depreciation in the same conversation, which can make them sound like two names for the same tax break.",
+        "spans": [
+          {
+            "start": 33,
+            "end": 49,
+            "type": "strong"
+          },
+          {
+            "start": 54,
+            "end": 72,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "They are not.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "A property purchase covers more than the structure. It also includes flooring, appliances, lighting, fencing, landscaping, and other assets. Cost segregation, also known as cost seg, identifies those assets and determines which depreciation schedules apply to them. Bonus depreciation is a separate tax rule that may allow certain qualifying assets to be deducted immediately.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The order matters: cost seg classifies the property; bonus depreciation affects how quickly eligible components may be deducted.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "Key Takeaways",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Cost segregation identifies property components; bonus depreciation applies after eligible assets have been identified.",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Cost seg remains valuable without bonus depreciation because shorter schedules still move deductions forward.",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "A property-specific cost seg estimate, such as the one provided by the free CostSegregation.com calculator, can show investors what the two strategies may mean for their property.",
+        "spans": [
+          {
+            "start": 76,
+            "end": 106,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "What is the Difference Between Cost Segregation vs. Bonus Depreciation?",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The simplest way to think about the two is that cost segregation identifies what qualifies for shorter depreciation, while bonus depreciation determines how quickly eligible property can be deducted.",
+        "spans": [
+          {
+            "start": 76,
+            "end": 80,
+            "type": "em"
+          },
+          {
+            "start": 153,
+            "end": 164,
+            "type": "em"
+          }
+        ]
+      },
+      {
+        "type": "preformatted",
+        "text": "| Cost Segregation | Bonus Depreciation |\n| --- | --- |\n| Identifies and classifies property components | Determines how quickly eligible assets may be deducted |\n| Produces property-specific depreciation schedules | Applies after eligible assets have been identified |\n| Remains useful when bonus rules change | Depends on the rules for the applicable year |",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "How Cost Seg and Bonus Depreciation Work Together",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "A cost segregation report may identify appliances, carpeting, dedicated electrical systems, fencing, parking areas, and landscaping that belong on 5-, 7-, or 15-year schedules. It then assigns part of the property’s depreciable building basis to those categories.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Bonus depreciation comes next. Under current federal law, certain qualified property acquired and placed in service after January 19, 2025 generally qualifies for 100% bonus depreciation. Qualified property includes tangible property depreciated under the Modified Accelerated Cost Recovery System (MACRS), the federal system used to determine how most business and investment property is depreciated, with a recovery period of 20 years or less. Acquisition dates, placed-in-service dates, elections, and other requirements still matter. For more information, IRS Publication 946 explains the current MACRS rules.",
+        "spans": [
+          {
+            "start": 560,
+            "end": 579,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/publications/p946",
+              "target": "_blank"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "A CostSegregation.com case study shows the relationship. A $300,000 single-family residential rental had a $270,000 building basis after land was removed. Cost seg identified qualifying shorter-life assets, while 100% bonus depreciation applied to eligible 5- and 15-year property. As a result, the report generated $74,864 in first-year depreciation deductions. Using the same property and asset allocation, an 80% bonus depreciation rate would have produced $55,182 in first-year depreciation deductions.",
+        "spans": [
+          {
+            "start": 316,
+            "end": 361,
+            "type": "strong"
+          },
+          {
+            "start": 460,
+            "end": 467,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cost segregation identified and classified the assets. Bonus depreciation accelerated the deductions.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "Cost Segregation Still Works Without Bonus Depreciation",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Bonus depreciation can increase the first-year result, but it does not create the cost seg opportunity.",
+        "spans": [
+          {
+            "start": 71,
+            "end": 77,
+            "type": "em"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Without bonus depreciation, an asset placed on a 5-, 7-, or 15-year schedule is still deducted faster than a residential building on 27.5 years or a commercial building on 39 years. The cost segregation report also gives the investor and CPA detailed depreciation schedules for future tax years.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "This distinction matters whenever bonus rules change. The first-year deduction may rise or fall, but properly classified shorter-life assets still retain their shorter recovery periods.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "Do You Need Cost Seg to Claim Bonus Depreciation?",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Bonus depreciation generally does not apply to an entire 27.5- or 39-year building. It applies to qualifying property, including many assets with recovery periods of 20 years or less.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "For separately purchased equipment, the classification may already be clear. In an acquired building, however, the closing statement rarely shows how much of the purchase price belongs to carpeting, appliances, fencing, parking areas, or other shorter-life components.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "A cost seg report provides those property-specific classifications and allocations. The investor’s CPA can then apply the current bonus depreciation rules to the eligible assets.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "See How Both Strategies Affect Your Property",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Before paying for a report, investors should see the potential result for their property. The free CostSegregation.com calculator instantly estimates first-year deductions and tax savings from basic property information.",
+        "spans": [
+          {
+            "start": 99,
+            "end": 129,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Then, if the estimate looks worthwhile, investors should choose cost seg software with expert methodology, detailed depreciation schedules, CPA access, and audit support.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "CostSegregation.com is the first software solution built to offer direct-to-investor cost segregation. Built and backed by KBKG, it draws on the experience of former IRS engineers and Certified Cost Segregation Professionals. The platform supports residential rental and commercial investment properties with up to $1.5 million in building basis, excluding land.",
+        "spans": [
+          {
+            "start": 101,
+            "end": 102,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The software enables users to generate a full cost seg report in less than 15 minutes, invite their CPA into the workflow, and complete the study before paying. For added confidence, every report includes up to five corrections and KBKG-backed audit support (if needed).",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Averaging 5/5-stars on Google reviews, CostSegregation.com is the top-rated cost segregation software solution and has maintained a 100% IRS audit success rate since launching in 2016.",
+        "spans": [
+          {
+            "start": 23,
+            "end": 37,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.google.com/search?q=kbkg+google+reviews&rlz=1C1GCEA_enUS1214US1214&oq=kbkg+googl&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQgxNjI0ajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8",
+              "target": "_blank"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "Start With the Property’s Numbers",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Cost segregation and bonus depreciation perform different jobs. Cost seg identifies eligible assets, while bonus depreciation may determine how much of those eligible assets can be deducted immediately.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The combination can create significant first-year depreciation, but the actual benefit depends on the property, applicable tax rules, and the investor’s ability to use the deductions.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Ready to see what your investment property can save? Use CostSegregation.com’s free calculator to see what your property can unlock with cost seg.",
+        "spans": [
+          {
+            "start": 79,
+            "end": 94,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ]
+      }
+    ],
+    "faq_title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Can Rental Properties Use Cost Segregation?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Qualifying residential rental properties can contain components that may be eligible for shorter depreciation schedules. Cost segregation can also apply to commercial investment properties, including offices, warehouses, restaurants, hotels, and self-storage facilities.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "Can You Trust DIY, Online Cost Segregation Software?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes, and no. It is crucial not to trust every cost segregation software on the market. Be sure the DIY cost segregation software provides audit support and will stand behind its report. For example, every CostSegregation.com includes audit support from KBKG, and has a 100% IRS audit success rate since 2016.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "Can short-term rental owners use CostSegregation.com?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Short-term rental owners may use CostSegregation.com when the property qualifies. Cost segregation can be especially valuable for short-term rentals because they often include assets that qualify for shorter depreciation periods. A cost seg report also supports the accelerated-depreciation portion of the STR loophole strategy. Average-stay, material-participation, and other requirements should be reviewed with a tax advisor.",
+            "spans": [
+              {
+                "start": 311,
+                "end": 332,
+                "type": "hyperlink",
+                "data": {
+                  "link_type": "Web",
+                  "url": "https://www.costsegregation.com/resources/blog/how-the-short-term-rental-loophole-costsegregation-com-can-benefit-passive-investors/",
+                  "target": "_blank"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "after_faq": [],
+    "meta_title": null,
+    "meta_description": null,
+    "meta_image": {}
+  }
+}

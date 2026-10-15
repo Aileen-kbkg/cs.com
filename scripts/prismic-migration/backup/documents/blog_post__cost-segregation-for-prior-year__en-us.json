@@ -1,0 +1,352 @@
+{
+  "id": "as6JTREAACcAODTJ",
+  "uid": "cost-segregation-for-prior-year",
+  "url": null,
+  "type": "blog_post",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22as6JTREAACcAODTJ%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-13T19:41:09+0000",
+  "last_publication_date": "2026-10-13T19:41:09+0000",
+  "slugs": [
+    "cost-segregation-for-a-prior-year-property-how-to-catch-up-with-form-3115"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Cost Segregation for a Prior-Year Property: How to Catch Up with Form 3115",
+        "spans": []
+      }
+    ],
+    "date": "2026-09-25",
+    "excerpt": "Purchased a rental or commercial property several years ago without completing cost segregation? Don’t worry – you can likely still save tens of thousands on your taxes.",
+    "featured_image": {
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alt": "cost segregation form 3115",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/v5hUlPa1sdROgI2d_ChatGPT-Image-Sep-22-2026-03_03_53-PM.png?auto=format,compress",
+      "id": "v5hUlPa1sdROgI2d",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "By Amar Patel | Principal, Cost Segregation",
+        "spans": [
+          {
+            "start": 0,
+            "end": 43,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Purchased a rental or commercial property several years ago without completing cost segregation? Don’t worry – you can likely still save tens of thousands on your taxes.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "This is because when it comes to taxes, a building is really a collection of assets purchased together. The structure can last for decades, while appliances, flooring, landscaping, and parking areas wear out much sooner. Cost segregation, often called cost seg, separates qualifying components and places them on shorter depreciation schedules instead of leaving nearly everything on the building’s 27.5- or 39-year timeline. For more info, IRS Publication 946 explains the full federal depreciation framework.",
+        "spans": [
+          {
+            "start": 441,
+            "end": 460,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/publications/p946",
+              "target": "_blank"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For a property already in service, cost segregation becomes a look-back process. The report rebuilds the property’s depreciation history from the date it became ready to rent or use, then compares what the investor should have claimed with what they actually deducted. That difference gives the CPA the information needed to evaluate a Section 481(a) catch-up adjustment and prepare Form 3115.",
+        "spans": [
+          {
+            "start": 383,
+            "end": 392,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/forms-pubs/about-form-3115?utm_source=chatgpt.com",
+              "target": "_blank"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "CostSegregation.com turns these steps into a guided online process. For eligible properties, the software generates the property-specific cost segregation report, updated depreciation schedules, and a Section 481(a) calculation schedule when applicable. The investor can invite their CPA into the workflow, and the CPA uses those materials to review and prepare the filing.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 19,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/?utm_source=chatgpt.com"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "Key Takeaways",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Cost segregation remains available for eligible properties that an investor purchased, constructed, or placed in service in a prior year.",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "A look-back report calculates what the depreciation history should have been and compares it with the deductions already claimed.",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "CostSegregation.com creates the property analysis and Section 481(a) schedule that the investor’s CPA needs to begin the Form 3115 process.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "Cost Segregation Still Works After the First Year",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The easiest time to complete cost segregation is usually when a property is purchased, constructed, or significantly improved. That timing lets the investor begin using the accelerated deductions from the start.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Missing that first-year opportunity does not erase it. A look-back cost seg report returns to the property’s original placed-in-service date: the date it became ready and available to rent or use.",
+        "spans": [
+          {
+            "start": 57,
+            "end": 82,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The report begins with the original building basis after land is removed. It then identifies the property components that belonged on shorter 5-, 7-, or 15-year schedules and recalculates the depreciation through the beginning of the current tax year.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "This creates a clear comparison:",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Depreciation the investor already claimed",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Depreciation the investor should have claimed",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The difference represents the potential catch-up adjustment.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "What Your CPA Needs for Form 3115",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Form 3115 reports certain changes in accounting method. In a qualifying look-back situation, the form allows the investor to correct the depreciation treatment without rewriting several years of tax returns one at a time.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The Section 481(a) adjustment measures the cumulative difference between the depreciation actually deducted and the amount allowable before the year of change. A negative adjustment generally reduces taxable income in the current year.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The CPA cannot calculate that amount from the purchase price alone. The filing requires the underlying property analysis, corrected classifications, depreciation schedules, and prior-year comparison. That is where the completed cost segregation report becomes essential.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The exact filing approach depends on the property’s depreciation history and the applicable accounting-method procedures. The CPA reviews the report and determines how Form 3115 applies.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "How CostSegregation.com Creates the CPA-Ready Report",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "CostSegregation.com is the first software solution built to offer direct-to-investor cost segregation. It supports residential and commercial investment properties with up to $1.5 million in building basis, excluding land.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 19,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The software’s process is straightforward:",
+        "spans": []
+      },
+      {
+        "type": "o-list-item",
+        "text": "Enter the property address. AI-assisted public data fills in available property information.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 27,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "o-list-item",
+        "text": "Confirm the history. Review the purchase price, land allocation, original placed-in-service date, major improvements, and prior-year details. The investor can invite a CPA directly into the workflow.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 20,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "o-list-item",
+        "text": "Generate the report. CostSegregation.com produces the property-specific cost segregation report, depreciation schedules, and a Section 481(a) calculation schedule when applicable. Plus, you only pay after you see the results.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 20,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The Section 481(a) schedule gives the CPA a practical starting point for preparing Form 3115. It does not replace the CPA or file the form automatically; it supplies the property calculations the tax professional needs. CostSegregation.com specifically identifies the schedule as a feature required for Form 3115 that saves the tax preparer time.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The entire process takes less than 15 minutes. Users can work through the platform without entering a credit card and only pay if they’re happy with the results of the report.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "CostSegregation.com is built and backed by KBKG, with methodology shaped by former IRS engineers who defend every CostSegregation.com report in the case of an audit. CostSegregation.com is the top-rated cost segregation software solution, maintaining a 5/5-star Google rating and a 100% IRS audit success rate since launching in 2016.",
+        "spans": [
+          {
+            "start": 262,
+            "end": 275,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.google.com/search?q=kbkg+google+reviews&rlz=1C1GCEA_enUS1214US1214&oq=kbkg+goo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAAGIAEGKIEMgoIAxAAGKIEGIkFMgYIBBBFGDwyBggFEEUYPDIGCAYQRRg80gEIMTQxOWowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x80c2c35d3ff827a3:0xa808332e41e9a817,1,,,,",
+              "target": "_blank"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "Ready to Begin Your Cost Seg Report?",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Use CostSegregation.com’s free calculator to estimate the potential deductions for your property. From there, complete the guided report, invite your CPA, and move forward when the results make sense.",
+        "spans": [
+          {
+            "start": 26,
+            "end": 41,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator",
+              "target": "_blank"
+            }
+          }
+        ]
+      }
+    ],
+    "faq_title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Do I Need to Amend Every Prior Tax Return?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Often, no. When an accounting method change applies, the CPA generally uses Form 3115 and a Section 481(a) adjustment instead of amending each prior-year return. The property’s depreciation history determines the correct filing path.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "Does CostSegregation.com File Form 3115?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "No. CostSegregation.com produces the cost segregation report, depreciation schedules, and Section 481(a) calculation schedule when applicable. The investor’s CPA reviews that information and prepares the Form 3115 filing.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "Can short-term rental owners use CostSegregation.com?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Short-term rental owners may use CostSegregation.com when the property qualifies. Cost segregation can be especially valuable for short-term rentals because they often include assets that qualify for shorter depreciation periods. A cost seg report also supports the accelerated-depreciation portion of the STR loophole strategy. Average-stay, material-participation, and other requirements should be reviewed with a tax advisor.",
+            "spans": [
+              {
+                "start": 311,
+                "end": 332,
+                "type": "hyperlink",
+                "data": {
+                  "link_type": "Web",
+                  "url": "https://www.costsegregation.com/resources/blog/how-the-short-term-rental-loophole-costsegregation-com-can-benefit-passive-investors/",
+                  "target": "_blank"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "after_faq": [],
+    "meta_title": null,
+    "meta_description": null,
+    "meta_image": {}
+  }
+}

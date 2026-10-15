@@ -1,0 +1,365 @@
+{
+  "id": "as6IfxEAAC4AODFB",
+  "uid": "cost-segregation-for-a-rental",
+  "url": null,
+  "type": "blog_post",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22as6IfxEAAC4AODFB%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-13T19:38:18+0000",
+  "last_publication_date": "2026-10-13T19:38:18+0000",
+  "slugs": [
+    "case-study-cost-segregation-for-a-370000-residential-rental"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Case Study: Cost Segregation for a $370,000 Residential Rental",
+        "spans": []
+      }
+    ],
+    "date": "2026-09-25",
+    "excerpt": "One CostSegregation.com example involved a $370,000 residential rental that generated $80,000 in first-year depreciation deductions.",
+    "featured_image": {
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alt": "cost segregation results",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/Tmzz3LWNobJrToRe_ChatGPT-Image-Sep-22-2026-03_42_17-PM.png?auto=format,compress",
+      "id": "Tmzz3LWNobJrToRe",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "By Amar Patel | Principal, Cost Segregation",
+        "spans": [
+          {
+            "start": 0,
+            "end": 43,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cost segregation can create meaningful first-year deductions even for smaller rental properties. One CostSegregation.com example involved a $370,000 residential rental that generated $80,000 in first-year depreciation deductions.",
+        "spans": [
+          {
+            "start": 101,
+            "end": 120,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/"
+            }
+          },
+          {
+            "start": 140,
+            "end": 228,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The reason is simple: a rental property is more than its walls, roof, and foundation. It also includes appliances, flooring, cabinetry, fencing, landscaping, and other features that may be written off faster than the building itself. Cost segregation, also known as cost seg, identifies those qualifying components and moves their deductions into earlier tax years.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "For rental owners, claiming more depreciation sooner can improve cash flow when it matters most, whether the investor prioritizes repairs, reserves, debt reduction, or another property purchase. This case study shows why real estate investors should estimate their potential benefits before assuming their property is too small for cost segregation.",
+        "spans": [
+          {
+            "start": 250,
+            "end": 283,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "Key Takeaways for Rental Investors",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Cost seg isn’t just for large commercial buildings. This $370,000 property generated $80,000 in first-year deductions through CostSegregation.com.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 51,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "The property’s features drive the opportunity. Appliances, flooring, exterior improvements, and other components can receive different tax treatment from the residential structure.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 46,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "See the numbers before committing to a report. A property-specific estimate allows the investor to gauge whether cost seg is worth it for their property.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 46,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "What Did the Residential Rental Analysis Show?",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The published residential rental example reported the following results:",
+        "spans": []
+      },
+      {
+        "type": "preformatted",
+        "text": "| Property Detail | Result |\n| --- | --- |\n| Property value shown in the example | $370,000 |\n| First-year depreciation deductions | $80,000 |\n| First-year deductions as a share of property value | 21.6% |",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "In other words, the CostSegregation.com report moved approximately 22 cents of every dollar shown in the property value into first-year deductions.",
+        "spans": [
+          {
+            "start": 67,
+            "end": 146,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The $80,000 represents a depreciation deduction, not an $80,000 cash payment. At an illustrative 30% combined tax rate, a fully usable $80,000 deduction would equal approximately $24,000 in estimated tax savings.",
+        "spans": [
+          {
+            "start": 179,
+            "end": 211,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That is capital the investor could keep available for valuable costs, such as a roof repair, appliance replacements, vacancy reserves, debt reduction, or the next down payment.",
+        "spans": []
+      },
+      {
+        "type": "heading5",
+        "text": "Why Residential Rentals Produce Strong Cost Segregation Opportunities",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "One of the main reasons a rental home produces significant cost seg results is that most of these properties contain many assets that don’t last as long as the walls, roof, and foundation. Without a closer cost segregation analysis, those costs may remain grouped with the building’s longer 27.5-year schedule.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Depending on the property, qualifying components may include:",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Appliances and carpeting",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Removable flooring and window treatments",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Certain cabinetry and decorative fixtures",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Patios, fencing, and walkways",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Driveways and parking areas",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Landscaping and other exterior improvements",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "These components likely belong on shorter 5-, 7-, or 15-year depreciation schedules. For more information, IRS Publication 946 explains the federal recovery periods used for depreciable property.",
+        "spans": [
+          {
+            "start": 107,
+            "end": 126,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/publications/p946",
+              "target": "_blank"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "However, the result of a cost segregation report depends on the individual rental. A furnished property, a recently renovated home, or a rental with extensive exterior improvements can produce a different outcome from a similarly priced building with fewer qualifying assets.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "That is why a property-specific report provides more useful information than a generic residential percentage. Built and backed by KBKG, CostSegregation.com produces a property-specific report and generates full depreciation schedules in less than 15 minutes!",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "You can read this article to learn which property components qualify for cost segregation.",
+        "spans": [
+          {
+            "start": 13,
+            "end": 25,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/resources/components-for-cost-segregation/"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "See the Cost Seg Opportunity Before You Pay",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Rental owners should be able to see the potential benefit before purchasing a cost seg report. The free CostSegregation.com calculator uses basic property information to estimate first-year deductions and tax savings, giving investors a clear projection.",
+        "spans": [
+          {
+            "start": 104,
+            "end": 134,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "When the estimate looks worthwhile, investors can continue to a full cost segregation report. When choosing a cost segregation software, investors should look beyond speed.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Instead, real estate investors should look at the methodology behind the report, user ratings, and audit support. For example, CostSegregation.com’s methodology was built by former IRS engineers and Certified Cost Segregation Professionals. It is the only cost segregation software to average 5/5 stars on Google reviews and has maintained a 100% IRS audit success rate since 2016.",
+        "spans": [
+          {
+            "start": 127,
+            "end": 146,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/?utm_source=chatgpt.com"
+            }
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ready to see if cost seg makes sense for your property? Click here to view your estimate!",
+        "spans": [
+          {
+            "start": 56,
+            "end": 66,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ]
+      }
+    ],
+    "faq_title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Does $80,000 in Depreciation Equal $80,000 in Tax Savings?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "No. The $80,000 reduces taxable income. At an illustrative 30% combined tax rate, a fully usable $80,000 deduction would represent approximately $24,000 in estimated tax savings.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "What Residential-Rental Components Can Qualify for Cost Segregation?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Qualifying components may include appliances, carpeting, certain flooring and cabinetry, window treatments, fencing, patios, parking areas, and landscaping. The final classification depends on the property’s actual features and how each asset is installed and used.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "Can short-term rental owners use CostSegregation.com?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Short-term rental owners may use CostSegregation.com when the property qualifies. Cost segregation can be especially valuable for short-term rentals because they often include assets that qualify for shorter depreciation periods. A cost seg report also supports the accelerated-depreciation portion of the STR loophole strategy. Average-stay, material-participation, and other requirements should be reviewed with a tax advisor.",
+            "spans": [
+              {
+                "start": 311,
+                "end": 332,
+                "type": "hyperlink",
+                "data": {
+                  "link_type": "Web",
+                  "url": "https://www.costsegregation.com/resources/blog/how-the-short-term-rental-loophole-costsegregation-com-can-benefit-passive-investors/",
+                  "target": "_blank"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "after_faq": [],
+    "meta_title": null,
+    "meta_description": null,
+    "meta_image": {}
+  }
+}

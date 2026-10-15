@@ -1,0 +1,261 @@
+{
+  "id": "pricing",
+  "type": "SharedSlice",
+  "name": "Pricing",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Section title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "slider_label": {
+          "type": "Text",
+          "config": {
+            "label": "Slider label",
+            "placeholder": ""
+          }
+        },
+        "slider_min": {
+          "type": "Number",
+          "config": {
+            "label": "Slider min (USD)",
+            "placeholder": ""
+          }
+        },
+        "slider_max": {
+          "type": "Number",
+          "config": {
+            "label": "Slider max (USD)",
+            "placeholder": ""
+          }
+        },
+        "slider_step": {
+          "type": "Number",
+          "config": {
+            "label": "Slider step (USD)",
+            "placeholder": ""
+          }
+        },
+        "included_title": {
+          "type": "Text",
+          "config": {
+            "label": "Included list title",
+            "placeholder": ""
+          }
+        },
+        "included_features": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Included features",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "loyalty_note": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Loyalty or discount note",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "custom_quote_label": {
+          "type": "Text",
+          "config": {
+            "label": "Custom quote label",
+            "placeholder": ""
+          }
+        },
+        "custom_quote_link": {
+          "type": "Link",
+          "config": {
+            "label": "Custom quote link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        },
+        "loyalty_image": {
+          "type": "Image",
+          "config": {
+            "label": "Loyalty image (medal)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "loyalty_cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "Loyalty button label",
+            "placeholder": "Explore Loyalty discounts for repeat users!"
+          }
+        },
+        "loyalty_cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "Loyalty button link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        },
+        "custom_quote_title": {
+          "type": "Text",
+          "config": {
+            "label": "Custom quote heading",
+            "placeholder": "Properties Over $1.5M in Building Basis (less land)"
+          }
+        },
+        "custom_quote_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Custom quote text",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        }
+      },
+      "items": {
+        "plan_name": {
+          "type": "Text",
+          "config": {
+            "label": "Plan name",
+            "placeholder": ""
+          }
+        },
+        "property_type": {
+          "type": "Text",
+          "config": {
+            "label": "Property type",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "Price",
+            "placeholder": ""
+          }
+        },
+        "price_note": {
+          "type": "Text",
+          "config": {
+            "label": "Price note",
+            "placeholder": "For {basis} tax basis"
+          }
+        },
+        "basis_label": {
+          "type": "Text",
+          "config": {
+            "label": "Basis label",
+            "placeholder": ""
+          }
+        },
+        "cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA label",
+            "placeholder": ""
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        },
+        "plan_icon": {
+          "type": "Image",
+          "config": {
+            "label": "Plan icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "property_types_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Property types (formatted; overrides Property type)",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "default_basis": {
+          "type": "Number",
+          "config": {
+            "label": "Default tax basis (USD)",
+            "placeholder": "750000"
+          }
+        },
+        "base_price": {
+          "type": "Number",
+          "config": {
+            "label": "Base price (USD)",
+            "placeholder": "495"
+          }
+        },
+        "base_limit": {
+          "type": "Number",
+          "config": {
+            "label": "Base price applies up to basis (USD)",
+            "placeholder": "750000"
+          }
+        },
+        "rate_per_dollar": {
+          "type": "Number",
+          "config": {
+            "label": "Price increase per $1 of basis above the base limit",
+            "placeholder": "0.0015556"
+          }
+        },
+        "cap_limit": {
+          "type": "Number",
+          "config": {
+            "label": "Price stops increasing above basis (USD)",
+            "placeholder": "1200000"
+          }
+        },
+        "cap_price": {
+          "type": "Number",
+          "config": {
+            "label": "Price above that limit (USD)",
+            "placeholder": "1195"
+          }
+        }
+      }
+    }
+  ],
+  "description": "Pricing cards, included features and basis slider"
+}

@@ -1,0 +1,11 @@
+{
+  "migrated": [
+    "site_settings:(singleton):en-us",
+    "blog_post:cost-segregation-office-building:en-us",
+    "home:(singleton):en-us",
+    "blog_post:str-cost-segregation-timing:en-us",
+    "blog_post:cost-segregation-vs-bonus-depreciation:en-us",
+    "blog_post:cost-segregation-for-prior-year:en-us",
+    "blog_post:cost-segregation-for-a-rental:en-us"
+  ]
+}

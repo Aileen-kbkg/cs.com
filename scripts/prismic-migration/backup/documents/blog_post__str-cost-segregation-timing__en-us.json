@@ -1,0 +1,469 @@
+{
+  "id": "as6CohEAACwAOBp1",
+  "uid": "str-cost-segregation-timing",
+  "url": null,
+  "type": "blog_post",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22as6CohEAACwAOBp1%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-13T19:12:43+0000",
+  "last_publication_date": "2026-10-13T19:33:17+0000",
+  "slugs": [
+    "when-can-you-start-depreciating-a-short-term-rental"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "When Can You Start Depreciating a Short-Term Rental?",
+        "spans": [],
+        "direction": "ltr"
+      }
+    ],
+    "date": "2026-10-09",
+    "excerpt": "The highest quality online cost segregation experiences simplify the process without stripping away the analysis and support that make the report accurate.",
+    "featured_image": {
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alt": "cost segregation short-term rental",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/2U4Sy0HfIqKH_QW9_Designer-4.png?auto=format,compress",
+      "id": "2U4Sy0HfIqKH_QW9",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "body": [
+      {
+        "type": "heading5",
+        "text": "Key Takeaways",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "By Amar Patel | Principal, Cost Segregation",
+        "spans": [
+          {
+            "start": 0,
+            "end": 43,
+            "type": "strong"
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Buying a short-term rental (STR) does not automatically start depreciation. The arrival of the first guest is not necessarily the trigger either.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Depreciation begins when the property is ready and available to earn rental income. The IRS calls this the property’s placed-in-service date. That date determines when depreciation begins for the building, furniture, appliances, and other eligible assets.",
+        "spans": [
+          {
+            "start": 41,
+            "end": 82,
+            "type": "strong"
+          },
+          {
+            "start": 88,
+            "end": 91,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/publications/p527",
+              "target": "_blank"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "It also matters for cost segregation, often called cost seg. A cost segregation report identifies parts of the property that may qualify for shorter depreciation schedules and calculates those deductions beginning with the correct placed-in-service date.",
+        "spans": [
+          {
+            "start": 20,
+            "end": 36,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/resources/cost-segregation-vs-bonus-depreciation/?utm_source=chatgpt.com"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Short-term rental depreciation generally begins when the property is ready and available for guests, not simply when the investor closes.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "The property may be placed in service before the first booking if it is fully prepared and genuinely available to rent.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Once the date and building basis are confirmed, cost segregation can calculate the property’s applicable depreciation schedules.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "CostSegregation.com makes cost segregation more accessible to STR investors, producing a cost-effective report in under 15 minutes.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 19,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://costsegregation.com/",
+              "target": "_blank"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "heading5",
+        "text": "The Date That Matters: Ready and Available",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "IRS Publication 527 states that rental property is placed in service when it is ready and available for its intended use, even when it has not yet been occupied.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 19,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/publications/p527",
+              "target": "_blank"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "For a short-term rental, that generally means the property is prepared to accept guests. It should have the furniture, utilities, safety features, required permits, and other essentials needed to operate.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "If major renovations are still underway, the kitchen is unusable, or the property cannot legally or practically host guests, then it is generally not ready for its intended rental use.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consider an investor who closes on a property on May 1, finishes renovations in July, and makes the rental available for rent on August 10. The first guest arrives on August 24. Based on those facts, August 10 will be the placed-in-service date because that is when the property became ready and available, not the closing date or first check-in.",
+        "spans": [
+          {
+            "start": 200,
+            "end": 244,
+            "type": "strong"
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "heading5",
+        "text": "When Does a Short-Term Rental Become Operational?",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "When determining when a short-term rental was ready and available for guests, investors should keep records that help establish the property’s operational date.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Useful records may include:",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "The listing activation date",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Permit or licensing approvals",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Furniture and appliance invoices",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Photographs showing the completed property",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Utility activation records",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "list-item",
+        "text": "Messages confirming the property was available for booking",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Together, those records can help the investor and CPA establish when the rental became operational.",
+        "spans": [
+          {
+            "start": 50,
+            "end": 53,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/for-tax-advisors/?utm_source=chatgpt.com"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "heading5",
+        "text": "Renovations and New Amenities May Have Different Dates",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Renovations often determine when a newly purchased short-term rental can begin depreciation. An unfinished bathroom, incomplete safety work, or pending occupancy approval may delay the property’s placed-in-service date.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Assets added later can have separate dates.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "For example, a rental may begin operating in August, while a hot tub installed in November becomes depreciable when it is operational and available for guest use. IRS guidance generally treats later additions and improvements as separate property for depreciation purposes, with their recovery periods beginning when they are placed in service.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "The original building, furnishings, and later improvements therefore do not always begin depreciation on the same day.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "heading5",
+        "text": "Why the Date Matters: Cost Segregation & the STR Loophole",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cost segregation examines what the investor purchased rather than treating the entire property as one asset.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Depending on the property, appliances, furniture, certain flooring, patios, and landscaping may qualify for shorter 5-, 7-, or 15-year schedules. According to IRS Publication 527, the remaining building stays on its applicable longer depreciation schedule.",
+        "spans": [
+          {
+            "start": 159,
+            "end": 178,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.irs.gov/publications/p527",
+              "target": "_blank"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "The placed-in-service date marks when those schedules begin for the cost seg report. It can also affect the amount of regular depreciation available during the first tax year, which is why investors should not automatically enter the closing date.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "These dates are crucial, because they help unlock the most powerful tax strategy: the short-term rental loophole. Also known as the “STR loophole”, the strategy accelerates depreciation on an eligible STR, while STR tax treatment allows those accelerated deductions to produce a more immediate tax benefit. For more information on the STR loophole, please read this article written by our cost segregation experts.",
+        "spans": [
+          {
+            "start": 361,
+            "end": 373,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/resources/blog/short-term-rental-cost-seg/"
+            }
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "heading5",
+        "text": "Evaluate the Cost Seg Opportunity Once the Numbers Are Ready",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "An investor can estimate the cost segregation opportunity while preparing the property. The final report, however, should use the confirmed building basis, land allocation, completed improvements, and placed-in-service date.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "CostSegregation.com supports qualifying short-term rentals and other investment properties with up to $1.5 million in building basis, excluding land. It was the first self-guided software developed for direct-to-investor cost segregation and is built and backed by KBKG, with methodology shaped by former IRS engineers and Certified Cost Segregation Professionals.",
+        "spans": [
+          {
+            "start": 102,
+            "end": 148,
+            "type": "strong"
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Investors can complete the guided process in 15 minutes or less, invite their CPA into the workflow, and review the results before paying. Every completed report also includes detailed depreciation schedules, and KBKG-backed audit support.",
+        "spans": [
+          {
+            "start": 45,
+            "end": 63,
+            "type": "strong"
+          }
+        ],
+        "direction": "ltr"
+      },
+      {
+        "type": "heading5",
+        "text": "Start With the Right Date",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "The placed-in-service date marks the point when a short-term rental moves from a property being prepared into an income-producing property ready for guests.",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Confirm that date first. From there, use the property’s building basis and features to evaluate the potential cost seg benefit, using CostSegregation.com’s free calculator.",
+        "spans": [
+          {
+            "start": 156,
+            "end": 171,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/#calculator"
+            }
+          }
+        ],
+        "direction": "ltr"
+      }
+    ],
+    "faq_title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Can Rental Properties Use Cost Segregation?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Qualifying residential rental properties can contain components that may be eligible for shorter depreciation schedules. Cost segregation can also apply to commercial investment properties, including offices, warehouses, restaurants, hotels, and self-storage facilities.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      },
+      {
+        "question": "Can You Trust DIY, Online Cost Segregation Software?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes, and no. It is crucial not to trust every cost segregation software on the market. Be sure the DIY cost segregation software provides audit support and will stand behind its report. For example, every CostSegregation.com includes audit support from KBKG, and has a 100% IRS audit success rate since 2016.",
+            "spans": [],
+            "direction": "ltr"
+          }
+        ]
+      },
+      {
+        "question": "Can short-term rental owners use CostSegregation.com?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Short-term rental owners may use CostSegregation.com when the property qualifies. Cost segregation can be especially valuable for short-term rentals because they often include assets that qualify for shorter depreciation periods. A cost seg report also supports the accelerated-depreciation portion of the STR loophole strategy. Average-stay, material-participation, and other requirements should be reviewed with a tax advisor.",
+            "spans": [
+              {
+                "start": 311,
+                "end": 332,
+                "type": "hyperlink",
+                "data": {
+                  "link_type": "Web",
+                  "url": "https://www.costsegregation.com/resources/blog/how-the-short-term-rental-loophole-costsegregation-com-can-benefit-passive-investors/",
+                  "target": "_blank"
+                }
+              }
+            ],
+            "direction": "ltr"
+          }
+        ]
+      }
+    ],
+    "after_faq": [
+      {
+        "type": "heading6",
+        "text": "About the Author",
+        "spans": [],
+        "direction": "ltr"
+      },
+      {
+        "type": "paragraph",
+        "text": "Amar Patel spent over 15 years at a Big Four accounting firm, focusing on various specialty tax products including Cost Recovery Solutions and Research & Development Tax Credits. With more than 20 years of practice, Amar brings a wealth of cost segregation experience and expertise to our team.",
+        "spans": [],
+        "direction": "ltr"
+      }
+    ],
+    "meta_title": null,
+    "meta_description": null,
+    "meta_image": {}
+  }
+}

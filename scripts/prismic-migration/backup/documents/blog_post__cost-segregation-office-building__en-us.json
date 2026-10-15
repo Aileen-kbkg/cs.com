@@ -1,0 +1,340 @@
+{
+  "id": "as6IWREAAC0AODB8",
+  "uid": "cost-segregation-office-building",
+  "url": null,
+  "type": "blog_post",
+  "href": "https://cost-segregation.cdn.prismic.io/api/v2/documents/search?ref=as6JmBEAACwAODZT&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22as6IWREAAC0AODB8%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2026-10-13T19:38:18+0000",
+  "last_publication_date": "2026-10-13T19:38:18+0000",
+  "slugs": [
+    "case-study-cost-segregation-for-a-1200000-office-building"
+  ],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Case Study: Cost Segregation for a $1,200,000 Office Building",
+        "spans": []
+      }
+    ],
+    "date": "2026-10-02",
+    "excerpt": "Learn how cost segregation saved a $1.2m office building $218,000 in first-year tax deductions.",
+    "featured_image": {
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "alt": "cost segregation office case study",
+      "copyright": null,
+      "url": "https://images.prismic.io/cost-segregation/ShFSy0hu5gfaJvCG_com-office-case-study.png?auto=format,compress",
+      "id": "ShFSy0hu5gfaJvCG",
+      "edit": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1,
+        "background": "transparent"
+      }
+    },
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "By Amar Patel | Principal, Cost Segregation",
+        "spans": [
+          {
+            "start": 0,
+            "end": 43,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "An office building is not one 39-year asset. It is a collection of flooring, lighting, millwork, data systems, furniture, parking areas, and other components with different depreciation rules. Cost segregation puts those differences to work by moving qualifying costs into earlier tax years.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Some investors still assume self-guided cost segregation software only works for residential rentals. This real CostSegregation.com case proves otherwise. For an office building purchased for $1.2 million, excluding land, CostSegregation.com generated $218,000 in first-year depreciation deductions.",
+        "spans": [
+          {
+            "start": 192,
+            "end": 220,
+            "type": "strong"
+          },
+          {
+            "start": 222,
+            "end": 241,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://costsegregation.com/",
+              "target": "_blank"
+            }
+          },
+          {
+            "start": 252,
+            "end": 298,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "Key Takeaways for Office Building Owners",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Commercial properties belong in the conversation. This $1.2 million office generated $218,000 in first-year tax deductions through CostSegregation.com’s self-guided software.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 49,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "The building basis drives the analysis. Land does not depreciate, so investors should begin with the property value after land is removed.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 39,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "You should see the report before paying. A property-specific estimate shows the actual deductions and tax savings before the investor commits to a purchase.",
+        "spans": [
+          {
+            "start": 0,
+            "end": 40,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "What Did the Office-Building Cost Seg Analysis Show?",
+        "spans": []
+      },
+      {
+        "type": "preformatted",
+        "text": "| Property Detail | Result |\n| --- | --- |\n| Property type | Office building |\n| Purchase price, excluding land | $1,200,000 |\n| First-year depreciation deductions | $218,000 |\n| First-year deductions as a share of purchase price | 18.2% |",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The report moved approximately 18 cents of every dollar of building value into first-year deductions.",
+        "spans": [
+          {
+            "start": 31,
+            "end": 100,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "By comparison, depreciating the full $1.2 million building basis over 39 years produces roughly $30,800 in annual depreciation before convention adjustments. Cost segregation changed the timing dramatically by bringing far more of the deduction into the first year.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "The $218,000 represents a tax deduction rather than a cash payment. At a 30% combined tax rate, a fully usable $218,000 deduction equals approximately $65,400 in estimated tax savings. That gives a real estate investor more capital available for tenant improvements, reserves, debt reduction, or the next property purchase.",
+        "spans": [
+          {
+            "start": 151,
+            "end": 183,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "Why Office Buildings Produce Strong Cost Segregation Opportunities",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Cost segregation, often called cost seg, separates qualifying components from the building’s 39-year depreciation schedule. For eligible office properties, those assets move to shorter 5-, 7-, or 15-year schedules.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Office buildings often include:",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Carpeting and removable flooring",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Decorative lighting and millwork",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Furniture and specialty fixtures",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Dedicated data, electrical, and communication systems",
+        "spans": []
+      },
+      {
+        "type": "list-item",
+        "text": "Parking areas, sidewalks, fencing, and landscaping",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Each office property has a different layout, finish level, tenant buildout, and mix of exterior improvements. That is why a property-specific report delivers more useful results than a generic office-building percentage.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "CostSegregation.com evaluates the information for the individual property and produces the related depreciation schedules. For more information on which property components qualify for cost segregation, you can read this article from our team of cost seg experts.",
+        "spans": [
+          {
+            "start": 216,
+            "end": 228,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/resources/components-for-cost-segregation/"
+            }
+          }
+        ]
+      },
+      {
+        "type": "heading5",
+        "text": "See the Cost Seg Opportunity Before You Pay",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "An office owner should not need to order an expensive study or wait weeks to learn whether cost segregation makes financial sense. The first step is to confirm the building basis and review a property-specific estimate.",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Our free calculator shows whether the office fits the software and estimates its potential first-year deductions. For eligible properties with up to $1.5 million in building basis, excluding land, investors can continue through the full platform without needing to pay or enter credit card information.",
+        "spans": [
+          {
+            "start": 4,
+            "end": 19,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://costsegregation.com/#calculator",
+              "target": "_blank"
+            }
+          },
+          {
+            "start": 149,
+            "end": 195,
+            "type": "strong"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "When considering a cost seg provider, always be sure to check reviews, rankings, and audit support confidence. CostSegregation.com is the first software solution built to offer direct-to-investor cost segregation. Built and backed by KBKG, every completed report includes audit support. CostSegregation.com is the top-rated cost segregation software solution. It is the only cost segregation software to average 5/5 stars on Google reviews and was ranked number one in an objective software analysis.",
+        "spans": [
+          {
+            "start": 111,
+            "end": 130,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/"
+            }
+          },
+          {
+            "start": 212,
+            "end": 213,
+            "type": "strong"
+          },
+          {
+            "start": 425,
+            "end": 439,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.google.com/search?q=kbkg+google+reviews&rlz=1C1GCEA_enUS1214US1214&oq=kbkg+goo&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAAGIAEGKIEMgoIAxAAGKIEGIkFMgYIBBBFGDwyBggFEEUYPDIGCAYQRRg80gEIMTU1MWowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x80c2c35d3ff827a3:0xa808332e41e9a817,1,,,,",
+              "target": "_blank"
+            }
+          },
+          {
+            "start": 472,
+            "end": 499,
+            "type": "hyperlink",
+            "data": {
+              "link_type": "Web",
+              "url": "https://www.costsegregation.com/resources/how-to-choose-the-best-cost-segregation-software/"
+            }
+          }
+        ]
+      }
+    ],
+    "faq_title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "Does $218,000 in depreciation equal $218,000 in tax savings?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "No. The $218,000 reduces taxable income. At a 30% combined tax rate, a fully usable $218,000 deduction represents approximately $65,400 in estimated tax savings.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "What office-building components qualify for cost segregation?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "For eligible office properties, qualifying cost seg components often include carpeting, furniture, decorative finishes, dedicated electrical or data systems, parking areas, fencing, sidewalks, and landscaping. The property’s actual features and use determine the final classifications.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "question": "Can short-term rental owners use CostSegregation.com?",
+        "answer": [
+          {
+            "type": "paragraph",
+            "text": "Yes. Short-term rental owners may use CostSegregation.com when the property qualifies. Cost segregation can be especially valuable for short-term rentals because they often include assets that qualify for shorter depreciation periods. A cost seg report also supports the accelerated-depreciation portion of the STR loophole strategy. Average-stay, material-participation, and other requirements should be reviewed with a tax advisor.",
+            "spans": [
+              {
+                "start": 311,
+                "end": 332,
+                "type": "hyperlink",
+                "data": {
+                  "link_type": "Web",
+                  "url": "https://www.costsegregation.com/resources/blog/how-the-short-term-rental-loophole-costsegregation-com-can-benefit-passive-investors/",
+                  "target": "_blank"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "after_faq": [],
+    "meta_title": null,
+    "meta_description": null,
+    "meta_image": {}
+  }
+}
