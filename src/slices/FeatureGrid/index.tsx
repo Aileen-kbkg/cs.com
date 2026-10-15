@@ -373,10 +373,9 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
 };
 
 const FeatureGrid = (props: FeatureGridProps) => {
-  if (props.slice.variation === "about") {
+  if ((props.slice.variation as string) === "about") {
     return <FeatureGridAbout {...props} />;
   }
-
   return <FeatureGridDefault {...props} />;
 };
 

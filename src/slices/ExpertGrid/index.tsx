@@ -1,11 +1,26 @@
-import { Content, isFilled } from "@prismicio/client";
+import { isFilled, type ImageField, type KeyTextField, type RichTextField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { PrismicRichText, type SliceComponentProps } from "@prismicio/react";
 
 import styles from "./ExpertGrid.module.css";
 
-export type ExpertGridProps = SliceComponentProps<Content.ExpertGridSlice>;
+type Expert = {
+  photo: ImageField;
+  name: KeyTextField;
+  credentials: KeyTextField;
+  experience: KeyTextField;
+  location: KeyTextField;
+};
 
+type ExpertGridSlice = {
+  id: string;
+  slice_type: string;
+  variation: string;
+  primary: { title: KeyTextField; intro: RichTextField; experts: Expert[] };
+  items: never[];
+};
+
+export type ExpertGridProps = SliceComponentProps<ExpertGridSlice>;
 /**
  * "Meet Our Experts" — portrait grid of team members.
  */
