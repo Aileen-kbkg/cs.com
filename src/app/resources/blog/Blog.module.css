@@ -172,10 +172,11 @@
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 1.25rem;
-	margin-top: 3rem;
 	font-size: 17px;
+	text-align: center;
+	font-size: 16px;
 	font-weight: 700;
+	margin-top: 23px;
 }
 
 .pageLink,
