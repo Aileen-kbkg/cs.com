@@ -76,6 +76,22 @@ export default function NavbarMenu({
     };
   }, []);
 
+  // Close the mobile panel when the viewport grows past the burger breakpoint,
+  // otherwise it can stay mounted and reappear on the next resize down.
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1025px)");
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setMobileOpen(false);
+    };
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+
+  const closeAll = () => {
+    setOpenDropdown(null);
+    setMobileOpen(false);
+  };
+
   const renderItems = (variant: "main" | "dropdown") => (
     <ul className={variant === "main" ? styles.menu : styles.mobileMenu}>
       {items.map((item, index) => {
@@ -135,10 +151,7 @@ export default function NavbarMenu({
                     <PrismicNextLink
                       field={child.link}
                       className={styles.subItem}
-                      onClick={() => {
-                        setOpenDropdown(null);
-                        setMobileOpen(false);
-                      }}
+                      onClick={closeAll}
                     >
                       {child.label}
                     </PrismicNextLink>
@@ -168,8 +181,40 @@ export default function NavbarMenu({
         >
           {mobileOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
+
         <div className={`${styles.mobilePanel} ${mobileOpen ? styles.mobilePanelOpen : ""}`}>
           {renderItems("dropdown")}
+
+          {/* The live site puts both CTAs inside the opened menu on mobile. */}
+          {(signIn || getStarted) && (
+            <div className={styles.mobileCtas}>
+              {signIn && (
+                <PrismicNextLink
+                  field={signIn.link}
+                  className={styles.mobileSignIn}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  onClick={closeAll}
+                >
+                  {signIn.label}
+                </PrismicNextLink>
+              )}
+              {getStarted && (
+                <PrismicNextLink
+                  field={getStarted.link}
+                  className={styles.mobileGetStarted}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  onClick={closeAll}
+                >
+                  <span>{getStarted.label}</span>
+                  <span className={styles.getStartedIcon}>
+                    <ChevronRight />
+                  </span>
+                </PrismicNextLink>
+              )}
+            </div>
+          )}
         </div>
       </nav>
 

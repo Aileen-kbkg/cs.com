@@ -167,7 +167,7 @@
 }
 
 /* Keyboard users: show the dropdown while focus is inside the item */
-.menu .menuItem:focus-within > .subMenu {
+.menu .menuItem:focus-within>.subMenu {
   display: block;
 }
 
