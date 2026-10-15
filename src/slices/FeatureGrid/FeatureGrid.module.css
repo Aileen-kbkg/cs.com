@@ -6,7 +6,8 @@
 
 .section {
   --wc-primary: #277ce6;
-  --wc-secondary: #277ce6; /* Elementor kit --e-global-color-secondary */
+  --wc-secondary: #277ce6;
+  /* Elementor kit --e-global-color-secondary */
   --wc-text: #333333;
   --wc-muted: #6b7280;
   --wc-panel: #ffffff;
@@ -54,17 +55,36 @@
 
 /* Slide transitions (300ms, same keyframes as live) */
 @keyframes slideOutLeft {
-  0% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 0; transform: translateX(-30px); }
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
 }
 
 @keyframes slideInRight {
-  0% { opacity: 0; transform: translateX(30px); }
-  100% { opacity: 1; transform: translateX(0); }
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.slideOut { animation: 0.3s ease 0s 1 normal forwards running slideOutLeft; }
-.slideIn { animation: 0.3s ease 0s 1 normal forwards running slideInRight; }
+.slideOut {
+  animation: 0.3s ease 0s 1 normal forwards running slideOutLeft;
+}
+
+.slideIn {
+  animation: 0.3s ease 0s 1 normal forwards running slideInRight;
+}
 
 /* Card grid: 3 → 2 (≤1100px) → 1 (≤640px) */
 .grid {
@@ -167,8 +187,14 @@
   font-weight: 600;
 }
 
-.backButton:hover { color: var(--wc-primary); }
-.backButton svg { width: 18px; height: 18px; }
+.backButton:hover {
+  color: var(--wc-primary);
+}
+
+.backButton svg {
+  width: 18px;
+  height: 18px;
+}
 
 .detailColumns {
   display: grid;
@@ -226,7 +252,9 @@
   border-left: 3px solid var(--wc-primary);
 }
 
-.detailSecondary { display: flex; }
+.detailSecondary {
+  display: flex;
+}
 
 .detailPanel {
   background: rgb(248, 251, 255);
@@ -264,16 +292,103 @@
 }
 
 @media (max-width: 1100px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; }
-  .detailColumns { grid-template-columns: 1fr; }
-  .detailSecondary { order: -1; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detailColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .detailSecondary {
+    order: -1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slideOut, .slideIn { animation-duration: 1ms; }
-  .card { transition: none; }
+
+  .slideOut,
+  .slideIn {
+    animation-duration: 1ms;
+  }
+
+  .card {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* `about` variation — "Meet Our Experts" portrait grid.               */
+/* Append to src/slices/FeatureGrid/FeatureGrid.module.css             */
+/* Reuses .inner, .header, .heading and .intro from the default        */
+/* variation, so only the grid and person styles are new.              */
+/* ------------------------------------------------------------------ */
+
+.aboutSection {
+  background: #f8fafc;
+  padding: 4rem 0;
+}
+
+@media (min-width: 1024px) {
+  .aboutSection {
+    padding: 6rem 0;
+  }
+}
+
+.peopleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0;
+}
+
+.person {
+  text-align: center;
+}
+
+.personPhoto {
+  display: block;
+  width: 144px;
+  height: 144px;
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.personName {
+  margin: 1.25rem 0 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #263e73;
+}
+
+.personMeta {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.personMeta p {
+  margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .peopleGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .peopleGrid {
+    grid-template-columns: 1fr;
+  }
 }

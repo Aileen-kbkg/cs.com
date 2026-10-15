@@ -6,19 +6,27 @@
 	--cs-navy: #263e73;
 	--cs-blue: #277ce6;
 	--cs-text: #4b5563;
-	--cs-border: #d8e4f5;
+	--cs-border: #cfe2f9;
 	--cs-surface: #ffffff;
-	--cs-radius: 10px;
+	--cs-radius: 32px;
 
 	--cs-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
-	max-width: 1200px;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 1280px;
 	margin: 0 auto;
-	padding: 4rem 1.25rem 5rem;
+	padding: 1.875rem 0rem 3.125rem;
 	font-family: var(--cs-font);
 	color: var(--cs-text);
 	background: var(--cs-surface);
+}
+
+.page *,
+.page *::before,
+.page *::after {
+	box-sizing: border-box;
 }
 
 .srOnly {
@@ -41,22 +49,25 @@
 
 .heading {
 	margin: 0 0 1.25rem;
-	font-size: clamp(2rem, 4.5vw, 54px);
-	line-height: 1.15;
+	font-size: 54px;
+	line-height: 1;
 	font-weight: 500;
 	color: var(--cs-blue);
+
 }
 
 .subheading {
 	margin: 0;
 	font-size: 24px;
-	line-height: 1.7;
+	line-height: 1.5;
+	color: #333333;
 }
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 2.75rem;
+	/* minmax(0, 1fr) rather than 1fr: stops long words forcing overflow */
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 2.125rem 1.875rem;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -65,25 +76,37 @@
 .card {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
+	background: var(--cs-surface);
 	border-style: solid;
-	border-width: 1px 1px 1px 1px;
-	border-radius: 32px;
-	border-color: #CFE2F9;
+	border-width: 1px;
+	border-radius: var(--cs-radius);
+	border-color: var(--cs-border);
 }
 
 .imageLink {
 	display: block;
+	overflow: hidden;
+	border-top-left-radius: var(--cs-radius);
+	border-top-right-radius: var(--cs-radius);
+	margin-bottom: 10px;
 }
 
-.image {
+/* `.imageLink img` included because next/image may render the <img> as a
+   child rather than applying the class directly. */
+.image,
+.imageLink img {
 	display: block;
-	width: 100%;
-	height: auto;
-	aspect-ratio: 16 / 10;
-	object-fit: cover;
+	width: auto;
+	height: 100%;
+	max-width: 100%;
+	border-top-left-radius: var(--cs-radius);
+	border-top-right-radius: var(--cs-radius);
+	transition: filter .3s;
 }
 
-.image:hover {
+.image:hover,
+.imageLink:hover img {
 	filter: brightness(129%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
 }
 
@@ -91,14 +114,16 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	padding: 1.75rem 1.5rem 1.5rem;
+	padding: 20px;
 }
 
 .cardTitle {
 	margin: 0 0 1rem;
-	font-size: 21px;
+	font-size: 18px;
 	line-height: 1.3;
-	font-weight: 700;
+	font-family: "Inter", sans-serif;
+	font-weight: 600;
+	overflow-wrap: break-word;
 }
 
 .cardTitle a {
@@ -107,27 +132,33 @@
 }
 
 .cardTitle a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .excerpt {
-	margin: 0 0 2rem;
-	font-size: 16px;
+	min-height: 84px;
+	margin: 0 0 1rem;
+	font-size: 14px;
 	line-height: 1.6;
-	color: var(--cs-text);
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	color: #777;
+	overflow-wrap: break-word;
 }
 
 .more {
+	/* auto margin pins "Learn more" to the bottom so it aligns across a row
+	   whatever the excerpt length */
 	margin-top: auto;
 	align-self: flex-start;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
 	color: var(--cs-blue);
 	text-decoration: none;
 }
 
 .more:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .empty {
@@ -135,7 +166,7 @@
 	padding: 3rem 0;
 }
 
-/* Plain numerals, tight spacing: current page blue, the rest navy. */
+/* Plain numerals, tight spacing: current page blue, the rest grey. */
 .pagination {
 	display: flex;
 	justify-content: center;
@@ -147,36 +178,89 @@
 	font-weight: 700;
 }
 
-.pageLink {
-	color: #374151;
+.pageLink,
+.pageCurrent {
+	/* 44px minimum touch target */
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.75rem;
+	min-height: 2.75rem;
 	text-decoration: none;
 }
 
-/* .pageLink:hover {
-	color: var(--cs-blue);
-} */
+.pageLink {
+	color: #374151;
+}
 
 .pageCurrent {
 	color: var(--cs-blue);
 }
 
-@media (max-width: 1023px) {
+/* ---------------------------------------------------------------- */
+/* Tablet / small desktop                                           */
+/* ---------------------------------------------------------------- */
+
+/* Below the 1280px max-width the page has no horizontal padding, so cards
+   touch the viewport edge. Delete this block if a parent layout wrapper
+   already provides horizontal padding. */
+@media (max-width: 1279px) {
+	.page {
+		padding-left: 1.875rem;
+		padding-right: 1.875rem;
+	}
+}
+
+@media (max-width: 1024px) {
 	.grid {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 2rem;
 	}
 }
+
+/* ---------------------------------------------------------------- */
+/* Mobile                                                           */
+/* ---------------------------------------------------------------- */
 
 @media (max-width: 767px) {
 	.page {
 		padding: 2.5rem 1rem 3.5rem;
 	}
 
+	.heading {
+		font-size: 40px;
+		text-wrap: balance;
+	}
+
+	.subheading {
+		font-size: 20px;
+	}
+
 	.grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.card {
+		width: 100%;
+		max-width: 480px;
+		margin: 0 auto;
+	}
+
+	.excerpt {
+		/* fixed height is only needed to align rows of cards */
+		min-height: 0;
+
 	}
 
 	.intro {
 		margin-bottom: 2.5rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.image,
+	.imageLink img {
+		transition: none;
 	}
 }

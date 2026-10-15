@@ -1,23 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Content, isFilled, KeyTextField, RichTextField } from "@prismicio/client";
+import { isFilled } from "@prismicio/client";
+import type { KeyTextField, RichTextField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
+import type { SliceComponentProps } from "@prismicio/react";
+import type { FeatureGridSlice } from "../../../types.generated";
 
 import styles from "./FeatureGrid.module.css";
 import { LIVE_ICONS, liveIdFromTitle } from "./liveIcons";
 
-/**
- * Props for `FeatureGrid` ("Why Choose CostSegregation.com?").
- */
-export type FeatureGridProps = SliceComponentProps<Content.FeatureGridSlice>;
+export type FeatureGridProps = SliceComponentProps<FeatureGridSlice>;
 
-/**
- * Fields added to the FeatureGrid model for the live "Learn More" detail view.
- * Declared here as optional so this file compiles both before and after
- * `prismicio-types.d.ts` is regenerated from the updated model.
- */
 type DetailPrimary = {
   cta_label?: KeyTextField;
   back_label?: KeyTextField;
@@ -32,21 +27,15 @@ type DetailItem = {
   detail_note?: KeyTextField;
 };
 
-type Item = Content.FeatureGridSlice["items"][number] & DetailItem;
-
+type Item = FeatureGridSlice["items"][number] & DetailItem;
 type Block = RichTextField[number];
 
-/**
- * Splits a card into what the live site shows on the card and in its detail view.
- *
- * - Updated model: card = `text`, detail = `detail_*` fields.
- * - Current content (before the model push): everything lives in `text` as
- *   [card description, detail intro, bullets | closing paragraph]. The card
- *   shows only the first paragraph and the rest feeds the detail view, so the
- *   section renders correctly from Prismic either way.
- */
+const getText = (value: KeyTextField | null | undefined, fallback: string) =>
+  value || fallback;
+
 const resolveCard = (item: Item) => {
   const text = (item.text ?? []) as Block[];
+
   const hasDetailFields =
     Boolean(item.detail_intro) ||
     isFilled.richText(item.detail_list) ||
@@ -55,72 +44,154 @@ const resolveCard = (item: Item) => {
   if (hasDetailFields) {
     return {
       cardText: text as RichTextField,
-      intro: item.detail_intro ?? null,
+      intro: item.detail_intro || null,
       list: (item.detail_list ?? []) as RichTextField,
       paragraph: (item.detail_paragraph ?? []) as RichTextField,
     };
   }
 
-  const firstParagraph = text.findIndex((block) => block.type === "paragraph");
-  const cardText = (firstParagraph >= 0 ? [text[firstParagraph]] : []) as RichTextField;
+  const firstParagraph = text.findIndex(
+    (block) => block.type === "paragraph",
+  );
+
+  const cardText = (
+    firstParagraph >= 0 ? [text[firstParagraph]] : []
+  ) as RichTextField;
+
   const rest = text.filter((_, index) => index !== firstParagraph);
-  const introIndex = rest.findIndex((block) => block.type === "paragraph");
+
+  const introIndex = rest.findIndex(
+    (block) => block.type === "paragraph",
+  );
+
   const intro =
     introIndex >= 0 && "text" in rest[introIndex]
-      ? (rest[introIndex] as { text: string }).text
+      ? String((rest[introIndex] as { text: string }).text)
       : null;
+
   const remaining = rest.filter((_, index) => index !== introIndex);
 
   return {
     cardText,
     intro,
-    list: remaining.filter((block) => block.type === "list-item") as RichTextField,
-    paragraph: remaining.filter((block) => block.type === "paragraph") as RichTextField,
+    list: remaining.filter(
+      (block) => block.type === "list-item",
+    ) as RichTextField,
+    paragraph: remaining.filter(
+      (block) => block.type === "paragraph",
+    ) as RichTextField,
   };
 };
 
-const TRANSITION_MS = 300; // matches the live site's slide-out/slide-in timing
+const TRANSITION_MS = 300;
 
-/**
- * Card icon: the Prismic image when one is set, otherwise the live site's
- * inline SVG for that card (same markup as WordPress).
- */
-const CardIcon = ({ item, className }: { item: Item; className?: string }) => {
+const CardIcon = ({
+  item,
+  className,
+}: {
+  item: Item;
+  className?: string;
+}) => {
   if (isFilled.image(item.icon)) {
-    return <PrismicNextImage field={item.icon} className={className} fallbackAlt="" unoptimized />;
+    return (
+      <PrismicNextImage
+        field={item.icon}
+        className={className}
+        fallbackAlt=""
+        unoptimized
+      />
+    );
   }
+
   const id = liveIdFromTitle(item.title);
+
   if (!id) return null;
+
+  const iconMarkup = LIVE_ICONS[id];
+
+  if (!iconMarkup) return null;
+
   return (
     <span
       className={className}
       aria-hidden="true"
-      dangerouslySetInnerHTML={{ __html: LIVE_ICONS[id] }}
+      dangerouslySetInnerHTML={{ __html: iconMarkup }}
     />
   );
 };
 
-/**
- * Card grid with a "Learn More >" detail view, reproducing the live
- * costsegregation.com section 1:1 (3/2/1 columns, slide transitions, back button).
- */
-const FeatureGrid = ({ slice }: FeatureGridProps) => {
-  const primary = slice.primary as Content.FeatureGridSlice["primary"] & DetailPrimary;
+const FeatureGridAbout = ({ slice }: FeatureGridProps) => {
+  const primary = slice.primary;
   const items = slice.items as Item[];
 
-  const ctaLabel = primary.cta_label || "Learn More >";
-  const backLabel = primary.back_label || "Back to all benefits";
-  const eyebrow = primary.detail_eyebrow || "Feature";
-  const panelTitle = primary.detail_panel_title || "What you get";
+  return (
+    <section
+      className={styles.aboutSection}
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+    >
+      <div className={styles.inner}>
+        <div className={styles.header}>
+          {primary.title && (
+            <h2 className={styles.heading}>{primary.title}</h2>
+          )}
+
+          {isFilled.richText(primary.intro) && (
+            <div className={styles.intro}>
+              <PrismicRichText field={primary.intro} />
+            </div>
+          )}
+        </div>
+
+        <ul className={styles.peopleGrid}>
+          {items.map((item, index) => (
+            <li
+              key={`${item.title || "person"}-${index}`}
+              className={styles.person}
+            >
+              {isFilled.image(item.icon) && (
+                <PrismicNextImage
+                  field={item.icon}
+                  className={styles.personPhoto}
+                  sizes="144px"
+                  fallbackAlt=""
+                />
+              )}
+
+              {item.title && (
+                <h3 className={styles.personName}>{item.title}</h3>
+              )}
+
+              {isFilled.richText(item.text) && (
+                <div className={styles.personMeta}>
+                  <PrismicRichText field={item.text} />
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+};
+
+const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
+  const primary = slice.primary as FeatureGridSlice["primary"] &
+  DetailPrimary;
+  const items = slice.items as Item[];
+
+  const ctaLabel = getText(primary.cta_label, "Learn More >");
+  const backLabel = getText(primary.back_label, "Back to all benefits");
+  const eyebrow = getText(primary.detail_eyebrow, "Feature");
+  const panelTitle = getText(primary.detail_panel_title, "What you get");
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [animation, setAnimation] = useState<"in" | "out" | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  // Clear any pending transition timers on unmount. The array is mutated in
-  // place (never reassigned), so the captured reference stays current.
   useEffect(() => {
     const pending = timers.current;
+
     return () => {
       pending.forEach(clearTimeout);
       pending.length = 0;
@@ -129,22 +200,37 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
 
   const swap = useCallback((next: number | null) => {
     const pending = timers.current;
+
     pending.forEach(clearTimeout);
     pending.length = 0;
+
     setAnimation("out");
+
     pending.push(
       setTimeout(() => {
         setActiveIndex(next);
         setAnimation("in");
-        pending.push(setTimeout(() => setAnimation(null), TRANSITION_MS));
+
+        pending.push(
+          setTimeout(() => {
+            setAnimation(null);
+          }, TRANSITION_MS),
+        );
       }, TRANSITION_MS),
     );
   }, []);
 
-  const active: Item | null = activeIndex !== null ? (items[activeIndex] ?? null) : null;
+  const active: Item | null =
+    activeIndex !== null ? items[activeIndex] ?? null : null;
+
   const detail = active ? resolveCard(active) : null;
+
   const animClass =
-    animation === "out" ? styles.slideOut : animation === "in" ? styles.slideIn : "";
+    animation === "out"
+      ? styles.slideOut
+      : animation === "in"
+        ? styles.slideIn
+        : "";
 
   return (
     <section
@@ -154,7 +240,10 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
     >
       <div className={styles.inner}>
         <div className={styles.header}>
-          {primary.title && <h2 className={styles.heading}>{primary.title}</h2>}
+          {primary.title && (
+            <h2 className={styles.heading}>{primary.title}</h2>
+          )}
+
           {isFilled.richText(primary.intro) && (
             <div className={styles.intro}>
               <PrismicRichText field={primary.intro} />
@@ -166,9 +255,10 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
           <div className={`${styles.grid} ${animClass}`}>
             {items.map((item, index) => {
               const { cardText } = resolveCard(item);
+
               return (
                 <article
-                  key={`${item.title ?? "card"}-${index}`}
+                  key={`${item.title || "card"}-${index}`}
                   className={styles.card}
                   data-id={liveIdFromTitle(item.title) ?? undefined}
                   role="button"
@@ -182,15 +272,22 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
                   }}
                 >
                   <CardIcon item={item} className={styles.cardIcon} />
-                  {item.title && <h3 className={styles.cardTitle}>{item.title}</h3>}
+
+                  {item.title && (
+                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                  )}
+
                   {isFilled.richText(cardText) && (
                     <PrismicRichText
                       field={cardText}
                       components={{
-                        paragraph: ({ children }) => <p className={styles.cardText}>{children}</p>,
+                        paragraph: ({ children }) => (
+                          <p className={styles.cardText}>{children}</p>
+                        ),
                       }}
                     />
                   )}
+
                   <span className={styles.cardCta}>{ctaLabel}</span>
                 </article>
               );
@@ -200,10 +297,19 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
           <div
             className={`${styles.detail} ${animClass}`}
             role="region"
-            aria-label={active.title ?? undefined}
+            aria-label={active.title || "Feature details"}
           >
-            <button type="button" className={styles.backButton} onClick={() => swap(null)}>
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <button
+              type="button"
+              className={styles.backButton}
+              onClick={() => swap(null)}
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -211,6 +317,7 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
+
               {backLabel}
             </button>
 
@@ -219,15 +326,34 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
                 <div className={styles.detailIcon}>
                   <CardIcon item={active} />
                 </div>
+
                 <p className={styles.eyebrow}>{eyebrow}</p>
-                {active.title && <h3 className={styles.detailTitle}>{active.title}</h3>}
-                {detail?.intro && <p className={styles.detailDescription}>{detail.intro}</p>}
-                {active.detail_note && <p className={styles.detailNote}>{active.detail_note}</p>}
+
+                {active.title && (
+                  <h3 className={styles.detailTitle}>{active.title}</h3>
+                )}
+
+                {detail?.intro && (
+                  <div className={styles.detailDescription}>
+                    {typeof detail.intro === "string" ? (
+                      <p>{detail.intro}</p>
+                    ) : (
+                      <PrismicRichText field={detail.intro} />
+                    )}
+                  </div>
+                )}
+
+                {active.detail_note && (
+                  <p className={styles.detailNote}>
+                    {active.detail_note}
+                  </p>
+                )}
               </div>
 
               <div className={styles.detailSecondary}>
                 <div className={styles.detailPanel}>
                   <h4 className={styles.detailPanelTitle}>{panelTitle}</h4>
+
                   {detail && isFilled.richText(detail.list) ? (
                     <PrismicRichText field={detail.list} />
                   ) : (
@@ -244,6 +370,13 @@ const FeatureGrid = ({ slice }: FeatureGridProps) => {
       </div>
     </section>
   );
+};
+
+const FeatureGrid = (props: FeatureGridProps) => {
+  if ((props.slice.variation as string) === "about") {
+    return <FeatureGridAbout {...props} />;
+  }
+  return <FeatureGridDefault {...props} />;
 };
 
 export default FeatureGrid;
