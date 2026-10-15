@@ -6,7 +6,8 @@ import Testimonials from "./Testimonials";
 import SuccessStories from "./SuccessStories";
 import Calculator from "./Calculator";
 import PostList from "./PostList";
-
+import TextWithImage from "./TextWithImage";
+import ProductCards from "./ProductCards";
 export const components = {
 	hero: Hero,
 	feature_grid: FeatureGrid,
@@ -16,5 +17,7 @@ export const components = {
 	success_stories: SuccessStories,
 	calculator: Calculator,
 	post_list: PostList,
+	text_with_image: TextWithImage,
+	product_cards: ProductCards,
 };
 

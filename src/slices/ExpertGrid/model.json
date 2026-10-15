@@ -1,0 +1,80 @@
+{
+    "id": "expert_grid",
+    "type": "SharedSlice",
+    "name": "ExpertGrid",
+    "description": "Grid of team member portraits with name, credentials and location",
+    "variations": [
+        {
+            "id": "default",
+            "name": "Default",
+            "docURL": "...",
+            "version": "initial",
+            "description": "Default",
+            "imageUrl": "",
+            "primary": {
+                "title": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Section title",
+                        "placeholder": "Meet Our Experts"
+                    }
+                },
+                "intro": {
+                    "type": "StructuredText",
+                    "config": {
+                        "label": "Intro",
+                        "placeholder": "",
+                        "multi": "paragraph,strong,em,hyperlink",
+                        "allowTargetBlank": true
+                    }
+                },
+                "experts": {
+                    "type": "Group",
+                    "config": {
+                        "label": "Experts",
+                        "repeat": true,
+                        "fields": {
+                            "photo": {
+                                "type": "Image",
+                                "config": {
+                                    "label": "Photo",
+                                    "constraint": {},
+                                    "thumbnails": []
+                                }
+                            },
+                            "name": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "Name",
+                                    "placeholder": "Amar Patel"
+                                }
+                            },
+                            "credentials": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "Credentials",
+                                    "placeholder": "CPA, CCSP"
+                                }
+                            },
+                            "experience": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "Experience",
+                                    "placeholder": "19+ years of experience"
+                                }
+                            },
+                            "location": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "Location",
+                                    "placeholder": "Atlanta, GA"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "items": {}
+        }
+    ]
+}
