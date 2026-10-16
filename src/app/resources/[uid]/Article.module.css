@@ -1,0 +1,514 @@
+/*
+ * Blog detail page — matched against
+ * https://www.costsegregation.com/resources/cost-segregation-myths/
+ */
+.page {
+    --cs-navy: #1f3a6e;
+    --cs-blue: #277ce6;
+    --cs-heading: #1f3a6e;
+    --cs-text: #4a4a4a;
+    --cs-muted: #777777;
+    --cs-border: #cfe2f9;
+    --cs-band: #f2f7fd;
+    --cs-surface: #ffffff;
+    --cs-radius: 8px;
+
+    --cs-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+    box-sizing: border-box;
+    width: 100%;
+    font-family: var(--cs-font);
+    color: var(--cs-text);
+    background: var(--cs-surface);
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero band                                                        */
+/* ---------------------------------------------------------------- */
+
+.hero {
+    width: 100%;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
+    background: var(--cs-band);
+    text-align: center;
+}
+
+.heroInner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.5rem, 3.6vw, 2.375rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--cs-navy);
+    text-wrap: balance;
+}
+
+.date {
+    display: block;
+    margin: 0 0 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--cs-blue);
+}
+
+.breadcrumb {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--cs-text);
+}
+
+.breadcrumb a {
+    color: var(--cs-blue);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbSep {
+    margin: 0 0.4rem;
+    color: var(--cs-muted);
+}
+
+/* ---------------------------------------------------------------- */
+/* Featured image — centred and constrained, not full bleed         */
+/* ---------------------------------------------------------------- */
+
+.featuredWrap {
+    display: flex;
+    justify-content: center;
+    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1rem, 4vw, 1.5rem) 0;
+}
+
+.featuredImage,
+.featuredWrap img {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    border-radius: var(--cs-radius);
+}
+
+/* ---------------------------------------------------------------- */
+/* Email this insight                                               */
+/* ---------------------------------------------------------------- */
+
+.shareWrap {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 1rem 0;
+}
+
+.emailButton {
+    display: inline-flex;
+    align-items: stretch;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--cs-navy);
+    color: #ffffff;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.emailButton:hover,
+.emailButton:focus-visible {
+    background: #163055;
+}
+
+.emailIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.875rem;
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.emailIcon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.emailLabel {
+    padding: 0.875rem 1.5rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Article column                                                   */
+/* ---------------------------------------------------------------- */
+
+.article {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 4rem);
+}
+
+.body {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--cs-text);
+}
+
+.body> :first-child {
+    margin-top: 0;
+}
+
+.body p {
+    margin: 0 0 1.125rem;
+    overflow-wrap: break-word;
+}
+
+.body h1,
+.body h2,
+.body h3 {
+    margin: 2.75rem 0 1.25rem;
+    font-size: clamp(1.125rem, 2.4vw, 1.375rem);
+    line-height: 1.35;
+    font-weight: 600;
+    color: var(--cs-heading);
+    text-wrap: balance;
+}
+
+.body h4,
+.body h5,
+.body h6 {
+    margin: 2rem 0 0.75rem;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--cs-heading);
+}
+
+.body a {
+    color: var(--cs-blue);
+    text-decoration: none;
+    overflow-wrap: break-word;
+}
+
+.body a:hover {
+    text-decoration: underline;
+}
+
+.body strong {
+    font-weight: 700;
+    color: var(--cs-text);
+}
+
+.body ul,
+.body ol {
+    margin: 0 0 1.125rem;
+    padding-left: 1.25rem;
+}
+
+.body li {
+    margin-bottom: 0.625rem;
+}
+
+.body img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1.75rem 0;
+    border-radius: var(--cs-radius);
+}
+
+.body blockquote {
+    margin: 1.75rem 0;
+    padding: 0.25rem 0 0.25rem 1.125rem;
+    border-left: 3px solid var(--cs-blue);
+    font-style: italic;
+}
+
+/* Tables arrive as preformatted blocks from the migration. */
+.body pre {
+    margin: 1.75rem 0;
+    padding: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--cs-border);
+    border-radius: var(--cs-radius);
+    background: #f8fafc;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    white-space: pre;
+}
+
+/* ---------------------------------------------------------------- */
+/* FAQs — blue questions with a chevron, as on the live page        */
+/* ---------------------------------------------------------------- */
+
+.faqs {
+    margin-top: 3rem;
+}
+
+.faqsTitle {
+    margin: 0 0 1.25rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--cs-heading);
+}
+
+.faq {
+    padding: 0.5rem 0;
+}
+
+.faqQuestion {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.375rem 0;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--cs-blue);
+    cursor: pointer;
+    list-style: none;
+}
+
+.faqQuestion::-webkit-details-marker {
+    display: none;
+}
+
+.faqQuestion::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.4rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.faq[open] .faqQuestion::before {
+    transform: rotate(-135deg);
+    margin-top: 0.55rem;
+}
+
+.faqQuestion:hover {
+    text-decoration: underline;
+}
+
+.faqAnswer {
+    padding: 0.5rem 0 0.75rem 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--cs-text);
+}
+
+.faqAnswer p {
+    margin: 0 0 0.75rem;
+}
+
+.faqAnswer p:last-child {
+    margin-bottom: 0;
+}
+
+.faqAnswer a {
+    color: var(--cs-blue);
+    text-decoration: none;
+}
+
+.faqAnswer a:hover {
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------- */
+/* After FAQ (About the Author)                                     */
+/* ---------------------------------------------------------------- */
+
+.afterFaq {
+    margin-top: 2.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--cs-text);
+}
+
+.afterFaq h1,
+.afterFaq h2,
+.afterFaq h3,
+.afterFaq h4,
+.afterFaq h5,
+.afterFaq h6 {
+    margin: 0 0 0.75rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--cs-heading);
+}
+
+.afterFaq p {
+    margin: 0 0 1rem;
+}
+
+.afterFaq p:last-child {
+    margin-bottom: 0;
+}
+
+.afterFaq a {
+    color: var(--cs-blue);
+    text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Related posts                                                    */
+/* ---------------------------------------------------------------- */
+
+.related {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 4rem);
+}
+
+.relatedTitle {
+    margin: 0 0 1.75rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: var(--cs-blue);
+}
+
+.relatedGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.875rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.relatedCard {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border: 1px solid var(--cs-border);
+    border-radius: 32px;
+    background: var(--cs-surface);
+}
+
+.relatedImageLink {
+    display: block;
+    overflow: hidden;
+    border-radius: 32px 32px 0 0;
+}
+
+.relatedImage,
+.relatedImageLink img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 32px 32px 0 0;
+}
+
+.relatedBody {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+
+.relatedCardTitle {
+    margin: 0 0 1rem;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.relatedCardTitle a {
+    color: var(--cs-blue);
+    text-decoration: none;
+}
+
+.relatedCardTitle a:hover {
+    text-decoration: underline;
+}
+
+.relatedExcerpt {
+    margin: 0 0 1rem;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #777;
+}
+
+.relatedMore {
+    margin-top: auto;
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cs-blue);
+    text-decoration: none;
+}
+
+.relatedMore:hover {
+    text-decoration: underline;
+}
+
+.viewAll {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 12px 22px;
+    border-radius: 6px;
+    background: var(--cs-blue);
+    color: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.viewAll:hover {
+    background: #1f66c2;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    .relatedGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .featuredWrap {
+        padding-top: 1.5rem;
+    }
+
+    .body h1,
+    .body h2,
+    .body h3 {
+        margin-top: 2rem;
+    }
+
+    .relatedGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .relatedCard {
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .faqQuestion::before,
+    .viewAll,
+    .emailButton {
+        transition: none;
+    }
+}

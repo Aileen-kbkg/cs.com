@@ -48,6 +48,91 @@ type ContentRelationshipFieldWithData<
 		>
 }[Exclude<TCustomType[number], string>["id"]];
 
+type AboutDocumentDataSlicesSlice = HeroSlice | TextWithImageSlice | FeatureGridSlice | ExpertGridSlice | ProductCardsSlice | RichTextSlice | CtaBannerSlice
+
+/**
+ * Content for About documents
+ */
+interface AboutDocumentData {
+	/**
+	 * Slice Zone field in *About*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<AboutDocumentDataSlicesSlice>;/**
+	 * Meta title field in *About*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Shown in search results
+	 * - **API ID Path**: about.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta description field in *About*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Shown in search results
+	 * - **API ID Path**: about.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta image field in *About*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * About document from Prismic
+ *
+ * - **API ID**: `about`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
+
+/**
+ * Item in *Blog Post → FAQs (shown as an accordion after the article)*
+ */
+export interface BlogPostDocumentDataFaqsItem {
+	/**
+	 * Question field in *Blog Post → FAQs (shown as an accordion after the article)*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.faqs[].question
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	question: prismic.KeyTextField;
+	
+	/**
+	 * Answer field in *Blog Post → FAQs (shown as an accordion after the article)*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.faqs[].answer
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	answer: prismic.RichTextField;
+}
+
 /**
  * Content for Blog Post documents
  */
@@ -106,6 +191,70 @@ interface BlogPostDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	body: prismic.RichTextField;
+	
+	/**
+	 * FAQ heading field in *Blog Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Frequently Asked Questions
+	 * - **API ID Path**: blog_post.faq_title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	faq_title: prismic.KeyTextField;
+	
+	/**
+	 * FAQs (shown as an accordion after the article) field in *Blog Post*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.faqs[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	faqs: prismic.GroupField<Simplify<BlogPostDocumentDataFaqsItem>>;
+	
+	/**
+	 * Content after the FAQs (e.g. About the Author) field in *Blog Post*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.after_faq
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	after_faq: prismic.RichTextField;/**
+	 * Meta title field in *Blog Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Shown in search results; defaults to the post title
+	 * - **API ID Path**: blog_post.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta description field in *Blog Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Defaults to the excerpt
+	 * - **API ID Path**: blog_post.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta image field in *Blog Post*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -256,6 +405,131 @@ export interface SiteSettingsDocumentDataNavigationItem {
 }
 
 /**
+ * Item in *Site Settings → Footer Navigation*
+ */
+export interface SiteSettingsDocumentDataFooterNavigationItem {
+	/**
+	 * Label field in *Site Settings → Footer Navigation*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_navigation[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Link field in *Site Settings → Footer Navigation*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_navigation[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Site Settings → Social Links*
+ */
+export interface SiteSettingsDocumentDataSocialLinksItem {
+	/**
+	 * Platform field in *Site Settings → Social Links*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.social_links[].platform
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	platform: prismic.SelectField<"Instagram" | "Facebook" | "LinkedIn" | "X" | "YouTube">;
+	
+	/**
+	 * Link field in *Site Settings → Social Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.social_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Site Settings → Legal Links*
+ */
+export interface SiteSettingsDocumentDataLegalLinksItem {
+	/**
+	 * Label field in *Site Settings → Legal Links*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.legal_links[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Link field in *Site Settings → Legal Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.legal_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Site Settings → Footer Resources*
+ */
+export interface SiteSettingsDocumentDataFooterResourcesItem {
+	/**
+	 * Label field in *Site Settings → Footer Resources*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_resources[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Link field in *Site Settings → Footer Resources*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_resources[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Site Settings → Stay Connected Links*
+ */
+export interface SiteSettingsDocumentDataStayConnectedLinksItem {
+	/**
+	 * Label field in *Site Settings → Stay Connected Links*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.stay_connected_links[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Link field in *Site Settings → Stay Connected Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.stay_connected_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
  * Content for Site Settings documents
  */
 interface SiteSettingsDocumentData {
@@ -346,6 +620,182 @@ interface SiteSettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	footer_description: prismic.RichTextField;
+	
+	/**
+	 * Footer Logo (white) field in *Site Settings*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	footer_logo: prismic.ImageField<never>;
+	
+	/**
+	 * Footer Partner Logo (KBKG) field in *Site Settings*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.partner_logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	partner_logo: prismic.ImageField<never>;
+	
+	/**
+	 * Footer Tagline field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Residential Cost Segregator®
+	 * - **API ID Path**: site_settings.footer_tagline
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	footer_tagline: prismic.KeyTextField;
+	
+	/**
+	 * Copyright Text field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: © 2026 all rights reserved
+	 * - **API ID Path**: site_settings.copyright_text
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	copyright_text: prismic.KeyTextField;
+	
+	/**
+	 * Contact Heading field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Contact Us
+	 * - **API ID Path**: site_settings.contact_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_heading: prismic.KeyTextField;
+	
+	/**
+	 * Contact Email (envelope icon) field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: info@costsegregation.com
+	 * - **API ID Path**: site_settings.contact_email
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_email: prismic.KeyTextField;
+	
+	/**
+	 * Footer Navigation field in *Site Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_navigation[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	footer_navigation: prismic.GroupField<Simplify<SiteSettingsDocumentDataFooterNavigationItem>>;
+	
+	/**
+	 * Social Links field in *Site Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.social_links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	social_links: prismic.GroupField<Simplify<SiteSettingsDocumentDataSocialLinksItem>>;
+	
+	/**
+	 * Footer Note field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: CostSegregation.com Now Includes Residential Cost Segregator®
+	 * - **API ID Path**: site_settings.footer_note
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	footer_note: prismic.KeyTextField;
+	
+	/**
+	 * Legal Links field in *Site Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.legal_links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	legal_links: prismic.GroupField<Simplify<SiteSettingsDocumentDataLegalLinksItem>>;
+	
+	/**
+	 * Recent News Heading field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Recent News
+	 * - **API ID Path**: site_settings.recent_news_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	recent_news_heading: prismic.KeyTextField;
+	
+	/**
+	 * Read More Label field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Read More »
+	 * - **API ID Path**: site_settings.read_more_label
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	read_more_label: prismic.KeyTextField;
+	
+	/**
+	 * Resources Heading field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Software
+	 * - **API ID Path**: site_settings.resources_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	resources_heading: prismic.KeyTextField;
+	
+	/**
+	 * Footer Resources field in *Site Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.footer_resources[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	footer_resources: prismic.GroupField<Simplify<SiteSettingsDocumentDataFooterResourcesItem>>;
+	
+	/**
+	 * Stay Connected Heading field in *Site Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Stay connected
+	 * - **API ID Path**: site_settings.stay_connected_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	stay_connected_heading: prismic.KeyTextField;
+	
+	/**
+	 * Stay Connected Links field in *Site Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.stay_connected_links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	stay_connected_links: prismic.GroupField<Simplify<SiteSettingsDocumentDataStayConnectedLinksItem>>;
 }
 
 /**
@@ -359,7 +809,7 @@ interface SiteSettingsDocumentData {
  */
 export type SiteSettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SiteSettingsDocumentData>, "site_settings", Lang>;
 
-export type AllDocumentTypes = BlogPostDocument | HomeDocument | SiteSettingsDocument;
+export type AllDocumentTypes = AboutDocument | BlogPostDocument | HomeDocument | SiteSettingsDocument;
 
 /**
  * Primary content in *Calculator → Default → Primary*
@@ -434,6 +884,126 @@ export interface CalculatorSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	success_message: prismic.KeyTextField;
+	
+	/**
+	 * Estimate button label field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Estimate Savings
+	 * - **API ID Path**: calculator.default.primary.estimate_button_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	estimate_button_label: prismic.KeyTextField;
+	
+	/**
+	 * Deductions card label field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Total Year 1 Deductions
+	 * - **API ID Path**: calculator.default.primary.deductions_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	deductions_label: prismic.KeyTextField;
+	
+	/**
+	 * Deductions card description field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Deductions offset taxable income and reduce tax liability.
+	 * - **API ID Path**: calculator.default.primary.deductions_description
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	deductions_description: prismic.KeyTextField;
+	
+	/**
+	 * Savings card label field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Year 1 Tax Savings From Depreciation
+	 * - **API ID Path**: calculator.default.primary.savings_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	savings_label: prismic.KeyTextField;
+	
+	/**
+	 * Savings note (shown with results) field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Potential cash savings in your first year. State income tax benefits may be higher.
+	 * - **API ID Path**: calculator.default.primary.savings_note
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	savings_note: prismic.KeyTextField;
+	
+	/**
+	 * Helper text (before results) field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Enter your property details and click Estimate Savings.
+	 * - **API ID Path**: calculator.default.primary.helper_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	helper_text: prismic.KeyTextField;
+	
+	/**
+	 * Email form subtitle field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: calculator.default.primary.email_form_subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	email_form_subtitle: prismic.KeyTextField;
+	
+	/**
+	 * Contact form title field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Get Your Estimate
+	 * - **API ID Path**: calculator.default.primary.contact_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_title: prismic.KeyTextField;
+	
+	/**
+	 * Contact form text field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: calculator.default.primary.contact_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_text: prismic.KeyTextField;
+	
+	/**
+	 * Contact form button label field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: View My Estimate
+	 * - **API ID Path**: calculator.default.primary.contact_button_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_button_label: prismic.KeyTextField;
+	
+	/**
+	 * Property types that show the short-term rental question (one per list item) field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: calculator.default.primary.short_term_rental_types
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	short_term_rental_types: prismic.RichTextField;
+	
+	/**
+	 * 'How did you hear about us' options (one per list item) field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: calculator.default.primary.discovery_sources
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	discovery_sources: prismic.RichTextField;
 }
 
 /**
@@ -549,6 +1119,119 @@ type CtaBannerSliceVariation = CtaBannerSliceDefault
 export type CtaBannerSlice = prismic.SharedSlice<"cta_banner", CtaBannerSliceVariation>;
 
 /**
+ * Item in *ExpertGrid → Default → Primary → Experts*
+ */
+export interface ExpertGridSliceDefaultPrimaryExpertsItem {
+	/**
+	 * Photo field in *ExpertGrid → Default → Primary → Experts*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: expert_grid.default.primary.experts[].photo
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	photo: prismic.ImageField<never>;
+	
+	/**
+	 * Name field in *ExpertGrid → Default → Primary → Experts*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Amar Patel
+	 * - **API ID Path**: expert_grid.default.primary.experts[].name
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+	
+	/**
+	 * Credentials field in *ExpertGrid → Default → Primary → Experts*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: CPA, CCSP
+	 * - **API ID Path**: expert_grid.default.primary.experts[].credentials
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	credentials: prismic.KeyTextField;
+	
+	/**
+	 * Experience field in *ExpertGrid → Default → Primary → Experts*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: 19+ years of experience
+	 * - **API ID Path**: expert_grid.default.primary.experts[].experience
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	experience: prismic.KeyTextField;
+	
+	/**
+	 * Location field in *ExpertGrid → Default → Primary → Experts*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Atlanta, GA
+	 * - **API ID Path**: expert_grid.default.primary.experts[].location
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	location: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ExpertGrid → Default → Primary*
+ */
+export interface ExpertGridSliceDefaultPrimary {
+	/**
+	 * Section title field in *ExpertGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Meet Our Experts
+	 * - **API ID Path**: expert_grid.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+	
+	/**
+	 * Intro field in *ExpertGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: expert_grid.default.primary.intro
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	intro: prismic.RichTextField;
+	
+	/**
+	 * Experts field in *ExpertGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: expert_grid.default.primary.experts[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	experts: prismic.GroupField<Simplify<ExpertGridSliceDefaultPrimaryExpertsItem>>;
+}
+
+/**
+ * Default variation for ExpertGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ExpertGridSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ExpertGridSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *ExpertGrid*
+ */
+type ExpertGridSliceVariation = ExpertGridSliceDefault
+
+/**
+ * ExpertGrid Shared Slice
+ *
+ * - **API ID**: `expert_grid`
+ * - **Description**: Grid of team member portraits with name, credentials and location
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ExpertGridSlice = prismic.SharedSlice<"expert_grid", ExpertGridSliceVariation>;
+
+/**
  * Primary content in *FaqAccordion → Default → Primary*
  */
 export interface FaqAccordionSliceDefaultPrimary {
@@ -622,6 +1305,41 @@ type FaqAccordionSliceVariation = FaqAccordionSliceDefault
 export type FaqAccordionSlice = prismic.SharedSlice<"faq_accordion", FaqAccordionSliceVariation>;
 
 /**
+ * Item in *FeatureGrid → Default → Primary → Columns*
+ */
+export interface FeatureGridSliceDefaultPrimaryColumnsItem {
+	/**
+	 * Icon field in *FeatureGrid → Default → Primary → Columns*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.columns[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	icon: prismic.RichTextField;
+	
+	/**
+	 * Title field in *FeatureGrid → Default → Primary → Columns*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.columns[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+	
+	/**
+	 * Text field in *FeatureGrid → Default → Primary → Columns*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.columns[].text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	text: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *FeatureGrid → Default → Primary*
  */
 export interface FeatureGridSliceDefaultPrimary {
@@ -646,15 +1364,54 @@ export interface FeatureGridSliceDefaultPrimary {
 	intro: prismic.RichTextField;
 	
 	/**
+	 * Card CTA label field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Learn More >
+	 * - **API ID Path**: feature_grid.default.primary.cta_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	cta_label: prismic.KeyTextField;
+	
+	/**
+	 * Detail back button label field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Back to all benefits
+	 * - **API ID Path**: feature_grid.default.primary.back_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	back_label: prismic.KeyTextField;
+	
+	/**
+	 * Detail eyebrow field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Feature
+	 * - **API ID Path**: feature_grid.default.primary.detail_eyebrow
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	detail_eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * Detail panel heading field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: What you get
+	 * - **API ID Path**: feature_grid.default.primary.detail_panel_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	detail_panel_title: prismic.KeyTextField;
+	
+	/**
 	 * Columns field in *FeatureGrid → Default → Primary*
 	 *
-	 * - **Field Type**: Select
+	 * - **Field Type**: Group
 	 * - **Placeholder**: *None*
-	 * - **Default Value**: 3
-	 * - **API ID Path**: feature_grid.default.primary.columns
-	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 * - **API ID Path**: feature_grid.default.primary.columns[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	columns: prismic.SelectField<"2" | "3" | "4", "filled">;
+	columns: prismic.GroupField<Simplify<FeatureGridSliceDefaultPrimaryColumnsItem>>;
 }
 
 /**
@@ -685,11 +1442,51 @@ export interface FeatureGridSliceDefaultItem {
 	 * Card text field in *FeatureGrid → Items*
 	 *
 	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
+	 * - **Placeholder**: Short description shown on the card
 	 * - **API ID Path**: feature_grid.items[].text
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	text: prismic.RichTextField;
+	
+	/**
+	 * Detail intro field in *FeatureGrid → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Lead sentence shown in the detail view
+	 * - **API ID Path**: feature_grid.items[].detail_intro
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	detail_intro: prismic.KeyTextField;
+	
+	/**
+	 * Detail list ("What you get" bullets) field in *FeatureGrid → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: One bullet per line. Leave empty to use Detail paragraph.
+	 * - **API ID Path**: feature_grid.items[].detail_list
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	detail_list: prismic.RichTextField;
+	
+	/**
+	 * Detail paragraph (used when list is empty) field in *FeatureGrid → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.items[].detail_paragraph
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	detail_paragraph: prismic.RichTextField;
+	
+	/**
+	 * Detail note (optional callout) field in *FeatureGrid → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.items[].detail_note
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	detail_note: prismic.KeyTextField;
 }
 
 /**
@@ -714,6 +1511,21 @@ type FeatureGridSliceVariation = FeatureGridSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FeatureGridSlice = prismic.SharedSlice<"feature_grid", FeatureGridSliceVariation>;
+
+/**
+ * Item in *Hero → Default → Primary → Badges*
+ */
+export interface HeroSliceDefaultPrimaryBadgesItem {
+	/**
+	 * Label field in *Hero → Default → Primary → Badges*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: IRS Audit Ready
+	 * - **API ID Path**: hero.default.primary.badges[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+}
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -768,6 +1580,76 @@ export interface HeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	banner_image: prismic.ImageField<never>;
+	
+	/**
+	 * Eyebrow field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Maximize Your Tax Savings
+	 * - **API ID Path**: hero.default.primary.eyebrow
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * Badges field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.badges[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	badges: prismic.GroupField<Simplify<HeroSliceDefaultPrimaryBadgesItem>>;
+	
+	/**
+	 * Stat prefix field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: $
+	 * - **API ID Path**: hero.default.primary.stat_prefix
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	stat_prefix: prismic.KeyTextField;
+	
+	/**
+	 * Stat value (counts up from 0) field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 23600
+	 * - **API ID Path**: hero.default.primary.stat_value
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	stat_value: prismic.NumberField;
+	
+	/**
+	 * Stat suffix field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *
+	 * - **API ID Path**: hero.default.primary.stat_suffix
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	stat_suffix: prismic.KeyTextField;
+	
+	/**
+	 * Stat title field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Average First Year Tax Savings
+	 * - **API ID Path**: hero.default.primary.stat_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	stat_title: prismic.KeyTextField;
+	
+	/**
+	 * Stat note field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *Based on $300,000 Building Purchase
+	 * - **API ID Path**: hero.default.primary.stat_note
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	stat_note: prismic.KeyTextField;
 }
 
 /**
@@ -1073,6 +1955,56 @@ export interface PricingSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	custom_quote_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Loyalty image (medal) field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.default.primary.loyalty_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	loyalty_image: prismic.ImageField<never>;
+	
+	/**
+	 * Loyalty button label field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Explore Loyalty discounts for repeat users!
+	 * - **API ID Path**: pricing.default.primary.loyalty_cta_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	loyalty_cta_label: prismic.KeyTextField;
+	
+	/**
+	 * Loyalty button link field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.default.primary.loyalty_cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	loyalty_cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Custom quote heading field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Properties Over $1.5M in Building Basis (less land)
+	 * - **API ID Path**: pricing.default.primary.custom_quote_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_quote_title: prismic.KeyTextField;
+	
+	/**
+	 * Custom quote text field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.default.primary.custom_quote_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	custom_quote_text: prismic.RichTextField;
 }
 
 /**
@@ -1113,7 +2045,7 @@ export interface PricingSliceDefaultItem {
 	 * Price note field in *Pricing → Items*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
+	 * - **Placeholder**: For {basis} tax basis
 	 * - **API ID Path**: pricing.items[].price_note
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
@@ -1148,6 +2080,86 @@ export interface PricingSliceDefaultItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Plan icon field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.items[].plan_icon
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	plan_icon: prismic.ImageField<never>;
+	
+	/**
+	 * Property types (formatted; overrides Property type) field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.items[].property_types_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	property_types_text: prismic.RichTextField;
+	
+	/**
+	 * Default tax basis (USD) field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 750000
+	 * - **API ID Path**: pricing.items[].default_basis
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	default_basis: prismic.NumberField;
+	
+	/**
+	 * Base price (USD) field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 495
+	 * - **API ID Path**: pricing.items[].base_price
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	base_price: prismic.NumberField;
+	
+	/**
+	 * Base price applies up to basis (USD) field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 750000
+	 * - **API ID Path**: pricing.items[].base_limit
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	base_limit: prismic.NumberField;
+	
+	/**
+	 * Price increase per $1 of basis above the base limit field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 0.0015556
+	 * - **API ID Path**: pricing.items[].rate_per_dollar
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	rate_per_dollar: prismic.NumberField;
+	
+	/**
+	 * Price stops increasing above basis (USD) field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 1200000
+	 * - **API ID Path**: pricing.items[].cap_limit
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	cap_limit: prismic.NumberField;
+	
+	/**
+	 * Price above that limit (USD) field in *Pricing → Items*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 1195
+	 * - **API ID Path**: pricing.items[].cap_price
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	cap_price: prismic.NumberField;
 }
 
 /**
@@ -1440,6 +2452,36 @@ export interface SuccessStoriesSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	intro: prismic.RichTextField;
+	
+	/**
+	 * Purchase price label field in *SuccessStories → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Purchase Price
+	 * - **API ID Path**: success_stories.default.primary.price_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	price_label: prismic.KeyTextField;
+	
+	/**
+	 * Purchase price note field in *SuccessStories → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: (Less Land)
+	 * - **API ID Path**: success_stories.default.primary.price_note
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	price_note: prismic.KeyTextField;
+	
+	/**
+	 * Deduction label field in *SuccessStories → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: First Year Tax Deductions
+	 * - **API ID Path**: success_stories.default.primary.deduction_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	deduction_label: prismic.KeyTextField;
 }
 
 /**
@@ -1495,6 +2537,16 @@ export interface SuccessStoriesSliceDefaultItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Card image field in *SuccessStories → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: success_stories.items[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
 }
 
 /**
@@ -1563,6 +2615,26 @@ export interface TestimonialsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	source_label: prismic.KeyTextField;
+	
+	/**
+	 * Review button label field in *Testimonials → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Leave a Review
+	 * - **API ID Path**: testimonials.default.primary.review_cta_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	review_cta_label: prismic.KeyTextField;
+	
+	/**
+	 * Review button link field in *Testimonials → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: testimonials.default.primary.review_cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	review_cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -1795,14 +2867,23 @@ declare module "@prismicio/client" {
 	
 	namespace Content {
 		export type {
+			AboutDocument,
+			AboutDocumentData,
+			AboutDocumentDataSlicesSlice,
 			BlogPostDocument,
 			BlogPostDocumentData,
+			BlogPostDocumentDataFaqsItem,
 			HomeDocument,
 			HomeDocumentData,
 			HomeDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
 			SiteSettingsDocumentDataNavigationItem,
+			SiteSettingsDocumentDataFooterNavigationItem,
+			SiteSettingsDocumentDataSocialLinksItem,
+			SiteSettingsDocumentDataLegalLinksItem,
+			SiteSettingsDocumentDataFooterResourcesItem,
+			SiteSettingsDocumentDataStayConnectedLinksItem,
 			AllDocumentTypes,
 			CalculatorSlice,
 			CalculatorSliceDefaultPrimary,
@@ -1812,17 +2893,24 @@ declare module "@prismicio/client" {
 			CtaBannerSliceDefaultPrimary,
 			CtaBannerSliceVariation,
 			CtaBannerSliceDefault,
+			ExpertGridSlice,
+			ExpertGridSliceDefaultPrimaryExpertsItem,
+			ExpertGridSliceDefaultPrimary,
+			ExpertGridSliceVariation,
+			ExpertGridSliceDefault,
 			FaqAccordionSlice,
 			FaqAccordionSliceDefaultPrimary,
 			FaqAccordionSliceDefaultItem,
 			FaqAccordionSliceVariation,
 			FaqAccordionSliceDefault,
 			FeatureGridSlice,
+			FeatureGridSliceDefaultPrimaryColumnsItem,
 			FeatureGridSliceDefaultPrimary,
 			FeatureGridSliceDefaultItem,
 			FeatureGridSliceVariation,
 			FeatureGridSliceDefault,
 			HeroSlice,
+			HeroSliceDefaultPrimaryBadgesItem,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
