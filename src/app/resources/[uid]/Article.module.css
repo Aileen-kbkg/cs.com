@@ -3,13 +3,13 @@
  * https://www.costsegregation.com/resources/cost-segregation-myths/
  */
 .page {
-    --cs-navy: #1f3a6e;
+    --cs-navy: #284074;
     --cs-blue: #277ce6;
     --cs-heading: #1f3a6e;
-    --cs-text: #4a4a4a;
+    --cs-text: #333333;
     --cs-muted: #777777;
     --cs-border: #cfe2f9;
-    --cs-band: #f2f7fd;
+    --cs-band: #F6F9FF;
     --cs-surface: #ffffff;
     --cs-radius: 8px;
 
@@ -36,35 +36,36 @@
 
 .hero {
     width: 100%;
-    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
+    padding: 3.125rem 0;
     background: var(--cs-band);
     text-align: center;
+    margin: 0 auto;
 }
 
 .heroInner {
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 .title {
     margin: 0 0 0.75rem;
-    font-size: clamp(1.5rem, 3.6vw, 2.375rem);
+    font-size: 40px;
     line-height: 1.25;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--cs-navy);
-    text-wrap: balance;
+    /* text-wrap: balance; */
 }
 
 .date {
     display: block;
     margin: 0 0 0.75rem;
-    font-size: 0.9375rem;
+    font-size: 16px;
     color: var(--cs-blue);
 }
 
 .breadcrumb {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
     color: var(--cs-text);
 }
 
@@ -108,7 +109,7 @@
 .shareWrap {
     display: flex;
     justify-content: center;
-    padding: 1.5rem 1rem 0;
+    padding: 1.25rem 1rem 0;
 }
 
 .emailButton {
@@ -150,14 +151,14 @@
 /* ---------------------------------------------------------------- */
 
 .article {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 4rem);
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0;
 }
 
 .body {
-    font-size: 0.9375rem;
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.5;
     color: var(--cs-text);
 }
 
@@ -181,14 +182,27 @@
     text-wrap: balance;
 }
 
-.body h4,
-.body h5,
-.body h6 {
+.body h4 {
     margin: 2rem 0 0.75rem;
     font-size: clamp(1rem, 2vw, 1.125rem);
     line-height: 1.4;
     font-weight: 700;
     color: var(--cs-heading);
+}
+
+.body h5 {
+    font-size: clamp(1.17rem, 1.03rem + 0.59vw, 1.56rem);
+    color: #333333;
+    font-weight: 500;
+    margin-bottom: 20px;
+
+}
+
+.body h6,
+.afterFaq h6 {
+    font-size: clamp(0.94rem, 0.83rem + 0.47vw, 1.25rem);
+    color: #333333;
+    font-weight: 500;
 }
 
 .body a {
@@ -256,17 +270,53 @@
 
 .faqsTitle {
     margin: 0 0 1.25rem;
-    font-size: 1.0625rem;
+    font-size: 1.188rem;
     font-weight: 700;
     color: var(--cs-heading);
+    font-family: "Open Sans", Sans-serif;
 }
 
 .faq {
     padding: 0.5rem 0;
 }
 
+/* Smooth FAQ open and close transition */
+.faq {
+    interpolate-size: allow-keywords;
+}
+
+.faq::details-content {
+    block-size: 0;
+    opacity: 0;
+    overflow: clip;
+
+    transition:
+        block-size 600ms ease,
+        opacity 400ms ease,
+        content-visibility 600ms allow-discrete;
+}
+
+.faq[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+}
+
+/* Keep the chevron transition smooth */
+.faqQuestion::before {
+    transition: transform 450ms ease;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .faq::details-content,
+    .faqQuestion::before {
+        transition: none;
+    }
+}
+
 .faqQuestion {
-    display: flex;
+    /* display: flex;
     align-items: flex-start;
     gap: 0.5rem;
     padding: 0.375rem 0;
@@ -274,7 +324,21 @@
     font-weight: 400;
     color: var(--cs-blue);
     cursor: pointer;
+    list-style: none; */
+    align-items: center;
+    border-color: #d5d8dc;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    color: #277CE6;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-grow: var(--n-menu-title-flex-grow);
+    gap: 0 10px;
+    justify-content: initial;
     list-style: none;
+    padding: 10px;
 }
 
 .faqQuestion::-webkit-details-marker {
@@ -286,11 +350,12 @@
     flex: 0 0 auto;
     width: 0.5rem;
     height: 0.5rem;
-    margin-top: 0.4rem;
+    /* margin-top: 0.4rem; */
     border-right: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
     transition: transform 0.2s ease;
+    font-weight: 400;
 }
 
 .faq[open] .faqQuestion::before {
@@ -299,7 +364,7 @@
 }
 
 .faqQuestion:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .faqAnswer {
@@ -323,7 +388,7 @@
 }
 
 .faqAnswer a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* ---------------------------------------------------------------- */
@@ -341,12 +406,16 @@
 .afterFaq h2,
 .afterFaq h3,
 .afterFaq h4,
-.afterFaq h5,
-.afterFaq h6 {
-    margin: 0 0 0.75rem;
+.afterFaq h5 {
+
+    margin: 0;
     font-size: 1.0625rem;
     font-weight: 700;
     color: var(--cs-heading);
+}
+
+.afterFaq h6 {
+    margin: 0 0 20px;
 }
 
 .afterFaq p {
@@ -373,10 +442,10 @@
 }
 
 .relatedTitle {
-    margin: 0 0 1.75rem;
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    margin: 0 0 20px;
+    font-size: 26px;
     font-weight: 600;
-    color: var(--cs-blue);
+    color: #284074;
 }
 
 .relatedGrid {
@@ -456,13 +525,13 @@
 
 .viewAll {
     display: inline-block;
-    margin-top: 2rem;
-    padding: 12px 22px;
-    border-radius: 6px;
-    background: var(--cs-blue);
+    margin-top: 1.25rem;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: #277CE6;
     color: #ffffff;
-    font-size: 0.9375rem;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: bold;
     text-decoration: none;
     transition: background-color 0.2s ease;
 }
@@ -474,11 +543,47 @@
 /* ---------------------------------------------------------------- */
 /* Responsive                                                       */
 /* ---------------------------------------------------------------- */
+@media (max-width: 1366px) and (min-width: 768px) {
+    .page {
+        --content-width: 900px;
+    }
+}
+
+/* Left and right padding for responsive screen sizes */
+
+/* 1024px and below */
+@media (max-width: 1024px) {
+    .page {
+        padding-left: 30px;
+        padding-right: 30px;
+        box-sizing: border-box;
+    }
+}
+
+/* 1440px and above */
+@media (min-width: 1440px) {
+    .page {
+        padding-left: 50px;
+        padding-right: 50px;
+        box-sizing: border-box;
+    }
+}
 
 @media (max-width: 1023px) {
     .relatedGrid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.5rem;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .title {
+        font-size: 30px;
     }
 }
 
@@ -501,6 +606,10 @@
         max-width: 480px;
         margin: 0 auto;
         width: 100%;
+    }
+
+    .title {
+        font-size: 20px;
     }
 }
 

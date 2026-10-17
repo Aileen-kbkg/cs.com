@@ -4,6 +4,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicText } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import styles from "./Blog.module.css";
+export const dynamic = "force-dynamic";
 
 const POSTS_PER_PAGE = 6;
 
