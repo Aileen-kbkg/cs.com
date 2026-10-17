@@ -1,0 +1,194 @@
+/*
+ * FAQ accordion — centred blue section headings, chevron on the left,
+ * no dividers. Open/close runs at 550ms.
+ */
+.section {
+    --faq-navy: #1f3a6e;
+    --faq-section: #2b6cb5;
+    --faq-question: #1b2a4a;
+    --faq-text: #6b7280;
+    --faq-duration: 550ms;
+    --faq-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    margin-bottom: clamp(2.25rem, 4vw, 3rem);
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.heading {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.0625rem, 2vw, 1.3125rem);
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--faq-section);
+    text-align: center;
+    text-transform: capitalize;
+    text-wrap: balance;
+}
+
+.intro {
+    margin: 0 auto 1.5rem;
+    max-width: 42rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--faq-text);
+    text-align: center;
+}
+
+.intro p {
+    margin: 0 0 0.625rem;
+}
+
+.intro p:last-child {
+    margin-bottom: 0;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.item {
+    margin-bottom: 0.375rem;
+}
+
+.questionHeading {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.question {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.6875rem 0;
+    border: 0;
+    background: none;
+    color: var(--faq-question);
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+    transition: color var(--faq-duration) var(--faq-ease);
+}
+
+.question:hover {
+    color: var(--faq-section);
+}
+
+.question:focus-visible {
+    outline: 2px solid var(--faq-section);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Chevron sits to the LEFT of the question text. */
+.chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin-top: 0.1875rem;
+    color: var(--faq-question);
+    transition: transform var(--faq-duration) var(--faq-ease);
+}
+
+.chevron svg {
+    width: 100%;
+    height: 100%;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+.questionText {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+.panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+        grid-template-rows var(--faq-duration) var(--faq-ease),
+        opacity var(--faq-duration) var(--faq-ease);
+}
+
+.panelOpen {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.panelInner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Indented to line up with the question text, past the chevron. */
+.answer {
+    padding: 0.125rem 0 0.875rem 1.625rem;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+    color: var(--faq-text);
+}
+
+.answer p {
+    margin: 0 0 0.75rem;
+    overflow-wrap: break-word;
+}
+
+.answer p:last-child {
+    margin-bottom: 0;
+}
+
+.answer ul,
+.answer ol {
+    margin: 0 0 0.75rem;
+    padding-left: 1.125rem;
+}
+
+.answer li {
+    margin-bottom: 0.375rem;
+}
+
+.answer a {
+    color: var(--faq-section);
+    text-decoration: none;
+    overflow-wrap: break-word;
+}
+
+.answer a:hover {
+    text-decoration: underline;
+}
+
+.answer strong {
+    font-weight: 700;
+    color: var(--faq-question);
+}
+
+@media (max-width: 767px) {
+    .answer {
+        padding-left: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .panel,
+    .chevron,
+    .question {
+        transition: none;
+    }
+}

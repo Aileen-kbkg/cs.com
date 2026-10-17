@@ -1,0 +1,73 @@
+/*
+ * FAQ page shell — pale blue page background, centred heading and intro,
+ * sections inside a white card.
+ */
+.page {
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 6vw, 4.5rem);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #6b7280;
+    background: #eef4fc;
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+.header {
+    max-width: 46rem;
+    margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+    text-align: center;
+}
+
+.title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1f3a6e;
+    text-wrap: balance;
+}
+
+.intro {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #6b7280;
+}
+
+.intro p {
+    margin: 0 0 0.625rem;
+}
+
+.intro p:last-child {
+    margin-bottom: 0;
+}
+
+.intro a {
+    color: #2b6cb5;
+    text-decoration: none;
+    overflow-wrap: break-word;
+}
+
+.intro a:hover {
+    text-decoration: underline;
+}
+
+/* White card holding every FAQ section. */
+.sections {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3rem);
+    background: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .sections {
+        padding: 1.75rem 1.25rem;
+    }
+}

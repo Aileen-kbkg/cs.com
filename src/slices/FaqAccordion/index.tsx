@@ -1,37 +1,98 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
+"use client";
+
+import { useId, useState } from "react";
+import { Content, isFilled } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
-export type CalculatorProps = SliceComponentProps<Content.CalculatorSlice>;
+import styles from "./FaqAccordion.module.css";
 
-const Calculator: FC<CalculatorProps> = ({ slice }) => {
-  const p = slice.primary;
-  return (
-    <section
-      id="calculator"
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="bg-slate-50"
-    >
-      <div className="mx-auto max-w-3xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">{p.title}</h2>
-        <div className="mt-3 text-slate-700">
-          <PrismicRichText field={p.intro} />
-        </div>
-        <details className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
-          <summary className="cursor-pointer font-semibold text-slate-900">
-            Supported property types
-          </summary>
-          <div className="mt-3 text-sm text-slate-700 [&_ul]:grid [&_ul]:gap-1 [&_ul]:sm:grid-cols-2 [&_li]:list-inside [&_li]:list-disc">
-            <PrismicRichText field={p.property_types} />
-          </div>
-        </details>
-        <div className="mt-6 text-xs text-slate-600">
-          <PrismicRichText field={p.disclaimer} />
-        </div>
-      </div>
-    </section>
-  );
+export type FaqAccordionProps = SliceComponentProps<Content.FaqAccordionSlice>;
+
+const Chevron = () => (
+	<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+		<path
+			d="M5 7.5 10 12.5 15 7.5"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="1.6"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+);
+
+/**
+ * Question-and-answer accordion. One slice renders one FAQ category:
+ * `primary.title` is the section heading, `items` are the questions.
+ *
+ * Open/close animates with grid-template-rows 0fr → 1fr, which transitions
+ * smoothly to content height without measuring pixels.
+ */
+const FaqAccordion = ({ slice }: FaqAccordionProps) => {
+	const primary = slice.primary;
+	const items = slice.items;
+	const baseId = useId();
+
+	const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+	return (
+		<section
+			className={styles.section}
+			data-slice-type={slice.slice_type}
+			data-slice-variation={slice.variation}
+		>
+			{primary.title && <h2 className={styles.heading}>{primary.title}</h2>}
+
+			{isFilled.richText(primary.intro) && (
+				<div className={styles.intro}>
+					<PrismicRichText field={primary.intro} />
+				</div>
+			)}
+
+			<ul className={styles.list}>
+				{items.map((item, index) => {
+					const isOpen = openIndex === index;
+					const buttonId = `${baseId}-q-${index}`;
+					const panelId = `${baseId}-a-${index}`;
+
+					return (
+						<li key={`${item.question ?? "q"}-${index}`} className={styles.item}>
+							<h3 className={styles.questionHeading}>
+								<button
+									type="button"
+									id={buttonId}
+									className={styles.question}
+									aria-expanded={isOpen}
+									aria-controls={panelId}
+									onClick={() => setOpenIndex(isOpen ? null : index)}
+								>
+									<span
+										className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
+									>
+										<Chevron />
+									</span>
+									<span className={styles.questionText}>{item.question}</span>
+								</button>
+							</h3>
+
+							<div
+								id={panelId}
+								role="region"
+								aria-labelledby={buttonId}
+								className={`${styles.panel} ${isOpen ? styles.panelOpen : ""}`}
+							>
+								<div className={styles.panelInner}>
+									<div className={styles.answer}>
+										<PrismicRichText field={item.answer} />
+									</div>
+								</div>
+							</div>
+						</li>
+					);
+				})}
+			</ul>
+		</section>
+	);
 };
 
-export default Calculator;
+export default FaqAccordion;
