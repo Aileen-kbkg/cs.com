@@ -23,15 +23,23 @@ const Chevron = () => (
 
 /**
  * Question-and-answer accordion. One slice renders one FAQ category:
- * `primary.title` is the section heading, `items` are the questions.
+ * `primary.title` is the section heading, `primary.items` are the questions.
  *
  * Open/close animates with grid-template-rows 0fr → 1fr, which transitions
  * smoothly to content height without measuring pixels.
  */
 const FaqAccordion = ({ slice }: FaqAccordionProps) => {
 	const primary = slice.primary;
-	const items = slice.items;
 	const baseId = useId();
+
+	/**
+	 * Questions live in the `items` group inside `primary`. The cast can go
+	 * once prismicio-types.d.ts is regenerated via "Pull to local".
+	 */
+	const items =
+		((primary as unknown as {
+			items?: { question: string | null; answer: never }[];
+		}).items ?? []) as { question: string | null; answer: never }[];
 
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 
