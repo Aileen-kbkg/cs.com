@@ -1,0 +1,142 @@
+/*
+ * Tutorial video page — matched against
+ * https://www.costsegregation.com/tutorial-video-step-by-step-platform/
+ */
+.page {
+    --tut-navy: #1f3a6e;
+    --tut-blue: #277ce6;
+    --tut-text: #4a4a4a;
+    --tut-band: #f2f7fd;
+
+    box-sizing: border-box;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--tut-text);
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero band — pale blue, centred title, video                      */
+/* ---------------------------------------------------------------- */
+
+.hero {
+    width: 100%;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    background: var(--tut-band);
+}
+
+.heroInner {
+    max-width: 1110px;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+    font-size: clamp(1.375rem, 3.4vw, 2.25rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--tut-navy);
+    text-align: center;
+    text-wrap: balance;
+}
+
+.videoWrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000000;
+    overflow: hidden;
+}
+
+.video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000000;
+}
+
+/* ---------------------------------------------------------------- */
+/* Content                                                          */
+/* ---------------------------------------------------------------- */
+
+.content {
+    max-width: 1110px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 4.5rem);
+}
+
+.section {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    margin: 0 0 1.125rem;
+    font-size: clamp(1.375rem, 3.2vw, 2.125rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--tut-navy);
+    text-wrap: balance;
+}
+
+.section p {
+    margin: 0 0 1.125rem;
+    font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
+    line-height: 1.75;
+    color: var(--tut-text);
+    overflow-wrap: break-word;
+}
+
+.section p:last-child {
+    margin-bottom: 0;
+}
+
+.list {
+    margin: 0 0 1.125rem;
+    padding-left: 1.5rem;
+    font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
+    line-height: 1.75;
+    color: var(--tut-text);
+}
+
+.list li {
+    margin-bottom: 0.3125rem;
+}
+
+.cta {
+    color: var(--tut-blue);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.cta:hover,
+.cta:focus-visible {
+    text-decoration: underline;
+}
+
+.cta:focus-visible {
+    outline: 2px solid var(--tut-blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+@media (max-width: 767px) {
+    .hero {
+        padding-top: 1.5rem;
+    }
+
+    .section {
+        margin-bottom: 2rem;
+    }
+}

@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { asText, type RichTextField } from "@prismicio/client";
-import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { asText, type LinkField, type RichTextField } from "@prismicio/client";
+import { PrismicNextLink } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
 import { createClient } from "@/prismicio";
-import { components } from "@/slices";
 
 import styles from "./Resources.module.css";
 
 /**
  * The `resources` custom type is not yet in the generated Prismic types.
- * Remove this block and the cast in getResources() once
- * prismicio-types.d.ts has been regenerated.
+ * Remove this block and the cast in getResources() after "Pull to local".
  */
+type ResourceCard = {
+	title: string | null;
+	text: RichTextField;
+	link: LinkField;
+	link_label: string | null;
+};
+
 type ResourcesDocument = {
 	data: {
 		heading: string | null;
 		intro: RichTextField;
-		slices: never[];
+		cards: ResourceCard[];
 		meta_title: string | null;
 		meta_description: RichTextField;
 		meta_image: { url: string | null } | null;
@@ -59,7 +65,7 @@ export default async function Page() {
 		notFound();
 	}
 
-	const { heading, intro, slices } = page.data;
+	const { heading, intro, cards } = page.data;
 
 	return (
 		<main className={styles.page}>
@@ -73,9 +79,29 @@ export default async function Page() {
 				) : null}
 			</header>
 
-			<div className={styles.sections}>
-				<SliceZone slices={slices} components={components} />
-			</div>
+			{cards?.length ? (
+				<div className={styles.cards}>
+					{cards.map((card, index) => (
+						<section key={`${card.title ?? "card"}-${index}`} className={styles.card}>
+							{card.title ? (
+								<h2 className={styles.cardTitle}>{card.title}</h2>
+							) : null}
+
+							{card.text?.length ? (
+								<div className={styles.cardText}>
+									<PrismicRichText field={card.text} />
+								</div>
+							) : null}
+
+							{card.link ? (
+								<PrismicNextLink field={card.link} className={styles.cardButton}>
+									{card.link_label || "Learn more"}
+								</PrismicNextLink>
+							) : null}
+						</section>
+					))}
+				</div>
+			) : null}
 		</main>
 	);
 }

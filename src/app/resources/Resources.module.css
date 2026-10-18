@@ -1,16 +1,21 @@
 /*
- * Resources index — https://www.costsegregation.com/resources/
- * Heading and intro centred, then the card section.
+ * Resources index — matched against
+ * https://www.costsegregation.com/resources/
  */
 .page {
+    --res-blue: #277ce6;
+    --res-navy: #1f3a6e;
+    --res-text: #4a4a4a;
+    --res-band: #e7eefb;
+
     box-sizing: border-box;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 5rem);
+    /* padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 5rem); */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    color: #4a4a4a;
+    color: var(--res-text);
     background: #ffffff;
     overflow-x: hidden;
 }
@@ -21,25 +26,29 @@
     box-sizing: border-box;
 }
 
+/* ---------------------------------------------------------------- */
+/* Header — large blue heading, centred                             */
+/* ---------------------------------------------------------------- */
+
 .header {
-    max-width: 48rem;
-    margin: 0 auto clamp(2rem, 4vw, 3rem);
+    max-width: 52rem;
+    margin: 0 auto clamp(3rem, 7vw, 6rem);
     text-align: center;
 }
 
 .title {
-    margin: 0 0 1rem;
-    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
-    line-height: 1.2;
+    margin: 0 0 1.25rem;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    line-height: 1.1;
     font-weight: 700;
-    color: #1f3a6e;
+    color: var(--res-blue);
     text-wrap: balance;
 }
 
 .intro {
     font-size: clamp(1rem, 1.8vw, 1.125rem);
-    line-height: 1.7;
-    color: #4a4a4a;
+    line-height: 1.6;
+    color: var(--res-text);
 }
 
 .intro p {
@@ -51,7 +60,7 @@
 }
 
 .intro a {
-    color: #277ce6;
+    color: var(--res-blue);
     text-decoration: none;
 }
 
@@ -59,6 +68,99 @@
     text-decoration: underline;
 }
 
-.sections {
-    display: block;
+/* ---------------------------------------------------------------- */
+/* Cards — pale blue full-width bands, square corners               */
+/* ---------------------------------------------------------------- */
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.card {
+    padding: 23px;
+    background: var(--res-band);
+    margin-bottom: 100px;
+}
+
+.cardTitle {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--res-navy);
+    text-wrap: balance;
+}
+
+.cardText {
+    margin: 0 0 1.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--res-text);
+}
+
+
+@media (max-width: 767px) {
+    .cardText {
+        font-size: 13.752px;
+    }
+}
+
+.cardText p {
+    margin: 0 0 0.75rem;
+}
+
+.cardText p:last-child {
+    margin-bottom: 0;
+}
+
+.cardText a {
+    color: var(--res-blue);
+    text-decoration: none;
+}
+
+.cardText a:hover {
+    text-decoration: underline;
+}
+
+.cardButton {
+    display: inline-block;
+
+    background-color: #277CE6;
+    font-family: "Inter", Sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.cardButton:hover,
+.cardButton:focus-visible {
+    background: #1f66c2;
+    color: #ffffff;
+}
+
+.cardButton:focus-visible {
+    outline: 2px solid var(--res-navy);
+    outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+    .header {
+        margin-bottom: 2.5rem;
+    }
+
+    .cardButton {
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cardButton {
+        transition: none;
+    }
 }
