@@ -7,8 +7,10 @@ import SuccessStories from "./SuccessStories";
 import Calculator from "./Calculator";
 import PostList from "./PostList";
 import TextWithImage from "./TextWithImage";
-import ProductCards from "./ProductCards"
+import ProductCards from "./ProductCards";
+import ExpertGrid from "./ExpertGrid";
 import FaqAccordion from "./FaqAccordion";
+
 export const components = {
 	hero: Hero,
 	feature_grid: FeatureGrid,
@@ -20,6 +22,6 @@ export const components = {
 	post_list: PostList,
 	text_with_image: TextWithImage,
 	product_cards: ProductCards,
+	expert_grid: ExpertGrid,
 	faq_accordion: FaqAccordion,
 };
-

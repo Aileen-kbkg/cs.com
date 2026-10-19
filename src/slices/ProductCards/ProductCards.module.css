@@ -1,0 +1,179 @@
+/*
+ * "Other Tax Incentives" cards — white, thin border, centred icon and
+ * copy, outlined Learn More button.
+ */
+.section {
+    --pc-navy: #1f3a6e;
+    --pc-blue: #277ce6;
+    --pc-text: #6b7280;
+    --pc-border: #e3e8ef;
+
+    padding: clamp(2.5rem, 5vw, 3.75rem) 0 clamp(3rem, 6vw, 6.25rem);
+    background: #ffffff;
+}
+
+.inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
+}
+
+.heading {
+    margin: 0 0 clamp(2rem, 4vw, 2.75rem);
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--pc-navy);
+    text-align: center;
+    text-wrap: balance;
+}
+
+.intro {
+    max-width: 42rem;
+    margin: -1.5rem auto 2.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--pc-text);
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    --background-transition: 0.3s;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    flex-direction: column;
+
+}
+
+.iconWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    margin-bottom: 1.25rem;
+}
+
+.icon {
+    display: block;
+    width: 101px;
+
+    max-width: 100%;
+    max-height: 5rem;
+    height: 101px;
+}
+
+.cardTitle {
+    margin: 0 0 0.875rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--pc-navy);
+    text-wrap: balance;
+}
+
+.cardText {
+    margin: 0 0 1.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--pc-text);
+}
+
+.cardText p {
+    margin: 0 0 0.75rem;
+    overflow-wrap: break-word;
+}
+
+.cardText p:last-child {
+    margin-bottom: 0;
+}
+
+.cardText a {
+    color: var(--pc-blue);
+    text-decoration: none;
+}
+
+.cardText a:hover {
+    text-decoration: none;
+}
+
+/* Outlined button, pinned to the foot so cards align in a row. */
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+
+
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+
+    background-color: #ffffff;
+    fill: #284074;
+    color: #284074;
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    font-family: "Inter", Sans-serif;
+    font-size: 16px;
+    text-transform: capitalize;
+    border-radius: 10px 10px 10px 10px;
+    padding: 15px 20px 15px 20px;
+}
+
+.button:hover,
+.button:focus-visible {
+    background-color: #284074;
+    color: #ffffff;
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--pc-blue);
+    outline-offset: 2px;
+}
+
+.buttonIcon {
+    display: flex;
+    align-items: center;
+}
+
+.buttonIcon svg {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+/* @media (max-width: 1023px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+} */
+
+@media (max-width: 639px) {
+    .grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .card {
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}

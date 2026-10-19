@@ -1,0 +1,239 @@
+/*
+ * Two-column text and image — matched against
+ * https://www.costsegregation.com/about
+ *
+ * Markup order is always image-then-text. The layout classes on .inner
+ * decide which side each sits on and how wide the columns are.
+ *
+ *   .innerImageLeft  / .innerImageRight  → which side the image takes
+ *   .innerHero                           → first slice: 33/66 split
+ *   (default)                            → later slices: 50/50
+ */
+.section {
+    --twi-navy: #1f3a6e;
+    --twi-blue: #277ce6;
+    --twi-text: #4a4a4a;
+    --twi-band: #f6f9ff;
+    --twi-pill: #e3edfb;
+    --twi-gap: clamp(1rem, 4vw, 1.25rem);
+
+    padding: clamp(2.5rem, 5vw, 3.75rem) 0;
+    background: #ffffff;
+}
+
+/* First slice on the page sits on the pale blue band. */
+.sectionBand {
+    background: var(--twi-band);
+}
+
+.section *,
+.section *::before,
+.section *::after {
+    box-sizing: border-box;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    gap: var(--twi-gap);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+    min-height: 439px;
+}
+
+/* Column widths account for the gap so the ratio holds exactly. */
+.media,
+.body {
+    min-width: 0;
+    flex: 0 0 calc(50% - var(--twi-gap) / 2);
+}
+
+.innerHero .media {
+    flex-basis: calc(33.3333% - var(--twi-gap) / 2);
+}
+
+.innerHero .body {
+    flex-basis: calc(66.6667% - var(--twi-gap) / 2);
+}
+
+/* image_position: left — image first. */
+/* Image on the left; text on the right */
+.innerImageLeft .media {
+    order: 0;
+}
+
+.innerImageLeft .body {
+    order: 1;
+}
+
+/* Text on the left; image on the right */
+.innerImageRight .body {
+    order: 0;
+}
+
+.innerImageRight .media {
+    order: 1;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------------------------------------------------------------- */
+/* Text column                                                      */
+/* ---------------------------------------------------------------- */
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    padding: 0.4375rem 0.875rem;
+    border-radius: 1000px;
+    background: #ffffff;
+    color: var(--twi-navy);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.eyebrowIcon {
+    display: flex;
+    align-items: center;
+    color: var(--twi-blue);
+}
+
+.eyebrowIcon svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.title {
+    margin: 0 0 1.125rem;
+    font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--twi-navy);
+    text-wrap: balance;
+}
+
+.text {
+    font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
+    line-height: 1.75;
+    color: var(--twi-text);
+}
+
+.text p {
+    margin: 0 0 1rem;
+    overflow-wrap: break-word;
+}
+
+.text p:last-child {
+    margin-bottom: 0;
+}
+
+.text ul,
+.text ol {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+}
+
+.text li {
+    margin-bottom: 0.375rem;
+}
+
+.text a {
+    color: var(--twi-blue);
+    text-decoration: none;
+}
+
+.text a:hover {
+    text-decoration: underline;
+}
+
+.text strong {
+    font-weight: 700;
+    color: var(--twi-navy);
+}
+
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+    padding: 0.9375rem 1.25rem;
+    border-radius: 10px;
+    background: #284074;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+    background: var(--twi-blue);
+    color: #ffffff;
+}
+
+.cta:focus-visible {
+    outline: 2px solid var(--twi-navy);
+    outline-offset: 3px;
+}
+
+.ctaIcon {
+    display: flex;
+    align-items: center;
+}
+
+.ctaIcon svg {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Mobile — single column, text above the image either way          */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+    .section {
+        padding: 0 20px;
+    }
+
+    .inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+    }
+
+
+    .media,
+    .body,
+    .innerHero .media,
+    .innerHero .body {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .title {
+        font-size: clamp(1.5rem, 7vw, 1.875rem);
+        overflow-wrap: break-word;
+    }
+
+    .cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta {
+        transition: none;
+    }
+}

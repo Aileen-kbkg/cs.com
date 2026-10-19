@@ -1,89 +1,214 @@
+/*
+ * "Meet Our Experts" carousel — pale blue band, three slides visible
+ * on desktop, arrows either side, dots beneath.
+ */
 .section {
-    background: #f8fafc;
-    padding: 4rem 0;
-}
+    --exp-navy: #284074;
+    --exp-blue: #277ce6;
+    --exp-text: #6b7280;
+    --exp-band: #f2f7fd;
+    --exp-dot: #c7d7ee;
 
-@media (min-width: 1024px) {
-    .section {
-        padding: 6rem 0;
-    }
+    padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2.5rem, 5vw, 4rem);
+    background: var(--exp-band);
 }
 
 .inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
 }
 
 .heading {
-    margin: 0;
-    text-align: center;
-    font-size: clamp(1.875rem, 3vw, 2.25rem);
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
+    line-height: 1.25;
     font-weight: 700;
-    color: #263e73;
+    color: var(--exp-navy);
+    text-align: center;
+    text-wrap: balance;
 }
 
 .intro {
     max-width: 42rem;
-    margin: 1rem auto 0;
-    text-align: center;
-    font-size: 1rem;
+    margin: -1.5rem auto 2.5rem;
+    font-size: 0.9375rem;
     line-height: 1.7;
-    color: #4b5563;
+    color: var(--exp-text);
+    text-align: center;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2.5rem;
-    list-style: none;
-    margin: 3rem 0 0;
+/* ---------------------------------------------------------------- */
+/* Carousel                                                         */
+/* ---------------------------------------------------------------- */
+
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.track {
+    display: flex;
+    flex: 1 1 auto;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    margin: 0;
     padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
 }
 
-.person {
+.track::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 calc((100% - 2 * clamp(1rem, 2.5vw, 2rem)) / 3);
+    min-width: 0;
+    scroll-snap-align: start;
     text-align: center;
 }
 
 .photo {
     display: block;
-    width: 144px;
-    height: 144px;
-    margin: 0 auto;
-    border-radius: 50%;
+    /* width: 100%; */
+    max-width: 220px;
+    height: auto;
+    margin: 0 auto 1.25rem;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
+    width: 50%;
+    border-radius: 200px 200px 200px 200px;
 }
 
 .name {
-    margin: 1.25rem 0 0.25rem;
-    font-size: 1.125rem;
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: #263e73;
+    color: var(--exp-navy);
 }
 
 .credentials {
-    margin: 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #277ce6;
+    font-weight: 400;
 }
 
 .meta {
-    margin: 0.125rem 0 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #4b5563;
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--exp-text);
 }
 
+/* ---------------------------------------------------------------- */
+/* Arrows                                                           */
+/* ---------------------------------------------------------------- */
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #277CE6;
+    cursor: pointer;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.arrow svg {
+    width: 1.5625rem;
+    height: 1.5625rem;
+    fill: #277CE6;
+    font-weight: 400;
+}
+
+.arrow:hover:not(:disabled) {
+    color: var(--exp-blue);
+}
+
+.arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.arrow:focus-visible {
+    outline: 2px solid var(--exp-blue);
+    outline-offset: 2px;
+    border-radius: 50%;
+}
+
+/* ---------------------------------------------------------------- */
+/* Dots                                                             */
+/* ---------------------------------------------------------------- */
+
+.dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+}
+
+.dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--exp-dot);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dot:hover {
+    background: #9bb8dd;
+}
+
+.dotActive {
+    background: var(--exp-blue);
+}
+
+.dot:focus-visible {
+    outline: 2px solid var(--exp-blue);
+    outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
 @media (max-width: 1023px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+    .slide {
+        flex-basis: calc((100% - clamp(1rem, 2.5vw, 2rem)) / 2);
     }
 }
 
 @media (max-width: 639px) {
-    .grid {
-        grid-template-columns: 1fr;
+    .slide {
+        flex-basis: 100%;
+    }
+
+    .arrow {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .track {
+        scroll-behavior: auto;
+    }
+
+    .arrow,
+    .dot {
+        transition: none;
     }
 }
