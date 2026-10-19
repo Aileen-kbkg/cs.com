@@ -53,3 +53,15 @@ a {
     padding-inline: 16px;
   }
 }
+
+h1 {
+  font-size: 2.5rem;
+  color: #284074;
+  font-family: "Inter", Sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1.00rem);
+  color: #333;
+}
