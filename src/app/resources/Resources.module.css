@@ -151,6 +151,7 @@
     color: #ffffff;
     border-radius: 10px;
     padding: 15px 20px;
+    line-height: 1;
 }
 
 .cardButton:hover,
