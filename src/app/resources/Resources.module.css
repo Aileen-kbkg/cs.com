@@ -5,7 +5,7 @@
 .page {
     --res-blue: #277ce6;
     --res-navy: #284074;
-    --res-text: #4a4a4a;
+    --res-text: #333333;
     --res-band: #e7eefb;
 
     box-sizing: border-box;
@@ -60,7 +60,7 @@
 }
 
 .intro {
-    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-size: clamp(13px, 1.8vw, 1rem);
     line-height: 24px;
     color: #374151;
     font-weight: 400;
@@ -101,7 +101,7 @@
 }
 
 .cardTitle {
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
     line-height: 1.15;
     font-weight: 500;
@@ -110,7 +110,7 @@
 }
 
 .cardText {
-    margin: 0 0 1.75rem;
+    margin: 0 0 2.125rem;
     font-size: 1rem;
     line-height: 1.6;
     color: var(--res-text);
