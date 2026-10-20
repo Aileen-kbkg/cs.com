@@ -288,12 +288,13 @@
 .announcement {
   padding: 10px 20px;
   background-color: #277ce6;
-  color: #ffffff;
+
   text-align: center;
 }
 
 .announcement p {
   margin: 0;
+  color: #ffffff;
 }
 
 .announcement a {

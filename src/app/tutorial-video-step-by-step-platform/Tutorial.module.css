@@ -5,7 +5,7 @@
  * element selectors rather than per-section wrappers.
  */
 .page {
-    --tut-navy: #1f3a6e;
+    --tut-navy: #284074;
     --tut-blue: #277ce6;
     --tut-text: #4a4a4a;
     --tut-band: #f2f7fd;
@@ -31,20 +31,20 @@
 
 .hero {
     width: 100%;
-    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    padding: 3.75rem 1.25rem;
     background: var(--tut-band);
 }
 
 .heroInner {
-    max-width: 1110px;
+    max-width: 1280px;
     margin: 0 auto;
 }
 
 .title {
-    margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
-    font-size: clamp(1.375rem, 3.4vw, 2.25rem);
-    line-height: 1.25;
-    font-weight: 700;
+    margin: 10px 0 60px 0;
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 500;
     color: var(--tut-navy);
     text-align: center;
     text-wrap: balance;
@@ -70,22 +70,25 @@
 /* ---------------------------------------------------------------- */
 
 .content {
-    max-width: 1110px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 4.5rem);
+    padding: 0 20px;
 }
 
-.content> :first-child {
+/* .content> :first-child {
     margin-top: 0;
-}
+} */
 
 .sectionTitle {
-    margin: clamp(2rem, 4vw, 3rem) 0 1.125rem;
-    font-size: clamp(1.375rem, 3.2vw, 2.125rem);
+    margin: 8px 0 16px 0;
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
     line-height: 1.25;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--tut-navy);
     text-wrap: balance;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .content p {
