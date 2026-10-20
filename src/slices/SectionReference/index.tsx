@@ -1,11 +1,17 @@
-import { Content, isFilled } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceZone, SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
-export type SectionReferenceProps =
-	SliceComponentProps<Content.SectionReferenceSlice>;
+type SectionReferenceSlice = {
+  id: string;
+  slice_type: string;
+  variation: string;
+  primary: { section: { id?: string } | null };
+  items: never[];
+};
 
+export type SectionReferenceProps = SliceComponentProps<SectionReferenceSlice>;
 /**
  * Renders a `shared_section` document in place.
  *
@@ -20,15 +26,16 @@ export type SectionReferenceProps =
  * zone, or a section could reference itself and recurse.
  */
 const SectionReference = async ({ slice }: SectionReferenceProps) => {
-	const link = slice.primary.section;
+	const link = slice.primary.section as { id?: string } | null | undefined;
+	const id = link?.id;
 
-	if (!isFilled.contentRelationship(link) || !link.id) {
+	if (!id) {
 		return null;
 	}
 
 	const client = createClient();
 
-	const section = await client.getByID(link.id).catch(() => null);
+	const section = await client.getByID(id).catch(() => null);
 
 	if (!section) {
 		// Linked document was unpublished or deleted — render nothing
@@ -36,8 +43,7 @@ const SectionReference = async ({ slice }: SectionReferenceProps) => {
 		return null;
 	}
 
-	const sectionSlices =
-		(section.data as { slices?: unknown }).slices ?? [];
+	const sectionSlices = (section.data as { slices?: unknown }).slices ?? [];
 
 	return (
 		<SliceZone
