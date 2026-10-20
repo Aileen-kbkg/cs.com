@@ -1,0 +1,86 @@
+{
+    "id": "page_hero",
+    "type": "SharedSlice",
+    "name": "PageHero",
+    "description": "Split hero with eyebrow pill, large heading, body copy, CTA button and a note",
+    "variations": [
+        {
+            "id": "default",
+            "name": "Default",
+            "docURL": "...",
+            "version": "initial",
+            "description": "Default",
+            "imageUrl": "",
+            "primary": {
+                "eyebrow": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Eyebrow",
+                        "placeholder": "Cost Segregation for Tax Advisors"
+                    }
+                },
+                "heading": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Heading",
+                        "placeholder": "Expand Your Advisory Services…"
+                    }
+                },
+                "text": {
+                    "type": "StructuredText",
+                    "config": {
+                        "label": "Text",
+                        "placeholder": "",
+                        "multi": "paragraph,strong,em,hyperlink",
+                        "allowTargetBlank": true
+                    }
+                },
+                "image": {
+                    "type": "Image",
+                    "config": {
+                        "label": "Image",
+                        "constraint": {},
+                        "thumbnails": []
+                    }
+                },
+                "image_position": {
+                    "type": "Select",
+                    "config": {
+                        "label": "Image position",
+                        "placeholder": "",
+                        "default_value": "left",
+                        "options": [
+                            "left",
+                            "right"
+                        ]
+                    }
+                },
+                "cta_label": {
+                    "type": "Text",
+                    "config": {
+                        "label": "CTA label",
+                        "placeholder": "Start a Client Report"
+                    }
+                },
+                "cta_link": {
+                    "type": "Link",
+                    "config": {
+                        "label": "CTA link",
+                        "placeholder": "",
+                        "select": null,
+                        "allowTargetBlank": true,
+                        "repeat": false
+                    }
+                },
+                "cta_note": {
+                    "type": "Text",
+                    "config": {
+                        "label": "CTA note",
+                        "placeholder": "Free to use. No credit card required."
+                    }
+                }
+            },
+            "items": {}
+        }
+    ]
+}

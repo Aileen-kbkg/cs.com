@@ -1,0 +1,244 @@
+/*
+ * Split page hero — pale blue band, illustration one side, eyebrow pill,
+ * large heading, body copy and CTA on the other.
+ */
+.section {
+    --ph-navy: #1f3a6e;
+    --ph-blue: #277ce6;
+    --ph-text: #4a4a4a;
+    --ph-muted: #6b7280;
+    --ph-band: #f4f8fd;
+    --ph-border: #dbe6f6;
+    --ph-gap: clamp(1.5rem, 4vw, 3.5rem);
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 4vw, 1.5rem);
+    background: var(--ph-band);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ph-text);
+}
+
+.section *,
+.section *::before,
+.section *::after {
+    box-sizing: border-box;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    gap: var(--ph-gap);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.media,
+.body {
+    flex: 0 0 calc(50% - var(--ph-gap) / 2);
+    min-width: 0;
+}
+
+.innerImageLeft .media {
+    order: 0;
+}
+
+.innerImageLeft .body {
+    order: 1;
+}
+
+.innerImageRight .body {
+    order: 0;
+}
+
+.innerImageRight .media {
+    order: 1;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------------------------------------------------------------- */
+/* Eyebrow pill                                                     */
+/* ---------------------------------------------------------------- */
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--ph-border);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--ph-navy);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.eyebrowIcon {
+    display: flex;
+    align-items: center;
+    color: var(--ph-blue);
+}
+
+.eyebrowIcon svg {
+    width: 0.9375rem;
+    height: 0.9375rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Copy                                                             */
+/* ---------------------------------------------------------------- */
+
+.heading {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2rem, 4.5vw, 3.375rem);
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--ph-navy);
+    text-wrap: balance;
+}
+
+.text {
+    font-size: clamp(0.9375rem, 1.6vw, 1.0625rem);
+    line-height: 1.65;
+    color: var(--ph-text);
+}
+
+.text p {
+    margin: 0 0 1rem;
+    overflow-wrap: break-word;
+}
+
+.text p:last-child {
+    margin-bottom: 0;
+}
+
+.text a {
+    color: var(--ph-blue);
+    text-decoration: none;
+}
+
+.text a:hover {
+    text-decoration: underline;
+}
+
+.text strong {
+    font-weight: 700;
+    color: var(--ph-navy);
+}
+
+/* ---------------------------------------------------------------- */
+/* CTA                                                              */
+/* ---------------------------------------------------------------- */
+
+.ctaRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1.125rem 1.75rem;
+    border-radius: 8px;
+    background: var(--ph-blue);
+    color: #ffffff;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+    background: #1f66c2;
+    color: #ffffff;
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--ph-navy);
+    outline-offset: 3px;
+}
+
+.buttonIcon {
+    display: flex;
+    align-items: center;
+}
+
+.buttonIcon svg {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+.ctaNote {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--ph-muted);
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    .inner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .media,
+    .body {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    /* Text first on narrow screens, whichever side the image takes. */
+    .innerImageLeft .body,
+    .innerImageRight .body {
+        order: 0;
+    }
+
+    .innerImageLeft .media,
+    .innerImageRight .media {
+        order: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .ctaRow {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.875rem;
+    }
+
+    .button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ctaNote {
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
