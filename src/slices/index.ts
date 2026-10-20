@@ -11,6 +11,7 @@ import ProductCards from "./ProductCards";
 import ExpertGrid from "./ExpertGrid";
 import FaqAccordion from "./FaqAccordion";
 import SectionReference from "./SectionReference"
+import CtaBanner from "./CtaBanner";
 
 export const components = {
 	hero: Hero,
@@ -26,4 +27,5 @@ export const components = {
 	expert_grid: ExpertGrid,
 	faq_accordion: FaqAccordion,
 	section_reference: SectionReference,
+	cta_banner: CtaBanner,
 };
