@@ -12,6 +12,7 @@ import ExpertGrid from "./ExpertGrid";
 import FaqAccordion from "./FaqAccordion";
 import SectionReference from "./SectionReference"
 import CtaBanner from "./CtaBanner";
+import PageHero from "./PageHero";
 
 export const components = {
 	hero: Hero,
@@ -28,4 +29,5 @@ export const components = {
 	faq_accordion: FaqAccordion,
 	section_reference: SectionReference,
 	cta_banner: CtaBanner,
+	page_hero: PageHero,
 };
