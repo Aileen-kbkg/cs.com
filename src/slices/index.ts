@@ -10,6 +10,7 @@ import TextWithImage from "./TextWithImage";
 import ProductCards from "./ProductCards";
 import ExpertGrid from "./ExpertGrid";
 import FaqAccordion from "./FaqAccordion";
+import SectionReference from "./SectionReference"
 
 export const components = {
 	hero: Hero,
@@ -24,4 +25,5 @@ export const components = {
 	product_cards: ProductCards,
 	expert_grid: ExpertGrid,
 	faq_accordion: FaqAccordion,
+	section_reference: SectionReference,
 };

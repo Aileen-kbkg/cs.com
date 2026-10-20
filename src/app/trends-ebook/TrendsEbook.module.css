@@ -1,0 +1,282 @@
+/*
+ * Trends eBook landing page — pale blue hero, illustration and strapline
+ * on the left, headline and gated HubSpot form on the right.
+ *
+ * The left column is hidden below 1024px, matching the live page
+ * (elementor-hidden-tablet / elementor-hidden-mobile).
+ */
+.page {
+    --te-navy: #1f3a6e;
+    --te-blue: #277ce6;
+    --te-text: #5b6472;
+    --te-band: #eef4fc;
+    --te-button: #2c4566;
+
+    box-sizing: border-box;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--te-text);
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero                                                             */
+/* ---------------------------------------------------------------- */
+
+.hero {
+    width: 100%;
+    padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4vw, 1.5rem);
+    background: var(--te-band);
+}
+
+.heroInner {
+    display: flex;
+    align-items: center;
+    gap: 67px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.heroAside {
+
+    width: 50%;
+}
+
+.heroAside h2 {
+    font-size: clamp(1.64rem, 1.45rem + 0.82vw, 2.19rem);
+    margin: 0;
+}
+
+.heroAside img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 73px;
+}
+
+.heroAside p {
+    margin-top: 8px;
+}
+
+.heroMain {
+
+    width: 50%;
+}
+
+.illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: var(--te-navy);
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--te-text);
+    max-width: 30rem;
+}
+
+.heroRight {
+    flex: 1 1 55%;
+    min-width: 0;
+}
+
+.title {
+    margin: 0 0 1.75rem;
+    /* font-size: clamp(1.5rem, 3.2vw, 2rem); */
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--te-navy);
+    text-wrap: balance;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+.title strong {
+    font-weight: 800;
+}
+
+/* ---------------------------------------------------------------- */
+/* HubSpot form                                                     */
+/* ---------------------------------------------------------------- */
+
+/* Fields sit directly on the band — no white card on the live page. */
+.formPanel {
+    width: 100%;
+    margin-left: -40px;
+}
+
+.formPanel :global(.hs-form-frame) {
+    min-height: 366px;
+}
+
+.formPanel :global(iframe) {
+    width: 100% !important;
+    border: 0;
+}
+
+.hsfc-Step .hsfc-Step__Content {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive — left column drops out below desktop                 */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    .heroLeft {
+        display: none;
+    }
+
+    .heroInner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .heroRight {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .title br {
+        display: none;
+    }
+
+    .heroAside,
+    .heroMain {
+        width: 100%;
+    }
+
+    .formPanel {
+        width: 100%;
+        margin-left: 0px;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Card section — "Quick and Easy Cost Segregation Results"         */
+/* ---------------------------------------------------------------- */
+
+.cards {
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4vw, 1.5rem);
+    background: #ffffff;
+}
+
+.cardsInner {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.cardsTitle {
+    margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--te-navy);
+    text-align: center;
+    text-wrap: balance;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2.5rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    --background-transition: 0.3s;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    align-items: center;
+
+}
+
+.cardIconWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 1.125rem;
+    flex-direction: row;
+}
+
+.cardIcon {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    height: 109px;
+}
+
+.cardTitle {
+    margin: 0 0 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--te-navy);
+    text-wrap: balance;
+}
+
+.cardText {
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: var(--te-text);
+}
+
+.cardText p {
+    margin: 0 0 0.625rem;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.cardText p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1023px) {
+    .cardGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 639px) {
+    .cardGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .card {
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

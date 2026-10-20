@@ -1,0 +1,30 @@
+{
+    "id": "section_reference",
+    "type": "SharedSlice",
+    "name": "SectionReference",
+    "description": "Renders a shared section document in place, so one piece of content can appear on several pages",
+    "variations": [
+        {
+            "id": "default",
+            "name": "Default",
+            "docURL": "...",
+            "version": "initial",
+            "description": "Default",
+            "imageUrl": "",
+            "primary": {
+                "section": {
+                    "type": "Link",
+                    "config": {
+                        "label": "Section",
+                        "placeholder": "Pick a shared section",
+                        "select": "document",
+                        "customtypes": [
+                            "shared_section"
+                        ]
+                    }
+                }
+            },
+            "items": {}
+        }
+    ]
+}
