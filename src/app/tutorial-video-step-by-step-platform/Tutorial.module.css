@@ -7,7 +7,7 @@
 .page {
     --tut-navy: #284074;
     --tut-blue: #277ce6;
-    --tut-text: #4a4a4a;
+    --tut-text: #333333;
     --tut-band: #f2f7fd;
 
     box-sizing: border-box;
@@ -71,16 +71,16 @@
 
 .content {
     max-width: 1280px;
-    margin: 0 auto;
+    margin: 0 auto 84px;
     padding: 0 20px;
 }
 
-/* .content> :first-child {
-    margin-top: 0;
-} */
+.content> :first-child {
+    margin-top: 8px;
+}
 
 .sectionTitle {
-    margin: 8px 0 16px 0;
+    margin: 42px 0 16px 0;
     font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
     line-height: 1.25;
     font-weight: 500;
@@ -91,9 +91,13 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+.sectionTitle> :first-child {
+    margin-top: 8px;
+}
+
 .content p {
-    margin: 0 0 1.125rem;
-    font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
+    margin: 0 0 0.875rem;
+    font-size: clamp(13.752px, 1.5vw, 16px);
     line-height: 1.75;
     color: var(--tut-text);
     overflow-wrap: break-word;
