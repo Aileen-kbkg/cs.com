@@ -115,7 +115,8 @@
 
 .formPanel {
     width: 100%;
-    margin: -22px -21px 30px 0px;
+    margin: -22px -21px 30px -37px;
+
 }
 
 /* The embed renders in an iframe, so only outer sizing is ours. */
@@ -125,8 +126,13 @@
 }
 
 .formPanel :global(iframe) {
-    width: 100% !important;
+    width: 688px !important;
+    min-height: 640px;
     border: 0;
+}
+
+.formPanel :global(.hsfc-Step__Content) {
+    padding: 40px 0 0 0 !important;
 }
 
 /* ---------------------------------------------------------------- */
@@ -162,5 +168,26 @@
 
     .formPanel :global(.hs-form-frame) {
         min-height: 700px;
+    }
+
+
+}
+
+@media (max-width: 1300px) {
+    .formTitle {
+
+        white-space: normal;
+
+    }
+
+    .formPanel :global(iframe) {
+        width: 100% !important;
+        min-height: 0px;
+        border: 0;
+    }
+
+    .formPanel {
+        width: 100%;
+        margin-left: -20px;
     }
 }
