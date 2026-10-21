@@ -52,21 +52,25 @@ export default function NavbarMenu({
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+  const [openMobileSub, setOpenMobileSub] = useState<number | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Close menus on outside click / Escape
+  const closeAll = () => {
+    setOpenDropdown(null);
+    setOpenMobileSub(null);
+    setMobileOpen(false);
+  };
+
+  // Desktop dropdown closes on outside click. The mobile sheet has its own
+  // close button and backdrop, so it is deliberately not closed here.
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setOpenDropdown(null);
-        setMobileOpen(false);
       }
     };
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpenDropdown(null);
-        setMobileOpen(false);
-      }
+      if (event.key === "Escape") closeAll();
     };
     document.addEventListener("click", onClick);
     document.addEventListener("keydown", onKey);
@@ -76,24 +80,30 @@ export default function NavbarMenu({
     };
   }, []);
 
-  // Close the mobile panel when the viewport grows past the burger breakpoint,
-  // otherwise it can stay mounted and reappear on the next resize down.
+  // Lock page scroll behind the open sheet.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
+
+  // Close if the viewport grows past the burger breakpoint.
   useEffect(() => {
     const query = window.matchMedia("(min-width: 1025px)");
     const onChange = (event: MediaQueryListEvent) => {
-      if (event.matches) setMobileOpen(false);
+      if (event.matches) closeAll();
     };
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);
   }, []);
 
-  const closeAll = () => {
-    setOpenDropdown(null);
-    setMobileOpen(false);
-  };
+  /* ---------------- Desktop menu ---------------- */
 
-  const renderItems = (variant: "main" | "dropdown") => (
-    <ul className={variant === "main" ? styles.menu : styles.mobileMenu}>
+  const desktopMenu = (
+    <ul className={styles.menu}>
       {items.map((item, index) => {
         const hasChildren = item.children.length > 0;
         const isOpen = openDropdown === index;
@@ -101,12 +111,8 @@ export default function NavbarMenu({
           <li
             key={`${item.label}-${index}`}
             className={styles.menuItem}
-            onMouseEnter={
-              variant === "main" && hasChildren ? () => setOpenDropdown(index) : undefined
-            }
-            onMouseLeave={
-              variant === "main" && hasChildren ? () => setOpenDropdown(null) : undefined
-            }
+            onMouseEnter={hasChildren ? () => setOpenDropdown(index) : undefined}
+            onMouseLeave={hasChildren ? () => setOpenDropdown(null) : undefined}
             onBlur={
               hasChildren
                 ? (event) => {
@@ -119,11 +125,7 @@ export default function NavbarMenu({
           >
             <div className={styles.itemRow}>
               {item.link ? (
-                <PrismicNextLink
-                  field={item.link}
-                  className={styles.item}
-                  onClick={() => setMobileOpen(false)}
-                >
+                <PrismicNextLink field={item.link} className={styles.item}>
                   {item.label}
                 </PrismicNextLink>
               ) : (
@@ -151,7 +153,7 @@ export default function NavbarMenu({
                     <PrismicNextLink
                       field={child.link}
                       className={styles.subItem}
-                      onClick={closeAll}
+                      onClick={() => setOpenDropdown(null)}
                     >
                       {child.label}
                     </PrismicNextLink>
@@ -168,54 +170,20 @@ export default function NavbarMenu({
   return (
     <div className={styles.right} ref={navRef}>
       <nav className={styles.nav} aria-label="Main navigation">
-        {renderItems("main")}
+        {desktopMenu}
+
         <button
           type="button"
           className={styles.toggle}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-label="Open menu"
           aria-expanded={mobileOpen}
           onClick={(event) => {
             event.stopPropagation();
-            setMobileOpen((open) => !open);
+            setMobileOpen(true);
           }}
         >
-          {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+          <MenuIcon />
         </button>
-
-        <div className={`${styles.mobilePanel} ${mobileOpen ? styles.mobilePanelOpen : ""}`}>
-          {renderItems("dropdown")}
-
-          {/* The live site puts both CTAs inside the opened menu on mobile. */}
-          {(signIn || getStarted) && (
-            <div className={styles.mobileCtas}>
-              {signIn && (
-                <PrismicNextLink
-                  field={signIn.link}
-                  className={styles.mobileSignIn}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  onClick={closeAll}
-                >
-                  {signIn.label}
-                </PrismicNextLink>
-              )}
-              {getStarted && (
-                <PrismicNextLink
-                  field={getStarted.link}
-                  className={styles.mobileGetStarted}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  onClick={closeAll}
-                >
-                  <span>{getStarted.label}</span>
-                  <span className={styles.getStartedIcon}>
-                    <ChevronRight />
-                  </span>
-                </PrismicNextLink>
-              )}
-            </div>
-          )}
-        </div>
       </nav>
 
       {signIn && (
@@ -240,6 +208,110 @@ export default function NavbarMenu({
             <ChevronRight />
           </span>
         </PrismicNextLink>
+      )}
+
+      {/* Mobile sheet. Rendered only when open, so if it still does not
+          appear the markup is simply absent and the cause is state, not CSS. */}
+      {mobileOpen && (
+        <div
+          className={styles.sheet}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+        >
+          <div className={styles.sheetInner}>
+            <button
+              type="button"
+              className={styles.sheetClose}
+              aria-label="Close menu"
+              onClick={closeAll}
+            >
+              <CloseIcon />
+            </button>
+
+            <ul className={styles.sheetMenu}>
+              {items.map((item, index) => {
+                const hasChildren = item.children.length > 0;
+                const isOpen = openMobileSub === index;
+                return (
+                  <li key={`${item.label}-m-${index}`} className={styles.sheetItem}>
+                    <div className={styles.sheetRow}>
+                      {item.link ? (
+                        <PrismicNextLink
+                          field={item.link}
+                          className={styles.sheetLink}
+                          onClick={closeAll}
+                        >
+                          {item.label}
+                        </PrismicNextLink>
+                      ) : (
+                        <span className={styles.sheetLink}>{item.label}</span>
+                      )}
+
+                      {hasChildren && (
+                        <button
+                          type="button"
+                          className={`${styles.sheetCaret} ${
+                            isOpen ? styles.sheetCaretOpen : ""
+                          }`}
+                          aria-label={`${item.label} submenu`}
+                          aria-expanded={isOpen}
+                          onClick={() => setOpenMobileSub(isOpen ? null : index)}
+                        >
+                          <CaretDown />
+                        </button>
+                      )}
+                    </div>
+
+                    {hasChildren && isOpen && (
+                      <ul className={styles.sheetSubMenu}>
+                        {item.children.map((child) => (
+                          <li key={child.label}>
+                            <PrismicNextLink
+                              field={child.link}
+                              className={styles.sheetSubLink}
+                              onClick={closeAll}
+                            >
+                              {child.label}
+                            </PrismicNextLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className={styles.sheetFooter}>
+              {signIn && (
+                <PrismicNextLink
+                  field={signIn.link}
+                  className={styles.sheetSignIn}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  onClick={closeAll}
+                >
+                  {signIn.label}
+                </PrismicNextLink>
+              )}
+              {getStarted && (
+                <PrismicNextLink
+                  field={getStarted.link}
+                  className={styles.sheetGetStarted}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  onClick={closeAll}
+                >
+                  <span>{getStarted.label}</span>
+                  <span className={styles.getStartedIcon}>
+                    <ChevronRight />
+                  </span>
+                </PrismicNextLink>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

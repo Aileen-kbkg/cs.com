@@ -346,11 +346,18 @@
 
   .toggle {
     display: flex;
+    /* 44px minimum touch target */
+    min-width: 44px;
+    min-height: 44px;
   }
 
+  /* `.nav` must stay unpositioned and shrink to the burger. With
+     position/width set here the absolutely positioned panel below
+     measures against a 41px box and is effectively invisible. */
   .nav {
-    width: 41px;
-    max-width: 41px;
+    position: static;
+    width: auto;
+    max-width: none;
   }
 
   /* elementor-nav-menu--stretch: full-width dropdown under the header */
@@ -361,6 +368,12 @@
     right: -20px;
     z-index: 20;
     margin-top: 5px;
+    /* Keeps a long menu reachable instead of running off-screen.
+       svh accounts for mobile browser chrome. */
+    max-height: calc(100svh - 100%);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     border-radius: 10px;
     background-color: #f6f9ff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
@@ -412,7 +425,7 @@
   }
 
   .right {
-    width: 49%;
+    width: auto;
   }
 }
 
@@ -422,25 +435,29 @@
   }
 
   .barInner {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
+  /* 75% + 14% + the 2% gap overflowed the row and squeezed both ends. */
   .logoBox {
-    width: 75%;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
     padding: 0 0 0 2%;
   }
 
   .logoLink {
     width: auto;
-    max-width: none;
+    max-width: 205px;
   }
 
   .logo {
-    width: auto;
+    width: 100%;
   }
 
   .right {
-    width: 14%;
+    flex: 0 0 auto;
+    width: auto;
   }
 
   .getStarted {
@@ -449,5 +466,211 @@
 
   .mobilePanel {
     margin-top: 18px;
+    max-height: calc(100svh - 100% - 18px);
+  }
+}
+
+/* The panel only exists below the burger breakpoint. */
+@media (min-width: 1025px) {
+
+  .mobilePanel,
+  .mobilePanelOpen {
+    display: none;
+  }
+}
+
+/* ================================================================
+   MOBILE SHEET
+   Append to the END of Navbar.module.css.
+
+   Self-contained: uses its own class names, so nothing here collides
+   with the existing .mobilePanel / .mobileMenu rules. Those can be
+   deleted once this is confirmed working.
+   ================================================================ */
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.sheetInner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 24px 40px;
+  padding-top: calc(20px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+}
+
+.sheetClose {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0 0 24px -10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #284074;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.sheetClose svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.sheetMenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sheetItem {
+  border: 0;
+}
+
+.sheetRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sheetLink {
+  display: block;
+  flex: 1 1 auto;
+  padding: 14px 0;
+  color: #284074;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sheetLink:hover,
+.sheetLink:focus {
+  color: #277ce6;
+}
+
+.sheetCaret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #284074;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sheetCaret svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.sheetCaretOpen {
+  transform: rotate(180deg);
+}
+
+.sheetSubMenu {
+  margin: 0 0 8px;
+  padding: 0 0 0 16px;
+  list-style: none;
+}
+
+.sheetSubLink {
+  display: block;
+  padding: 10px 0;
+  color: #284074;
+  font-family: "Inter", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sheetSubLink:hover,
+.sheetSubLink:focus {
+  color: #277ce6;
+}
+
+.sheetFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 28px;
+  border-top: 1px solid #d8e4f5;
+}
+
+.sheetSignIn {
+  color: #284074;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.sheetGetStarted {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background-color: #284074;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.sheetGetStarted:hover,
+.sheetGetStarted:focus {
+  background-color: #277ce6;
+  color: #ffffff;
+}
+
+/* The sheet only exists below the burger breakpoint. */
+@media (min-width: 1025px) {
+  .sheet {
+    display: none;
+  }
+}
+
+/* Bar CTAs move into the sheet at burger width. */
+@media (max-width: 1024px) {
+
+  .signIn,
+  .getStarted {
+    display: none;
+  }
+
+  .toggle {
+    display: flex;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheetCaret {
+    transition: none;
   }
 }

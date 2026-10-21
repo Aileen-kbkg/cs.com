@@ -4,8 +4,8 @@ import { PrismicRichText } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 
-import NavbarMenu, { type NavItem } from "./Navbar/NavbarMenu";
-import styles from "./Navbar/Navbar.module.css";
+import NavbarMenu, { type NavItem } from "./NavbarMenu";
+import styles from "./Navbar.module.css";
 
 type NavbarProps = {
   /** Optional: pass the site_settings document if the layout already fetched it. */
