@@ -1,0 +1,134 @@
+/*
+ * Pull quote in a tinted card with a supporting image alongside.
+ * Matched against the For Tax Advisors page.
+ */
+.section {
+    --qwi-navy: #1f3a6e;
+    --qwi-band: #f4f8fd;
+    --qwi-gap: clamp(1.5rem, 4vw, 3.5rem);
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 1.5rem);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.section *,
+.section *::before,
+.section *::after {
+    box-sizing: border-box;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: var(--qwi-gap);
+    padding: clamp(1.5rem, 3.5vw, 2.75rem);
+    border-radius: 16px;
+    background: var(--qwi-band);
+}
+
+.quote,
+.media {
+    flex: 0 0 calc(50% - var(--qwi-gap) / 2);
+    min-width: 0;
+}
+
+/* image_position: left — image first. */
+.cardImageLeft .media {
+    order: 0;
+}
+
+.cardImageLeft .quote {
+    order: 1;
+}
+
+/* image_position: right (default) — quote first. */
+.cardImageRight .quote {
+    order: 0;
+}
+
+.cardImageRight .media {
+    order: 1;
+}
+
+/* ---------------------------------------------------------------- */
+/* Quote                                                            */
+/* ---------------------------------------------------------------- */
+
+.quote {
+    font-size: clamp(1.0625rem, 2.2vw, 1.5rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--qwi-navy);
+    text-align: center;
+    text-wrap: balance;
+}
+
+.quote p {
+    margin: 0 0 0.75rem;
+    overflow-wrap: break-word;
+}
+
+.quote p:last-child {
+    margin-bottom: 0;
+}
+
+.quote strong {
+    font-weight: 700;
+}
+
+.quote a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Image                                                            */
+/* ---------------------------------------------------------------- */
+
+.image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    .card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .quote,
+    .media {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    /* Quote first on narrow screens, whichever side the image takes. */
+    .cardImageLeft .quote,
+    .cardImageRight .quote {
+        order: 0;
+    }
+
+    .cardImageLeft .media,
+    .cardImageRight .media {
+        order: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .card {
+        border-radius: 12px;
+    }
+}

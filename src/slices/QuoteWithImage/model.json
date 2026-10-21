@@ -1,0 +1,48 @@
+{
+    "id": "quote_with_image",
+    "type": "SharedSlice",
+    "name": "QuoteWithImage",
+    "description": "Pull quote in a tinted card with a supporting image alongside",
+    "variations": [
+        {
+            "id": "default",
+            "name": "Default",
+            "docURL": "...",
+            "version": "initial",
+            "description": "Default",
+            "imageUrl": "",
+            "primary": {
+                "quote": {
+                    "type": "StructuredText",
+                    "config": {
+                        "label": "Quote",
+                        "placeholder": "Self-guided doesn't mean you're on your own…",
+                        "multi": "paragraph,strong,em,hyperlink",
+                        "allowTargetBlank": true
+                    }
+                },
+                "image": {
+                    "type": "Image",
+                    "config": {
+                        "label": "Image",
+                        "constraint": {},
+                        "thumbnails": []
+                    }
+                },
+                "image_position": {
+                    "type": "Select",
+                    "config": {
+                        "label": "Image position",
+                        "placeholder": "",
+                        "default_value": "right",
+                        "options": [
+                            "left",
+                            "right"
+                        ]
+                    }
+                }
+            },
+            "items": {}
+        }
+    ]
+}

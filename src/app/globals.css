@@ -61,9 +61,9 @@ h1 {
   font-weight: 700;
 }
 
-h2 {
+/* h2 {
   font-family: "Inter", Sans-serif;
-}
+} */
 
 p {
   font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1.00rem);

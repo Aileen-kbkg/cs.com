@@ -33,6 +33,11 @@ type Block = RichTextField[number];
 const getText = (value: KeyTextField | null | undefined, fallback: string) =>
   value || fallback;
 
+/**
+ * Splits a card into what shows on the card and what shows in its detail
+ * view. Cards whose `text` is a single paragraph have no detail content,
+ * so they render without the "Learn More" affordance.
+ */
 const resolveCard = (item: Item) => {
   const text = (item.text ?? []) as Block[];
 
@@ -50,9 +55,7 @@ const resolveCard = (item: Item) => {
     };
   }
 
-  const firstParagraph = text.findIndex(
-    (block) => block.type === "paragraph",
-  );
+  const firstParagraph = text.findIndex((block) => block.type === "paragraph");
 
   const cardText = (
     firstParagraph >= 0 ? [text[firstParagraph]] : []
@@ -60,9 +63,7 @@ const resolveCard = (item: Item) => {
 
   const rest = text.filter((_, index) => index !== firstParagraph);
 
-  const introIndex = rest.findIndex(
-    (block) => block.type === "paragraph",
-  );
+  const introIndex = rest.findIndex((block) => block.type === "paragraph");
 
   const intro =
     introIndex >= 0 && "text" in rest[introIndex]
@@ -176,8 +177,7 @@ const FeatureGridAbout = ({ slice }: FeatureGridProps) => {
 };
 
 const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
-  const primary = slice.primary as FeatureGridSlice["primary"] &
-  DetailPrimary;
+  const primary = slice.primary as FeatureGridSlice["primary"] & DetailPrimary;
   const items = slice.items as Item[];
 
   const ctaLabel = getText(primary.cta_label, "Learn More >");
@@ -221,7 +221,7 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
   }, []);
 
   const active: Item | null =
-    activeIndex !== null ? items[activeIndex] ?? null : null;
+    activeIndex !== null ? (items[activeIndex] ?? null) : null;
 
   const detail = active ? resolveCard(active) : null;
 
@@ -254,22 +254,34 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
         {active === null ? (
           <div className={`${styles.grid} ${animClass}`}>
             {items.map((item, index) => {
-              const { cardText } = resolveCard(item);
+              const resolved = resolveCard(item);
+              const { cardText } = resolved;
+
+              // Only cards with something behind them are clickable and
+              // show the "Learn More" link.
+              const hasDetail =
+                Boolean(resolved.intro) ||
+                isFilled.richText(resolved.list) ||
+                isFilled.richText(resolved.paragraph);
 
               return (
                 <article
-                  key={`${item.title || "card"}-${index}`}
+                  key={`${item.title ?? "card"}-${index}`}
                   className={styles.card}
                   data-id={liveIdFromTitle(item.title) ?? undefined}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => swap(index)}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      swap(index);
-                    }
-                  }}
+                  role={hasDetail ? "button" : undefined}
+                  tabIndex={hasDetail ? 0 : undefined}
+                  onClick={hasDetail ? () => swap(index) : undefined}
+                  onKeyDown={
+                    hasDetail
+                      ? (event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            swap(index);
+                          }
+                        }
+                      : undefined
+                  }
                 >
                   <CardIcon item={item} className={styles.cardIcon} />
 
@@ -288,7 +300,9 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
                     />
                   )}
 
-                  <span className={styles.cardCta}>{ctaLabel}</span>
+                  {hasDetail && (
+                    <span className={styles.cardCta}>{ctaLabel}</span>
+                  )}
                 </article>
               );
             })}
@@ -334,19 +348,11 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
                 )}
 
                 {detail?.intro && (
-                  <div className={styles.detailDescription}>
-                    {typeof detail.intro === "string" ? (
-                      <p>{detail.intro}</p>
-                    ) : (
-                      <PrismicRichText field={detail.intro} />
-                    )}
-                  </div>
+                  <p className={styles.detailDescription}>{detail.intro}</p>
                 )}
 
                 {active.detail_note && (
-                  <p className={styles.detailNote}>
-                    {active.detail_note}
-                  </p>
+                  <p className={styles.detailNote}>{active.detail_note}</p>
                 )}
               </div>
 

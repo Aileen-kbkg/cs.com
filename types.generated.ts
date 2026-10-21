@@ -1765,6 +1765,115 @@ type LeadFormSliceVariation = LeadFormSliceDefault
 export type LeadFormSlice = prismic.SharedSlice<"lead_form", LeadFormSliceVariation>;
 
 /**
+ * Primary content in *PageHero → Default → Primary*
+ */
+export interface PageHeroSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Cost Segregation for Tax Advisors
+	 * - **API ID Path**: page_hero.default.primary.eyebrow
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * Heading field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Expand Your Advisory Services…
+	 * - **API ID Path**: page_hero.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * Text field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page_hero.default.primary.text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	text: prismic.RichTextField;
+	
+	/**
+	 * Image field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page_hero.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Image position field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: left
+	 * - **API ID Path**: page_hero.default.primary.image_position
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	image_position: prismic.SelectField<"left" | "right", "filled">;
+	
+	/**
+	 * CTA label field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Start a Client Report
+	 * - **API ID Path**: page_hero.default.primary.cta_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	cta_label: prismic.KeyTextField;
+	
+	/**
+	 * CTA link field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page_hero.default.primary.cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * CTA note field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Free to use. No credit card required.
+	 * - **API ID Path**: page_hero.default.primary.cta_note
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	cta_note: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for PageHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PageHeroSliceDefault = prismic.SharedSliceVariation<"default", Simplify<PageHeroSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *PageHero*
+ */
+type PageHeroSliceVariation = PageHeroSliceDefault
+
+/**
+ * PageHero Shared Slice
+ *
+ * - **API ID**: `page_hero`
+ * - **Description**: Split hero with eyebrow pill, large heading, body copy, CTA button and a note
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PageHeroSlice = prismic.SharedSlice<"page_hero", PageHeroSliceVariation>;
+
+/**
  * Primary content in *PostList → Default → Primary*
  */
 export interface PostListSliceDefaultPrimary {
@@ -2289,6 +2398,65 @@ type ProductCardsSliceVariation = ProductCardsSliceDefault
 export type ProductCardsSlice = prismic.SharedSlice<"product_cards", ProductCardsSliceVariation>;
 
 /**
+ * Primary content in *QuoteWithImage → Default → Primary*
+ */
+export interface QuoteWithImageSliceDefaultPrimary {
+	/**
+	 * Quote field in *QuoteWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Self-guided doesn't mean you're on your own…
+	 * - **API ID Path**: quote_with_image.default.primary.quote
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	quote: prismic.RichTextField;
+	
+	/**
+	 * Image field in *QuoteWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: quote_with_image.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Image position field in *QuoteWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: right
+	 * - **API ID Path**: quote_with_image.default.primary.image_position
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	image_position: prismic.SelectField<"left" | "right", "filled">;
+}
+
+/**
+ * Default variation for QuoteWithImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type QuoteWithImageSliceDefault = prismic.SharedSliceVariation<"default", Simplify<QuoteWithImageSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *QuoteWithImage*
+ */
+type QuoteWithImageSliceVariation = QuoteWithImageSliceDefault
+
+/**
+ * QuoteWithImage Shared Slice
+ *
+ * - **API ID**: `quote_with_image`
+ * - **Description**: Pull quote in a tinted card with a supporting image alongside
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type QuoteWithImageSlice = prismic.SharedSlice<"quote_with_image", QuoteWithImageSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -2325,6 +2493,44 @@ type RichTextSliceVariation = RichTextSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type RichTextSlice = prismic.SharedSlice<"rich_text", RichTextSliceVariation>;
+
+/**
+ * Primary content in *SectionReference → Default → Primary*
+ */
+export interface SectionReferenceSliceDefaultPrimary {
+	/**
+	 * Section field in *SectionReference → Default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: Pick a shared section
+	 * - **API ID Path**: section_reference.default.primary.section
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	section: prismic.ContentRelationshipField<"shared_section">;
+}
+
+/**
+ * Default variation for SectionReference Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SectionReferenceSliceDefault = prismic.SharedSliceVariation<"default", Simplify<SectionReferenceSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *SectionReference*
+ */
+type SectionReferenceSliceVariation = SectionReferenceSliceDefault
+
+/**
+ * SectionReference Shared Slice
+ *
+ * - **API ID**: `section_reference`
+ * - **Description**: Renders a shared section document in place, so one piece of content can appear on several pages
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SectionReferenceSlice = prismic.SharedSlice<"section_reference", SectionReferenceSliceVariation>;
 
 /**
  * Primary content in *Steps → Default → Primary*
@@ -2918,6 +3124,10 @@ declare module "@prismicio/client" {
 			LeadFormSliceDefaultPrimary,
 			LeadFormSliceVariation,
 			LeadFormSliceDefault,
+			PageHeroSlice,
+			PageHeroSliceDefaultPrimary,
+			PageHeroSliceVariation,
+			PageHeroSliceDefault,
 			PostListSlice,
 			PostListSliceDefaultPrimary,
 			PostListSliceVariation,
@@ -2932,10 +3142,18 @@ declare module "@prismicio/client" {
 			ProductCardsSliceDefaultItem,
 			ProductCardsSliceVariation,
 			ProductCardsSliceDefault,
+			QuoteWithImageSlice,
+			QuoteWithImageSliceDefaultPrimary,
+			QuoteWithImageSliceVariation,
+			QuoteWithImageSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
 			RichTextSliceDefault,
+			SectionReferenceSlice,
+			SectionReferenceSliceDefaultPrimary,
+			SectionReferenceSliceVariation,
+			SectionReferenceSliceDefault,
 			StepsSlice,
 			StepsSliceDefaultPrimary,
 			StepsSliceDefaultItem,

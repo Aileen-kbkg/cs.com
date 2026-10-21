@@ -13,6 +13,7 @@ import FaqAccordion from "./FaqAccordion";
 import SectionReference from "./SectionReference"
 import CtaBanner from "./CtaBanner";
 import PageHero from "./PageHero";
+import QuoteWithImage from "./QuoteWithImage";
 
 export const components = {
 	hero: Hero,
@@ -30,4 +31,5 @@ export const components = {
 	section_reference: SectionReference,
 	cta_banner: CtaBanner,
 	page_hero: PageHero,
+	quote_with_image: QuoteWithImage,
 };
