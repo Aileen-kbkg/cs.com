@@ -1,37 +1,71 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { Content, isFilled } from "@prismicio/client";
+import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
-export type CalculatorProps = SliceComponentProps<Content.CalculatorSlice>;
+import styles from "./CtaBanner.module.css";
 
-const Calculator: FC<CalculatorProps> = ({ slice }) => {
-  const p = slice.primary;
-  return (
-    <section
-      id="calculator"
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="bg-slate-50"
-    >
-      <div className="mx-auto max-w-3xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">{p.title}</h2>
-        <div className="mt-3 text-slate-700">
-          <PrismicRichText field={p.intro} />
-        </div>
-        <details className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
-          <summary className="cursor-pointer font-semibold text-slate-900">
-            Supported property types
-          </summary>
-          <div className="mt-3 text-sm text-slate-700 [&_ul]:grid [&_ul]:gap-1 [&_ul]:sm:grid-cols-2 [&_li]:list-inside [&_li]:list-disc">
-            <PrismicRichText field={p.property_types} />
-          </div>
-        </details>
-        <div className="mt-6 text-xs text-slate-600">
-          <PrismicRichText field={p.disclaimer} />
-        </div>
-      </div>
-    </section>
-  );
+export type CtaBannerProps = SliceComponentProps<Content.CtaBannerSlice>;
+
+const ChevronRight = () => (
+	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+		<path
+			d="M9 5l7 7-7 7"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+);
+
+/**
+ * Closing call-to-action banner.
+ *
+ * `primary.style` picks the background: "brand" (navy, white text) is the
+ * default, with "light" and "dark" as alternatives.
+ */
+const CtaBanner = ({ slice }: CtaBannerProps) => {
+	const primary = slice.primary;
+
+	const styleName = (primary.style as string) || "brand";
+	const themeClass =
+		styleName === "light"
+			? styles.light
+			: styleName === "dark"
+				? styles.dark
+				: styles.brand;
+
+	return (
+		<section
+			className={`${styles.section} ${themeClass}`}
+			data-slice-type={slice.slice_type}
+			data-slice-variation={slice.variation}
+		>
+			<div className={styles.inner}>
+				{primary.title && <h2 className={styles.title}>{primary.title}</h2>}
+
+				{isFilled.richText(primary.text) && (
+					<div className={styles.text}>
+						<PrismicRichText field={primary.text} />
+					</div>
+				)}
+
+				{primary.cta_label && isFilled.link(primary.cta_link) && (
+					<PrismicNextLink field={primary.cta_link} className={styles.button}>
+						<span>{primary.cta_label}</span>
+						<span className={styles.buttonIcon}>
+							<ChevronRight />
+						</span>
+					</PrismicNextLink>
+				)}
+
+				{primary.small_print && (
+					<p className={styles.smallPrint}>{primary.small_print}</p>
+				)}
+			</div>
+		</section>
+	);
 };
 
-export default Calculator;
+export default CtaBanner;

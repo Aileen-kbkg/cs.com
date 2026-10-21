@@ -1,0 +1,80 @@
+/*
+ * Stay Connected — centred heading over a bordered card holding the
+ * HubSpot SMS signup form.
+ * Matched against https://www.costsegregation.com/stay-connected/
+ */
+.page {
+    --sc-navy: #284074;
+    --sc-text: #333333;
+    --sc-border: #dbe6f6;
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0px 70px 0px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--sc-text);
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+.header {
+    max-width: 1280px;
+    margin: 0 auto clamp(2rem, 4vw, 72px);
+    text-align: center;
+}
+
+.title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--sc-navy);
+    text-wrap: balance;
+}
+
+.subtitle {
+    margin: 0;
+    /* font-size: clamp(0.9375rem, 1.6vw, 1rem); */
+    line-height: 1.6;
+    color: var(--sc-text);
+}
+
+/* ---------------------------------------------------------------- */
+/* Form card                                                        */
+/* ---------------------------------------------------------------- */
+
+/* .formCard {
+    width: 100%;
+    padding: clamp(1.5rem, 3.5vw, 2.5rem);
+} */
+
+/* The embed renders inside an iframe, so only outer sizing is ours. */
+.formCard :global(.hs-form-frame) {
+    width: 100%;
+    min-height: 670px;
+}
+
+.formCard :global(iframe) {
+    width: 100% !important;
+    border: 0;
+}
+
+@media (max-width: 767px) {
+    .formCard {
+        padding: 1.25rem 1rem;
+        border-radius: 16px;
+    }
+
+    .formCard :global(.hs-form-frame) {
+        min-height: 760px;
+    }
+}

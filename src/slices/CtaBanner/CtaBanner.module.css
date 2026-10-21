@@ -1,0 +1,149 @@
+/*
+ * Closing call-to-action banner.
+ * Matched against the For Tax Advisors page: navy band, centred white
+ * heading, supporting line, blue button.
+ */
+.section {
+    --cta-navy: #284371;
+    --cta-blue: #277ce6;
+    --cta-band: #eef4fc;
+    --cta-text: #4a4a4a;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4vw, 1.5rem);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.section *,
+.section *::before,
+.section *::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Themes                                                           */
+/* ---------------------------------------------------------------- */
+
+.brand {
+    background: #284371;
+    color: #ffffff;
+}
+
+.dark {
+    background: #16284d;
+    color: #ffffff;
+}
+
+.light {
+    background: var(--cta-band);
+    color: var(--cta-text);
+}
+
+.inner {
+    max-width: 998px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 40px);
+    letter-spacing: -0.03em;
+    color: #FFFFFF;
+    margin: 0 0 18px;
+}
+
+.light .title {
+    color: var(--cta-navy);
+}
+
+.text p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #D4D9E3;
+    margin: 0 auto 30px;
+    max-width: 620px;
+}
+
+.light .text {
+    opacity: 1;
+}
+
+.text p {
+
+    overflow-wrap: break-word;
+}
+
+.text a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Button                                                           */
+/* ---------------------------------------------------------------- */
+
+.button {
+    background: #277CE6;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 1.2;
+    padding: 16px 32px;
+    border-radius: 6px;
+    display: inline-block;
+    max-width: 100%;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+.button:hover,
+.button:focus-visible {
+    background: #1f66c2;
+    color: #ffffff;
+}
+
+.button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.light .button:focus-visible {
+    outline-color: var(--cta-navy);
+}
+
+.buttonIcon {
+    display: flex;
+    align-items: center;
+}
+
+.buttonIcon svg {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.smallPrint {
+    margin: 1.25rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: inherit;
+    opacity: 0.75;
+}
+
+@media (max-width: 767px) {
+    .button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
