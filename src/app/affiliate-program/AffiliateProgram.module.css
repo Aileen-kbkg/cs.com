@@ -59,7 +59,7 @@
 }
 
 .title strong {
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .intro {
@@ -110,7 +110,7 @@
 }
 
 .formTitle strong {
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .formPanel {
@@ -170,6 +170,11 @@
         min-height: 700px;
     }
 
+    .formTitle {
+
+        white-space: normal;
+
+    }
 
 }
 
