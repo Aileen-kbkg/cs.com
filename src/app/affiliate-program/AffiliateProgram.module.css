@@ -105,6 +105,7 @@
     font-weight: 500;
     color: var(--ap-navy);
     text-align: center;
+    white-space: nowrap;
 
 }
 
