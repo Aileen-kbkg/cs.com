@@ -27,16 +27,30 @@ const ChevronRight = () => (
 );
 
 const MenuIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <rect x="2" y="5" width="20" height="2" rx="1" />
-    <rect x="2" y="11" width="20" height="2" rx="1" />
-    <rect x="2" y="17" width="20" height="2" rx="1" />
+  <svg
+    aria-hidden="true"
+    className="e-font-icon-svg e-fas-align-right"
+    viewBox="0 0 448 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="currentColor"
+      d="M16 224h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm416 192H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm3.17-384H172.83A12.82 12.82 0 0 0 160 44.83v38.34A12.82 12.82 0 0 0 172.83 96h262.34A12.82 12.82 0 0 0 448 83.17V44.83A12.82 12.82 0 0 0 435.17 32zm0 256H172.83A12.82 12.82 0 0 0 160 300.83v38.34A12.82 12.82 0 0 0 172.83 352h262.34A12.82 12.82 0 0 0 448 339.17v-38.34A12.82 12.82 0 0 0 435.17 288z"
+    />
   </svg>
 );
 
 const CloseIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M5.3 5.3a1 1 0 0 1 1.4 0L12 10.6l5.3-5.3a1 1 0 1 1 1.4 1.4L13.4 12l5.3 5.3a1 1 0 0 1-1.4 1.4L12 13.4l-5.3 5.3a1 1 0 0 1-1.4-1.4l5.3-5.3-5.3-5.3a1 1 0 0 1 0-1.4z" />
+  <svg
+    aria-hidden="true"
+    className="e-font-icon-svg e-fas-times"
+    viewBox="0 0 352 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="currentColor"
+      d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+    />
   </svg>
 );
 
@@ -116,10 +130,10 @@ export default function NavbarMenu({
             onBlur={
               hasChildren
                 ? (event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                      setOpenDropdown((current) => (current === index ? null : current));
-                    }
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                    setOpenDropdown((current) => (current === index ? null : current));
                   }
+                }
                 : undefined
             }
           >
@@ -174,15 +188,16 @@ export default function NavbarMenu({
 
         <button
           type="button"
-          className={styles.toggle}
-          aria-label="Open menu"
+          className={`${styles.toggle} cs-mobile-toggle`}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
           onClick={(event) => {
             event.stopPropagation();
-            setMobileOpen(true);
+            setMobileOpen((open) => !open);
           }}
         >
-          <MenuIcon />
+          {mobileOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </nav>
 
@@ -210,25 +225,16 @@ export default function NavbarMenu({
         </PrismicNextLink>
       )}
 
-      {/* Mobile sheet. Rendered only when open, so if it still does not
-          appear the markup is simply absent and the cause is state, not CSS. */}
+      {/* Mobile sheet. Rendered only when open */}
       {mobileOpen && (
         <div
-          className={styles.sheet}
+          id="mobile-navigation"
+          className={`${styles.sheet} cs-mobile-sheet`}
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
         >
           <div className={styles.sheetInner}>
-            <button
-              type="button"
-              className={styles.sheetClose}
-              aria-label="Close menu"
-              onClick={closeAll}
-            >
-              <CloseIcon />
-            </button>
-
             <ul className={styles.sheetMenu}>
               {items.map((item, index) => {
                 const hasChildren = item.children.length > 0;
@@ -251,9 +257,8 @@ export default function NavbarMenu({
                       {hasChildren && (
                         <button
                           type="button"
-                          className={`${styles.sheetCaret} ${
-                            isOpen ? styles.sheetCaretOpen : ""
-                          }`}
+                          className={`${styles.sheetCaret} ${isOpen ? styles.sheetCaretOpen : ""
+                            }`}
                           aria-label={`${item.label} submenu`}
                           aria-expanded={isOpen}
                           onClick={() => setOpenMobileSub(isOpen ? null : index)}

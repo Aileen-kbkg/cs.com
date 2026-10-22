@@ -1,10 +1,13 @@
 import { Content, isFilled, LinkField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 
 import NavbarMenu, { type NavItem } from "./NavbarMenu";
-import styles from "./Navbar.module.css";
+import './MainNavigation.css';
+import './Navbar.module.css';
+
 
 type NavbarProps = {
   /** Optional: pass the site_settings document if the layout already fetched it. */
@@ -16,13 +19,8 @@ const linkOrNull = (field: LinkField | undefined) => (field && isFilled.link(fie
 /**
  * Site header — matches the live costsegregation.com Elementor header (#11):
  * logo, horizontal menu with a Resources dropdown, Sign In / Get Started,
- * and a burger menu ≤1024px. Content comes from the `site_settings`
- * singleton.
- *
- * The promotional bar is NOT rendered here. It varies per page — different
- * copy on campaign pages, absent on others — and a layout cannot read the
- * current page's document. Pages that want one include the
- * `announcement_bar` slice as the first entry in their slice zone.
+ * burger menu ≤1024px, and the blue newsletter bar. Content comes from the
+ * `site_settings` singleton.
  */
 export default async function Navbar({ settings }: NavbarProps = {}) {
   const doc =
@@ -40,24 +38,29 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
       link: linkOrNull(item.link),
       children: item.has_dropdown
         ? [
-            { label: item.dropdown_label_1, link: linkOrNull(item.dropdown_link_1) },
-            { label: item.dropdown_label_2, link: linkOrNull(item.dropdown_link_2) },
-          ]
-            .filter((child) => child.label && child.link)
-            .map((child) => ({ label: child.label as string, link: child.link as LinkField }))
+          { label: item.dropdown_label_1, link: linkOrNull(item.dropdown_link_1) },
+          { label: item.dropdown_label_2, link: linkOrNull(item.dropdown_link_2) },
+        ]
+          .filter((child) => child.label && child.link)
+          .map((child) => ({ label: child.label as string, link: child.link as LinkField }))
         : [],
     }));
 
   return (
-    <header className={styles.header}>
-      <div className={styles.bar}>
-        <div className={styles.barInner}>
-          <div className={styles.logoBox}>
+
+    <header className="cs-header-wrapper">
+      <div className="cs-header__bar">
+        <div className="cs-header__bar-inner">
+          <div className="cs-header__logo-box">
             {isFilled.image(data.logo) && (
-              <a href="/" className={styles.logoLink} aria-label="CostSegregation.com home">
+              <a
+                href="/"
+                className="cs-header__logo-link"
+                aria-label="CostSegregation.com home"
+              >
                 <PrismicNextImage
                   field={data.logo}
-                  className={styles.logo}
+                  className="cs-header__logo"
                   sizes="205px"
                   priority
                   fallbackAlt=""
@@ -65,21 +68,34 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
               </a>
             )}
           </div>
+
           <NavbarMenu
             items={items}
             signIn={
               data.sign_in_label && linkOrNull(data.sign_in_link)
-                ? { label: data.sign_in_label, link: data.sign_in_link }
+                ? {
+                  label: data.sign_in_label,
+                  link: data.sign_in_link,
+                }
                 : null
             }
             getStarted={
               data.get_started_label && linkOrNull(data.get_started_link)
-                ? { label: data.get_started_label, link: data.get_started_link }
+                ? {
+                  label: data.get_started_label,
+                  link: data.get_started_link,
+                }
                 : null
             }
           />
         </div>
       </div>
+
+      {isFilled.richText(data.announcement) && (
+        <div className="cs-header__announcement">
+          <PrismicRichText field={data.announcement} />
+        </div>
+      )}
     </header>
   );
 }
