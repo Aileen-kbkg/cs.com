@@ -1070,10 +1070,11 @@
   color: #284074 !important;
   line-height: 1.2 !important;
   font-family: "Inter", sans-serif;
+}
 
-  @media (max-width: 768px) {
-    .root :global(h2.kbkg-estimator-title.kbkg-classic-title) {
-      font-size: 26px !important;
-      margin-bottom: 20px !important;
-    }
+@media (max-width: 768px) {
+  .root :global(h2.kbkg-estimator-title.kbkg-classic-title) {
+    font-size: 26px !important;
+    margin-bottom: 20px !important;
   }
+}

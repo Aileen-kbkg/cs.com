@@ -1,6 +1,5 @@
 import { Content, isFilled, LinkField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 
@@ -17,8 +16,13 @@ const linkOrNull = (field: LinkField | undefined) => (field && isFilled.link(fie
 /**
  * Site header — matches the live costsegregation.com Elementor header (#11):
  * logo, horizontal menu with a Resources dropdown, Sign In / Get Started,
- * burger menu ≤1024px, and the blue newsletter bar. Content comes from the
- * `site_settings` singleton.
+ * and a burger menu ≤1024px. Content comes from the `site_settings`
+ * singleton.
+ *
+ * The promotional bar is NOT rendered here. It varies per page — different
+ * copy on campaign pages, absent on others — and a layout cannot read the
+ * current page's document. Pages that want one include the
+ * `announcement_bar` slice as the first entry in their slice zone.
  */
 export default async function Navbar({ settings }: NavbarProps = {}) {
   const doc =
@@ -76,12 +80,6 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
           />
         </div>
       </div>
-
-      {isFilled.richText(data.announcement) && (
-        <div className={styles.announcement}>
-          <PrismicRichText field={data.announcement} />
-        </div>
-      )}
     </header>
   );
 }

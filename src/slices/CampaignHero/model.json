@@ -95,6 +95,27 @@
                         "allowTargetBlank": true,
                         "repeat": false
                     }
+                },
+                "counter_value": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Counter Value",
+                        "placeholder": "23600"
+                    }
+                },
+                "counter_heading": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Counter Heading",
+                        "placeholder": "Average First Year Tax Savings"
+                    }
+                },
+                "counter_footnote": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Counter Footnote",
+                        "placeholder": "*Based on $300,000 Building Purchase"
+                    }
                 }
             },
             "items": {}
