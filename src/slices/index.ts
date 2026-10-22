@@ -14,7 +14,7 @@ import SectionReference from "./SectionReference"
 import CtaBanner from "./CtaBanner";
 import PageHero from "./PageHero";
 import QuoteWithImage from "./QuoteWithImage";
-
+import CampaignHero from "./CampaignHero";
 export const components = {
 	hero: Hero,
 	feature_grid: FeatureGrid,
@@ -32,4 +32,6 @@ export const components = {
 	cta_banner: CtaBanner,
 	page_hero: PageHero,
 	quote_with_image: QuoteWithImage,
+	campaign_hero: CampaignHero,
+
 };

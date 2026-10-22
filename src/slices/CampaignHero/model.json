@@ -1,0 +1,103 @@
+{
+    "id": "campaign_hero",
+    "type": "SharedSlice",
+    "name": "CampaignHero",
+    "description": "Promotional hero with eyebrow, headline, sub-headline, badges, illustration and two CTAs",
+    "variations": [
+        {
+            "id": "default",
+            "name": "Default",
+            "docURL": "...",
+            "version": "initial",
+            "description": "Default",
+            "imageUrl": "",
+            "primary": {
+                "eyebrow": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Eyebrow",
+                        "placeholder": "Maximize Your Tax Savings"
+                    }
+                },
+                "heading": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Heading",
+                        "placeholder": "The Oct 15 Deadline is Quickly Approaching!…"
+                    }
+                },
+                "subheading": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Sub-heading",
+                        "placeholder": "Only Pay If You Like the Results"
+                    }
+                },
+                "text": {
+                    "type": "StructuredText",
+                    "config": {
+                        "label": "Text",
+                        "placeholder": "",
+                        "multi": "paragraph,strong,em,hyperlink",
+                        "allowTargetBlank": true
+                    }
+                },
+                "badges": {
+                    "type": "Group",
+                    "config": {
+                        "label": "Badges",
+                        "repeat": true,
+                        "fields": {
+                            "label": {
+                                "type": "Text",
+                                "config": {
+                                    "label": "Label",
+                                    "placeholder": "IRS Audit Ready"
+                                }
+                            }
+                        }
+                    }
+                },
+                "image": {
+                    "type": "Image",
+                    "config": {
+                        "label": "Image",
+                        "constraint": {},
+                        "thumbnails": []
+                    }
+                },
+                "cta_label": {
+                    "type": "Text",
+                    "config": {
+                        "label": "CTA label",
+                        "placeholder": "Estimate your tax savings Instantly"
+                    }
+                },
+                "cta_link": {
+                    "type": "Link",
+                    "config": {
+                        "label": "CTA link",
+                        "allowTargetBlank": true,
+                        "repeat": false
+                    }
+                },
+                "secondary_label": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Secondary link label",
+                        "placeholder": "Remind me about my promo code"
+                    }
+                },
+                "secondary_link": {
+                    "type": "Link",
+                    "config": {
+                        "label": "Secondary link",
+                        "allowTargetBlank": true,
+                        "repeat": false
+                    }
+                }
+            },
+            "items": {}
+        }
+    ]
+}
