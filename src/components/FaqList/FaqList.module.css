@@ -139,7 +139,7 @@
 .answer p {
     margin: 0 0 0.875rem;
     overflow-wrap: break-word;
-    color: #284074
+    color: #284074;
 }
 
 .answer p:last-child {
