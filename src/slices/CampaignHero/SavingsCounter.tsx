@@ -4,79 +4,82 @@ import { useEffect, useRef, useState } from "react";
 
 import styles from "./CampaignHero.module.css";
 
-const DURATION_MS = 4000;
-
 export type SavingsCounterProps = {
-	prefix?: string | null;
+	/** Numeric target, e.g. 23600. */
 	value: number;
-	suffix?: string | null;
-	heading?: string | null;
-	footnote?: string | null;
+	prefix?: string;
+	suffix?: string;
+	heading?: string;
+	footnote?: string;
+	/** Count-up duration in ms. The live page uses 4000. */
+	duration?: number;
 };
 
-/** easeOutExpo — fast start, long settle, matching the Elementor counter. */
-const ease = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
-
 /**
- * Counts up to `value` the first time the panel scrolls into view.
- * Honours prefers-reduced-motion by showing the final figure outright.
+ * Counts up to `value` once the panel scrolls into view, as the live
+ * Elementor counter does. Shows the final figure immediately when the
+ * visitor prefers reduced motion.
  */
 export default function SavingsCounter({
-	prefix,
 	value,
-	suffix,
+	prefix = "$",
+	suffix = "*",
 	heading,
 	footnote,
+	duration = 4000,
 }: SavingsCounterProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	const [display, setDisplay] = useState(0);
-	const started = useRef(false);
+	const [started, setStarted] = useState(false);
 
 	useEffect(() => {
 		const node = ref.current;
-		if (!node) return;
+		if (!node || started) return;
 
-		const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const reduced =
+			typeof window !== "undefined" &&
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 		if (reduced) {
 			setDisplay(value);
+			setStarted(true);
 			return;
 		}
 
-		let frame = 0;
-
-		const run = () => {
-			const start = performance.now();
-			const tick = (now: number) => {
-				const progress = Math.min((now - start) / DURATION_MS, 1);
-				setDisplay(Math.round(ease(progress) * value));
-				if (progress < 1) frame = requestAnimationFrame(tick);
-			};
-			frame = requestAnimationFrame(tick);
-		};
-
 		const observer = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting && !started.current) {
-						started.current = true;
-						run();
-						observer.disconnect();
-					}
-				});
+				if (entries[0]?.isIntersecting) {
+					setStarted(true);
+					observer.disconnect();
+				}
 			},
-			{ threshold: 0.4 },
+			{ threshold: 0.3 },
 		);
 
 		observer.observe(node);
+		return () => observer.disconnect();
+	}, [started, value]);
 
-		return () => {
-			cancelAnimationFrame(frame);
-			observer.disconnect();
+	useEffect(() => {
+		if (!started) return;
+
+		let frame = 0;
+		const start = performance.now();
+
+		const tick = (now: number) => {
+			const progress = Math.min((now - start) / duration, 1);
+			// easeOutExpo — fast then settling, matching the live counter
+			const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+			setDisplay(Math.round(value * eased));
+			if (progress < 1) frame = requestAnimationFrame(tick);
 		};
-	}, [value]);
+
+		frame = requestAnimationFrame(tick);
+		return () => cancelAnimationFrame(frame);
+	}, [started, value, duration]);
 
 	return (
-		<div className={styles.counter} ref={ref}>
+		<div className={styles.counterPanel} ref={ref}>
 			<p className={styles.counterNumber}>
 				{prefix && <span className={styles.counterPrefix}>{prefix}</span>}
 				<span>{display.toLocaleString("en-US")}</span>

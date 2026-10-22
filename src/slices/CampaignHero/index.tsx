@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { isFilled } from "@prismicio/client";
 import type {
 	ImageField,
@@ -116,7 +117,13 @@ const BadgeIcon = ({
 
 	return (
 		<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-			<g fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+			<g
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.7"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				{FALLBACK_BADGE_ICONS[index % FALLBACK_BADGE_ICONS.length]}
 			</g>
 		</svg>
@@ -125,16 +132,25 @@ const BadgeIcon = ({
 
 /**
  * Promotional hero — headline, sub-headline, supporting copy, trust
- * badges, a primary CTA and an optional secondary link, with an
- * illustration and an animated savings counter alongside.
+ * badges and CTAs on the left; the illustration sits as the section's
+ * background on the right, with the savings counter over it.
+ *
+ * The illustration is decorative, so a CSS background is appropriate —
+ * it carries no information the copy does not already state.
  */
 const CampaignHero = ({ slice }: CampaignHeroProps) => {
 	const primary = slice.primary;
 	const badges = primary.badges ?? [];
+	const imageUrl = isFilled.image(primary.image) ? primary.image.url : null;
+
+	const sectionStyle = imageUrl
+		? ({ "--ch-hero-image": `url("${imageUrl}")` } as CSSProperties)
+		: undefined;
 
 	return (
 		<section
-			className={styles.section}
+			className={`${styles.section} ${imageUrl ? styles.hasImage : ""}`}
+			style={sectionStyle}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
@@ -164,7 +180,10 @@ const CampaignHero = ({ slice }: CampaignHeroProps) => {
 					{badges.length > 0 && (
 						<ul className={styles.badges}>
 							{badges.map((badge, index) => (
-								<li key={`${badge.label ?? "badge"}-${index}`} className={styles.badge}>
+								<li
+									key={`${badge.label ?? "badge"}-${index}`}
+									className={styles.badge}
+								>
 									<span className={styles.badgeIcon}>
 										<BadgeIcon badge={badge} index={index} />
 									</span>
@@ -195,25 +214,16 @@ const CampaignHero = ({ slice }: CampaignHeroProps) => {
 					</div>
 				</div>
 
-				{isFilled.image(primary.image) && (
-					<div className={styles.media}>
-						<PrismicNextImage
-							field={primary.image}
-							className={styles.image}
-							sizes="(max-width: 1023px) 100vw, 50vw"
-							priority
-							fallbackAlt=""
-						/>
-
-						<SavingsCounter
-							value={Number(primary.counter_value) || 23600}
-							heading={primary.counter_heading || "Average First Year Tax Savings"}
-							footnote={
-								primary.counter_footnote || "*Based on $300,000 Building Purchase"
-							}
-						/>
-					</div>
-				)}
+				{/* Right column: holds the counter over the background artwork. */}
+				<div className={styles.media}>
+					<SavingsCounter
+						value={Number(primary.counter_value) || 23600}
+						heading={primary.counter_heading || "Average First Year Tax Savings"}
+						footnote={
+							primary.counter_footnote || "*Based on $300,000 Building Purchase"
+						}
+					/>
+				</div>
 			</div>
 		</section>
 	);

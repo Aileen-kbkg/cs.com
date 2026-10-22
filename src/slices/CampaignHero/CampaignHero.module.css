@@ -1,9 +1,13 @@
 /*
  * Promotional hero — matched against
  * https://www.costsegregation.com/rei-busyseason/
+ *
+ * The illustration is the section's background, anchored right. The
+ * right column is an empty box the same size, holding the counter over
+ * the artwork.
  */
 .section {
-    --ch-navy: #1f3a6e;
+    --ch-navy: #284074;
     --ch-blue: #277ce6;
     --ch-text: #4a4a4a;
     --ch-muted: #6b7280;
@@ -16,12 +20,24 @@
     --ch-gap: clamp(1.5rem, 4vw, 3rem);
 
     box-sizing: border-box;
+    position: relative;
     width: 100%;
-    padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1rem, 4vw, 1.5rem);
-    background: var(--ch-band);
+    padding: 122px 20px;
+    background-color: var(--ch-band);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     color: var(--ch-text);
+    overflow: hidden;
+}
+
+/* Illustration, supplied by the component as --ch-hero-image. */
+.hasImage {
+    background-image: var(--ch-hero-image);
+    /* background-position: right center;
+    background-size: 52% auto; */
+    background-position: 1050px 80px;
+    background-repeat: no-repeat;
+    background-size: 35% auto;
 }
 
 .section *,
@@ -39,21 +55,19 @@
 }
 
 .body {
-    flex: 0 0 calc(45% - var(--ch-gap) / 2);
+    flex: 1 1 90%;
     min-width: 0;
 }
 
+/* Empty column matching the background artwork; the counter sits in it.
+   The aspect ratio reserves height so the section does not collapse. */
 .media {
     position: relative;
-    flex: 0 0 calc(55% - var(--ch-gap) / 2);
+    flex: 1 1 50%;
     min-width: 0;
-}
-
-.image {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+    aspect-ratio: 889 / 694;
+    container-type: inline-size;
+    container-name: hero-media;
 }
 
 /* ---------------------------------------------------------------- */
@@ -69,7 +83,7 @@
     border-radius: 999px;
     background: #ffffff;
     color: var(--ch-navy);
-    font-size: 0.9375rem;
+    font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
     font-weight: 500;
     line-height: 1;
     box-shadow: 0 1px 3px rgba(31, 58, 110, 0.06);
@@ -91,24 +105,22 @@
 /* ---------------------------------------------------------------- */
 
 .heading {
-    margin: 0 0 0.875rem;
-    font-size: clamp(1.75rem, 3.4vw, 2.375rem);
-    line-height: 1.22;
+    font-family: "Inter", Sans-serif;
+    font-size: 36px;
     font-weight: 700;
-    color: var(--ch-navy);
-    text-wrap: balance;
+    line-height: 50px;
 }
 
 .subheading {
     margin: 0 0 1.125rem;
-    font-size: clamp(1.0625rem, 1.9vw, 1.3125rem);
+    font-size: clamp(1.0625rem, 1.8vw, 1.3125rem);
     line-height: 1.3;
     font-weight: 700;
     color: var(--ch-blue);
 }
 
 .text {
-    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
+    font-size: clamp(0.875rem, 1.3vw, 0.9375rem);
     line-height: 1.65;
     color: var(--ch-text);
 }
@@ -132,7 +144,7 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Badges — two columns, outline icons                              */
+/* Badges                                                           */
 /* ---------------------------------------------------------------- */
 
 .badges {
@@ -149,7 +161,7 @@
     align-items: center;
     gap: 0.625rem;
     min-width: 0;
-    font-size: 0.9375rem;
+    font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
     font-weight: 400;
     color: var(--ch-text);
 }
@@ -164,8 +176,12 @@
     color: var(--ch-blue);
 }
 
-.badgeIcon svg,
-.badgeIcon img {
+.badgeIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.badgeImage {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -191,7 +207,7 @@
     border-radius: 8px;
     background: var(--ch-cta-bg);
     color: var(--ch-cta-text);
-    font-size: 1.0625rem;
+    font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
     font-weight: 700;
     line-height: 1;
     text-decoration: none;
@@ -220,7 +236,7 @@
 }
 
 .secondary {
-    font-size: 0.9375rem;
+    font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
     font-weight: 600;
     color: var(--ch-muted);
     text-decoration: none;
@@ -233,34 +249,37 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Savings counter — glass panel over the illustration              */
+/* Savings counter — glass panel over the background artwork         */
 /* ---------------------------------------------------------------- */
 
 .counterPanel {
     position: absolute;
-    left: 50%;
-    top: 46%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 2;
-    min-width: 20rem;
-    padding: 1.5rem 2rem;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.62);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    width: 76cqw;
+    padding: 3.5cqw 4cqw;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     text-align: center;
+
 }
 
 .counterNumber {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    margin: 0 0 0.125rem;
-    font-size: clamp(2rem, 3.6vw, 3rem);
-    line-height: 1.05;
+    margin: 0 0 0.1em;
+    font-size: 11cqw;
+    line-height: 1.02;
     font-weight: 800;
     color: var(--ch-navy);
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 }
 
 .counterPrefix {
@@ -268,28 +287,48 @@
 }
 
 .counterSuffix {
-    font-size: 0.75em;
-    line-height: 1;
+    font-size: 0.7em;
+    line-height: 1.1;
 }
 
 .counterHeading {
-    margin: 0 0 0.25rem;
-    font-size: 1rem;
-    line-height: 1.35;
+    margin: 0 0 0.25em;
+    font-size: 3.1cqw;
+    line-height: 1.3;
     font-weight: 700;
     color: var(--ch-navy);
 }
 
 .counterFootnote {
     margin: 0;
-    font-size: 0.8125rem;
+    font-size: 2.6cqw;
     line-height: 1.4;
+    font-weight: 400;
     color: var(--ch-navy);
 }
 
-@supports not (backdrop-filter: blur(14px)) {
+@supports not (backdrop-filter: blur(18px)) {
     .counterPanel {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.88);
+    }
+}
+
+@supports not (container-type: inline-size) {
+    .counterPanel {
+        width: 76%;
+        padding: 1.5rem 1.75rem;
+    }
+
+    .counterNumber {
+        font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+    }
+
+    .counterHeading {
+        font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+    }
+
+    .counterFootnote {
+        font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
     }
 }
 
@@ -297,6 +336,7 @@
 /* Responsive                                                       */
 /* ---------------------------------------------------------------- */
 
+/* Tablet — stack, artwork moves to the bottom behind the counter box. */
 @media (max-width: 1023px) {
     .inner {
         flex-direction: column;
@@ -305,30 +345,43 @@
 
     .body,
     .media {
-        flex-basis: auto;
+        flex: 1 1 auto;
         width: 100%;
     }
 
-    /* Illustration below the copy on narrow screens. */
     .media {
         order: 1;
+        max-width: 620px;
+        margin: 0 auto;
     }
 
-    .counterPanel {
-        min-width: 0;
-        width: min(22rem, 86%);
-        padding: 1.25rem 1.5rem;
+    .hasImage {
+        background-position: center bottom;
+        background-size: 620px auto;
     }
 }
 
+/* Mobile — no background artwork; it would be unreadable at this size
+   and costs bandwidth for no benefit. The counter becomes a solid card. */
 @media (max-width: 639px) {
+    .hasImage {
+        background-image: none;
+    }
+
+    .media {
+        aspect-ratio: auto;
+        max-width: none;
+    }
+
     .badges {
         grid-template-columns: minmax(0, 1fr);
+        gap: 0.75rem;
     }
 
     .ctaRow {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.875rem;
     }
 
     .button {
@@ -340,18 +393,166 @@
         text-align: center;
     }
 
-    /* Below the illustration, where overlaying would crowd it. */
     .counterPanel {
         position: static;
         transform: none;
         width: 100%;
-        margin-top: 1rem;
-        background: rgba(255, 255, 255, 0.92);
+        padding: 1.25rem;
+        background: #ffffff;
+        border: 1px solid var(--ch-border);
+    }
+
+    .counterNumber {
+        font-size: clamp(2rem, 11vw, 2.75rem);
+    }
+
+    .counterHeading {
+        font-size: 1rem;
+    }
+
+    .counterFootnote {
+        font-size: 0.8125rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .button {
         transition: none;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+/* Tablet — stack, artwork behind the counter. */
+@media (max-width: 1023px) {
+    .section {
+        padding: clamp(2.5rem, 6vw, 4rem) 20px;
+    }
+
+    .inner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .body,
+    .media {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .media {
+        order: 1;
+        max-width: 620px;
+        margin: 0 auto;
+    }
+
+    .hasImage {
+        background-position: center bottom;
+        background-size: 620px auto;
+    }
+
+    .heading {
+        font-size: 30px;
+        line-height: 1.25;
+    }
+}
+
+/* Mobile — everything centred, artwork kept behind the counter. */
+@media (max-width: 639px) {
+    .section {
+        padding: 32px 20px 40px;
+    }
+
+    .body {
+        text-align: center;
+    }
+
+    .heading {
+        font-size: 22px;
+        line-height: 1.3;
+        margin: 0 0 0.5rem;
+    }
+
+    .subheading {
+        font-size: 15px;
+        margin-bottom: 0.75rem;
+    }
+
+    .text {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    /* Two columns still, centred as a block. */
+    .badges {
+        grid-template-columns: repeat(2, auto);
+        justify-content: center;
+        gap: 0.5rem 1.25rem;
+        margin-top: 1.125rem;
+    }
+
+    .badge {
+        font-size: 11px;
+        gap: 0.375rem;
+    }
+
+    .badgeIcon {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    /* Auto width, centred — not a full-width block. */
+    .ctaRow {
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+    }
+
+    .button {
+        width: auto;
+        padding: 0.75rem 1.125rem;
+        font-size: 13px;
+    }
+
+    .secondary {
+        font-size: 12px;
+    }
+
+    /* Artwork stays, scaled to sit behind the counter. */
+    .media {
+        order: 1;
+        max-width: 320px;
+        aspect-ratio: 889 / 694;
+        margin: 1rem auto 0;
+    }
+
+    .hasImage {
+        background-position: center bottom 24px;
+        background-size: 320px auto;
+    }
+
+    .counterPanel {
+        border: 1px solid var(--ch-border);
+        background: #fff;
+        width: 100%;
+        padding: 1.25rem;
+        position: static;
+        transform: none;
+        backdrop-filter: blur(10px);
+        padding: 4cqw;
+    }
+
+    * .counterNumber {
+        font-size: 13cqw;
+    }
+
+    .counterHeading {
+        font-size: 3.6cqw;
+    }
+
+    .counterFootnote {
+        font-size: 3cqw;
     }
 }
