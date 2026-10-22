@@ -7,7 +7,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 60px 10px;
+  padding: 10px 20px 60px 20px;
   background-color: #f4f7fb;
 
 }
@@ -87,6 +87,7 @@
 .root :global(.kbkg-estimator-form) {
   flex: 1 1 0% !important;
   min-width: 0px !important;
+  padding: 40px;
 }
 
 .root :global(.kbkg-field-group) {
@@ -345,7 +346,7 @@
   flex-direction: column !important;
   gap: 20px !important;
   padding-top: 8px !important;
-  border-left: 1px solid rgb(226, 232, 240) !important;
+  /* border-left: 1px solid rgb(226, 232, 240) !important; */
   padding-left: 40px !important;
 }
 
@@ -892,3 +893,187 @@
     font-size: 20px !important;
   }
 }
+
+/* ================================================================
+   CLASSIC VARIANT
+   Append to src/slices/Calculator/Calculator.module.css
+
+   Plain labels, Property Type before Date, illustration plus a single
+   message panel, blue button. Everything not overridden here inherits
+   the default estimator styles above.
+   ================================================================ */
+
+.root :global(.kbkg-estimator-wrapper.kbkg-classic) {
+  padding: 15px !important;
+  border-radius: 12px !important;
+}
+
+/* Centred navy heading, larger than the default. */
+.root :global(.kbkg-classic h2.kbkg-estimator-title) {
+  font-size: 34px !important;
+  font-weight: 800 !important;
+  color: rgb(31, 58, 110) !important;
+  margin-bottom: 36px !important;
+}
+
+/* Labels have no icons in this variant. */
+.root :global(.kbkg-classic .kbkg-field-label) {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: rgb(31, 58, 110) !important;
+  margin-bottom: 8px !important;
+}
+
+.root :global(.kbkg-classic .kbkg-field-input),
+.root :global(.kbkg-classic .kbkg-field-select) {
+  padding: 13px 14px !important;
+  font-size: 15px !important;
+  border-radius: 6px !important;
+}
+
+.root :global(.kbkg-classic .kbkg-input-with-prefix .kbkg-field-input) {
+  padding-left: 28px !important;
+}
+
+.root :global(.kbkg-classic .kbkg-input-prefix) {
+  left: 12px !important;
+  font-size: 15px !important;
+  color: rgb(30, 41, 59) !important;
+}
+
+.root :global(.kbkg-classic .kbkg-toggle-label) {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: rgb(31, 58, 110) !important;
+}
+
+/* The toggle sits under its label rather than beside it. */
+.root :global(.kbkg-classic .kbkg-toggle-row) {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  margin-bottom: 28px !important;
+}
+
+/* Blue button with a chevron, not navy. */
+.root :global(.kbkg-classic button.kbkg-submit-btn) {
+  background: #2a7be4 !important;
+  font-size: 16px !important;
+  color: #ffffff;
+  text-decoration: none !important;
+  font-family: "Inter", Sans-serif !important;
+  font-weight: bold;
+  text-transform: capitalize;
+  border: none;
+  border-radius: 8px;
+  /* padding: 12px 16px; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+  height: 46px;
+}
+
+.root :global(.kbkg-classic button.kbkg-submit-btn:hover) {
+  background: #284074 !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* Results column — illustration + single panel, no divider          */
+/* ---------------------------------------------------------------- */
+
+.root :global(.kbkg-classic .kbkg-classic-results) {
+  display: flex;
+  min-height: auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 40px !important;
+}
+
+.root :global(.kbkg-classic-illustration) {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  margin: 0 auto 8px !important;
+}
+
+.root :global(.kbkg-classic-results-title) {
+  font-size: clamp(1.17rem, 1.03rem + 0.59vw, 1.56rem);
+  color: #333333;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.root :global(.kbkg-classic-panel) {
+  display: flex;
+  min-height: 72px;
+  margin: 0;
+  padding: 5px !important;
+  background-color: #F0F6FD;
+  width: 96%;
+  text-align: left;
+  align-items: center;
+}
+
+.root :global(.kbkg-classic-panel-filled) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.root :global(.kbkg-classic-row) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.root :global(.kbkg-classic-row-label) {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #284074 !important;
+}
+
+.root :global(.kbkg-classic-row-value) {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: rgb(22, 163, 74) !important;
+  line-height: 1.2 !important;
+}
+
+@media (max-width: 768px) {
+  .root :global(.kbkg-estimator-wrapper.kbkg-classic) {
+    padding: 24px 18px 20px !important;
+  }
+
+  .root :global(.kbkg-classic h2.kbkg-estimator-title) {
+    font-size: 24px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .root :global(.kbkg-classic-results-title) {
+    font-size: 20px !important;
+  }
+}
+
+/* Classic renders its heading above the card, not inside it. */
+.root :global(h2.kbkg-estimator-title.kbkg-classic-title) {
+  max-width: 1280px !important;
+  margin: 0 auto 28px !important;
+  text-align: center !important;
+  font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
+  font-weight: 700 !important;
+  color: #284074 !important;
+  line-height: 1.2 !important;
+  font-family: "Inter", sans-serif;
+
+  @media (max-width: 768px) {
+    .root :global(h2.kbkg-estimator-title.kbkg-classic-title) {
+      font-size: 26px !important;
+      margin-bottom: 20px !important;
+    }
+  }

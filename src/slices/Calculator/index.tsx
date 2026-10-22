@@ -1,7 +1,8 @@
 import { asText, Content, isFilled, KeyTextField, RichTextField } from "@prismicio/client";
+import type { ImageField } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
-import Estimator, { type EstimatorContent } from "./Estimator";
+import Estimator, { type EstimatorContent, type EstimatorVariant } from "./Estimator";
 import styles from "./Calculator.module.css";
 
 /**
@@ -12,6 +13,8 @@ export type CalculatorProps = SliceComponentProps<Content.CalculatorSlice>;
 /**
  * Fields added to the model for the live estimator. Optional so this file
  * compiles before and after `prismicio-types.d.ts` is regenerated.
+ *
+ * `results_title` and `image` are used by the `classic` variation only.
  */
 type Extras = {
   estimate_button_label?: KeyTextField;
@@ -26,6 +29,8 @@ type Extras = {
   contact_button_label?: KeyTextField;
   short_term_rental_types?: RichTextField;
   discovery_sources?: RichTextField;
+  results_title?: KeyTextField;
+  image?: ImageField;
 };
 
 type Primary = Omit<Content.CalculatorSlice["primary"], keyof Extras> & Extras;
@@ -55,6 +60,7 @@ const LIVE_DEFAULTS = {
   contactText:
     "Enter your info to instantly view your results! We'll also email you a detailed summary of tax benefits for your records.",
   contactButtonLabel: "View My Estimate",
+  resultsTitle: "Estimated Savings",
   shortTermRentalTypes: [
     "Single Family Home",
     "Townhouse",
@@ -96,6 +102,9 @@ const listOr = (field: RichTextField | undefined, fallback: string[]) => {
 const Calculator = ({ slice }: CalculatorProps) => {
   const p = slice.primary as Primary;
 
+  const variant: EstimatorVariant =
+    (slice.variation as string) === "classic" ? "classic" : "default";
+
   const d = LIVE_DEFAULTS;
   const content: EstimatorContent = {
     title: p.title,
@@ -117,6 +126,11 @@ const Calculator = ({ slice }: CalculatorProps) => {
     contactTitle: p.contact_title || d.contactTitle,
     contactText: p.contact_text || d.contactText,
     contactButtonLabel: p.contact_button_label || d.contactButtonLabel,
+    resultsTitle: p.results_title || d.resultsTitle,
+    image:
+      p.image && isFilled.image(p.image)
+        ? { url: p.image.url as string, alt: p.image.alt || "" }
+        : null,
   };
 
   return (
@@ -127,7 +141,7 @@ const Calculator = ({ slice }: CalculatorProps) => {
       data-slice-variation={slice.variation}
     >
       <div className={styles.inner}>
-        <Estimator content={content} />
+        <Estimator content={content} variant={variant} />
       </div>
     </section>
   );

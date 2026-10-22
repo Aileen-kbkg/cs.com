@@ -33,6 +33,18 @@ const MONTHS = [
   "December",
 ];
 
+/**
+ * "default" — the current homepage layout: icon labels, Date before
+ * Property Type, two green result cards, navy button.
+ *
+ * "classic" — the older landing-page layout: plain labels, Property Type
+ * before Date, illustration and a single message panel, blue button.
+ *
+ * Both share all state, validation, the API call, the contact gate, the
+ * HubSpot submission and the email flow.
+ */
+export type EstimatorVariant = "default" | "classic";
+
 export type EstimatorContent = {
   title: string | null;
   intro: ReactNode;
@@ -53,6 +65,10 @@ export type EstimatorContent = {
   contactTitle: string;
   contactText: string;
   contactButtonLabel: string;
+  /** classic only — heading above the message panel. */
+  resultsTitle?: string;
+  /** classic only — illustration above the results panel. */
+  image?: { url: string; alt: string } | null;
 };
 
 type Result = { low: number; high: number };
@@ -156,7 +172,15 @@ const SendIcon = () => (
  * Tax savings estimator — same fields, validation, API call, contact gate,
  * HubSpot submission and email flow as the live costsegregation.com widget.
  */
-export default function Estimator({ content }: { content: EstimatorContent }) {
+export default function Estimator({
+  content,
+  variant = "default",
+}: {
+  content: EstimatorContent;
+  variant?: EstimatorVariant;
+}) {
+  const classic = variant === "classic";
+
   const [address, setAddress] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
@@ -389,193 +413,334 @@ export default function Estimator({ content }: { content: EstimatorContent }) {
 
   const errorClass = (show: boolean) => (show ? " kbkg-input-error" : "");
 
-  return (
-    <>
-      <div className="kbkg-estimator-wrapper">
-        {content.title && <h2 className="kbkg-estimator-title">{content.title}</h2>}
-        {content.intro}
-        <div className="kbkg-estimator-body">
+  /* ---------------------------------------------------------------- */
+  /* Fields — declared once, ordered per variant below                */
+  /* ---------------------------------------------------------------- */
+
+  const addressField = (
+    <div className="kbkg-field-group" key="address">
+      <label className="kbkg-field-label" htmlFor="kbkg-address">
+        {!classic && (
+          <Svg className="kbkg-icon">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </Svg>
+        )}{" "}
+        {classic ? "Address" : "Property Address"}
+      </label>
+      <input
+        type="text"
+        className={"kbkg-field-input" + errorClass(errors.address)}
+        id="kbkg-address"
+        placeholder={classic ? "Property Address" : "123 Main Street, City, State"}
+        autoComplete="street-address"
+        value={address}
+        onChange={(event) => {
+          setAddress(event.target.value);
+          setErrors((prev) => ({ ...prev, address: false }));
+          resetResults();
+        }}
+      />
+      <div className={"kbkg-field-error" + (errors.address ? " kbkg-visible" : "")}>
+        Please enter a property address.
+      </div>
+    </div>
+  );
+
+  const priceField = (
+    <div className="kbkg-field-group" key="price">
+      <label className="kbkg-field-label" htmlFor="kbkg-price">
+        {!classic && (
+          <Svg className="kbkg-icon">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </Svg>
+        )}{" "}
+        Purchase Price (Less Land)
+      </label>
+      <div className="kbkg-input-with-prefix">
+        <span className="kbkg-input-prefix">$</span>
+        <input
+          type="text"
+          className={"kbkg-field-input" + errorClass(errors.price)}
+          id="kbkg-price"
+          placeholder={classic ? "0" : "1,500,000"}
+          inputMode="numeric"
+          value={price}
+          onChange={(event) => {
+            setPrice(formatPriceInput(event.target.value));
+            setErrors((prev) => ({ ...prev, price: false }));
+            resetResults();
+          }}
+        />
+      </div>
+      <div className={"kbkg-field-error" + (errors.price ? " kbkg-visible" : "")}>
+        Please enter a valid purchase price.
+      </div>
+    </div>
+  );
+
+  const dateField = (
+    <div className="kbkg-field-group" key="date">
+      <label className="kbkg-field-label" htmlFor="kbkg-date">
+        {!classic && (
+          <Svg className="kbkg-icon">
+            <CalendarPaths />
+          </Svg>
+        )}{" "}
+        Date of Purchase
+      </label>
+      <div className="kbkg-date-wrapper">
+        <input
+          type="text"
+          className={"kbkg-field-input kbkg-date-input" + errorClass(errors.date)}
+          id="kbkg-date"
+          placeholder={classic ? "mm/dd/yyyy" : "MM/DD/YYYY"}
+          maxLength={10}
+          autoComplete="off"
+          data-lpignore="true"
+          data-form-type="other"
+          value={date}
+          onChange={(event) => {
+            setDate(formatDateInput(event.target.value));
+            setErrors((prev) => ({ ...prev, date: false }));
+            resetResults();
+          }}
+          onBlur={() => {
+            const value = date.trim();
+            setErrors((prev) => ({
+              ...prev,
+              date: value ? !isValidDateString(value) : false,
+            }));
+          }}
+        />
+        <button
+          type="button"
+          className="kbkg-date-cal-btn"
+          title="Open calendar"
+          onClick={(event) => {
+            event.preventDefault();
+            const hidden = dateHiddenRef.current;
+            if (!hidden) return;
+            if (typeof hidden.showPicker === "function") hidden.showPicker();
+            else hidden.click();
+          }}
+        >
+          <Svg>
+            <CalendarPaths />
+          </Svg>
+        </button>
+        <input
+          ref={dateHiddenRef}
+          type="date"
+          style={{
+            position: "absolute",
+            opacity: 0,
+            width: 0,
+            height: 0,
+            overflow: "hidden",
+            pointerEvents: "none",
+          }}
+          tabIndex={-1}
+          aria-hidden="true"
+          onChange={(event) => {
+            const parts = event.target.value.split("-");
+            if (parts.length === 3) {
+              setDate(`${parts[1]}/${parts[2]}/${parts[0]}`);
+              setErrors((prev) => ({ ...prev, date: false }));
+              resetResults();
+            }
+          }}
+        />
+      </div>
+      <div className={"kbkg-field-error" + (errors.date ? " kbkg-visible" : "")}>
+        Please enter a valid date (MM/DD/YYYY).
+      </div>
+    </div>
+  );
+
+  const typeField = (
+    <div className="kbkg-field-group" key="type">
+      <label className="kbkg-field-label" htmlFor="kbkg-property-type">
+        {!classic && (
+          <Svg className="kbkg-icon">
+            <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+            <line x1="9" y1="6" x2="9" y2="6.01" />
+            <line x1="15" y1="6" x2="15" y2="6.01" />
+            <line x1="9" y1="10" x2="9" y2="10.01" />
+            <line x1="15" y1="10" x2="15" y2="10.01" />
+            <line x1="9" y1="14" x2="9" y2="14.01" />
+            <line x1="15" y1="14" x2="15" y2="14.01" />
+            <line x1="9" y1="18" x2="15" y2="18" />
+          </Svg>
+        )}{" "}
+        Property Type
+      </label>
+      <select
+        className={"kbkg-field-select" + errorClass(errors.type)}
+        id="kbkg-property-type"
+        value={propertyType}
+        onChange={(event) => {
+          const value = event.target.value;
+          setPropertyType(value);
+          setErrors((prev) => ({ ...prev, type: false }));
+          const visible = content.shortTermRentalTypes.includes(value);
+          setStrVisible(visible);
+          if (!visible) setShortTerm(false);
+          resetResults();
+        }}
+      >
+        <option value="" disabled>
+          Select property type...
+        </option>
+        {content.propertyTypes.map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+      <div className={"kbkg-field-error" + (errors.type ? " kbkg-visible" : "")}>
+        Please select a property type.
+      </div>
+    </div>
+  );
+
+  // classic puts Property Type before Date; default is the reverse.
+  const fields = classic
+    ? [addressField, priceField, typeField, dateField]
+    : [addressField, priceField, dateField, typeField];
+
+  /* ---------------------------------------------------------------- */
+  /* Results panel                                                    */
+  /* ---------------------------------------------------------------- */
+
+  const defaultResults = (
+    <div className="kbkg-estimator-results" aria-live="polite">
+      <div className="kbkg-result-card">
+        <div className="kbkg-result-header">
+          <div className="kbkg-result-icon">
+            <Svg>
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </Svg>
+          </div>
+          <span className="kbkg-result-label">{content.deductionsLabel}</span>
+        </div>
+        <div className="kbkg-result-value">{deductionsText}</div>
+        <div className="kbkg-result-description">{content.deductionsDescription}</div>
+      </div>
+
+      <div className="kbkg-result-card">
+        <div className="kbkg-result-header">
+          <div className="kbkg-result-icon">
+            <Svg>
+              <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2" />
+              <circle cx="9" cy="12" r="1" />
+            </Svg>
+          </div>
+          <span className="kbkg-result-label">{content.savingsLabel}</span>
+        </div>
+        <div className="kbkg-result-value">{savingsText}</div>
+        <div className="kbkg-result-assumption">{result ? content.savingsNote : ""}</div>
+      </div>
+
+      <button
+        type="button"
+        className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
+        onClick={openEmailModal}
+      >
+        <Svg>
+          <MailPaths />
+        </Svg>{" "}
+        {content.emailButtonLabel}
+      </button>
+
+      {apiError ? (
+        <div className="kbkg-error-msg">{apiError}</div>
+      ) : (
+        !result && <div className="kbkg-results-helper">{content.helperText}</div>
+      )}
+
+      <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
+        {content.disclaimer}
+      </div>
+    </div>
+  );
+
+  const classicResults = (
+    <div className="kbkg-estimator-results kbkg-classic-results" aria-live="polite">
+      {content.image?.url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          className="kbkg-classic-illustration"
+          src={content.image.url}
+          alt={content.image.alt || ""}
+        />
+      )}
+
+      <h3 className="kbkg-classic-results-title">
+        {content.resultsTitle || "Estimated Savings"}
+      </h3>
+
+      {result ? (
+        <div className="kbkg-classic-panel kbkg-classic-panel-filled">
+          <div className="kbkg-classic-row">
+            <span className="kbkg-classic-row-label">{content.deductionsLabel}</span>
+            <span className="kbkg-classic-row-value">{deductionsText}</span>
+          </div>
+          <div className="kbkg-classic-row">
+            <span className="kbkg-classic-row-label">{content.savingsLabel}</span>
+            <span className="kbkg-classic-row-value">{savingsText}</span>
+          </div>
+        </div>
+      ) : (
+        <div className="kbkg-classic-panel">{apiError || content.helperText}</div>
+      )}
+
+      <button
+        type="button"
+        className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
+        onClick={openEmailModal}
+      >
+        <Svg>
+          <MailPaths />
+        </Svg>{" "}
+        {content.emailButtonLabel}
+      </button>
+
+      <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
+        {content.disclaimer}
+      </div>
+    </div>
+  );
+
+return (
+  <>
+    {classic && content.title && (
+      <h2 className="kbkg-estimator-title kbkg-classic-title">{content.title}</h2>
+    )}
+
+    <div className={"kbkg-estimator-wrapper" + (classic ? " kbkg-classic" : "")}>
+      {!classic && content.title && (
+        <h2 className="kbkg-estimator-title">{content.title}</h2>
+      )}
+      {content.intro}
+      <div className="kbkg-estimator-body">
           {/* LEFT: Form */}
           <div className="kbkg-estimator-form">
-            <div className="kbkg-field-group">
-              <label className="kbkg-field-label" htmlFor="kbkg-address">
-                <Svg className="kbkg-icon">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </Svg>{" "}
-                Property Address
-              </label>
-              <input
-                type="text"
-                className={"kbkg-field-input" + errorClass(errors.address)}
-                id="kbkg-address"
-                placeholder="123 Main Street, City, State"
-                autoComplete="street-address"
-                value={address}
-                onChange={(event) => {
-                  setAddress(event.target.value);
-                  setErrors((prev) => ({ ...prev, address: false }));
-                  resetResults();
-                }}
-              />
-              <div className={"kbkg-field-error" + (errors.address ? " kbkg-visible" : "")}>
-                Please enter a property address.
-              </div>
-            </div>
-
-            <div className="kbkg-field-group">
-              <label className="kbkg-field-label" htmlFor="kbkg-price">
-                <Svg className="kbkg-icon">
-                  <line x1="12" y1="1" x2="12" y2="23" />
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                </Svg>{" "}
-                Purchase Price (Less Land)
-              </label>
-              <div className="kbkg-input-with-prefix">
-                <span className="kbkg-input-prefix">$</span>
-                <input
-                  type="text"
-                  className={"kbkg-field-input" + errorClass(errors.price)}
-                  id="kbkg-price"
-                  placeholder="1,500,000"
-                  inputMode="numeric"
-                  value={price}
-                  onChange={(event) => {
-                    setPrice(formatPriceInput(event.target.value));
-                    setErrors((prev) => ({ ...prev, price: false }));
-                    resetResults();
-                  }}
-                />
-              </div>
-              <div className={"kbkg-field-error" + (errors.price ? " kbkg-visible" : "")}>
-                Please enter a valid purchase price.
-              </div>
-            </div>
-
-            <div className="kbkg-field-group">
-              <label className="kbkg-field-label" htmlFor="kbkg-date">
-                <Svg className="kbkg-icon">
-                  <CalendarPaths />
-                </Svg>{" "}
-                Date of Purchase
-              </label>
-              <div className="kbkg-date-wrapper">
-                <input
-                  type="text"
-                  className={"kbkg-field-input kbkg-date-input" + errorClass(errors.date)}
-                  id="kbkg-date"
-                  placeholder="MM/DD/YYYY"
-                  maxLength={10}
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  value={date}
-                  onChange={(event) => {
-                    setDate(formatDateInput(event.target.value));
-                    setErrors((prev) => ({ ...prev, date: false }));
-                    resetResults();
-                  }}
-                  onBlur={() => {
-                    const value = date.trim();
-                    setErrors((prev) => ({
-                      ...prev,
-                      date: value ? !isValidDateString(value) : false,
-                    }));
-                  }}
-                />
-                <button
-                  type="button"
-                  className="kbkg-date-cal-btn"
-                  title="Open calendar"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    const hidden = dateHiddenRef.current;
-                    if (!hidden) return;
-                    if (typeof hidden.showPicker === "function") hidden.showPicker();
-                    else hidden.click();
-                  }}
-                >
-                  <Svg>
-                    <CalendarPaths />
-                  </Svg>
-                </button>
-                <input
-                  ref={dateHiddenRef}
-                  type="date"
-                  style={{
-                    position: "absolute",
-                    opacity: 0,
-                    width: 0,
-                    height: 0,
-                    overflow: "hidden",
-                    pointerEvents: "none",
-                  }}
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  onChange={(event) => {
-                    const parts = event.target.value.split("-");
-                    if (parts.length === 3) {
-                      setDate(`${parts[1]}/${parts[2]}/${parts[0]}`);
-                      setErrors((prev) => ({ ...prev, date: false }));
-                      resetResults();
-                    }
-                  }}
-                />
-              </div>
-              <div className={"kbkg-field-error" + (errors.date ? " kbkg-visible" : "")}>
-                Please enter a valid date (MM/DD/YYYY).
-              </div>
-            </div>
-
-            <div className="kbkg-field-group">
-              <label className="kbkg-field-label" htmlFor="kbkg-property-type">
-                <Svg className="kbkg-icon">
-                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-                  <line x1="9" y1="6" x2="9" y2="6.01" />
-                  <line x1="15" y1="6" x2="15" y2="6.01" />
-                  <line x1="9" y1="10" x2="9" y2="10.01" />
-                  <line x1="15" y1="10" x2="15" y2="10.01" />
-                  <line x1="9" y1="14" x2="9" y2="14.01" />
-                  <line x1="15" y1="14" x2="15" y2="14.01" />
-                  <line x1="9" y1="18" x2="15" y2="18" />
-                </Svg>{" "}
-                Property Type
-              </label>
-              <select
-                className={"kbkg-field-select" + errorClass(errors.type)}
-                id="kbkg-property-type"
-                value={propertyType}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setPropertyType(value);
-                  setErrors((prev) => ({ ...prev, type: false }));
-                  const visible = content.shortTermRentalTypes.includes(value);
-                  setStrVisible(visible);
-                  if (!visible) setShortTerm(false);
-                  resetResults();
-                }}
-              >
-                <option value="" disabled>
-                  Select property type...
-                </option>
-                {content.propertyTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-              <div className={"kbkg-field-error" + (errors.type ? " kbkg-visible" : "")}>
-                Please select a property type.
-              </div>
-            </div>
+            {fields}
 
             <div className={"kbkg-toggle-row" + (strVisible ? "" : " kbkg-hidden")}>
               <span className="kbkg-toggle-label">
-                <Svg className="kbkg-icon">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </Svg>{" "}
-                Is this a Short-Term or Vacation Rental?
+                {!classic && (
+                  <Svg className="kbkg-icon">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </Svg>
+                )}{" "}
+                {classic
+                  ? "Is the Property a Short-Term or Vacation Rental?"
+                  : "Is this a Short-Term or Vacation Rental?"}
               </span>
               <div className="kbkg-toggle-control">
                 <label className="kbkg-toggle">
@@ -602,60 +767,12 @@ export default function Estimator({ content }: { content: EstimatorContent }) {
               disabled={calculating}
             >
               {calculating ? "Calculating..." : content.estimateButtonLabel}
+              {classic && " ›"}
             </button>
           </div>
 
-          {/* RIGHT: Result cards */}
-          <div className="kbkg-estimator-results" aria-live="polite">
-            <div className="kbkg-result-card">
-              <div className="kbkg-result-header">
-                <div className="kbkg-result-icon">
-                  <Svg>
-                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                    <polyline points="17 6 23 6 23 12" />
-                  </Svg>
-                </div>
-                <span className="kbkg-result-label">{content.deductionsLabel}</span>
-              </div>
-              <div className="kbkg-result-value">{deductionsText}</div>
-              <div className="kbkg-result-description">{content.deductionsDescription}</div>
-            </div>
-
-            <div className="kbkg-result-card">
-              <div className="kbkg-result-header">
-                <div className="kbkg-result-icon">
-                  <Svg>
-                    <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2" />
-                    <circle cx="9" cy="12" r="1" />
-                  </Svg>
-                </div>
-                <span className="kbkg-result-label">{content.savingsLabel}</span>
-              </div>
-              <div className="kbkg-result-value">{savingsText}</div>
-              <div className="kbkg-result-assumption">{result ? content.savingsNote : ""}</div>
-            </div>
-
-            <button
-              type="button"
-              className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
-              onClick={openEmailModal}
-            >
-              <Svg>
-                <MailPaths />
-              </Svg>{" "}
-              {content.emailButtonLabel}
-            </button>
-
-            {apiError ? (
-              <div className="kbkg-error-msg">{apiError}</div>
-            ) : (
-              !result && <div className="kbkg-results-helper">{content.helperText}</div>
-            )}
-
-            <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
-              {content.disclaimer}
-            </div>
-          </div>
+          {/* RIGHT: Results */}
+          {classic ? classicResults : defaultResults}
         </div>
       </div>
 
