@@ -1,0 +1,131 @@
+/*
+ * Empowered Investor partner landing page.
+ * Hero is two columns: headline left, welcome copy right.
+ */
+.page {
+    --ei-navy: #1f3a6e;
+    --ei-blue: #277ce6;
+    --ei-red: #d4341f;
+    --ei-text: #4a4a4a;
+    --ei-band: #f4f8fd;
+
+    box-sizing: border-box;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ei-text);
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero                                                             */
+/* ---------------------------------------------------------------- */
+
+.hero {
+    width: 100%;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1rem, 4vw, 1.5rem) 0;
+    background: #ffffff;
+}
+
+.heroInner {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.heroHeadline {
+    flex: 1 1 46%;
+    min-width: 0;
+}
+
+.heroIntro {
+    flex: 1 1 54%;
+    min-width: 0;
+    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+    line-height: 1.6;
+    color: var(--ei-text);
+    padding-top: 0.75rem;
+}
+
+.heroIntro p {
+    margin: 0 0 1rem;
+    overflow-wrap: break-word;
+}
+
+.heroIntro p:last-child {
+    margin-bottom: 0;
+}
+
+/* Partner names are emphasised in the live copy. */
+.heroIntro strong {
+    font-weight: 700;
+    color: var(--ei-red);
+}
+
+.heroIntro a {
+    color: var(--ei-blue);
+    text-decoration: none;
+}
+
+.heroIntro a:hover {
+    text-decoration: underline;
+}
+
+.eyebrow {
+    margin: 0 0 0.625rem;
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ei-navy);
+}
+
+.heading {
+    margin: 0;
+    font-size: clamp(1.625rem, 3.4vw, 2.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--ei-navy);
+    text-wrap: balance;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    .heroInner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+    }
+
+    .heroHeadline,
+    .heroIntro {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .heroIntro {
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 639px) {
+    .hero {
+        padding-top: 1.5rem;
+    }
+
+    .heading {
+        font-size: clamp(1.375rem, 7vw, 1.75rem);
+    }
+}

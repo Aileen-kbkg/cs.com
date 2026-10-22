@@ -556,3 +556,120 @@
         font-size: 3cqw;
     }
 }
+
+p.CampaignHero-module__K1T9uW__subheading,
+.CampaignHero-module__K1T9uW__text,
+ul.CampaignHero-module__K1T9uW__badges,
+.CampaignHero-module__K1T9uW__ctaRow {
+    max-width: 605px;
+    margin: 0;
+}
+
+.CampaignHero-module__K1T9uW__counterPanel {
+    position: relative;
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px) !important;
+    border: #FFFFFF solid 3px;
+    padding: 20px;
+    width: 100% !important;
+    max-width: 408px;
+    box-shadow: 0px 0px 9px #FFFFFF;
+    background: none;
+}
+
+.CampaignHero-module__K1T9uW__counterPanel::before {
+    filter: brightness(100%) contrast(100%) saturate(100%) blur(10px) hue-rotate(0deg);
+    background-color: rgb(255, 255, 255);
+    --background-overlay: "";
+    backdrop-filter: blur(10px);
+}
+
+p.CampaignHero-module__K1T9uW__counterNumber {
+    font-size: 3.75rem;
+}
+
+p.CampaignHero-module__K1T9uW__counterHeading {
+    font-size: 16px;
+}
+
+p.CampaignHero-module__K1T9uW__counterFootnote {
+    font-size: 14px;
+}
+
+.CampaignHero-module__K1T9uW__badgeIcon svg {}
+
+.CampaignHero-module__K1T9uW__badgeIcon {
+    width: 29px;
+    height: auto;
+}
+
+ul.CampaignHero-module__K1T9uW__badges {
+    max-width: 400px;
+}
+
+a.CampaignHero-module__K1T9uW__button {
+    background: #B5EBA2;
+    font-size: 19px;
+    color: #3D8120;
+    font-weight: 700;
+    gap: 0;
+}
+
+.CampaignHero-module__K1T9uW__buttonIcon svg {
+    font-size: 20px;
+    width: 30px;
+    height: 23px;
+}
+
+a.CampaignHero-module__K1T9uW__button:hover {
+    background: #9ED88A;
+}
+
+h1.CampaignHero-module__K1T9uW__heading {
+    margin: 0;
+}
+
+p.CampaignHero-module__K1T9uW__eyebrow {
+    margin: 0;
+}
+
+.CampaignHero-module__K1T9uW__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.CampaignHero-module__K1T9uW__hasImage {
+    background-position: 100% 110px;
+}
+
+@media (max-width: 992px) {
+    .CampaignHero-module__K1T9uW__hasImage {
+        background-position: left bottom;
+    }
+}
+
+@media (max-width: 649px) {
+    .CampaignHero-module__K1T9uW__hasImage {
+        background-position: left bottom;
+        background: url("https://costsegregationcom.cdn.prismic.io/costsegregationcom/E1XGsxMM_Aokxi2W_animated-2.svg?auto=compress,format") no-repeat;
+        background-size: 470px;
+        background-position: left bottom;
+        padding-bottom: 130px;
+    }
+
+    .CampaignHero-module__K1T9uW__counterPanel {
+        left: 0;
+    }
+}
+
+@media (max-width: 639px) {
+    .CampaignHero-module__K1T9uW__media {
+        max-width: none;
+        margin: 0 !important;
+        height: auto;
+        aspect-ratio: 1489 / 694;
+    }
+}

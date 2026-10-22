@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import HeaderSlot from "@/components/HeaderSlot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,7 +30,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar settings={settings} />
+        {/* Partner landing pages render their own header, so HeaderSlot
+            drops the standard Navbar on those routes. */}
+        <HeaderSlot>
+          <Navbar settings={settings} />
+        </HeaderSlot>
 
         {children}
 
