@@ -28,29 +28,61 @@ type DetailItem = {
 };
 
 type Item = FeatureGridSlice["items"][number] & DetailItem;
+type Block = RichTextField[number];
 
 const getText = (value: KeyTextField | null | undefined, fallback: string) =>
   value || fallback;
 
 /**
- * A card has a detail view only when the `detail_*` fields are filled.
- *
- * It used to be inferred from the shape of `text` — a second paragraph
- * meant "detail" — which silently truncated cards whose body is simply
- * two paragraphs long. Detail is now opt-in.
+ * Splits a card into what shows on the card and what shows in its detail
+ * view. Cards whose `text` is a single paragraph have no detail content,
+ * so they render without the "Learn More" affordance.
  */
-const hasDetailContent = (item: Item) =>
-  Boolean(item.detail_intro) ||
-  isFilled.richText(item.detail_list) ||
-  isFilled.richText(item.detail_paragraph);
+const resolveCard = (item: Item) => {
+  const text = (item.text ?? []) as Block[];
 
-const resolveCard = (item: Item) => ({
-  /** The card always shows its full `text`. */
-  cardText: (item.text ?? []) as RichTextField,
-  intro: item.detail_intro || null,
-  list: (item.detail_list ?? []) as RichTextField,
-  paragraph: (item.detail_paragraph ?? []) as RichTextField,
-});
+  const hasDetailFields =
+    Boolean(item.detail_intro) ||
+    isFilled.richText(item.detail_list) ||
+    isFilled.richText(item.detail_paragraph);
+
+  if (hasDetailFields) {
+    return {
+      cardText: text as RichTextField,
+      intro: item.detail_intro || null,
+      list: (item.detail_list ?? []) as RichTextField,
+      paragraph: (item.detail_paragraph ?? []) as RichTextField,
+    };
+  }
+
+  const firstParagraph = text.findIndex((block) => block.type === "paragraph");
+
+  const cardText = (
+    firstParagraph >= 0 ? [text[firstParagraph]] : []
+  ) as RichTextField;
+
+  const rest = text.filter((_, index) => index !== firstParagraph);
+
+  const introIndex = rest.findIndex((block) => block.type === "paragraph");
+
+  const intro =
+    introIndex >= 0 && "text" in rest[introIndex]
+      ? String((rest[introIndex] as { text: string }).text)
+      : null;
+
+  const remaining = rest.filter((_, index) => index !== introIndex);
+
+  return {
+    cardText,
+    intro,
+    list: remaining.filter(
+      (block) => block.type === "list-item",
+    ) as RichTextField,
+    paragraph: remaining.filter(
+      (block) => block.type === "paragraph",
+    ) as RichTextField,
+  };
+};
 
 const TRANSITION_MS = 300;
 
@@ -222,8 +254,15 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
         {active === null ? (
           <div className={`${styles.grid} ${animClass}`}>
             {items.map((item, index) => {
-              const { cardText } = resolveCard(item);
-              const hasDetail = hasDetailContent(item);
+              const resolved = resolveCard(item);
+              const { cardText } = resolved;
+
+              // Only cards with something behind them are clickable and
+              // show the "Learn More" link.
+              const hasDetail =
+                Boolean(resolved.intro) ||
+                isFilled.richText(resolved.list) ||
+                isFilled.richText(resolved.paragraph);
 
               return (
                 <article
