@@ -1,0 +1,36 @@
+{
+    "id": "exclusive_discounts",
+    "type": "SharedSlice",
+    "name": "Exclusive Discounts",
+    "description": "HubSpot signup form with editable heading and details",
+    "variations": [
+        {
+            "id": "default",
+            "name": "Default",
+            "docURL": null,
+            "version": "initial",
+            "description": "Exclusive Discounts",
+            "primary": {
+                "heading": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Heading",
+                        "placeholder": "Sign Up for Exclusive Discounts"
+                    }
+                },
+                "details": {
+                    "type": "StructuredText",
+                    "config": {
+                        "label": "Details",
+                        "placeholder": "Enter the description above the signup form",
+                        "allow": [
+                            "paragraph"
+                        ],
+                        "multi": "paragraph"
+                    }
+                }
+            },
+            "items": {}
+        }
+    ]
+}
