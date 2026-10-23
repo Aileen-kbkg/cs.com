@@ -16,6 +16,7 @@ import PageHero from "./PageHero";
 import QuoteWithImage from "./QuoteWithImage";
 import CampaignHero from "./CampaignHero";
 import AnnouncementBar from "./AnnouncementBar";
+import ExclusiveDiscounts from "./ExclusiveDiscounts";
 export const components = {
 	hero: Hero,
 	feature_grid: FeatureGrid,
@@ -35,5 +36,5 @@ export const components = {
 	quote_with_image: QuoteWithImage,
 	campaign_hero: CampaignHero,
 	announcement_bar: AnnouncementBar,
-
+	exclusive_discounts: ExclusiveDiscounts,
 };

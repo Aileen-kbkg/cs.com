@@ -1,0 +1,53 @@
+.section {
+    width: 100%;
+    padding: 48px 24px;
+    box-sizing: border-box;
+}
+
+.inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.heading {
+    margin: 0 0 28px;
+    color: #173c63;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.form {
+    width: 100%;
+    min-height: 365px;
+}
+
+.form :global(iframe) {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    border: 0;
+}
+
+@media (max-width: 767px) {
+    .section {
+        padding: 36px 18px;
+    }
+
+    .heading {
+        margin-bottom: 22px;
+        font-size: 26px;
+    }
+
+    .formContainer {
+        max-width: 100%;
+    }
+}

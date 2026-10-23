@@ -1030,6 +1030,179 @@ type CalculatorSliceVariation = CalculatorSliceDefault
 export type CalculatorSlice = prismic.SharedSlice<"calculator", CalculatorSliceVariation>;
 
 /**
+ * Item in *CampaignHero → Default → Primary → Badges*
+ */
+export interface CampaignHeroSliceDefaultPrimaryBadgesItem {
+	/**
+	 * Label field in *CampaignHero → Default → Primary → Badges*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: IRS Audit Ready
+	 * - **API ID Path**: campaign_hero.default.primary.badges[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *CampaignHero → Default → Primary*
+ */
+export interface CampaignHeroSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Maximize Your Tax Savings
+	 * - **API ID Path**: campaign_hero.default.primary.eyebrow
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * Heading field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: The Oct 15 Deadline is Quickly Approaching!…
+	 * - **API ID Path**: campaign_hero.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * Sub-heading field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Only Pay If You Like the Results
+	 * - **API ID Path**: campaign_hero.default.primary.subheading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subheading: prismic.KeyTextField;
+	
+	/**
+	 * Text field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: campaign_hero.default.primary.text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	text: prismic.RichTextField;
+	
+	/**
+	 * Badges field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: campaign_hero.default.primary.badges[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	badges: prismic.GroupField<Simplify<CampaignHeroSliceDefaultPrimaryBadgesItem>>;
+	
+	/**
+	 * Image field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: campaign_hero.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * CTA label field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Estimate your tax savings Instantly
+	 * - **API ID Path**: campaign_hero.default.primary.cta_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	cta_label: prismic.KeyTextField;
+	
+	/**
+	 * CTA link field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: campaign_hero.default.primary.cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Secondary link label field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Remind me about my promo code
+	 * - **API ID Path**: campaign_hero.default.primary.secondary_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	secondary_label: prismic.KeyTextField;
+	
+	/**
+	 * Secondary link field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: campaign_hero.default.primary.secondary_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	secondary_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Counter Value field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: 23600
+	 * - **API ID Path**: campaign_hero.default.primary.counter_value
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	counter_value: prismic.KeyTextField;
+	
+	/**
+	 * Counter Heading field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Average First Year Tax Savings
+	 * - **API ID Path**: campaign_hero.default.primary.counter_heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	counter_heading: prismic.KeyTextField;
+	
+	/**
+	 * Counter Footnote field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *Based on $300,000 Building Purchase
+	 * - **API ID Path**: campaign_hero.default.primary.counter_footnote
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	counter_footnote: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for CampaignHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CampaignHeroSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CampaignHeroSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *CampaignHero*
+ */
+type CampaignHeroSliceVariation = CampaignHeroSliceDefault
+
+/**
+ * CampaignHero Shared Slice
+ *
+ * - **API ID**: `campaign_hero`
+ * - **Description**: Promotional hero with eyebrow, headline, sub-headline, badges, illustration and two CTAs
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CampaignHeroSlice = prismic.SharedSlice<"campaign_hero", CampaignHeroSliceVariation>;
+
+/**
  * Primary content in *CtaBanner → Default → Primary*
  */
 export interface CtaBannerSliceDefaultPrimary {
@@ -1117,6 +1290,54 @@ type CtaBannerSliceVariation = CtaBannerSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type CtaBannerSlice = prismic.SharedSlice<"cta_banner", CtaBannerSliceVariation>;
+
+/**
+ * Primary content in *Exclusive Discounts → Default → Primary*
+ */
+export interface ExclusiveDiscountsSliceDefaultPrimary {
+	/**
+	 * Heading field in *Exclusive Discounts → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Sign Up for Exclusive Discounts
+	 * - **API ID Path**: exclusive_discounts.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * Details field in *Exclusive Discounts → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Enter the description above the signup form
+	 * - **API ID Path**: exclusive_discounts.default.primary.details
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	details: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Exclusive Discounts Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Exclusive Discounts
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ExclusiveDiscountsSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ExclusiveDiscountsSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *Exclusive Discounts*
+ */
+type ExclusiveDiscountsSliceVariation = ExclusiveDiscountsSliceDefault
+
+/**
+ * Exclusive Discounts Shared Slice
+ *
+ * - **API ID**: `exclusive_discounts`
+ * - **Description**: HubSpot signup form with editable heading and details
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ExclusiveDiscountsSlice = prismic.SharedSlice<"exclusive_discounts", ExclusiveDiscountsSliceVariation>;
 
 /**
  * Item in *ExpertGrid → Default → Primary → Experts*
@@ -3095,10 +3316,19 @@ declare module "@prismicio/client" {
 			CalculatorSliceDefaultPrimary,
 			CalculatorSliceVariation,
 			CalculatorSliceDefault,
+			CampaignHeroSlice,
+			CampaignHeroSliceDefaultPrimaryBadgesItem,
+			CampaignHeroSliceDefaultPrimary,
+			CampaignHeroSliceVariation,
+			CampaignHeroSliceDefault,
 			CtaBannerSlice,
 			CtaBannerSliceDefaultPrimary,
 			CtaBannerSliceVariation,
 			CtaBannerSliceDefault,
+			ExclusiveDiscountsSlice,
+			ExclusiveDiscountsSliceDefaultPrimary,
+			ExclusiveDiscountsSliceVariation,
+			ExclusiveDiscountsSliceDefault,
 			ExpertGridSlice,
 			ExpertGridSliceDefaultPrimaryExpertsItem,
 			ExpertGridSliceDefaultPrimary,
