@@ -1,0 +1,90 @@
+{
+  "format": "page",
+  "id": "for_cpas",
+  "json": {
+    "Main": {
+      "form_heading": {
+        "config": {
+          "label": "Form Heading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "form": {
+        "config": {
+          "label": "Form",
+          "placeholder": ""
+        },
+        "type": "Embed"
+      },
+      "button_text": {
+        "config": {
+          "label": "Button Text",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "button_link": {
+        "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
+          "label": "Button Link",
+          "placeholder": "",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "hero": {
+              "type": "SharedSlice"
+            },
+            "text_with_image": {
+              "type": "SharedSlice"
+            },
+            "section_reference": {
+              "type": "SharedSlice"
+            },
+            "product_cards": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "For CPAS",
+  "repeatable": false,
+  "status": true
+}

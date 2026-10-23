@@ -1,0 +1,66 @@
+{
+  "format": "custom",
+  "id": "faq",
+  "json": {
+    "Main": {
+      "heading": {
+        "config": {
+          "label": "heading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "intro": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "intro",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "faq_accordion": {
+              "type": "SharedSlice"
+            },
+            "announcement_bar": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "meta_title",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "meta_description",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {},
+          "label": "meta_image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Faq",
+  "repeatable": false,
+  "status": true
+}

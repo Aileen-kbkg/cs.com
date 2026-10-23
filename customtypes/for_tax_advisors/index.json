@@ -1,0 +1,92 @@
+{
+  "format": "page",
+  "id": "for_tax_advisors",
+  "json": {
+    "Main": {
+      "faq": {
+        "config": {
+          "fields": {
+            "question": {
+              "config": {
+                "label": "Question",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "answer": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Answer",
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                "placeholder": ""
+              },
+              "type": "StructuredText"
+            }
+          },
+          "label": "Faq",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "feature_grid": {
+              "type": "SharedSlice"
+            },
+            "testimonials": {
+              "type": "SharedSlice"
+            },
+            "product_cards": {
+              "type": "SharedSlice"
+            },
+            "cta_banner": {
+              "type": "SharedSlice"
+            },
+            "page_hero": {
+              "type": "SharedSlice"
+            },
+            "quote_with_image": {
+              "type": "SharedSlice"
+            },
+            "announcement_bar": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "For tax advisors",
+  "repeatable": false,
+  "status": true
+}

@@ -1,0 +1,92 @@
+{
+  "format": "page",
+  "id": "shared_section",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "name": {
+        "config": {
+          "label": "name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "feature_grid": {
+              "type": "SharedSlice"
+            },
+            "success_stories": {
+              "type": "SharedSlice"
+            },
+            "testimonials": {
+              "type": "SharedSlice"
+            },
+            "text_with_image": {
+              "type": "SharedSlice"
+            },
+            "calculator": {
+              "type": "SharedSlice"
+            },
+            "expert_grid": {
+              "type": "SharedSlice"
+            },
+            "cta_banner": {
+              "type": "SharedSlice"
+            },
+            "product_cards": {
+              "type": "SharedSlice"
+            },
+            "pricing": {
+              "type": "SharedSlice"
+            },
+            "steps": {
+              "type": "SharedSlice"
+            },
+            "announcement_bar": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "shared_section",
+  "repeatable": true,
+  "status": true
+}

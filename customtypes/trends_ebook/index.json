@@ -1,0 +1,136 @@
+{
+  "format": "page",
+  "id": "trends_ebook",
+  "json": {
+    "Main": {
+      "hero_image": {
+        "config": {
+          "constraint": {},
+          "label": "hero_image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "hero_heading": {
+        "config": {
+          "label": "hero_heading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "hero_subtitle": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "hero_subtitle",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "hero_title": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "hero_title",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "hubspot_portal_id": {
+        "config": {
+          "label": "hubspot_portal_id",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "hubspot_form_id": {
+        "config": {
+          "label": "hubspot_form_id",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "hubspot_region": {
+        "config": {
+          "label": "hubspot_region",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "card": {
+        "config": {
+          "fields": {
+            "icon": {
+              "config": {
+                "constraint": {},
+                "label": "Icon",
+                "thumbnails": []
+              },
+              "type": "Image"
+            },
+            "title": {
+              "config": {
+                "label": "title",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "description": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Description",
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                "placeholder": ""
+              },
+              "type": "StructuredText"
+            }
+          },
+          "label": "Card",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "section_reference": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Trends ebook",
+  "repeatable": false,
+  "status": true
+}

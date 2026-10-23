@@ -1,0 +1,84 @@
+{
+  "format": "page",
+  "id": "stay_connected",
+  "json": {
+    "Main": {
+      "heading": {
+        "config": {
+          "label": "heading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "subheading": {
+        "config": {
+          "label": "subheading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "hubspot_portal_id": {
+        "config": {
+          "label": "hubspot_portal_id",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "hubspot_form_id": {
+        "config": {
+          "label": "hubspot_form_id",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "hubspot_region": {
+        "config": {
+          "label": "hubspot_region",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "announcement_bar": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Stay connected",
+  "repeatable": false,
+  "status": true
+}

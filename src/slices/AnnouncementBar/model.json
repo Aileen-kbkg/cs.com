@@ -1,0 +1,57 @@
+{
+  "description": "AnnouncementBar",
+  "id": "announcement_bar",
+  "name": "AnnouncementBar",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "text": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "text",
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
+        },
+        "link": {
+          "config": {
+            "allowTargetBlank": true,
+            "allowText": true,
+            "label": "link",
+            "placeholder": "",
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "link_label": {
+          "config": {
+            "label": "link_label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "style": {
+          "config": {
+            "default_value": "blue",
+            "label": "style",
+            "options": [
+              "blue",
+              "navy"
+            ],
+            "placeholder": ""
+          },
+          "type": "Select"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}

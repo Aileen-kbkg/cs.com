@@ -1,0 +1,100 @@
+{
+  "format": "page",
+  "id": "empowered_investor",
+  "json": {
+    "Main": {
+      "partner_logos": {
+        "config": {
+          "fields": {
+            "logo": {
+              "config": {
+                "constraint": {},
+                "label": "logo",
+                "thumbnails": []
+              },
+              "type": "Image"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "partner logos",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "eyebrow": {
+        "config": {
+          "label": "eyebrow",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "heading": {
+        "config": {
+          "label": "heading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "intro": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "intro",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "section_reference": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Empowered Investor",
+  "repeatable": false,
+  "status": true
+}

@@ -1,0 +1,106 @@
+{
+  "format": "custom",
+  "id": "resources",
+  "json": {
+    "Main": {
+      "heading": {
+        "config": {
+          "label": "heading",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "intro": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "intro",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "cards": {
+        "config": {
+          "fields": {
+            "title": {
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "text": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Text",
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                "placeholder": ""
+              },
+              "type": "StructuredText"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Link",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            },
+            "link_label": {
+              "config": {
+                "label": "Link label",
+                "placeholder": ""
+              },
+              "type": "Text"
+            }
+          },
+          "label": "Cards",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "slices": {
+        "config": {
+          "choices": {
+            "announcement_bar": {
+              "type": "SharedSlice"
+            }
+          }
+        },
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "meta_title",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "meta_description",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {},
+          "label": "meta_image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Resources",
+  "repeatable": false,
+  "status": true
+}
