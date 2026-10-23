@@ -116,7 +116,9 @@ export default async function Page() {
 					</div>
 				</section>
 
-				<SliceZone slices={slices} components={components} />
+				<div className={styles.empoweredInvestorSlices}>
+		<SliceZone slices={slices} components={components} />
+	</div>
 			</main>
 		</>
 	);
