@@ -141,3 +141,25 @@
 
     display: none;
 }
+
+.empoweredInvestorSlices :global([class*="loyalty"]) {
+
+    display: none;
+}
+
+.empoweredInvestorSlices :global([class*="featureLists"]) {
+
+    width: 760px;
+    justify-content: space-around;
+
+}
+
+@media (max-width: 1023px) {
+    .empoweredInvestorSlices :global([class*="featureLists"]) {
+
+        width: auto;
+        justify-content: space-around;
+        padding: 0;
+
+    }
+}
