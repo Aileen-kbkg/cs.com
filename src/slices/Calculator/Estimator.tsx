@@ -1,22 +1,14 @@
 "use client";
-
 import { useEffect, useRef, useState, type ReactNode } from "react";
-
+import HubSpotTestForm from "@/components/HubSpotForm";
 import {
-  getCookie,
   getPersistedAffiliateId,
   getPersistedGoogleClickParams,
-  getPersistedUtmParams,
-  GOOGLE_CLICK_TO_HS_FIELD,
-  UTM_TO_HS_FIELD,
 } from "./tracking";
-
 /** Same values as the live estimator script. */
 const TAX_RATE = 0.35;
 const ESTIMATE_ENDPOINT = "/api/estimator";
 const EMAIL_ENDPOINT = "/api/estimator/email";
-const HUBSPOT_FORM_URL =
-  "https://api.hsforms.com/submissions/v3/integration/submit/3615782/1883c298-1b07-4401-98fc-cd428ae7b37d";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MONTHS = [
   "January",
@@ -32,7 +24,6 @@ const MONTHS = [
   "November",
   "December",
 ];
-
 /**
  * "default" — the current homepage layout: icon labels, Date before
  * Property Type, two green result cards, navy button.
@@ -44,7 +35,6 @@ const MONTHS = [
  * HubSpot submission and the email flow.
  */
 export type EstimatorVariant = "default" | "classic";
-
 export type EstimatorContent = {
   title: string | null;
   intro: ReactNode;
@@ -70,17 +60,13 @@ export type EstimatorContent = {
   /** classic only — illustration above the results panel. */
   image?: { url: string; alt: string } | null;
 };
-
 type Result = { low: number; high: number };
-
 const formatMoney = (value: number | null | undefined) =>
   value == null || Number.isNaN(value) ? "$0" : "$" + Math.round(value).toLocaleString("en-US");
-
 const formatPriceInput = (value: string) => {
   const raw = value.replace(/[^0-9]/g, "");
   return raw === "" ? "" : parseInt(raw, 10).toLocaleString("en-US");
 };
-
 const formatDateInput = (value: string) => {
   const raw = value.replace(/[^0-9]/g, "");
   let formatted = raw.substring(0, 2);
@@ -88,13 +74,11 @@ const formatDateInput = (value: string) => {
   if (raw.length >= 5) formatted += "/" + raw.substring(4, 8);
   return formatted;
 };
-
 const isValidDate = (m: number, d: number, y: number) => {
   if (y < 1900 || y > 2100 || m < 1 || m > 12 || d < 1) return false;
   const date = new Date(y, m - 1, d);
   return date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d;
 };
-
 const isValidDateString = (value: string) => {
   const parts = value.split("/");
   return (
@@ -103,12 +87,10 @@ const isValidDateString = (value: string) => {
     isValidDate(parseInt(parts[0], 10), parseInt(parts[1], 10), parseInt(parts[2], 10))
   );
 };
-
 const yearFromDate = (value: string) => {
   const parts = value.split("/");
   return (parts.length === 3 && parseInt(parts[2], 10)) || new Date().getFullYear();
 };
-
 const formatDateDisplay = (value: string) => {
   const parts = value.split("/");
   if (parts.length !== 3) return value;
@@ -120,7 +102,6 @@ const formatDateDisplay = (value: string) => {
   else if (d === 3 || d === 23) suffix = "rd";
   return `${MONTHS[m - 1]} ${d}${suffix}, ${parts[2]}`;
 };
-
 const Svg = ({ children, className }: { children: ReactNode; className?: string }) => (
   <svg
     className={className}
@@ -135,7 +116,6 @@ const Svg = ({ children, className }: { children: ReactNode; className?: string 
     {children}
   </svg>
 );
-
 const CalendarPaths = () => (
   <>
     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -144,14 +124,12 @@ const CalendarPaths = () => (
     <line x1="3" y1="10" x2="21" y2="10" />
   </>
 );
-
 const MailPaths = () => (
   <>
     <rect x="2" y="4" width="20" height="16" rx="2" />
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </>
 );
-
 const SendIcon = () => (
   <svg
     viewBox="0 0 24 24"
@@ -167,7 +145,6 @@ const SendIcon = () => (
     <polygon points="22 2 15 22 11 13 2 9 22 2" />
   </svg>
 );
-
 /**
  * Tax savings estimator — same fields, validation, API call, contact gate,
  * HubSpot submission and email flow as the live costsegregation.com widget.
@@ -180,7 +157,6 @@ export default function Estimator({
   variant?: EstimatorVariant;
 }) {
   const classic = variant === "classic";
-
   const [address, setAddress] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
@@ -190,14 +166,8 @@ export default function Estimator({
   const [errors, setErrors] = useState({ address: false, price: false, date: false, type: false });
   const [calculating, setCalculating] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const [pending, setPending] = useState<Result>({ low: 0, high: 0 });
   const [result, setResult] = useState<Result | null>(null);
-
   const [contactOpen, setContactOpen] = useState(false);
-  const [contact, setContact] = useState({ fname: "", lname: "", email: "", source: "" });
-  const [contactErrors, setContactErrors] = useState({ fname: false, lname: false, email: false });
-  const [contactError, setContactError] = useState(false);
-
   const [emailOpen, setEmailOpen] = useState(false);
   const [emailForm, setEmailForm] = useState({ fname: "", lname: "", email: "" });
   const [emailErrors, setEmailErrors] = useState({ fname: false, lname: false, email: false });
@@ -206,22 +176,17 @@ export default function Estimator({
     type: "error" | "success";
     text: string;
   } | null>(null);
-
   const dateHiddenRef = useRef<HTMLInputElement>(null);
-
   // Persist attribution params on load, as the live script does
   useEffect(() => {
     getPersistedAffiliateId();
     getPersistedGoogleClickParams();
   }, []);
-
   const resetResults = () => {
     setResult(null);
     setApiError(null);
   };
-
   const priceNumber = parseInt(price.replace(/[^0-9]/g, ""), 10) || 0;
-
   const estimate = async () => {
     const nextErrors = {
       address: !address.trim(),
@@ -231,7 +196,6 @@ export default function Estimator({
     };
     setErrors(nextErrors);
     if (Object.values(nextErrors).some(Boolean)) return;
-
     setApiError(null);
     setCalculating(true);
     try {
@@ -251,14 +215,16 @@ export default function Estimator({
           source: "Website",
         }),
       });
-      if (!response.ok) throw new Error(`API request failed (status ${response.status})`);
+      if (!response.ok) {
+  const errorDetails = await response.text();
+  console.error("Estimator API error:", response.status, errorDetails);
+  throw new Error(`API request failed (${response.status}): ${errorDetails}`);
+}
       const data = await response.json();
       const low = data?.result?.estimatedAdditionalTaxDeductionsYear1Low;
       const high = data?.result?.estimatedAdditionalTaxDeductionsYear1High;
       if (low != null && high != null) {
-        setPending({ low, high });
-        setContactErrors({ fname: false, lname: false, email: false });
-        setContactError(false);
+        setResult({ low, high });
         setContactOpen(true);
       } else {
         setApiError("Could not calculate estimate. Please check your inputs.");
@@ -270,98 +236,19 @@ export default function Estimator({
       setCalculating(false);
     }
   };
-
-  const submitToHubSpot = () => {
-    const fields: { name: string; value: string }[] = [
-      { name: "firstname", value: contact.fname.trim() },
-      { name: "lastname", value: contact.lname.trim() },
-      { name: "email", value: contact.email.trim() },
-      { name: "discovery_source", value: contact.source },
-      { name: "full_property_address", value: address.trim() },
-      { name: "building_basis", value: String(priceNumber) },
-      { name: "date_of_purchase", value: date.trim() },
-      { name: "property_type_dropdown", value: propertyType },
-      { name: "shortterm_or_vacation_rental", value: shortTerm ? "true" : "false" },
-      {
-        name: "cost_segregation_calculator_low_tax_deductions_year_1",
-        value: String(Math.round(pending.low)),
-      },
-      {
-        name: "cost_segregation_calculator_high_tax_deductions_year_1",
-        value: String(Math.round(pending.high)),
-      },
-      { name: "year_1_tax_savings_low_end", value: String(Math.round(pending.low * TAX_RATE)) },
-      { name: "year_1_tax_savings_high_end", value: String(Math.round(pending.high * TAX_RATE)) },
-    ];
-    const utms = getPersistedUtmParams();
-    (Object.keys(UTM_TO_HS_FIELD) as (keyof typeof UTM_TO_HS_FIELD)[]).forEach((key) => {
-      if (utms[key]) fields.push({ name: UTM_TO_HS_FIELD[key], value: utms[key] });
-    });
-    const affiliateId = getPersistedAffiliateId();
-    if (affiliateId) fields.push({ name: "affiliate_id", value: affiliateId });
-    const clicks = getPersistedGoogleClickParams();
-    Object.keys(GOOGLE_CLICK_TO_HS_FIELD).forEach((key) => {
-      if (clicks[key]) fields.push({ name: GOOGLE_CLICK_TO_HS_FIELD[key], value: clicks[key] });
-    });
-    const context: Record<string, string> = {
-      pageUri: window.location.href,
-      pageName: document.title,
-    };
-    const hutk = getCookie("hubspotutk");
-    if (hutk) context.hutk = hutk;
-
-    fetch(HUBSPOT_FORM_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fields, context }),
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(
-            `HubSpot submission failed (${response.status}): ${await response.text()}`,
-          );
-        }
-      })
-      .catch((error) => console.error("HubSpot submission error:", error));
-  };
-
-  const submitContact = () => {
-    const nextErrors = {
-      fname: !contact.fname.trim(),
-      lname: !contact.lname.trim(),
-      email: !EMAIL_PATTERN.test(contact.email.trim()),
-    };
-    setContactErrors(nextErrors);
-    if (Object.values(nextErrors).some(Boolean)) {
-      setContactError(true);
-      return;
-    }
-    setContactError(false);
-    setResult(pending);
-    setContactOpen(false);
-    setEmailForm({
-      fname: contact.fname.trim(),
-      lname: contact.lname.trim(),
-      email: contact.email.trim(),
-    });
-    submitToHubSpot();
-  };
-
   const openEmailModal = () => {
     setEmailErrors({ fname: false, lname: false, email: false });
     setEmailMessage(null);
     setEmailStatus("idle");
     setEmailOpen(true);
   };
-
-  const strApplies = content.shortTermRentalTypes.includes(propertyType);
+  const strApplies = (content.shortTermRentalTypes ?? []).includes(propertyType);
   const deductionsText = result
     ? `${formatMoney(result.low)} to ${formatMoney(result.high)}`
     : "$0";
   const savingsText = result
     ? `${formatMoney(result.low * TAX_RATE)} to ${formatMoney(result.high * TAX_RATE)}`
     : "$0";
-
   const sendEmail = async () => {
     const nextErrors = {
       fname: !emailForm.fname.trim(),
@@ -410,13 +297,10 @@ export default function Estimator({
       setEmailStatus("idle");
     }
   };
-
   const errorClass = (show: boolean) => (show ? " kbkg-input-error" : "");
-
   /* ---------------------------------------------------------------- */
   /* Fields — declared once, ordered per variant below                */
   /* ---------------------------------------------------------------- */
-
   const addressField = (
     <div className="kbkg-field-group" key="address">
       <label className="kbkg-field-label" htmlFor="kbkg-address">
@@ -446,7 +330,6 @@ export default function Estimator({
       </div>
     </div>
   );
-
   const priceField = (
     <div className="kbkg-field-group" key="price">
       <label className="kbkg-field-label" htmlFor="kbkg-price">
@@ -479,7 +362,6 @@ export default function Estimator({
       </div>
     </div>
   );
-
   const dateField = (
     <div className="kbkg-field-group" key="date">
       <label className="kbkg-field-label" htmlFor="kbkg-date">
@@ -558,7 +440,6 @@ export default function Estimator({
       </div>
     </div>
   );
-
   const typeField = (
     <div className="kbkg-field-group" key="type">
       <label className="kbkg-field-label" htmlFor="kbkg-property-type">
@@ -593,7 +474,7 @@ export default function Estimator({
         <option value="" disabled>
           Select property type...
         </option>
-        {content.propertyTypes.map((type) => (
+      {(content.propertyTypes ?? []).map((type) => (
           <option key={type} value={type}>
             {type}
           </option>
@@ -604,16 +485,13 @@ export default function Estimator({
       </div>
     </div>
   );
-
   // classic puts Property Type before Date; default is the reverse.
   const fields = classic
     ? [addressField, priceField, typeField, dateField]
     : [addressField, priceField, dateField, typeField];
-
   /* ---------------------------------------------------------------- */
   /* Results panel                                                    */
   /* ---------------------------------------------------------------- */
-
   const defaultResults = (
     <div className="kbkg-estimator-results" aria-live="polite">
       <div className="kbkg-result-card">
@@ -629,7 +507,6 @@ export default function Estimator({
         <div className="kbkg-result-value">{deductionsText}</div>
         <div className="kbkg-result-description">{content.deductionsDescription}</div>
       </div>
-
       <div className="kbkg-result-card">
         <div className="kbkg-result-header">
           <div className="kbkg-result-icon">
@@ -643,7 +520,6 @@ export default function Estimator({
         <div className="kbkg-result-value">{savingsText}</div>
         <div className="kbkg-result-assumption">{result ? content.savingsNote : ""}</div>
       </div>
-
       <button
         type="button"
         className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
@@ -654,19 +530,16 @@ export default function Estimator({
         </Svg>{" "}
         {content.emailButtonLabel}
       </button>
-
       {apiError ? (
         <div className="kbkg-error-msg">{apiError}</div>
       ) : (
         !result && <div className="kbkg-results-helper">{content.helperText}</div>
       )}
-
       <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
         {content.disclaimer}
       </div>
     </div>
   );
-
   const classicResults = (
     <div className="kbkg-estimator-results kbkg-classic-results" aria-live="polite">
       {content.image?.url && (
@@ -677,11 +550,9 @@ export default function Estimator({
           alt={content.image.alt || ""}
         />
       )}
-
       <h3 className="kbkg-classic-results-title">
         {content.resultsTitle || "Estimated Savings"}
       </h3>
-
       {result ? (
         <div className="kbkg-classic-panel kbkg-classic-panel-filled">
           <div className="kbkg-classic-row">
@@ -696,7 +567,6 @@ export default function Estimator({
       ) : (
         <div className="kbkg-classic-panel">{apiError || content.helperText}</div>
       )}
-
       <button
         type="button"
         className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
@@ -707,19 +577,16 @@ export default function Estimator({
         </Svg>{" "}
         {content.emailButtonLabel}
       </button>
-
       <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
         {content.disclaimer}
       </div>
     </div>
   );
-
 return (
   <>
     {classic && content.title && (
       <h2 className="kbkg-estimator-title kbkg-classic-title">{content.title}</h2>
     )}
-
     <div className={"kbkg-estimator-wrapper" + (classic ? " kbkg-classic" : "")}>
       {!classic && content.title && (
         <h2 className="kbkg-estimator-title">{content.title}</h2>
@@ -729,7 +596,6 @@ return (
           {/* LEFT: Form */}
           <div className="kbkg-estimator-form">
             {fields}
-
             <div className={"kbkg-toggle-row" + (strVisible ? "" : " kbkg-hidden")}>
               <span className="kbkg-toggle-label">
                 {!classic && (
@@ -759,7 +625,6 @@ return (
                 <span className="kbkg-toggle-text">{shortTerm ? "Yes" : "No"}</span>
               </div>
             </div>
-
             <button
               type="button"
               className="kbkg-submit-btn"
@@ -770,12 +635,10 @@ return (
               {classic && " ›"}
             </button>
           </div>
-
           {/* RIGHT: Results */}
           {classic ? classicResults : defaultResults}
         </div>
       </div>
-
       {/* Email modal */}
       <div
         className={"kbkg-modal-overlay" + (emailOpen ? " kbkg-modal-open" : "")}
@@ -920,7 +783,6 @@ return (
           <div className="kbkg-modal-disclaimer">{content.disclaimer}</div>
         </div>
       </div>
-
       {/* Contact modal (shown before results) */}
       <div
         className={"kbkg-contact-modal-overlay" + (contactOpen ? " kbkg-modal-open" : "")}
@@ -950,68 +812,7 @@ return (
               <p>{content.contactText}</p>
             </div>
           )}
-          <div className="kbkg-contact-form-row">
-            <div className="kbkg-contact-form-group" style={{ marginBottom: 0 }}>
-              <label htmlFor="kbkg-contact-fname">First Name *</label>
-              <input
-                type="text"
-                id="kbkg-contact-fname"
-                placeholder="John"
-                className={contactErrors.fname ? "kbkg-input-error" : undefined}
-                value={contact.fname}
-                onChange={(event) => setContact((prev) => ({ ...prev, fname: event.target.value }))}
-              />
-            </div>
-            <div className="kbkg-contact-form-group" style={{ marginBottom: 0 }}>
-              <label htmlFor="kbkg-contact-lname">Last Name *</label>
-              <input
-                type="text"
-                id="kbkg-contact-lname"
-                placeholder="Smith"
-                className={contactErrors.lname ? "kbkg-input-error" : undefined}
-                value={contact.lname}
-                onChange={(event) => setContact((prev) => ({ ...prev, lname: event.target.value }))}
-              />
-            </div>
-          </div>
-          <div className="kbkg-contact-form-group">
-            <label htmlFor="kbkg-contact-email">Email *</label>
-            <input
-              type="email"
-              id="kbkg-contact-email"
-              placeholder="john@example.com"
-              className={contactErrors.email ? "kbkg-input-error" : undefined}
-              value={contact.email}
-              onChange={(event) => setContact((prev) => ({ ...prev, email: event.target.value }))}
-            />
-          </div>
-          {content.discoverySources.length > 0 && (
-            <div className="kbkg-contact-form-group">
-              <label htmlFor="kbkg-contact-source">
-                How did you first hear about CostSegregation.com?
-              </label>
-              <select
-                id="kbkg-contact-source"
-                value={contact.source}
-                onChange={(event) =>
-                  setContact((prev) => ({ ...prev, source: event.target.value }))
-                }
-              >
-                <option value="">Please Select</option>
-                {content.discoverySources.map((source) => (
-                  <option key={source} value={source}>
-                    {source}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-          <button type="button" className="kbkg-contact-submit-btn" onClick={submitContact}>
-            {content.contactButtonLabel}
-          </button>
-          <div className="kbkg-contact-error" style={{ display: contactError ? "block" : "none" }}>
-            Please fill in all required fields.
-          </div>
+          <HubSpotTestForm active={contactOpen} />
         </div>
       </div>
     </>
