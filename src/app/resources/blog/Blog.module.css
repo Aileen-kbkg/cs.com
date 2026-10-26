@@ -3,7 +3,7 @@
  * If globals.css already defines these colours, use your variables instead.
  */
 .page {
-	--cs-navy: #263e73;
+	--cs-navy: #284371;
 	--cs-blue: #277ce6;
 	--cs-text: #4b5563;
 	--cs-border: #cfe2f9;
@@ -48,12 +48,13 @@
 }
 
 .heading {
-	margin: 0 0 1.25rem;
+	margin: 0 0 2.5rem;
 	font-size: 54px;
 	line-height: 1;
 	font-weight: 500;
 	color: var(--cs-blue);
 	max-width: 700px;
+	text-wrap: balance;
 
 }
 
@@ -85,12 +86,18 @@
 	border-color: var(--cs-border);
 }
 
+.card:hover .image,
+.card:hover .imageLink img {
+	filter: brightness(129%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
+}
+
+
 .imageLink {
 	display: block;
 	overflow: hidden;
 	border-top-left-radius: var(--cs-radius);
 	border-top-right-radius: var(--cs-radius);
-	margin-bottom: 10px;
+
 }
 
 /* `.imageLink img` included because next/image may render the <img> as a
@@ -98,17 +105,36 @@
 .image,
 .imageLink img {
 	display: block;
-	width: auto;
-	height: 100%;
-	max-width: 100%;
+	width: 450px;
+	max-width: 450px;
+	height: auto;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
 	border-top-left-radius: var(--cs-radius);
 	border-top-right-radius: var(--cs-radius);
-	transition: filter .3s;
+	transition: filter 0.3s;
+	margin-bottom: 20px;
 }
 
 .image:hover,
 .imageLink:hover img {
 	filter: brightness(129%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
+}
+
+@media (max-width: 767px) {
+
+	.image,
+	.imageLink img {
+		width: 100%;
+	}
+}
+
+@media (max-width: 320px) {
+
+	.image,
+	.imageLink img {
+		width: 278px;
+	}
 }
 
 .body {
@@ -156,6 +182,7 @@
 	font-weight: 600;
 	color: var(--cs-blue);
 	text-decoration: none;
+	font-family: "Inter", Sans-serif;
 }
 
 .more:hover {
