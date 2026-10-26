@@ -531,7 +531,7 @@
 
 .sheetMenu {
   margin: 0;
-  padding: 0;
+  padding: 0 0 60px;
   list-style: none;
 }
 
@@ -550,8 +550,7 @@
   flex: 1 1 auto;
   padding: 14px 0;
   color: #284074;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   text-decoration: none;
 }
@@ -613,13 +612,13 @@
   gap: 20px;
   margin-top: auto;
   padding-top: 28px;
-  border-top: 1px solid #d8e4f5;
+  border-top: 1px solid #333333;
 }
 
 .sheetSignIn {
   color: #284074;
   font-family: "Inter", sans-serif;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 700;
   text-decoration: none;
   text-transform: capitalize;
