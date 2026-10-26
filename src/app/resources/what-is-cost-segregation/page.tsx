@@ -5,6 +5,8 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
+import styles from "./WhatIsCostSegregation.module.css";
+
 /**
  * The `what_is_cost_segregation` page type is not yet in the generated
  * Prismic types. Remove this block and the cast after "Pull to local".
@@ -57,5 +59,11 @@ export default async function Page() {
 		notFound();
 	}
 
-	return <SliceZone slices={page.data.slices} components={components} />;
+	return (
+		// The wrapper scopes this page's slice overrides, so the same
+		// slices keep their own styling everywhere else.
+		<main className={styles.page}>
+			<SliceZone slices={page.data.slices} components={components} />
+		</main>
+	);
 }

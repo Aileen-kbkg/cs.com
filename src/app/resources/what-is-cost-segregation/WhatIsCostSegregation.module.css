@@ -1,0 +1,608 @@
+/*
+ * What is Cost Segregation — page-scoped overrides.
+ *
+ * The page is built from shared slices, so everything here is scoped
+ * under .page and keyed to data-slice-type attributes, which CSS Modules
+ * does not hash. Nothing leaks to other pages using the same slices.
+ */
+.page {
+    --wics-navy: #1f3a6e;
+    --wics-blue: #277ce6;
+    --wics-text: #4a4a4a;
+    --wics-band: #f4f8fd;
+    --wics-border: #dbe6f6;
+
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Section rhythm — alternating white and pale blue bands            */
+/* ---------------------------------------------------------------- */
+
+.page :global([data-slice-type]) {
+    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* 1. Hero — white */
+.page :global([data-slice-type="text_with_image"]:nth-of-type(1)) {
+    background: #ffffff;
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* 2. "What is cost segregation?" — pale blue */
+.page :global([data-slice-type="text_with_image"]:nth-of-type(2)) {
+    background: var(--wics-band);
+}
+
+/* 3. How it works — white */
+.page :global([data-slice-type="steps"]) {
+    background: #ffffff;
+}
+
+/* ================================================================
+   4 — PROPERTY TYPE CARDS
+   Replace the earlier "Property type cards (feature_grid)" block in
+   WhatIsCostSegregation.module.css with this one.
+
+   Photo-topped cards: image flush to the card's top edge, copy below,
+   "Read More" bottom-right. Soft shadow, no visible border.
+   ================================================================ */
+
+.page>section:nth-of-type(4) {
+    background: var(--wics-band);
+}
+
+/* Heading and intro sit centred above the grid. */
+.page>section:nth-of-type(4) h2 {
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.page>section:nth-of-type(4)>div>div:first-of-type,
+.page>section:nth-of-type(4) p:first-of-type {
+    text-align: center;
+}
+
+/* Three equal columns with generous gutters. */
+.page>section:nth-of-type(4) ul,
+.page>section:nth-of-type(4)>div>div:last-of-type {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: 0;
+    list-style: none;
+}
+
+.page>section:nth-of-type(4) article {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(31, 58, 110, 0.06),
+        0 8px 24px rgba(31, 58, 110, 0.06);
+}
+
+/* Photo spans the full card width, flush to the top. */
+.page>section:nth-of-type(4) article img {
+    display: block;
+    width: 100%;
+    height: 230px;
+    margin: 0;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.page>section:nth-of-type(4) article h3 {
+    margin: 1.5rem 1.5rem 0.625rem;
+    font-size: clamp(1.125rem, 1.9vw, 1.375rem);
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--wics-navy);
+}
+
+.page>section:nth-of-type(4) article p {
+    margin: 0 1.5rem;
+    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
+    line-height: 1.6;
+    color: var(--wics-muted);
+}
+
+/* "Read More" pinned bottom-right; margin-top:auto keeps cards of
+   differing text length aligned along their lower edge. */
+.page>section:nth-of-type(4) article>span:last-child,
+.page>section:nth-of-type(4) article>a:last-child {
+    margin: 1.5rem 1.5rem 1.5rem auto;
+    align-self: flex-end;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    color: var(--wics-blue);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.page>section:nth-of-type(4) article>a:last-child:hover {
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+
+    .page>section:nth-of-type(4) ul,
+    .page>section:nth-of-type(4)>div>div:last-of-type {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page>section:nth-of-type(4) article img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 639px) {
+
+    .page>section:nth-of-type(4) ul,
+    .page>section:nth-of-type(4)>div>div:last-of-type {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .page>section:nth-of-type(4) article img {
+        height: 180px;
+    }
+
+    .page>section:nth-of-type(4) article h3 {
+        margin: 1.25rem 1.25rem 0.5rem;
+    }
+
+    .page>section:nth-of-type(4) article p {
+        margin: 0 1.25rem;
+    }
+
+    .page>section:nth-of-type(4) article>span:last-child,
+    .page>section:nth-of-type(4) article>a:last-child {
+        margin: 1.25rem 1.25rem 1.25rem auto;
+        padding-top: 1.25rem;
+    }
+}
+
+/* 5. When does it make sense — white */
+.page :global([data-slice-type="text_with_image"]:nth-of-type(5)) {
+    background: #ffffff;
+}
+
+/* ---------------------------------------------------------------- */
+/* Typography                                                        */
+/* ---------------------------------------------------------------- */
+
+.page :global(h1),
+.page :global(h2) {
+    color: var(--wics-navy);
+    text-wrap: balance;
+}
+
+/* Hero heading is the largest on the page. */
+.page :global([data-slice-type="text_with_image"]:nth-of-type(1) h2) {
+    font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.page :global([data-slice-type="text_with_image"] h2) {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    line-height: 1.25;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Centred headings on the two full-width sections. */
+.page :global([data-slice-type="steps"] h2),
+.page :global([data-slice-type="feature_grid"] h2) {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+    font-weight: 700;
+    text-align: center;
+}
+
+.page :global([data-slice-type="feature_grid"] h3) {
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    font-weight: 700;
+    color: var(--wics-navy);
+}
+
+.page :global(p) {
+    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
+    line-height: 1.7;
+    color: var(--wics-text);
+}
+
+.page :global(a) {
+    color: var(--wics-blue);
+    text-decoration: none;
+}
+
+.page :global(a:hover) {
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------- */
+/* Checklist — the "When does it make sense?" list items             */
+/* ---------------------------------------------------------------- */
+
+.page :global([data-slice-type="text_with_image"]:nth-of-type(5) ul) {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.page :global([data-slice-type="text_with_image"]:nth-of-type(5) li) {
+    position: relative;
+    margin-bottom: 0.75rem;
+    padding-left: 1.875rem;
+    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
+    line-height: 1.6;
+    color: var(--wics-text);
+}
+
+/* Blue tick, drawn rather than added to the content. */
+.page :global([data-slice-type="text_with_image"]:nth-of-type(5) li::before) {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.1875em;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 50%;
+    background-color: var(--wics-blue);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 6 9 17l-5-5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 0.75rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ---------------------------------------------------------------- */
+/* Property type cards                                               */
+/* ---------------------------------------------------------------- */
+
+.page :global([data-slice-type="feature_grid"] article) {
+    border: 1px solid var(--wics-border);
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Images                                                            */
+/* ---------------------------------------------------------------- */
+
+.page :global(img) {
+    max-width: 100%;
+    height: auto;
+}
+
+/* The checklist illustration is artwork, not a photo — keep it small. */
+.page :global([data-slice-type="text_with_image"]:nth-of-type(5) img) {
+    max-width: 280px;
+    margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                        */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+    .page :global([data-slice-type]) {
+        padding-block: 2rem;
+    }
+
+    .page :global([data-slice-type="text_with_image"]:nth-of-type(5) img) {
+        max-width: 200px;
+    }
+}
+
+/* ================================================================
+   CTA BAND + FAQ
+   Append to WhatIsCostSegregation.module.css, replacing the earlier
+   block of the same name.
+
+   Both slices render centred by default. These rules restyle them for
+   this page only — the same slices are untouched elsewhere.
+   ================================================================ */
+
+/* ---------------------------------------------------------------- */
+/* 6 — CTA band                                                     */
+/*                                                                  */
+/* Horizontal: icon, then heading over its supporting line, then the */
+/* button over its note. The slice's inner div is the grid.          */
+/* ---------------------------------------------------------------- */
+
+.page>section:nth-of-type(6) {
+    padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+.page>section:nth-of-type(6)>div {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+        "icon title cta"
+        "icon text note";
+    align-items: center;
+    gap: 0.5rem clamp(1.25rem, 3vw, 2.5rem);
+    max-width: 1200px;
+    margin-inline: auto;
+    text-align: left;
+}
+
+/* Calculator mark, drawn in CSS so the slice needs no image field. */
+.page>section:nth-of-type(6)>div::before {
+    content: "";
+    grid-area: icon;
+    width: clamp(2.25rem, 4vw, 3rem);
+    height: clamp(2.25rem, 4vw, 3rem);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%23ffffff'%3E%3Cpath d='M400 0H48C22.4 0 0 22.4 0 48v416c0 25.6 22.4 48 48 48h352c25.6 0 48-22.4 48-48V48c0-25.6-22.4-48-48-48zM128 435.2c0 6.4-6.4 12.8-12.8 12.8H76.8c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm0-128c0 6.4-6.4 12.8-12.8 12.8H76.8c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm128 128c0 6.4-6.4 12.8-12.8 12.8h-38.4c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm0-128c0 6.4-6.4 12.8-12.8 12.8h-38.4c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm128 128c0 6.4-6.4 12.8-12.8 12.8h-38.4c-6.4 0-12.8-6.4-12.8-12.8V268.8c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v166.4zm0-256c0 6.4-6.4 12.8-12.8 12.8H76.8c-6.4 0-12.8-6.4-12.8-12.8V76.8C64 70.4 70.4 64 76.8 64h294.4c6.4 0 12.8 6.4 12.8 12.8v102.4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.page>section:nth-of-type(6)>div>h2 {
+    grid-area: title;
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+.page>section:nth-of-type(6)>div>div {
+    grid-area: text;
+    margin: 0;
+    opacity: 1;
+}
+
+.page>section:nth-of-type(6)>div>div p {
+    margin: 0;
+    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
+    line-height: 1.5;
+    color: #ffffff;
+}
+
+/* Natural width, not stretched across the grid cell. */
+.page>section:nth-of-type(6)>div>a {
+    grid-area: cta;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    margin: 0;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    background: var(--wics-blue);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.page>section:nth-of-type(6)>div>a:hover,
+.page>section:nth-of-type(6)>div>a:focus-visible {
+    background: #1f66c2;
+    color: #ffffff;
+}
+
+/* Keep the label visible whatever the slice wraps it in. */
+.page>section:nth-of-type(6)>div>a span {
+    color: inherit;
+}
+
+/* "Fast. Secure. No Obligation." with its own tick. */
+.page>section:nth-of-type(6)>div>p {
+    grid-area: note;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.9375rem;
+    color: #ffffff;
+    opacity: 1;
+    white-space: nowrap;
+}
+
+.page>section:nth-of-type(6)>div>p::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23ffffff'%3E%3Cpath d='M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 387.3l184-184c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0L216 308.1l-70.1-70.1c-6.2-6.2-16.4-6.2-22.6 0l-22.6 22.6c-6.2 6.2-6.2 16.4 0 22.6l104 104c6.2 6.3 16.3 6.3 22.6.1z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* ---------------------------------------------------------------- */
+/* 7 — FAQ accordion                                                */
+/*                                                                  */
+/* Pale blue rows with a plus marker, narrower than the page.        */
+/* ---------------------------------------------------------------- */
+
+.page>section:nth-of-type(7)>div {
+    max-width: 888px;
+    margin-inline: auto;
+}
+
+.page>section:nth-of-type(7) h2 {
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+}
+
+.page>section:nth-of-type(7) ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 0;
+}
+
+.page>section:nth-of-type(7) li {
+    margin-bottom: 0.625rem;
+    border: 0;
+    border-radius: 8px;
+    background: var(--wics-band);
+    overflow: hidden;
+}
+
+/* The question row — a button in the shared component. */
+.page>section:nth-of-type(7) li button {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    color: var(--wics-navy);
+    font-size: clamp(0.9375rem, 1.5vw, 1rem);
+    font-weight: 400;
+    text-align: left;
+}
+
+/* Plus marker before the question. */
+.page>section:nth-of-type(7) li button::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.875rem;
+    height: 0.875rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%231f3a6e'%3E%3Cpath d='M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: transform 0.2s ease;
+}
+
+/* Rotating the plus 45° gives a cross when open. */
+.page>section:nth-of-type(7) li button[aria-expanded="true"]::before {
+    transform: rotate(45deg);
+}
+
+/* Hide only the chevron — the span that wraps an svg. The question
+   text is in a sibling span and must stay visible. */
+.page>section:nth-of-type(7) li button span:has(> svg) {
+    display: none;
+}
+
+/* Fallback for browsers without :has() — the chevron is the one span
+   that contains no text of its own. */
+@supports not selector(:has(*)) {
+    .page>section:nth-of-type(7) li button>svg {
+        display: none;
+    }
+}
+
+.page>section:nth-of-type(7) li div[role="region"]>div>div {
+    padding: 0 1.25rem 1.125rem 3.125rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--wics-text);
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+
+    /* Stack the band rather than squeezing four cells into a row. */
+    .page>section:nth-of-type(6)>div {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "icon title"
+            "icon text"
+            "cta  cta"
+            "note note";
+        gap: 0.5rem 1.25rem;
+    }
+
+    .page>section:nth-of-type(6)>div>a {
+        justify-self: start;
+        margin-top: 1.25rem;
+    }
+
+    .page>section:nth-of-type(6)>div>p {
+        justify-self: start;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 639px) {
+    .page>section:nth-of-type(6)>div {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "icon"
+            "title"
+            "text"
+            "cta"
+            "note";
+        justify-items: start;
+    }
+
+    .page>section:nth-of-type(6)>div>a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .page>section:nth-of-type(7) li button {
+        padding: 0.875rem 1rem;
+    }
+
+    .page>section:nth-of-type(7) li div[role="region"]>div>div {
+        padding-left: 2.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page>section:nth-of-type(7) li button::before {
+        transition: none;
+    }
+}
+
+.page>section:nth-of-type(1)>div,
+.page>section:nth-of-type(2)>div,
+.page>section:nth-of-type(5)>div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.page>section:nth-of-type(1)>div>*,
+.page>section:nth-of-type(2)>div>*,
+.page>section:nth-of-type(5)>div>* {
+    flex: none;
+    width: auto;
+    min-width: 0;
+}
+
+.page :global([data-slice-type="text_with_image"] img) {
+    border-radius: 20px 20px 20px 20px;
+}
+
+.page :global([data-slice-type="faq_accordion"]) {
+    max-width: 888px;
+    margin: 0 auto;
+}
