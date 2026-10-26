@@ -43,14 +43,21 @@
 .heading {
   margin: 0 0 0.75rem;
   font-size: clamp(2rem, 4vw, 2.8rem);
-  color: rgb(29, 42, 68);
+  color: #1d2a44;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-block-end: 1rem;
+  margin-block-start: .5rem;
 }
+
 
 .intro,
 .intro p {
   margin: 0;
   font-size: 1rem;
   color: var(--wc-muted);
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 /* Slide transitions (300ms, same keyframes as live) */
@@ -135,8 +142,12 @@
 .cardTitle {
   margin: 0;
   font-size: 1.25rem;
-  font-weight: 700;
-  color: rgb(16, 24, 40);
+  font-weight: 500;
+  color: #101828;
+  font-family: inherit;
+  line-height: 1.2;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
 }
 
 .cardText,
@@ -145,6 +156,7 @@
   color: var(--wc-muted);
   line-height: 1.6;
   font-size: 0.98rem;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 .cardCta {

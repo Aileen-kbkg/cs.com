@@ -130,7 +130,7 @@
   width: 630px;
   max-width: 100%;
   flex-shrink: 1;
-  padding: 10px;
+  padding: 0px;
 }
 
 .includedTitle {
@@ -147,7 +147,7 @@
   align-items: flex-start;
   gap: 20px;
   width: 100%;
-  padding: 10px;
+  padding: 0px;
 }
 
 .featureList {
@@ -209,7 +209,7 @@
   width: 400px;
   max-width: 100%;
   flex-shrink: 1;
-  padding: 10px;
+  padding: 0px;
 }
 
 .loyaltyButton {
@@ -226,8 +226,9 @@
 .inner .loyaltyNote p {
   margin: 0;
   text-align: center;
-  font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+  font-weight: 400;
   line-height: 1;
   color: #3d8120;
 }
@@ -289,6 +290,9 @@
 
 .planName {
   font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+  font-weight: 500;
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
 }
 
 .planTypes {
@@ -307,6 +311,10 @@
 .priceBlock {
   margin-bottom: 10px;
   text-align: center;
+}
+
+.inner p {
+  color: #284074;
 }
 
 .inner .price {
