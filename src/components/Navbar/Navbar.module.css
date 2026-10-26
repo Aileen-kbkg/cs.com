@@ -540,9 +540,10 @@
 }
 
 .sheetRow {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+
 }
 
 .sheetLink {
@@ -575,8 +576,8 @@
 }
 
 .sheetCaret svg {
-  width: 14px;
-  height: 14px;
+  width: 22px;
+  height: 22px;
   fill: currentColor;
 }
 
