@@ -191,3 +191,12 @@
         transition: none;
     }
 }
+
+.partnerLogo {
+    display: block;
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: var(--ph-partner-logo-height, 44px);
+    object-fit: contain;
+}

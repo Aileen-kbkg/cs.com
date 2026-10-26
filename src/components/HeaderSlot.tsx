@@ -11,7 +11,11 @@ import type { ReactNode } from "react";
  * this only decides whether to mount it. That keeps the root layout a
  * server component and avoids moving every existing route into a group.
  */
-const HEADERLESS_ROUTES = ["/empowered-investor"];
+const HEADERLESS_ROUTES = [
+  "/empowered-investor",
+  "/referral-roofstock",
+  "/s8-acquisition",
+];
 
 export default function HeaderSlot({ children }: { children: ReactNode }) {
 	const pathname = usePathname();

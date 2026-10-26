@@ -22,7 +22,7 @@ import Testimonials from "./Testimonials";
 import TextWithImage from "./TextWithImage";
 import VideoEmbed from "./VideoEmbed";
 import AnnouncementBar from "./AnnouncementBar";
-
+import PartnerOffer from "./PartnerOffer";
 
 export const components = {
 	calculator: Calculator,
@@ -47,4 +47,5 @@ export const components = {
 	text_with_image: TextWithImage,
 	video_embed: VideoEmbed,
 	announcement_bar: AnnouncementBar,
+	partner_offer: PartnerOffer,
 };

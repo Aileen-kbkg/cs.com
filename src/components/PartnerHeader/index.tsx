@@ -10,9 +10,13 @@ export type PartnerLogo = {
 };
 
 export type PartnerHeaderProps = {
-	/** CostSegregation.com logo, usually from site_settings. */
-	logo: ImageField;
-	/** Co-brand logos shown beside it. */
+	/**
+	 * CostSegregation.com logo, usually from site_settings. Omit where the
+	 * partner artwork is a combined lockup that already contains it — the
+	 * S8 Acquisition page, for instance.
+	 */
+	logo?: ImageField | null;
+	/** Co-brand logos shown beside it, or on their own. */
 	partnerLogos: PartnerLogo[];
 	signIn: { label: KeyTextField; link: LinkField } | null;
 	getStarted: { label: KeyTextField; link: LinkField } | null;
@@ -27,7 +31,7 @@ const ChevronRight = () => (
 /**
  * Co-branded header for partner landing pages.
  *
- * No navigation menu — the reference page has none, and a landing page
+ * No navigation menu — the reference pages have none, and a landing page
  * is deliberately low-exit. Logos on the left, Sign In and Get Started
  * on the right.
  *
@@ -43,7 +47,7 @@ export default function PartnerHeader({
 		<header className={styles.header}>
 			<div className={styles.inner}>
 				<div className={styles.logos}>
-					{isFilled.image(logo) && (
+					{logo && isFilled.image(logo) && (
 						<a href="/" className={styles.logoLink} aria-label="CostSegregation.com home">
 							<PrismicNextImage
 								field={logo}
@@ -62,7 +66,7 @@ export default function PartnerHeader({
 							<PrismicNextImage
 								field={partner.logo}
 								className={styles.partnerLogo}
-								sizes="160px"
+								sizes="300px"
 								priority
 								fallbackAlt=""
 							/>
