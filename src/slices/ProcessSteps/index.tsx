@@ -64,9 +64,9 @@ const ProcessSteps = ({ slice }: ProcessStepsProps) => {
 							<li key={`${card.title ?? "step"}-${index}`} className={styles.step}>
 								<div className={styles.media}>
 									{/* Decorative — the number also appears in the heading. */}
-									<span className={styles.badge} aria-hidden="true">
+									{/* <span className={styles.badge} aria-hidden="true">
 										{index + 1}
-									</span>
+									</span> */}
 
 									{isFilled.image(card.image) && (
 										<PrismicNextImage
