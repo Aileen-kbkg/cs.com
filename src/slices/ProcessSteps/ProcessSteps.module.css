@@ -3,7 +3,7 @@
  * blue badge, a ruled heading and a description.
  */
 .section {
-    --ps-navy: #1f3a6e;
+    --ps-navy: #284074;
     --ps-blue: #277ce6;
     --ps-text: #4a4a4a;
 
@@ -29,15 +29,15 @@
 
 .heading {
     margin: 0 0 0.75rem;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    line-height: 1.25;
-    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 500;
     color: var(--ps-navy);
     text-wrap: balance;
 }
 
 .intro {
-    max-width: 70ch;
+    max-width: 1280px;
     margin: 0 0 clamp(2rem, 4vw, 3rem);
     font-size: clamp(0.9375rem, 1.5vw, 1rem);
     line-height: 1.7;
