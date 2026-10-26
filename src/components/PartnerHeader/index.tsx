@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { isFilled } from "@prismicio/client";
 import type { ImageField, KeyTextField, LinkField } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
@@ -20,6 +21,11 @@ export type PartnerHeaderProps = {
 	partnerLogos: PartnerLogo[];
 	signIn: { label: KeyTextField; link: LinkField } | null;
 	getStarted: { label: KeyTextField; link: LinkField } | null;
+	/**
+	 * Caps the partner artwork's height, in px. Defaults to 44 — enough for
+	 * a small partner mark, but a combined lockup needs more.
+	 */
+	partnerLogoHeight?: number;
 };
 
 const ChevronRight = () => (
@@ -42,9 +48,18 @@ export default function PartnerHeader({
 	partnerLogos,
 	signIn,
 	getStarted,
+	partnerLogoHeight,
 }: PartnerHeaderProps) {
+	// Read by .partnerLogo as --ph-partner-logo-height, so the cap stays in
+	// CSS and only the value is set per page.
+	const headerStyle = partnerLogoHeight
+		? ({
+				"--ph-partner-logo-height": `${partnerLogoHeight}px`,
+			} as CSSProperties)
+		: undefined;
+
 	return (
-		<header className={styles.header}>
+		<header className={styles.header} style={headerStyle}>
 			<div className={styles.inner}>
 				<div className={styles.logos}>
 					{logo && isFilled.image(logo) && (
@@ -66,7 +81,7 @@ export default function PartnerHeader({
 							<PrismicNextImage
 								field={partner.logo}
 								className={styles.partnerLogo}
-								sizes="300px"
+								sizes="400px"
 								priority
 								fallbackAlt=""
 							/>

@@ -1,14 +1,17 @@
 /*
  * Co-branded partner header — logos left, Sign In / Get Started right.
- * No navigation menu, matching the Empowered Investor reference.
+ * No navigation menu, matching the partner reference pages.
  */
 .header {
+    /* Overridden per page via the partnerLogoHeight prop. */
+    --ph-partner-logo-height: 44px;
+
     box-sizing: border-box;
     position: relative;
     z-index: 100;
     width: 100%;
     padding: 0 20px;
-    background: #f4f8fd;
+    background: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
@@ -25,9 +28,8 @@
     justify-content: space-between;
     gap: clamp(1rem, 3vw, 2rem);
     max-width: 1280px;
-    min-height: 84px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0.75rem 0;
 }
 
 /* ---------------------------------------------------------------- */
@@ -38,7 +40,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: clamp(1rem, 3vw, 1.25rem);
+    gap: clamp(1rem, 3vw, 2.5rem);
     min-width: 0;
 }
 
@@ -50,19 +52,20 @@
 
 .logo {
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: auto;
+    max-width: 180px;
     height: auto;
-    max-height: 100%;
+    max-height: 56px;
     object-fit: contain;
 }
 
+/* Height-led: the width follows from the artwork's own ratio. */
 .partnerLogo {
     display: block;
-    width: 100%;
+    width: auto;
     max-width: 100%;
-    height: 69px;
-    max-height: 100%;
+    height: auto;
+    max-height: var(--ph-partner-logo-height);
     object-fit: contain;
 }
 
@@ -139,9 +142,9 @@
         max-height: 48px;
     }
 
+    /* Scales the per-page height down rather than overriding it. */
     .partnerLogo {
-        max-width: 130px;
-        max-height: 38px;
+        max-height: min(var(--ph-partner-logo-height), 110px);
     }
 }
 
@@ -149,7 +152,6 @@
     .inner {
         flex-wrap: wrap;
         justify-content: center;
-        min-height: 0;
         gap: 0.875rem;
     }
 
@@ -160,13 +162,12 @@
     }
 
     .logo {
-        max-width: 100%;
-        max-height: 55px;
+        max-width: 120px;
+        max-height: 40px;
     }
 
     .partnerLogo {
-        max-width: 100%;
-        max-height: 32px;
+        max-height: min(var(--ph-partner-logo-height), 72px);
     }
 
     .actions {
@@ -190,13 +191,4 @@
     .getStarted {
         transition: none;
     }
-}
-
-.partnerLogo {
-    display: block;
-    width: auto;
-    max-width: none;
-    height: auto;
-    max-height: var(--ph-partner-logo-height, 44px);
-    object-fit: contain;
 }
