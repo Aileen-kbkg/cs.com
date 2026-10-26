@@ -203,7 +203,7 @@ export default async function Footer() {
                     )}
                   </p>
                 )}
-                <p aria-hidden="true">{"\u00a0"}</p>
+                {/* <p aria-hidden="true">{"\u00a0"}</p> */}
               </div>
             )}
           </div>

@@ -23,6 +23,7 @@ import TextWithImage from "./TextWithImage";
 import VideoEmbed from "./VideoEmbed";
 import AnnouncementBar from "./AnnouncementBar";
 import PartnerOffer from "./PartnerOffer";
+import ProcessSteps from "./ProcessSteps";
 
 export const components = {
 	calculator: Calculator,
@@ -48,4 +49,5 @@ export const components = {
 	video_embed: VideoEmbed,
 	announcement_bar: AnnouncementBar,
 	partner_offer: PartnerOffer,
+	process_steps: ProcessSteps,
 };

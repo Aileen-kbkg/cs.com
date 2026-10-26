@@ -548,3 +548,47 @@
     line-height: 1.2em;
   }
 }
+
+
+.planIcon {
+  position: absolute;
+}
+
+.planText {
+  padding-left: 120px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .planIcon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    padding: 15px;
+  }
+
+  .planIcon img {
+    object-fit: contain;
+    width: 30px;
+    height: 30px;
+    display: block;
+  }
+
+  .planText {
+    padding-left: 70px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .planText {
+    padding: 70px 0 0 0;
+    position: relative;
+  }
+
+  .planIcon {
+    top: 20px;
+  }
+
+  .planHeader {
+    position: relative;
+  }
+}
