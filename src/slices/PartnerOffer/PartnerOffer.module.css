@@ -1,16 +1,19 @@
 /*
- * Partnership section with a promo code — Roofstock referral page.
+ * Partnership section — bordered copy card left, gold offer panel right.
+ * Matched against the S8 Acquisition and Roofstock referral pages.
  */
 .section {
-    --po-navy: #1f3a6e;
+    --po-navy: #284074;
     --po-blue: #277ce6;
     --po-text: #4a4a4a;
-    --po-band: #f4f8fd;
-    --po-border: #dbe6f6;
+    --po-card: #f7fafd;
+    --po-border: #c6d6ee;
+    --po-gold: #D8BC7B;
+    --po-gap: clamp(1.25rem, 2.5vw, 1.75rem);
 
     box-sizing: border-box;
     width: 100%;
-    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4vw, 1.5rem);
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 4vw, 1.5rem);
     background: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
@@ -24,29 +27,59 @@
 }
 
 .inner {
-    max-width: 880px;
+    display: flex;
+    align-items: stretch;
+    gap: var(--po-gap);
+    max-width: 1280px;
     margin: 0 auto;
-    text-align: center;
+}
+
+/* ---------------------------------------------------------------- */
+/* Copy card                                                        */
+/* ---------------------------------------------------------------- */
+
+.content {
+    flex: 0 0 calc(65% - var(--po-gap) / 2);
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    border: 1px solid #284074;
+    border-radius: 10px;
+    background: var(--po-card);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid #284074;
+    border-radius: 10px;
+    padding: 40px;
 }
 
 .title {
-    margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
-    font-size: clamp(1.5rem, 3.2vw, 2rem);
-    line-height: 1.25;
-    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    font-weight: 500;
     color: var(--po-navy);
     text-wrap: balance;
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
+
 }
 
 .text {
-    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+    font-size: clamp(0.9375rem, 1.4vw, 1rem);
     line-height: 1.7;
     color: var(--po-text);
-    text-align: left;
 }
 
 .text p {
-    margin: 0 0 1.125rem;
+    margin: 0 0 1.25rem;
     overflow-wrap: break-word;
 }
 
@@ -64,40 +97,69 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Promo code                                                       */
+/* Offer panel                                                      */
 /* ---------------------------------------------------------------- */
 
 .offer {
-    margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
-    padding: clamp(1.25rem, 3vw, 1.75rem);
-    border: 1px dashed var(--po-border);
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc(35% - var(--po-gap) / 2);
+    min-width: 0;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
     border-radius: 12px;
-    background: var(--po-band);
+    background: var(--po-gold);
+    color: #ffffff;
+    background-color: #D8BC7B;
+    background-image: url(https://www.costsegregation.com/wp-content/uploads/2026/07/S8-Favicon_gold-background.png);
+    background-position: 94% 94%;
+    background-repeat: no-repeat;
+    background-size: 29% auto;
+    font-family: "Inter", sans-serif;
+    justify-content: space-around;
 }
 
-.codeRow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.625rem 0.875rem;
+.offer h2 {
+
+    font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+    line-height: 1.15;
+    font-weight: 700;
+    color: #ffffff;
     margin: 0;
 }
 
-.codeLabel {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+.offerLabel {
+    margin: 0 0 0.25rem;
+    font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+    line-height: 1.15;
     font-weight: 700;
-    color: var(--po-navy);
+    color: #ffffff;
+    text-wrap: balance;
+}
+
+.offerNote {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.0625rem, 1.9vw, 1.375rem);
+    line-height: 1.3;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Promo code — present on Roofstock, absent on S8. */
+.codeRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin: 0 0 1.5rem;
 }
 
 .code {
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    background: #ffffff;
-    border: 1px solid var(--po-border);
+    background: rgba(255, 255, 255, 0.9);
     color: var(--po-navy);
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: clamp(1.125rem, 2.4vw, 1.5rem);
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
     font-weight: 700;
     letter-spacing: 0.08em;
     /* Double-click selects the whole code. */
@@ -108,39 +170,31 @@
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.5rem 0.875rem;
-    border: 1px solid var(--po-border);
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 8px;
-    background: #ffffff;
-    color: var(--po-navy);
+    background: transparent;
+    color: #ffffff;
     font: inherit;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .copyButton:hover,
 .copyButton:focus-visible {
-    border-color: var(--po-blue);
-    color: var(--po-blue);
+    background: rgba(255, 255, 255, 0.18);
 }
 
 .copyButton:focus-visible {
-    outline: 2px solid var(--po-blue);
+    outline: 2px solid #ffffff;
     outline-offset: 2px;
 }
 
 .copyButton svg {
     width: 1rem;
     height: 1rem;
-}
-
-.codeNote {
-    margin: 0.875rem 0 0;
-    font-size: clamp(0.875rem, 1.3vw, 0.9375rem);
-    line-height: 1.5;
-    color: var(--po-text);
 }
 
 /* Visually hidden, still announced. */
@@ -163,9 +217,10 @@
 .button {
     display: inline-flex;
     align-items: center;
+    align-self: flex-start;
     gap: 0.5rem;
-    margin-top: clamp(1.5rem, 3vw, 2rem);
-    padding: 0.9375rem 1.5rem;
+    margin-top: auto;
+    padding: 0.875rem 1.375rem;
     border-radius: 8px;
     background: var(--po-blue);
     color: #ffffff;
@@ -183,7 +238,7 @@
 }
 
 .button:focus-visible {
-    outline: 2px solid var(--po-navy);
+    outline: 2px solid #ffffff;
     outline-offset: 3px;
 }
 
@@ -197,13 +252,38 @@
     height: 0.8125rem;
 }
 
-@media (max-width: 639px) {
-    .codeRow {
+/* ---------------------------------------------------------------- */
+/* Responsive                                                       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    .inner {
         flex-direction: column;
     }
 
+    .content,
+    .offer {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 639px) {
     .button {
         width: 100%;
+        justify-content: center;
+    }
+
+    .codeRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .code {
+        text-align: center;
+    }
+
+    .copyButton {
         justify-content: center;
     }
 }

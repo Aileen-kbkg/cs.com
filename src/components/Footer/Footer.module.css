@@ -37,6 +37,7 @@
 
 .inner p {
   margin: 0 0 0.9rem;
+  color: #ffffff;
 }
 
 .inner a {
@@ -67,17 +68,19 @@
 
 /* Brand row 7eaf587: logo | rotated divider | KBKG, both logos flex-grow:1 */
 .brandRow {
+  padding: 0;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  padding: 10px;
+  gap: 0;
+  justify-content: flex-start;
 }
 
 .brandItem {
-  flex: 1 1 0;
-  min-width: 0;
-  text-align: start;
+  flex: auto;
+  width: auto;
+  min-width: 100px;
+  max-width: 176px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .brandItem a {
@@ -112,22 +115,23 @@
 .partnerLogo {
   display: inline-block;
   vertical-align: middle;
-  width: 100%;
+  width: auto;
   height: 78px;
   margin-bottom: 1px;
 }
 
 /* Tagline row bb9f322: two text widgets sharing the row */
 .taglineRow {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  padding: 10px;
+  padding: 0;
+  display: block;
+  margin-bottom: 15px;
 }
 
 .taglineItem {
   flex: 1 1 0;
   min-width: 0;
+  float: left;
+  margin-right: 20px;
 }
 
 /* Contact container cd23acf: no padding, no gap */
@@ -141,6 +145,7 @@
 
 .contactText p {
   color: #ffffff;
+  margin-bottom: 20px !important;
 }
 
 .contact .whiteLink,
@@ -155,6 +160,7 @@
   padding: 0;
   list-style: none;
   font-size: 0;
+  margin-top: 24px;
 }
 
 .social li {
@@ -186,6 +192,7 @@
 
 .legal p {
   color: #ffffff;
+  padding: 10px 0 !important;
 }
 
 /* Right column beb365b: 25% */
@@ -194,7 +201,8 @@
   flex-direction: column;
   gap: 20px;
   width: 25%;
-  padding: 10px;
+
+  padding: 0;
 }
 
 /* 58f6ef7 / 4621f51 */
@@ -296,5 +304,19 @@
 
   .posts {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .secondary {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767px) {
+  .divider {
+    display: block;
+    opacity: 0;
+
   }
 }

@@ -32,15 +32,8 @@ type PartnerOfferSlice = {
 export type PartnerOfferProps = SliceComponentProps<PartnerOfferSlice>;
 
 const ChevronRight = () => (
-	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-		<path
-			d="M9 5l7 7-7 7"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		/>
+	<svg viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+		<path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
 	</svg>
 );
 
@@ -67,11 +60,12 @@ const CopyIcon = () => (
 );
 
 /**
- * Partnership section with a prominent promo code.
+ * Partnership section — description card on the left, offer panel on the
+ * right.
  *
- * The code is selectable text with a copy button beside it — the button
- * is a convenience, not the only way to get the code, so it degrades
- * cleanly where the clipboard API is unavailable.
+ * The offer panel holds a headline (code_label), an optional promo code
+ * and a supporting note. S8 Acquisition has no code, Roofstock does, so
+ * the code block is conditional.
  */
 const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 	const primary = slice.primary;
@@ -93,6 +87,10 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 		}
 	};
 
+	const hasOffer = Boolean(
+		primary.code_label || primary.code || primary.code_note,
+	);
+
 	return (
 		<section
 			className={styles.section}
@@ -100,32 +98,37 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 			data-slice-variation={slice.variation}
 		>
 			<div className={styles.inner}>
-				{primary.title && <h2 className={styles.title}>{primary.title}</h2>}
+				<div className={styles.card}>
+					{primary.title && <h2 className={styles.title}>{primary.title}</h2>}
 
-				{isFilled.richText(primary.text) && (
-					<div className={styles.text}>
-						<PrismicRichText field={primary.text} />
-					</div>
-				)}
+					{isFilled.richText(primary.text) && (
+						<div className={styles.text}>
+							<PrismicRichText field={primary.text} />
+						</div>
+					)}
+				</div>
 
-				{(primary.code || primary.code_note) && (
-					<div className={styles.offer}>
-						<p className={styles.codeRow}>
-							{primary.code_label && (
-								<span className={styles.codeLabel}>{primary.code_label}</span>
-							)}
-							<code className={styles.code}>{primary.code}</code>
+				{hasOffer && (
+					<aside className={styles.offer}>
+						{primary.code_label && (
+							<h2 className={styles.offerHeading}>{primary.code_label}</h2>
+						)}
 
-							<button
-								type="button"
-								className={styles.copyButton}
-								onClick={copy}
-								aria-label={`Copy promo code ${primary.code}`}
-							>
-								<CopyIcon />
-								<span>{copied ? "Copied" : "Copy"}</span>
-							</button>
-						</p>
+						{primary.code && (
+							<p className={styles.codeRow}>
+								<code className={styles.code}>{primary.code}</code>
+
+								<button
+									type="button"
+									className={styles.copyButton}
+									onClick={copy}
+									aria-label={`Copy promo code ${primary.code}`}
+								>
+									<CopyIcon />
+									<span>{copied ? "Copied" : "Copy"}</span>
+								</button>
+							</p>
+						)}
 
 						{/* Announced to screen readers without stealing focus. */}
 						<span className={styles.srOnly} role="status" aria-live="polite">
@@ -133,18 +136,18 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 						</span>
 
 						{primary.code_note && (
-							<p className={styles.codeNote}>{primary.code_note}</p>
+							<p className={styles.offerNote}>{primary.code_note}</p>
 						)}
-					</div>
-				)}
 
-				{isFilled.link(primary.cta_link) && (
-					<PrismicNextLink field={primary.cta_link} className={styles.button}>
-						<span>{primary.cta_label || "Get Started"}</span>
-						<span className={styles.buttonIcon}>
-							<ChevronRight />
-						</span>
-					</PrismicNextLink>
+						{isFilled.link(primary.cta_link) && (
+							<PrismicNextLink field={primary.cta_link} className={styles.button}>
+								<span>{primary.cta_label || "Get Started"}</span>
+								<span className={styles.buttonIcon}>
+									<ChevronRight />
+								</span>
+							</PrismicNextLink>
+						)}
+					</aside>
 				)}
 			</div>
 		</section>
