@@ -125,9 +125,7 @@
 
 	.image,
 	.imageLink img {
-		width: 100%;
-		max-width: 732px;
-
+		height: 256px
 	}
 }
 
@@ -135,7 +133,7 @@
 
 	.image,
 	.imageLink img {
-		width: 278px;
+		height: 186px;
 	}
 } */
 
@@ -281,7 +279,7 @@
 		width: 100%;
 		max-width: 100%;
 		margin: 0 auto;
-		height: 483px;
+		height: auto;
 	}
 
 	.excerpt {
