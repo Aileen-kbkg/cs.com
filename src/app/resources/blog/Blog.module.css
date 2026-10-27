@@ -105,8 +105,8 @@
 .image,
 .imageLink img {
 	display: block;
-	width: 450px;
-	max-width: 450px;
+	width: 100%;
+	max-width: 100%;
 	height: auto;
 	aspect-ratio: 3 / 2;
 	object-fit: cover;
@@ -121,11 +121,13 @@
 	filter: brightness(129%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
 
 	.image,
 	.imageLink img {
 		width: 100%;
+		max-width: 732px;
+
 	}
 }
 
@@ -135,7 +137,7 @@
 	.imageLink img {
 		width: 278px;
 	}
-}
+} */
 
 .body {
 	display: flex;
@@ -259,7 +261,7 @@
 
 @media (max-width: 767px) {
 	.page {
-		padding: 2.5rem 1rem 3.5rem;
+		padding: 2.5rem 20px 3.5rem;
 	}
 
 	.heading {
@@ -277,8 +279,9 @@
 
 	.card {
 		width: 100%;
-		max-width: 480px;
+		max-width: 100%;
 		margin: 0 auto;
+		height: 483px;
 	}
 
 	.excerpt {

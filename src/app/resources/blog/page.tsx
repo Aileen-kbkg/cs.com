@@ -69,10 +69,11 @@ export default async function Page({ searchParams }: Props) {
 									aria-hidden="true"
 								>
 									<PrismicNextImage
-										field={post.data.featured_image}
-										className={styles.image}
-										sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-									/>
+  field={post.data.featured_image}
+  className={styles.image}
+  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+  fallbackAlt=""
+/>
 								</Link>
 							) : null}
 
