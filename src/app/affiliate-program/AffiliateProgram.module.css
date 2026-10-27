@@ -8,7 +8,7 @@
     --ap-blue: #277ce6;
     --ap-text: #4a4a4a;
     --ap-band: #F6F9FF;
-    --ap-gap: clamp(1.5rem, 5vw, 4.25rem);
+    --ap-gap: 20px;
 
     box-sizing: border-box;
     width: 100%;
@@ -45,11 +45,29 @@
     background-position: -8px 4px;
     background-repeat: no-repeat;
     background-size: 100% auto;
+    display: flex;
+    margin-top: 89px;
+    margin-bottom: 0;
+    margin-left: 21px;
+    margin-right: 37px;
+    flex-direction: column;
+
 }
 
 .aside img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.aside h1 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.aside strong {
+    font-weight: 700 !important;
 }
 
 /* ---------------------------------------------------------------- */
@@ -58,15 +76,18 @@
 
 .title {
     margin: 20px 0 6px 0px;
-    font-size: 35px;
+    font-size: 35px !important;
     line-height: 1.2;
     font-weight: 500;
     color: var(--ap-navy);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    ;
 
 }
 
 .title strong {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 .intro {
@@ -112,7 +133,7 @@
     font-weight: 500;
     color: var(--ap-navy);
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
 
 }
 
@@ -133,7 +154,7 @@
 }
 
 .formPanel :global(iframe) {
-    width: 688px !important;
+    width: 100%;
     min-height: 640px;
     border: 0;
 }
