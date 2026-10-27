@@ -131,3 +131,96 @@
         padding: 2rem 1rem;
     }
 }
+
+
+
+
+
+
+fieldset.form-columns-2 {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.hs_firstname.hs-firstname.hs-fieldtype-text.field.hs-form-field {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.hs-form-20d345a5-c196-4f75-8bc8-95118727a2fd_0a5287e7-b513-42cd-9a42-d59cfaece8ba fieldset.form-columns-2 .hs-form-field,
+.hs-form-20d345a5-c196-4f75-8bc8-95118727a2fd_0a5287e7-b513-42cd-9a42-d59cfaece8ba fieldset.form-columns-2 .input {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    max-width: 350px;
+    margin: 0 !important;
+}
+
+label#label-firstname-20d345a5-c196-4f75-8bc8-95118727a2fd {
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.hs-form-20d345a5-c196-4f75-8bc8-95118727a2fd_0a5287e7-b513-42cd-9a42-d59cfaece8ba fieldset.form-columns-2 input {
+    width: 100%;
+    margin: 0 5px 10px 5px;
+}
+
+.hs-form-20d345a5-c196-4f75-8bc8-95118727a2fd_0a5287e7-b513-42cd-9a42-d59cfaece8ba .hs-submit>.actions {
+    margin: 0;
+}
+
+.TextWithImage-module__ssLXPW__section.TextWithImage-module__ssLXPW__sectionBand .TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageRight.TextWithImage-module__ssLXPW__innerHero .TextWithImage-module__ssLXPW__body {
+    flex-basis: calc(50% - var(--twi-gap) / 2);
+}
+
+.TextWithImage-module__ssLXPW__section.TextWithImage-module__ssLXPW__sectionBand .TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageRight.TextWithImage-module__ssLXPW__innerHero .TextWithImage-module__ssLXPW__media {
+    flex-basis: calc(50% - var(--twi-gap) / 2);
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+}
+
+.ProductCards-module__Dh-LRW__grid {
+    padding-top: 10px;
+}
+
+.ProductCards-module__Dh-LRW__section {
+    padding-bottom: 0;
+}
+
+
+.ForCpas-module__OVyPQq__formSection {
+    background: #FFFFFF;
+}
+
+p.TextWithImage-module__ssLXPW__eyebrow span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 767px) {
+    section.TextWithImage-module__ssLXPW__section.TextWithImage-module__ssLXPW__sectionBand {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .hs-form-20d345a5-c196-4f75-8bc8-95118727a2fd_51483786-238b-4c76-9a55-6e47a98692d1 .hs-submit>.actions {
+        padding: 0;
+        margin: 0;
+    }
+
+    .hs-form-20d345a5-c196-4f75-8bc8-95118727a2fd_51483786-238b-4c76-9a55-6e47a98692d1 fieldset.form-columns-2 .hs-form-field {
+        width: 100%;
+    }
+
+    input#firstname-20d345a5-c196-4f75-8bc8-95118727a2fd {
+        width: 100%;
+    }
+
+    input#email-20d345a5-c196-4f75-8bc8-95118727a2fd {
+        width: 100%;
+    }
+}
