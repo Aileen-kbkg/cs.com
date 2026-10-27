@@ -102,7 +102,7 @@
 .content p {
     margin: 0 0 0.875rem;
     font-size: clamp(13.752px, 1.5vw, 16px);
-    line-height: 28px;
+    line-height: 24px;
     color: var(--tut-text);
     overflow-wrap: break-word;
 }
@@ -115,7 +115,7 @@
     margin: 0rem;
     padding-left: 2.5rem;
     font-size: clamp(0.875rem, 1.5vw, 1rem);
-    line-height: 26px;
+    line-height: 24px;
     color: var(--tut-text);
 }
 
