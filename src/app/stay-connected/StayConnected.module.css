@@ -10,7 +10,7 @@
 
     box-sizing: border-box;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 50px 0px 70px 0px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -28,7 +28,7 @@
 
 .header {
     max-width: 1280px;
-    margin: 0 auto clamp(2rem, 4vw, 72px);
+    margin: 0 auto clamp(2rem, 4vw, 72px) !important;
     text-align: center;
 }
 
@@ -42,7 +42,8 @@
 }
 
 .subtitle {
-    margin: 0;
+    margin: 0 0 .9rem;
+
     /* font-size: clamp(0.9375rem, 1.6vw, 1rem); */
     line-height: 1.6;
     color: var(--sc-text);
@@ -76,5 +77,12 @@
 
     .formCard :global(.hs-form-frame) {
         min-height: 760px;
+    }
+}
+
+@media (max-width: 1289px) {
+    .page {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
