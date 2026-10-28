@@ -62,7 +62,11 @@ export async function generateStaticParams() {
 	const client = createClient();
 	const posts = await client.getAllByType("blog_post");
 
-	return posts.map((post) => ({ uid: post.uid as string }));
+	// A document without a uid (an unsaved draft) would otherwise be
+	// returned as { uid: null } and fail the build.
+	return posts
+		.filter((post) => typeof post.uid === "string" && post.uid.length > 0)
+		.map((post) => ({ uid: post.uid as string }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
