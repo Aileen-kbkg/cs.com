@@ -119,14 +119,7 @@ const Hero = ({ slice }: HeroProps) => {
                 )}
               </h1>
             )}
-
-            {isFilled.richText(p.description) && (
-              <div className={styles.description}>
-                <PrismicRichText field={p.description} />
-              </div>
-            )}
-
-            <div className={styles.badges}>
+  <div className={styles.badges}>
               {badgeList.map((label, index) => (
                 <div
                   key={`${label}-${index}`}
@@ -139,6 +132,13 @@ const Hero = ({ slice }: HeroProps) => {
                 </div>
               ))}
             </div>
+            {isFilled.richText(p.description) && (
+              <div className={styles.description}>
+                <PrismicRichText field={p.description} />
+              </div>
+            )}
+
+          
 
             {p.cta_label && isFilled.link(p.cta_link) && (
               <PrismicNextLink field={p.cta_link} className={styles.cta}>

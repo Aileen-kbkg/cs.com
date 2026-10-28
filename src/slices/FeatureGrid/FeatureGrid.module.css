@@ -194,12 +194,12 @@
   appearance: none;
   box-shadow: none;
   font: inherit;
-  color: var(--wc-secondary);
+  color: #333333;
   font-weight: 600;
 }
 
 .backButton:hover {
-  color: var(--wc-primary);
+  color: #277ce6;
 }
 
 .backButton svg {
@@ -245,8 +245,9 @@
 .detailTitle {
   margin: 0;
   font-size: clamp(1.75rem, 3vw, 2.2rem);
-  font-weight: 700;
-  color: rgb(17, 24, 39);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #111827;
 }
 
 .detailDescription,
@@ -281,7 +282,7 @@
 .detailPanelTitle {
   margin: 0;
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
   color: rgb(16, 42, 86);
 }
 
