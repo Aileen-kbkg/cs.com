@@ -38,6 +38,7 @@
 
 .intro p {
     margin: 0 0 0.625rem;
+    line-height: 1.5;
 }
 
 .intro p:last-child {
