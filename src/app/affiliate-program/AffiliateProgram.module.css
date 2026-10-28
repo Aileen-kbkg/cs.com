@@ -250,7 +250,11 @@
 
 @media screen and (max-width: 1023px) {
     .hsfc-Step .hsfc-Step__Content {
-        padding-right: 0;
+        padding-right: 0 !important;
     }
 
+}
+
+.hsfc-Step .hsfc-Step__Content {
+    padding-right: 0 !important;
 }
