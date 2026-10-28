@@ -41,10 +41,11 @@ const FaqAccordion = ({ slice }: FaqAccordionProps) => {
 
 	return (
 		<section
-			className={styles.section}
-			data-slice-type={slice.slice_type}
-			data-slice-variation={slice.variation}
-		>
+  className={styles.section}
+  id={(primary as { anchor?: string }).anchor || undefined}
+  data-slice-type={slice.slice_type}
+  data-slice-variation={slice.variation}
+>
 			{primary.title && <h2 className={styles.heading}>{primary.title}</h2>}
 
 			{isFilled.richText(primary.intro) && (
