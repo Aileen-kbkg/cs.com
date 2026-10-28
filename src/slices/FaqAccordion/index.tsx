@@ -91,7 +91,17 @@ const FaqAccordion = ({ slice }: FaqAccordionProps) => {
 							>
 								<div className={styles.panelInner}>
 									<div className={styles.answer}>
-										<PrismicRichText field={item.answer} />
+										<PrismicRichText
+  field={item.answer}
+  components={{
+    label: ({ node, children, key }) =>
+      node.data.label === "underline" ? (
+        <u key={key}>{children}</u>
+      ) : (
+        <span key={key}>{children}</span>
+      ),
+  }}
+/>
 									</div>
 								</div>
 							</div>
