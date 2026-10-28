@@ -5,6 +5,7 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import type { ImageField } from "@prismicio/client"
+import styles from "./About.module.css";
 /**
  * The `about` custom type is not yet in the generated Prismic types.
  * Remove this once prismicio-types.d.ts has been regenerated.
@@ -58,5 +59,9 @@ export default async function Page() {
 		notFound();
 	}
 
-	return <SliceZone slices={page.data.slices} components={components} />;
+		return (
+		<main className={styles.page}>
+			<SliceZone slices={page.data.slices} components={components} />
+		</main>
+	);
 }

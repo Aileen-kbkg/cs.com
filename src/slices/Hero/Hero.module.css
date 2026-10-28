@@ -196,7 +196,7 @@
   justify-content: center;
   gap: 20px;
   width: 50%;
-  padding: 10px;
+  padding: 0px;
 }
 
 /* Stat card 4354331 (.blurBG + 64% white overlay) */
@@ -214,7 +214,7 @@
   border-radius: 10px;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px);
-  margin: 0 auto;
+  margin: 0;
 }
 
 .stat::before {
@@ -296,6 +296,16 @@
 
   .stat {
     width: 300px;
+
+  }
+}
+
+@media (max-width: 767px) {
+
+
+  .stat {
+    margin: 0 auto;
+
   }
 }
 
