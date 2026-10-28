@@ -53,11 +53,11 @@
 }
 
 .intro p {
-  margin: 0 0 0.9rem;
+  margin: 0;
 }
 
 .intro p:last-child {
-  margin-bottom: 0.9rem;
+  margin-bottom: 0;
 }
 
 /* Step Process widget 4ca0654 */
@@ -169,16 +169,34 @@
 }
 
 .cta {
-  display: inline-block;
-  background-color: #277CE6;
+  color: #fff;
+  fill: #fff;
+  text-transform: capitalize;
+  text-align: center;
+  background-color: #277ce6;
+  border-radius: 10px;
+  min-height: 40px;
+  padding: 15px 20px;
   font-family: "Inter", Sans-serif;
   font-size: 16px;
   font-weight: bold;
-  text-transform: capitalize;
-  border-radius: 10px 10px 10px 10px;
-  padding: 15px 20px 15px 20px;
-  color: #ffffff;
-  margin-top: 40px;
+  line-height: 1;
+  text-decoration: none;
+  transition: all .3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ctaIcon {
+  display: flex;
+  align-items: center;
+}
+
+.ctaIcon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
 }
 
 /* Tablet (≤1024px) */

@@ -6,7 +6,6 @@
 .section {
   display: flex;
   min-height: 671px;
-  padding: 10px;
   background-color: #f6f9ff;
   color: #284074;
   font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial,
@@ -62,7 +61,7 @@
   gap: 20px;
   width: 275px;
   max-width: 100%;
-  padding: 10px 20px 5px;
+  padding: 10px 20px 10px;
   border-radius: 1000px;
   background-color: #ffffff;
 }
@@ -213,8 +212,9 @@
   padding: 20px;
   border: 2px solid #ffffff;
   border-radius: 10px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px);
+  margin: 0 auto;
 }
 
 .stat::before {
@@ -228,7 +228,7 @@
   pointer-events: none;
 }
 
-.stat > * {
+.stat>* {
   position: relative;
 }
 
@@ -261,10 +261,12 @@
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #284074;
+  text-align: center;
 }
 
 .statTitle p {
   margin: 0;
+  color: #284074;
 }
 
 /* f66a076 */
@@ -273,6 +275,11 @@
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 400;
+  color: #284074;
+  text-align: center;
+}
+
+.statNote p {
   color: #284074;
 }
 
@@ -329,8 +336,8 @@
   }
 
   .eyebrowText {
-    width: 175px;
-    max-width: 175px;
+    width: 100%;
+    max-width: 80%;
   }
 
   .description {
@@ -368,5 +375,11 @@
 @media (prefers-reduced-motion: reduce) {
   .cta {
     transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .eyebrow {
+    width: 275px;
   }
 }
