@@ -888,7 +888,7 @@
   }
 
   .root :global(.kbkg-estimator-body) {
-    flex-direction: column !important;
+    /* flex-direction: column !important; */
     gap: 32px !important;
   }
 
@@ -1080,6 +1080,14 @@
     font-size: 26px !important;
     margin-bottom: 20px !important;
   }
+
+  .root :global(.kbkg-estimator-wrapper .kbkg-estimator-results) {
+    padding: 0 !important;
+  }
+
+  .root :global(.kbkg-estimator-form) {
+    padding: 0;
+  }
 }
 
 
@@ -1122,4 +1130,10 @@
   max-height: none !important;
   /* never clip the iframe */
   overflow: visible !important;
+}
+
+@media (max-width: 600px) {
+  .root :global(.kbkg-estimator-body) {
+    flex-direction: column !important;
+  }
 }

@@ -1,8 +1,8 @@
 /*
- * "How it Works" — reproduces the live costsegregation.com section:
- * Elementor container 74c4993 + Unlimited Elements "Step Process" widget 4ca0654.
- * Elementor breakpoints: tablet ≤1024px, mobile ≤767px; the widget itself
- * switches to its vertical layout at ≤768px.
+ * "How it Works" — horizontal timeline on desktop, vertical below 1024px.
+ *
+ * The vertical layout puts the icons in a left column joined by a
+ * continuous line, with the copy to their right.
  */
 
 .section {
@@ -32,7 +32,6 @@
   margin: 0 auto;
 }
 
-/* Heading cc47da1 */
 .heading {
   margin: 0;
   padding: 0;
@@ -45,7 +44,6 @@
   color: #284074;
 }
 
-/* Text aad2fe9: 41% wide, centered */
 .intro {
   width: 41%;
   max-width: 41%;
@@ -60,7 +58,10 @@
   margin-bottom: 0;
 }
 
-/* Step Process widget 4ca0654 */
+/* ---------------------------------------------------------------- */
+/* Desktop — horizontal                                             */
+/* ---------------------------------------------------------------- */
+
 .steps {
   display: flex;
   width: 100%;
@@ -87,6 +88,7 @@
   background-color: #284074;
 }
 
+/* The timeline has no tail before the first icon or after the last. */
 .step:first-child .highlight>.line:first-child,
 .step:last-child .highlight>.line:last-child {
   opacity: 0;
@@ -182,7 +184,7 @@
   font-weight: bold;
   line-height: 1;
   text-decoration: none;
-  transition: all .3s;
+  transition: all 0.3s;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -199,58 +201,117 @@
   fill: currentColor;
 }
 
-/* Tablet (≤1024px) */
+/* ---------------------------------------------------------------- */
+/* Tablet and below — vertical timeline                             */
+/* ---------------------------------------------------------------- */
+
 @media (max-width: 1024px) {
   .intro {
-    width: 369.469px;
-    max-width: 369.469px;
+    width: 100%;
+    max-width: 420px;
   }
 
-  .steps {
-    width: 45%;
-    max-width: 45%;
-  }
-
-  .content {
-    text-align: left;
-  }
-}
-
-/* Step widget vertical layout (≤768px) */
-@media only screen and (max-width: 768px) {
+  /* Full width, not the 45% the old rule set — the column was being
+	   squeezed into the left half of the section. */
   .steps {
     flex-direction: column;
+    width: 100%;
+    max-width: 520px;
   }
 
   .step {
     flex-direction: row;
+    align-items: stretch;
   }
 
+  /* Icon column: line, icon, line — stacked vertically. */
   .highlight {
     flex-direction: column;
+    flex: 0 0 auto;
   }
 
-  .highlight>.line:first-child {
-    display: none;
-  }
-
+  /* The connector runs vertically now; flex-grow makes it fill the
+	   space above and below the icon. */
   .line {
     width: 2px;
-    height: 100%;
+    height: auto;
+    min-height: 20px;
+    flex-grow: 1;
+  }
+
+  /* Only the first step loses its leading line, and only the last its
+	   trailing one — the old rule hid the leading line on every step,
+	   which broke the chain between icons. */
+  .step:first-child .highlight>.line:first-child,
+  .step:last-child .highlight>.line:last-child {
+    opacity: 0;
+  }
+
+  .spacer {
+    width: 20px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 10px 0;
+    text-align: left;
+  }
+
+  .title {
+    margin-top: 0;
+  }
+
+  /* Aligns the button with the copy rather than the icons. */
+  .cta {
+    align-self: center;
   }
 }
 
-/* Mobile (≤767px) */
-@media (max-width: 767px) {
+/* ---------------------------------------------------------------- */
+/* Mobile                                                           */
+/* ---------------------------------------------------------------- */
 
-  .intro,
-  .steps {
-    width: 100%;
-    max-width: 100%;
+@media (max-width: 767px) {
+  .section {
+    padding: 40px 20px;
+  }
+
+  .icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .iconImage {
+    width: 40px;
+    height: 40px;
   }
 
   .label {
-    padding: 8px 10px;
+    padding: 4px 7px;
     border-radius: 16px;
+  }
+
+  .spacer {
+    width: 16px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .icon,
+  .cta {
+    transition: none;
+  }
+
+  .icon:hover {
+    transform: none;
   }
 }

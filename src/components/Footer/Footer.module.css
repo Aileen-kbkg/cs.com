@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 0;
   width: 100%;
   max-width: 1280px;
@@ -36,7 +36,7 @@
 }
 
 .inner p {
-  margin: 0 0 0.9rem;
+  margin: 0px;
   color: #ffffff;
 }
 
@@ -63,7 +63,7 @@
   justify-content: flex-end;
   gap: 20px;
   width: 50%;
-  padding: 10px;
+  padding: 0;
 }
 
 /* Brand row 7eaf587: logo | rotated divider | KBKG, both logos flex-grow:1 */
@@ -103,6 +103,7 @@
   display: flex;
   padding: 15px 0;
   transform: rotate(-90deg);
+  margin: 0 20px;
 }
 
 .divider span {
@@ -145,7 +146,7 @@
 
 .contactText p {
   color: #ffffff;
-  margin-bottom: 20px !important;
+  margin-bottom: 15px !important;
 }
 
 .contact .whiteLink,
@@ -156,11 +157,11 @@
 /* Social icons a207f4b: 24px icons, 16px spacing (inline-block grid + word-spacing) */
 .social {
   display: block;
-  margin: 10px 0 0;
+  margin: 24px 0 15px;
   padding: 0;
   list-style: none;
   font-size: 0;
-  margin-top: 24px;
+
 }
 
 .social li {
@@ -192,7 +193,8 @@
 
 .legal p {
   color: #ffffff;
-  padding: 10px 0 !important;
+  padding: 0 !important;
+  margin-top: 15px;
 }
 
 /* Right column beb365b: 25% */
@@ -210,7 +212,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 10px;
+  padding: 0px;
 }
 
 /* Posts widget c16afd8: 1 col, 35px row gap, titles 15px white */
@@ -262,6 +264,7 @@
 
   .secondary {
     flex-direction: row;
+    margin-top: 54px;
   }
 
   .secondary>.column {
@@ -307,11 +310,7 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .secondary {
-    flex-direction: column;
-  }
-}
+
 
 @media (max-width: 767px) {
   .divider {

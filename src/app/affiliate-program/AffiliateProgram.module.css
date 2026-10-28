@@ -228,3 +228,29 @@
         padding: 60px 20px;
     }
 }
+
+
+.inner {
+    display: flex;
+    align-items: flex-start;
+}
+
+.aside {
+    margin-top: 0;
+    max-width: 560px;
+}
+
+.aside img {
+    margin-bottom: 40px;
+}
+
+.formTitle {
+    text-align: left;
+}
+
+@media screen and (max-width: 1023px) {
+    .hsfc-Step .hsfc-Step__Content {
+        padding-right: 0;
+    }
+
+}

@@ -189,7 +189,7 @@ export default async function Footer() {
 
             {hasLeftLinks && (
               <div className={styles.legal}>
-                <p aria-hidden="true">{"\u00a0"}</p>
+                {/* <p aria-hidden="true">{"\u00a0"}</p> */}
                 {data.footer_note && <p>{data.footer_note}</p>}
                 {Boolean(data.legal_links?.length) && (
                   <p>
