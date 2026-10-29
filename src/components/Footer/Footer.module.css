@@ -72,6 +72,7 @@
   display: flex;
   gap: 0;
   justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .brandItem {
@@ -287,14 +288,31 @@
     gap: 40px;
   }
 
-  .brandRow,
-  .taglineRow,
-  .secondary {
-    flex-wrap: wrap;
+  /* Logos sit side by side with no rule between them. */
+  .brandRow {
+    gap: 20px;
   }
 
   .divider {
     display: none;
+  }
+
+  /* The taglines stack; the float put them on one line. */
+  .taglineRow {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .taglineItem {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .contact {
+    width: 100%;
   }
 
   .contactText {
@@ -305,17 +323,19 @@
     margin-top: 4px;
   }
 
+  /* Recent News, Software and Stay connected run down one column —
+	   the tablet rule above turns .secondary into a row. */
+  .secondary {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 0;
+  }
+
   .posts {
     grid-template-columns: repeat(1, 1fr);
   }
-}
 
-
-
-@media (max-width: 767px) {
-  .divider {
-    display: block;
-    opacity: 0;
-
+  .partnerLogo {
+    height: 70px;
   }
 }
