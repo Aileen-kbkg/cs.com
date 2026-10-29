@@ -209,7 +209,9 @@
 @media (max-width: 1300px) {
     .formTitle {
 
-        white-space: normal;
+        white-space: nowrap;
+        text-wrap: balance;
+        text-align: center !important;
 
     }
 
@@ -261,12 +263,12 @@
 
 @media (max-width: 991px) {
     .formPanel :global(.hs-form-frame) {
-        width: 100%;
+        width: 100vw;
     }
 }
 
-@media (max-width:991px) {
-    .formPanel .hs-form-frame {
-        width: 100vw !important;
+/* @media (max-width:991px) {
+    .AffiliateProgram-module__eKe35W__formPanel .hs-form-frame {
+        width: 100vw;
     }
-}
+} */

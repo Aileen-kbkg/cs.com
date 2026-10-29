@@ -73,9 +73,9 @@
     }
 }
 
-.cs-header__bar-inner [class*="subArrow"] {
+/* .cs-header__bar-inner [class*="subArrow"] {
     padding-left: 10px;
-}
+} */
 
 .cs-header__bar-inner [class*="subMenu"] {
     top: 90%;

@@ -1,60 +1,63 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import { isFilled } from "@prismicio/client";
-import type { KeyTextField, LinkField } from "@prismicio/client";
+import type { KeyTextField, LinkField, RichTextField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./AnnouncementBar.module.css";
 
-export type Announcement = {
-	/** Route this applies to, e.g. "/rei-busyseason". Empty = site-wide default. */
-	path: KeyTextField;
-	text: KeyTextField;
-	link: LinkField;
-	link_label: KeyTextField;
-	/** "blue" (default) or "navy". */
-	background: string | null;
+/**
+ * Local type until `announcement_bar` is in types.generated.ts.
+ */
+type AnnouncementBarSlice = {
+	id: string;
+	slice_type: string;
+	variation: string;
+	primary: {
+		text: RichTextField;
+		link: LinkField;
+		link_label: KeyTextField;
+		/** "blue" (default) or "navy". */
+		style: "blue" | "navy" | null;
+	};
+	items: never[];
 };
 
+export type AnnouncementBarProps = SliceComponentProps<AnnouncementBarSlice>;
+
 /**
- * Site-wide announcement bar with per-page overrides.
+ * Promotional bar beneath the header.
  *
- * Picks the row whose `path` matches the current route; falls back to the
- * row with no path set. Campaign pages can therefore run their own
- * message and colour without a separate layout.
+ * Added per page as a slice, so each page carries its own message — or
+ * none. The navy variant is the campaign style used on the REI busy
+ * season page; blue is the standard site bar.
  */
-export default function AnnouncementBar({ items }: { items: Announcement[] }) {
-	const pathname = usePathname();
+const AnnouncementBar = ({ slice }: AnnouncementBarProps) => {
+	const primary = slice.primary;
 
-	if (!items || items.length === 0) return null;
+	if (!isFilled.richText(primary.text)) return null;
 
-	const normalise = (value: string) =>
-		value.replace(/\/+$/, "").toLowerCase() || "/";
-
-	const current = normalise(pathname ?? "/");
-
-	const match =
-		items.find((item) => item.path && normalise(item.path) === current) ??
-		items.find((item) => !item.path);
-
-	if (!match || !match.text) return null;
-
-	const theme =
-		match.background === "navy" ? styles.announcementNavy : styles.announcementBlue;
+	const theme = primary.style === "navy" ? styles.navy : styles.blue;
 
 	return (
-		<div className={`${styles.announcement} ${theme}`}>
-			<p>
-				{isFilled.link(match.link) ? (
-					<PrismicNextLink field={match.link}>
-						{match.text}
-						{match.link_label ? ` ${match.link_label}` : null}
+		<div
+			className={`${styles.bar} ${theme}`}
+			data-slice-type={slice.slice_type}
+			data-slice-variation={slice.variation}
+		>
+			<div className={styles.inner}>
+				<div className={styles.text}>
+					<PrismicRichText field={primary.text} />
+				</div>
+
+				{/* Optional trailing link — the bar renders without it. */}
+				{primary.link_label && isFilled.link(primary.link) && (
+					<PrismicNextLink field={primary.link} className={styles.link}>
+						{primary.link_label}
 					</PrismicNextLink>
-				) : (
-					match.text
 				)}
-			</p>
+			</div>
 		</div>
 	);
-}
+};
+
+export default AnnouncementBar;

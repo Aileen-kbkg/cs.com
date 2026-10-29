@@ -7,6 +7,7 @@ import { createClient } from "@/prismicio";
 import NavbarMenu, { type NavItem } from "./NavbarMenu";
 import './MainNavigation.css';
 import './Navbar.module.css';
+import announcementStyles from "@/slices/AnnouncementBar/AnnouncementBar.module.css";
 
 
 type NavbarProps = {
@@ -91,11 +92,13 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
         </div>
       </div>
 
-      {isFilled.richText(data.announcement) && (
-        <div className="cs-header__announcement">
-          <PrismicRichText field={data.announcement} />
-        </div>
-      )}
+    {/* {isFilled.richText(data.announcement) && (
+  <div className={announcementStyles.bar}>
+    <div className={announcementStyles.inner}>
+      <PrismicRichText field={data.announcement} />
+    </div>
+  </div>
+)} */}
     </header>
   );
 }
