@@ -41,6 +41,7 @@
     background: var(--cs-band);
     text-align: center;
     margin: 0 auto;
+    max-width: 1280px;
 }
 
 .heroInner {
@@ -230,6 +231,7 @@
 
 .body li {
     margin-bottom: 0.625rem;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1.00rem);
 }
 
 .body img {
