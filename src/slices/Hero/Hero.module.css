@@ -605,9 +605,9 @@
   }
 }
 
-.content {
+/* .content {
   flex-wrap: nowrap;
-}
+} */
 
 .inner {
   flex-direction: column;
