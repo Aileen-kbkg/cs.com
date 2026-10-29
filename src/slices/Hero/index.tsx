@@ -204,12 +204,12 @@ const Hero = ({ slice }: HeroProps) => {
     <PrismicRichText
       field={p.promo_text}
       components={{
-        strong: ({ node, key }) => {
-  const text = "text" in node ? node.text : "";
+       strong: ({ node, key }) => {
+  const text = (node as { text?: string }).text ?? "";
 
   return (
     <span key={key} className={styles.promoWave}>
-      {text.split("").map((char, i) => (
+      {text.split("").map((char: string, i: number) => (
         <span key={i} style={{ animationDelay: `${i * 0.05}s` }}>
           {char === " " ? "\u00a0" : char}
         </span>
