@@ -224,3 +224,77 @@ p.TextWithImage-module__ssLXPW__eyebrow span {
         width: 100%;
     }
 }
+
+/* ================================================================
+   Append to src/app/for-cpas/ForCpas.module.css
+
+   Scoped under .page and keyed to data-slice-type, which CSS Modules
+   leaves unhashed — so these survive a rebuild, unlike the generated
+   class names. The page's root needs className={styles.page}.
+
+   The HubSpot rules from the original have been dropped: that form
+   renders inside a cross-origin iframe, so no stylesheet on this page
+   can reach its fieldsets, labels or inputs. Those changes have to be
+   made in HubSpot's own form editor.
+   ================================================================ */
+
+/* The discounts form sits on white, not the pale band. */
+.formSection {
+    background: #ffffff;
+}
+
+/* Capping the container is what stacks HubSpot's two-column name row —
+   the embed is responsive and collapses below roughly 480px. */
+.formEmbed {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* ---------------------------------------------------------------- */
+/* TextWithImage                                                    */
+/* ---------------------------------------------------------------- */
+
+.page :global([data-slice-type="text_with_image"] p[class*="eyebrow"] span) {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Equal halves, with the image's corners rounded. */
+.page :global([data-slice-type="text_with_image"] div[class*="body"]),
+.page :global([data-slice-type="text_with_image"] div[class*="media"]) {
+    flex-basis: calc(50% - var(--twi-gap) / 2);
+}
+
+.page :global([data-slice-type="text_with_image"] div[class*="media"]) {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* ---------------------------------------------------------------- */
+/* ProductCards                                                     */
+/* ---------------------------------------------------------------- */
+
+.page :global([data-slice-type="product_cards"]) {
+    padding-bottom: 0;
+}
+
+.page :global([data-slice-type="product_cards"] ul) {
+    padding-top: 10px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Mobile                                                           */
+/* ---------------------------------------------------------------- */
+
+@media only screen and (max-width: 767px) {
+    .page :global([data-slice-type="text_with_image"]) {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .formEmbed {
+        max-width: 100%;
+    }
+}

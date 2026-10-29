@@ -566,8 +566,8 @@
 @media only screen and (max-width: 1023px) {
   .planIcon {
     /* position: absolute; */
-    width: 80px;
-    height: 80px;
+    /* width: 80px;
+    height: 80px; */
     padding: 15px;
   }
 
@@ -608,7 +608,7 @@
   padding-left: 0;
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 767px) {
   .planIcon {
     width: 80px;
     height: 80px;

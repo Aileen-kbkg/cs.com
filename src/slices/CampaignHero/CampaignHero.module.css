@@ -35,9 +35,14 @@
     background-image: var(--ch-hero-image);
     /* background-position: right center;
     background-size: 52% auto; */
-    background-position: 1050px 80px;
+    /* background-position: 1050px 80px; */
     background-repeat: no-repeat;
-    background-size: 35% auto;
+    /* background-size: 35% auto; */
+
+    background-position: 407px 124px;
+    background-size: 553px;
+    gap: 40px;
+    padding: 60px 20px;
 }
 
 .section *,
@@ -109,6 +114,13 @@
     font-size: 36px;
     font-weight: 700;
     line-height: 50px;
+}
+
+@media (max-width: 1200px) {
+    .heading {
+        font-size: 28px;
+        line-height: 37px;
+    }
 }
 
 .subheading {
@@ -338,10 +350,10 @@
 
 /* Tablet — stack, artwork moves to the bottom behind the counter box. */
 @media (max-width: 1023px) {
-    .inner {
+    /* .inner {
         flex-direction: column;
         align-items: stretch;
-    }
+    } */
 
     .body,
     .media {
