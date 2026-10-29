@@ -565,8 +565,7 @@
         --content-width: 900px;
     }
 
-    .article,
-    .related {
+    .article {
 
         padding: 0 30px;
     }
@@ -584,6 +583,10 @@
 
     .hero {
         padding: 30px 20px;
+    }
+
+    .related {
+        padding: 0 30px 30px;
     }
 }
 
@@ -657,8 +660,7 @@
         text-align: left;
     }
 
-    .article,
-    .related {
+    .article {
         padding: 0 30px;
     }
 
@@ -722,4 +724,21 @@
     .authorName {
         font-size: 1rem;
     }
+}
+
+.emailButton {
+    background: #284074;
+}
+
+.emailButton:hover {
+    background: #277AE3;
+}
+
+.emailButton .emailIcon {
+    background: none;
+}
+
+.emailButton .emailLabel {
+    background: linear-gradient(calc(90deg * var(--direction-multiplier, 1)), rgba(0, 0, 0, .12), transparent);
+    line-height: 25px;
 }

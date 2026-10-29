@@ -231,7 +231,7 @@ export default async function Page({ params }: Props) {
 
 				{data.after_faq?.length ? (
   <section className={styles.afterFaq}>
-    <h6 className={styles.afterFaqTitle}>About the Author</h6>
+    {/* <h6 className={styles.afterFaqTitle}>About the Author</h6> */}
     <PrismicRichText field={data.after_faq} />
   </section>
 ) : null}
