@@ -621,3 +621,48 @@
 .right {
   width: 55%;
 }
+
+
+@media (max-width: 1200px) {
+  .promo {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .eyebrow {}
+
+  .description {
+    max-width: 50%;
+    width: 100%;
+  }
+
+  .badges {
+    width: 100%;
+    max-width: none;
+  }
+
+  .content {
+    background-position: 120% 200px;
+    background-size: 350px;
+  }
+}
+
+@media (max-width: 479px) {
+  .content {
+    background-position: 200px 200px;
+  }
+}

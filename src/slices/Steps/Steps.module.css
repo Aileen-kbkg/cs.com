@@ -325,3 +325,7 @@
 
   }
 }
+
+li.step:hover .icon {
+  transform: scale(1.2);
+}

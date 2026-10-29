@@ -241,9 +241,10 @@
   font-weight: 700;
 }
 
-.linkList {
+.linkList p {
   text-align: start;
   color: #ffffff;
+  margin-bottom: 14px;
 }
 
 .inner .linkList a {
@@ -320,7 +321,7 @@
   }
 
   .social {
-    margin-top: 4px;
+    margin-top: 20px;
   }
 
   /* Recent News, Software and Stay connected run down one column —
