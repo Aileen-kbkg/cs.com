@@ -1,5 +1,14 @@
-import { Content, GroupField, isFilled, KeyTextField, NumberField } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
+import {
+  Content,
+  GroupField,
+  ImageField,
+  isFilled,
+  KeyTextField,
+  LinkField,
+  NumberField,
+  RichTextField,
+} from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import type { CSSProperties } from "react";
 
@@ -12,8 +21,9 @@ import styles from "./Hero.module.css";
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
 /**
- * Fields added for the live hero (eyebrow, badges, stat card). Optional so
- * this file compiles before and after `prismicio-types.d.ts` is regenerated.
+ * Fields added for the live hero (eyebrow, badges, stat card, promo bar).
+ * Optional so this file compiles before and after `prismicio-types.d.ts`
+ * is regenerated.
  */
 type Extras = {
   eyebrow?: KeyTextField;
@@ -23,6 +33,10 @@ type Extras = {
   stat_suffix?: KeyTextField;
   stat_title?: KeyTextField;
   stat_note?: KeyTextField;
+  promo_image?: ImageField;
+  promo_text?: RichTextField;
+  promo_cta_label?: KeyTextField;
+  promo_cta_link?: LinkField;
 };
 
 type Primary = Omit<Content.HeroSlice["primary"], keyof Extras> & Extras;
@@ -75,8 +89,9 @@ const splitHeadline = (text: string) => {
 
 /**
  * Hero — matches the live costsegregation.com hero (Elementor 458bc5b):
- * eyebrow pill, headline, description, audit badges, green CTA and the
- * frosted "$23,600*" stat card over the animated illustration.
+ * eyebrow pill, headline, description, audit badges, green CTA, the
+ * frosted "$23,600*" stat card over the illustration, and the track750
+ * promo bar beneath.
  */
 const Hero = ({ slice }: HeroProps) => {
   const p = slice.primary as Primary;
@@ -90,6 +105,11 @@ const Hero = ({ slice }: HeroProps) => {
   const backgroundStyle: CSSProperties | undefined = isFilled.image(p.banner_image)
     ? { ["--hero-bg" as string]: `url("${p.banner_image.url}")` }
     : undefined;
+
+  const hasPromo =
+    isFilled.image(p.promo_image) ||
+    isFilled.richText(p.promo_text) ||
+    Boolean(p.promo_cta_label);
 
   return (
     <section
@@ -119,7 +139,8 @@ const Hero = ({ slice }: HeroProps) => {
                 )}
               </h1>
             )}
-  <div className={styles.badges}>
+
+            <div className={styles.badges}>
               {badgeList.map((label, index) => (
                 <div
                   key={`${label}-${index}`}
@@ -132,13 +153,12 @@ const Hero = ({ slice }: HeroProps) => {
                 </div>
               ))}
             </div>
+
             {isFilled.richText(p.description) && (
               <div className={styles.description}>
                 <PrismicRichText field={p.description} />
               </div>
             )}
-
-          
 
             {p.cta_label && isFilled.link(p.cta_link) && (
               <PrismicNextLink field={p.cta_link} className={styles.cta}>
@@ -166,6 +186,52 @@ const Hero = ({ slice }: HeroProps) => {
             </div>
           </div>
         </div>
+
+        {/* track750 promo bar, below the hero content. */}
+        {hasPromo && (
+          <div className={styles.promo}>
+            {isFilled.image(p.promo_image) && (
+              <PrismicNextImage
+                field={p.promo_image}
+                className={styles.promoBadge}
+                sizes="230px"
+                fallbackAlt=""
+              />
+            )}
+
+            {isFilled.richText(p.promo_text) && (
+  <div className={styles.promoText}>
+    <PrismicRichText
+      field={p.promo_text}
+      components={{
+        strong: ({ node, key }) => {
+  const text = "text" in node ? node.text : "";
+
+  return (
+    <span key={key} className={styles.promoWave}>
+      {text.split("").map((char, i) => (
+        <span key={i} style={{ animationDelay: `${i * 0.05}s` }}>
+          {char === " " ? "\u00a0" : char}
+        </span>
+      ))}
+    </span>
+  );
+},
+      }}
+    />
+  </div>
+)}
+
+            {p.promo_cta_label && isFilled.link(p.promo_cta_link) && (
+              <PrismicNextLink field={p.promo_cta_link} className={styles.promoCta}>
+                <span>{p.promo_cta_label}</span>
+                <span className={styles.ctaIcon}>
+                  <ChevronRightIcon />
+                </span>
+              </PrismicNextLink>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

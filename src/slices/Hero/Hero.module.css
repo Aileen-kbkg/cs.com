@@ -35,7 +35,7 @@
   align-items: center;
   gap: 60px;
   width: 100%;
-  padding: 0;
+  padding: 167px 0 70px;
   background-image: var(--hero-bg, none);
   background-position: 654px 50px;
   background-repeat: no-repeat;
@@ -392,4 +392,232 @@
   .eyebrow {
     width: 275px;
   }
+}
+
+/* ================================================================
+   PROMO BAR
+   Append to src/slices/Hero/Hero.module.css
+
+   Badge, text and CTA in a row beneath the hero content; stacked and
+   centred on mobile.
+   ================================================================ */
+
+/* ================================================================
+   TRACK750 PROMO BAR
+   Replace the earlier .promo block in src/slices/Hero/Hero.module.css
+
+   Values taken from the live widget's own stylesheet (.t750b).
+   The sticker peel, shine sweep and arrow nudge are reproduced; the
+   per-letter wave on "FREE for one year!" is not, because it needs a
+   span per character and Prismic rich text cannot express that.
+   ================================================================ */
+
+.promo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  max-width: 780px;
+
+  margin: 0 0 0 auto;
+
+  padding: 1.5rem 0 0;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Sticker: 180px wide at the artwork's own 1900:660 ratio, peeling
+   from its lower-left corner. */
+.promoBadge {
+  position: relative;
+  flex: 0 0 auto;
+  display: block;
+  width: 180px;
+  height: auto;
+  aspect-ratio: 1900 / 660;
+  transform-origin: 15% 55%;
+  animation: promoPeel 4s ease-in-out infinite;
+}
+
+.promoText {
+  flex: 0 1 380px;
+  min-width: 240px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #1f2a3c;
+}
+
+.promoText p {
+  margin: 0;
+  overflow-wrap: break-word;
+  flex: 0 1 380px;
+  min-width: 240px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #1f2a3c;
+}
+
+/* "FREE for one year!" — blue on the live page. */
+.promoText strong {
+  color: #2b7de9;
+  font-weight: 600;
+}
+
+.promoCta {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 6px;
+  background: #d5e5fb;
+  color: #2b7de9;
+  fill: #2b7de9;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.promoCta:hover,
+.promoCta:focus {
+  background: #c3d9f9;
+  color: #1d5fc0;
+}
+
+.promoCta .ctaIcon,
+.promoCta span:last-child {
+  animation: promoNudge 5s ease-in-out infinite;
+}
+
+@keyframes promoPeel {
+
+  0%,
+  62%,
+  100% {
+    transform: rotate(0) scale(1) translateY(0);
+    filter: drop-shadow(0 2px 2px rgba(20, 50, 110, 0.18));
+  }
+
+  70% {
+    transform: rotate(-3deg) scale(1.05) translateY(-3px);
+    filter: drop-shadow(0 8px 8px rgba(20, 50, 110, 0.28));
+  }
+
+  78% {
+    transform: rotate(1.2deg) scale(0.99) translateY(0);
+    filter: drop-shadow(0 2px 2px rgba(20, 50, 110, 0.18));
+  }
+
+  84% {
+    transform: rotate(-0.6deg) scale(1.01);
+  }
+
+  90% {
+    transform: rotate(0) scale(1);
+  }
+}
+
+@keyframes promoNudge {
+
+  0%,
+  60%,
+  100% {
+    transform: translateX(0);
+  }
+
+  70% {
+    transform: translateX(4px);
+  }
+
+  80% {
+    transform: translateX(0);
+  }
+
+  88% {
+    transform: translateX(2px);
+  }
+}
+
+/* The live widget stacks at 1200px, not at a usual breakpoint. */
+@media (max-width: 1200px) {
+  .promo {
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .promoText {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 420px;
+  }
+
+  .promoBadge {
+    transform-origin: 50% 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .promoBadge,
+  .promoCta,
+  .promoCta .ctaIcon,
+  .promoCta span:last-child {
+    animation: none;
+    transition: none;
+  }
+}
+
+.promoWave {
+  color: #2b7de9;
+  font-weight: 600;
+}
+
+.promoWave span {
+  display: inline-block;
+  animation: promoWave 3s ease-in-out infinite;
+}
+
+@keyframes promoWave {
+
+  0%,
+  30%,
+  100% {
+    transform: translateY(0);
+    color: #2b7de9;
+  }
+
+  40% {
+    transform: translateY(-3px);
+    color: #7fb3f7;
+  }
+
+  50% {
+    transform: translateY(0);
+    color: #2b7de9;
+  }
+}
+
+.content {
+  flex-wrap: nowrap;
+}
+
+.inner {
+  flex-direction: column;
+}
+
+
+.description {
+  max-width: 604px;
+}
+
+.right {
+  width: 55%;
 }
