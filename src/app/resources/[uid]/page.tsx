@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
 	asText,
+	isFilled,
 	type GroupField,
 	type ImageField,
 	type KeyTextField,
@@ -27,6 +28,8 @@ const siteUrl =
  * regenerated from the current custom type definition.
  */
 type BlogPostExtras = {
+	author_name: KeyTextField;
+	author_image: ImageField;
 	faq_title: KeyTextField;
 	faqs: GroupField<{
 		question: KeyTextField;
@@ -113,11 +116,12 @@ export default async function Page({ params }: Props) {
 
 	const published = formatDate(data.date);
 	const faqs: Array<{
-        question: KeyTextField;
-        answer: RichTextField;
-}> = data.faqs ?? [];
+		question: KeyTextField;
+		answer: RichTextField;
+	}> = data.faqs ?? [];
 	const headline = asText(data.title);
 	const canonical = `${siteUrl}/resources/${post.uid}`;
+	const hasAuthor = Boolean(data.author_name) || isFilled.image(data.author_image);
 
 	const mailto = `mailto:?subject=${encodeURIComponent(
 		headline,
@@ -143,15 +147,14 @@ export default async function Page({ params }: Props) {
 					</h1>
 
 					{published ? (
-						<time className={styles.date} dateTime={data.date ?? undefined}>
-							{published}
-						</time>
-					) : null}
-
+  <Link href="/" className={styles.date}>
+    <time dateTime={data.date ?? undefined}>{published}</time>
+  </Link>
+) : null}
 					<nav className={styles.breadcrumb} aria-label="Breadcrumb">
 						<Link href="/">Home</Link>
 						<span className={styles.breadcrumbSep}>-</span>
-						<Link href="/resources/blog">Resources</Link>
+						<Link href="/resources">Resources</Link>
 						<span className={styles.breadcrumbSep}>-</span>
 						<span>{headline}</span>
 					</nav>
@@ -165,7 +168,26 @@ export default async function Page({ params }: Props) {
 						className={styles.featuredImage}
 						priority
 						sizes="(max-width: 560px) 100vw, 520px"
+						fallbackAlt=""
 					/>
+				</div>
+			) : null}
+
+			{/* Byline — avatar above the author's name, as on the live page. */}
+			{hasAuthor ? (
+				<div className={styles.authorWrap}>
+					{isFilled.image(data.author_image) ? (
+						<PrismicNextImage
+							field={data.author_image}
+							className={styles.authorImage}
+							sizes="75px"
+							fallbackAlt=""
+						/>
+					) : null}
+
+					{data.author_name ? (
+						<p className={styles.authorName}>{data.author_name}</p>
+					) : null}
 				</div>
 			) : null}
 
@@ -184,7 +206,7 @@ export default async function Page({ params }: Props) {
 						field={data.body}
 						components={{
 							image: ({ node, key }) => (
-								<PrismicNextImage key={key} field={node} sizes="100vw" />
+								<PrismicNextImage key={key} field={node} sizes="100vw" fallbackAlt="" />
 							),
 						}}
 					/>
@@ -232,6 +254,7 @@ export default async function Page({ params }: Props) {
 											field={item.data.featured_image}
 											className={styles.relatedImage}
 											sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+											fallbackAlt=""
 										/>
 									</Link>
 								) : null}
