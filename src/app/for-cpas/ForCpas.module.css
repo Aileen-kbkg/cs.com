@@ -298,3 +298,55 @@ p.TextWithImage-module__ssLXPW__eyebrow span {
         max-width: 100%;
     }
 }
+
+
+.page [data-slice-type="text_with_image"] p[class*="eyebrow"] span {
+    color: #284074;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__body) {
+    flex-basis: calc(66.6667% - var(--twi-gap) / 2);
+}
+
+.page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__media.undefined) {
+    flex-basis: calc(33.3333% - var(--twi-gap) / 2);
+}
+
+.page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__text ul) {
+    padding-left: 40px;
+}
+
+.page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__text ul li) {
+    margin: 0;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 400;
+}
+
+.page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__text p) {
+    font-size: 20px;
+    line-height: 20px;
+    margin: 20px 0;
+    padding: 0;
+    font-weight: 600;
+    color: #284371;
+}
+
+@media only screen and (max-width: 767px) {
+    .page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__text p) {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__text ul) {
+        padding-left: 20px;
+    }
+
+    .page :global(.TextWithImage-module__ssLXPW__inner.TextWithImage-module__ssLXPW__innerImageLeft.TextWithImage-module__ssLXPW__innerHero) :global(.TextWithImage-module__ssLXPW__text ul li) {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
