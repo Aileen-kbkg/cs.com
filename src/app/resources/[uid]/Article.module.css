@@ -37,11 +37,11 @@
 
 .hero {
     width: 100%;
-    padding: 3.125rem 0;
+    padding: 3.125rem 30px;
     background: var(--cs-band);
     text-align: center;
     margin: 0 auto;
-    max-width: 1280px;
+
 }
 
 .heroInner {
