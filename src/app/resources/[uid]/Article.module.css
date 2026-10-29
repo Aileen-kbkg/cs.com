@@ -98,7 +98,7 @@
 .featuredWrap img {
     display: block;
     width: 100%;
-    max-width: 520px;
+    max-width: 510px;
     height: auto;
     /* border-radius: var(--cs-radius); */
 }
@@ -605,12 +605,22 @@
     .title {
         font-size: 30px;
     }
+
+    .featuredImage,
+    .featuredWrap img {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 1024px) {
 
     .title {
         font-size: 30px;
+    }
+
+    .featuredWrap {
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }
 
@@ -652,6 +662,10 @@
         padding: 0 30px;
     }
 
+    .featuredImage,
+    .featuredWrap img {
+        max-width: 100%;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
