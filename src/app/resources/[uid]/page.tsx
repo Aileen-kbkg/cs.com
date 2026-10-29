@@ -230,10 +230,11 @@ export default async function Page({ params }: Props) {
 				) : null}
 
 				{data.after_faq?.length ? (
-					<section className={styles.afterFaq}>
-						<PrismicRichText field={data.after_faq} />
-					</section>
-				) : null}
+  <section className={styles.afterFaq}>
+    <h6 className={styles.afterFaqTitle}>About the Author</h6>
+    <PrismicRichText field={data.after_faq} />
+  </section>
+) : null}
 			</article>
 
 			{related.length > 0 ? (

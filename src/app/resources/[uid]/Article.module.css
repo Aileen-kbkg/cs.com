@@ -22,6 +22,7 @@
     color: var(--cs-text);
     background: var(--cs-surface);
     overflow-x: hidden;
+
 }
 
 .page *,
@@ -64,7 +65,7 @@
 }
 
 .breadcrumb {
-    margin: 0;
+    margin: 0 0 16px;
     font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
     color: var(--cs-text);
 }
@@ -75,7 +76,7 @@
 }
 
 .breadcrumb a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .breadcrumbSep {
@@ -90,7 +91,7 @@
 .featuredWrap {
     display: flex;
     justify-content: center;
-    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1rem, 4vw, 1.5rem) 0;
+    padding: clamp(1.75rem, 4vw, 1.875rem) clamp(1rem, 4vw, 1.5rem) 0;
 }
 
 .featuredImage,
@@ -99,7 +100,7 @@
     width: 100%;
     max-width: 520px;
     height: auto;
-    border-radius: var(--cs-radius);
+    /* border-radius: var(--cs-radius); */
 }
 
 /* ---------------------------------------------------------------- */
@@ -116,8 +117,7 @@
     display: inline-flex;
     align-items: stretch;
     overflow: hidden;
-    border-radius: 4px;
-    background: var(--cs-navy);
+    background: #1f3a6e;
     color: #ffffff;
     font-size: 1rem;
     text-decoration: none;
@@ -126,15 +126,17 @@
 
 .emailButton:hover,
 .emailButton:focus-visible {
-    background: #163055;
+    background: #277ce6;
 }
 
+/* Translucent rather than a fixed colour, so the icon panel tracks the
+   button's background instead of staying navy on hover. */
 .emailIcon {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 0.875rem;
-    background: rgba(0, 0, 0, 0.18);
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .emailIcon svg {
@@ -143,7 +145,7 @@
 }
 
 .emailLabel {
-    padding: 0.875rem 1.5rem;
+    padding: 10px 13px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -212,7 +214,7 @@
 }
 
 .body a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .body strong {
@@ -223,7 +225,7 @@
 .body ul,
 .body ol {
     margin: 0 0 1.125rem;
-    padding-left: 1.25rem;
+    padding-left: 2.5rem;
 }
 
 .body li {
@@ -326,10 +328,10 @@
     cursor: pointer;
     list-style: none; */
     align-items: center;
-    border-color: #d5d8dc;
+
     border-radius: 10px;
-    border-style: solid;
-    border-width: 1px;
+
+
     color: #277CE6;
     cursor: pointer;
     display: flex;
@@ -341,6 +343,10 @@
     padding: 10px;
 }
 
+.faqQuestion:hover {
+    color: #284074;
+}
+
 .faqQuestion::-webkit-details-marker {
     display: none;
 }
@@ -348,14 +354,15 @@
 .faqQuestion::before {
     content: "";
     flex: 0 0 auto;
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 8px;
+    height: 8px;
     /* margin-top: 0.4rem; */
     border-right: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
     transition: transform 0.2s ease;
-    font-weight: 400;
+    font-weight: 600;
+    color: #284074;
 }
 
 .faq[open] .faqQuestion::before {
@@ -400,6 +407,7 @@
     font-size: 0.9375rem;
     line-height: 1.75;
     color: var(--cs-text);
+    margin-bottom: 14px;
 }
 
 .afterFaq h1,
@@ -436,9 +444,9 @@
 /* ---------------------------------------------------------------- */
 
 .related {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 1.5rem) clamp(3rem, 6vw, 4rem);
+    padding: 0 0 30px;
 }
 
 .relatedTitle {
@@ -478,6 +486,13 @@
     width: 100%;
     height: auto;
     border-radius: 32px 32px 0 0;
+    aspect-ratio: 5/3
+}
+
+.relatedCard:hover .relatedImage,
+.relatedImage:hover img,
+.relatedImageLink img:hover {
+    filter: brightness(129%) contrast(100%) saturate(100%) blur(0px) hue-rotate(0deg);
 }
 
 .relatedBody {
@@ -500,7 +515,7 @@
 }
 
 .relatedCardTitle a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .relatedExcerpt {
@@ -508,6 +523,7 @@
     font-size: 14px;
     line-height: 1.6;
     color: #777;
+    font-family: "Inter", Sans-serif;
 }
 
 .relatedMore {
@@ -520,7 +536,7 @@
 }
 
 .relatedMore:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .viewAll {
@@ -534,10 +550,11 @@
     font-weight: bold;
     text-decoration: none;
     transition: background-color 0.2s ease;
+    font-family: "Inter", Sans-serif;
 }
 
 .viewAll:hover {
-    background: #1f66c2;
+    background: #284074;
 }
 
 /* ---------------------------------------------------------------- */
@@ -547,6 +564,12 @@
     .page {
         --content-width: 900px;
     }
+
+    .article,
+    .related {
+
+        padding: 0 30px;
+    }
 }
 
 /* Left and right padding for responsive screen sizes */
@@ -554,17 +577,21 @@
 /* 1024px and below */
 @media (max-width: 1024px) {
     .page {
-        padding-left: 30px;
-        padding-right: 30px;
+        /* padding-left: 30px;
+        padding-right: 30px; */
         box-sizing: border-box;
+    }
+
+    .hero {
+        padding: 30px 20px;
     }
 }
 
 /* 1440px and above */
 @media (min-width: 1440px) {
     .page {
-        padding-left: 50px;
-        padding-right: 50px;
+        /* padding-left: 50px;
+        padding-right: 50px; */
         box-sizing: border-box;
     }
 }
@@ -592,6 +619,10 @@
         padding-top: 1.5rem;
     }
 
+    .relatedTitle {
+        text-align: center;
+    }
+
     .body h1,
     .body h2,
     .body h3 {
@@ -603,7 +634,7 @@
     }
 
     .relatedCard {
-        max-width: 480px;
+        max-width: 100%;
         margin: 0 auto;
         width: 100%;
     }
@@ -611,6 +642,16 @@
     .title {
         font-size: 20px;
     }
+
+    .breadcrumb {
+        text-align: left;
+    }
+
+    .article,
+    .related {
+        padding: 0 30px;
+    }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -619,5 +660,52 @@
     .viewAll,
     .emailButton {
         transition: none;
+    }
+}
+
+/* ================================================================
+   AUTHOR BYLINE
+   Append to src/app/resources/[uid]/Article.module.css
+
+   Avatar above the author's name, centred between the featured image
+   and the "Email this insight" button.
+
+   The .breadcrumb, .breadcrumbSep rules in this file are now unused —
+   the live article has no breadcrumb — and can be deleted.
+   ================================================================ */
+
+.authorWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem 0;
+}
+
+.authorImage {
+    display: block;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.authorName {
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--cs-heading);
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .authorImage {
+        width: 64px;
+        height: 64px;
+    }
+
+    .authorName {
+        font-size: 1rem;
     }
 }

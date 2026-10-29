@@ -127,3 +127,23 @@
         padding: 60px 0;
     }
 }
+
+.page :global([data-slice-type="expert_grid"] button[class*="dot"]) {
+    width: 12px;
+    height: 12px;
+    box-sizing: content-box;
+    padding: 6px;
+    background-clip: content-box;
+}
+
+.page :global([data-slice-type="product_cards"] h3) {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 991px) {
+    .page :global([data-slice-type="product_cards"] ul) {
+        display: flex;
+        flex-direction: column;
+    }
+}
