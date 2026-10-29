@@ -258,3 +258,15 @@
 .hsfc-Step .hsfc-Step__Content {
     padding-right: 0 !important;
 }
+
+@media (max-width: 991px) {
+    .formPanel :global(.hs-form-frame) {
+        width: 100%;
+    }
+}
+
+@media (max-width:991px) {
+    .formPanel .hs-form-frame {
+        width: 100vw !important;
+    }
+}
