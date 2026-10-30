@@ -40,7 +40,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: clamp(1rem, 3vw, 2.5rem);
+    gap: clamp(1rem, 3vw, 1.25rem);
     min-width: 0;
 }
 
@@ -48,6 +48,7 @@
     display: block;
     flex: 0 0 auto;
     line-height: 0;
+    min-height: 5em;
 }
 
 .logo {
@@ -182,6 +183,10 @@
 
     .signIn {
         font-size: 15px;
+    }
+
+    .logoLink {
+        height: 3.5em;
     }
 }
 
