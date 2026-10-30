@@ -32,3 +32,15 @@
         min-height: 64px;
     }
 }
+
+
+
+.S8AcquisitionSlices :global([class*="loyalty"]) {
+
+    display: none;
+}
+
+/* Hide the green Loyalty Discounts block in the Pricing slice — this page only. */
+.slices :global([data-slice-type="pricing"] [class*="loyalty"]) {
+    display: none;
+}

@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { isFilled } from "@prismicio/client";
-import type { KeyTextField, LinkField, RichTextField } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
+import type {
+	ImageField,
+	KeyTextField,
+	LinkField,
+	RichTextField,
+	SelectField,
+} from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import type { SliceComponentProps } from "@prismicio/react";
 
@@ -25,6 +31,12 @@ type PartnerOfferSlice = {
 		code_note: KeyTextField;
 		cta_label: KeyTextField;
 		cta_link: LinkField;
+		/** Small label above the offer, e.g. "Use code:". */
+		eyebrow: RichTextField;
+		/** Partner mark pinned to the offer panel's bottom-right corner. */
+		offercard_icon: ImageField;
+		/** Offer panel background. Defaults to orange when not set. */
+		offer_color: SelectField<"orange" | "yellow">;
 	};
 	items: never[];
 };
@@ -65,7 +77,8 @@ const CopyIcon = () => (
  *
  * The offer panel holds a headline (code_label), an optional promo code
  * and a supporting note. S8 Acquisition has no code, Roofstock does, so
- * the code block is conditional.
+ * the code block is conditional. Its background colour (orange / yellow)
+ * and corner icon both come from Prismic.
  */
 const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 	const primary = slice.primary;
@@ -87,9 +100,14 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 		}
 	};
 
+	const hasEyebrow = isFilled.richText(primary.eyebrow);
+
 	const hasOffer = Boolean(
-		primary.code_label || primary.code || primary.code_note,
+		hasEyebrow || primary.code_label || primary.code || primary.code_note,
 	);
+
+	const offerColorClass =
+		primary.offer_color === "yellow" ? styles.offerYellow : styles.offerOrange;
 
 	return (
 		<section
@@ -109,7 +127,13 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 				</div>
 
 				{hasOffer && (
-					<aside className={styles.offer}>
+					<aside className={`${styles.offer} ${offerColorClass}`}>
+						{hasEyebrow && (
+							<div className={styles.offerEyebrow}>
+								<PrismicRichText field={primary.eyebrow} />
+							</div>
+						)}
+
 						{primary.code_label && (
 							<h2 className={styles.offerHeading}>{primary.code_label}</h2>
 						)}
@@ -146,6 +170,15 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 									<ChevronRight />
 								</span>
 							</PrismicNextLink>
+						)}
+
+						{isFilled.image(primary.offercard_icon) && (
+							<PrismicNextImage
+								field={primary.offercard_icon}
+								className={styles.offerIcon}
+								sizes="160px"
+								fallbackAlt=""
+							/>
 						)}
 					</aside>
 				)}

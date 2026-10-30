@@ -109,8 +109,9 @@ export default async function Page() {
   getStarted={getStarted}
   actionsClassName={styles.partnerActions}
 />
-
+<div className={styles.slices}>
 			<SliceZone slices={page.data.slices} components={components} />
+			</div>
 		</>
 	);
 }
