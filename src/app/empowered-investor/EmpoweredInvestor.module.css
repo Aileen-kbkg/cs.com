@@ -69,7 +69,7 @@
 
 /* Partner names are emphasised in the live copy. */
 .heroIntro strong {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--ei-red);
 }
 
@@ -99,7 +99,7 @@
 
 /* Partner name, bolded in Prismic — same emphasis as in the intro. */
 .eyebrow strong {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--ei-red);
 }
 
