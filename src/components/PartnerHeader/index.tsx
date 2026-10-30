@@ -26,6 +26,11 @@ export type PartnerHeaderProps = {
 	 * a small partner mark, but a combined lockup needs more.
 	 */
 	partnerLogoHeight?: number;
+	/**
+	 * Extra class for the partner logo image, from the calling page's own
+	 * CSS Module. Added alongside `.partnerLogo`, never instead of it.
+	 */
+	partnerLogoClassName?: string;
 };
 
 const ChevronRight = () => (
@@ -49,6 +54,7 @@ export default function PartnerHeader({
 	signIn,
 	getStarted,
 	partnerLogoHeight,
+	partnerLogoClassName,
 }: PartnerHeaderProps) {
 	// Read by .partnerLogo as --ph-partner-logo-height, so the cap stays in
 	// CSS and only the value is set per page.
@@ -57,6 +63,10 @@ export default function PartnerHeader({
 				"--ph-partner-logo-height": `${partnerLogoHeight}px`,
 			} as CSSProperties)
 		: undefined;
+
+	const partnerLogoClass = partnerLogoClassName
+		? `${styles.partnerLogo} ${partnerLogoClassName}`
+		: styles.partnerLogo;
 
 	return (
 		<header className={styles.header} style={headerStyle}>
@@ -80,7 +90,7 @@ export default function PartnerHeader({
 						const image = (
 							<PrismicNextImage
 								field={partner.logo}
-								className={styles.partnerLogo}
+								className={partnerLogoClass}
 								sizes="400px"
 								priority
 								fallbackAlt=""

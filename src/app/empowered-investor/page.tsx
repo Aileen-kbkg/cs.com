@@ -16,7 +16,7 @@ import styles from "./EmpoweredInvestor.module.css";
 type EmpoweredInvestorDocument = {
 	data: {
 		partner_logos: PartnerLogo[];
-		eyebrow: KeyTextField;
+		eyebrow: RichTextField;
 		heading: KeyTextField;
 		intro: RichTextField;
 		slices: never[];
@@ -98,13 +98,18 @@ export default async function Page() {
 				partnerLogos={partner_logos ?? []}
 				signIn={signIn}
 				getStarted={getStarted}
+				partnerLogoClassName={styles.partnerLogo}
 			/>
 
 			<main className={styles.page}>
 				<section className={styles.hero}>
 					<div className={styles.heroInner}>
 						<div className={styles.heroHeadline}>
-							{eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
+							{isFilled.richText(eyebrow) && (
+								<div className={styles.eyebrow}>
+									<PrismicRichText field={eyebrow} />
+								</div>
+							)}
 							{heading && <h1 className={styles.heading}>{heading}</h1>}
 						</div>
 
@@ -117,8 +122,8 @@ export default async function Page() {
 				</section>
 
 				<div className={styles.empoweredInvestorSlices}>
-		<SliceZone slices={slices} components={components} />
-	</div>
+					<SliceZone slices={slices} components={components} />
+				</div>
 			</main>
 		</>
 	);
