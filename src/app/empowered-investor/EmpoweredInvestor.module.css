@@ -30,7 +30,7 @@
 
 .hero {
     width: 100%;
-    padding: 46px 20 34px 20px;
+    padding: 46px 20 24px 20px;
     background: #ffffff;
 }
 
@@ -99,7 +99,7 @@
 
 /* Partner name, bolded in Prismic — same emphasis as in the intro. */
 .eyebrow strong {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--ei-red);
 }
 
@@ -202,4 +202,11 @@
     height: 69px;
     max-height: none;
     object-fit: contain;
+}
+
+.empoweredInvestorSlices :global([data-slice-type="calculator"]) {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 60px;
+    background-color: #fff;
 }
