@@ -31,6 +31,11 @@ export type PartnerHeaderProps = {
 	 * CSS Module. Added alongside `.partnerLogo`, never instead of it.
 	 */
 	partnerLogoClassName?: string;
+	/**
+	 * Extra class for the Sign In / Get Started group, from the calling
+	 * page's own CSS Module. Added alongside `.actions`, never instead of it.
+	 */
+	actionsClassName?: string;
 };
 
 const ChevronRight = () => (
@@ -55,6 +60,7 @@ export default function PartnerHeader({
 	getStarted,
 	partnerLogoHeight,
 	partnerLogoClassName,
+	actionsClassName,
 }: PartnerHeaderProps) {
 	// Read by .partnerLogo as --ph-partner-logo-height, so the cap stays in
 	// CSS and only the value is set per page.
@@ -67,6 +73,10 @@ export default function PartnerHeader({
 	const partnerLogoClass = partnerLogoClassName
 		? `${styles.partnerLogo} ${partnerLogoClassName}`
 		: styles.partnerLogo;
+
+	const actionsClass = actionsClassName
+		? `${styles.actions} ${actionsClassName}`
+		: styles.actions;
 
 	return (
 		<header className={styles.header} style={headerStyle}>
@@ -113,7 +123,7 @@ export default function PartnerHeader({
 					})}
 				</div>
 
-				<div className={styles.actions}>
+				<div className={actionsClass}>
 					{signIn && isFilled.link(signIn.link) && (
 						<PrismicNextLink
 							field={signIn.link}

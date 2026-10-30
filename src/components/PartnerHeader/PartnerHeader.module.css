@@ -45,7 +45,9 @@
 }
 
 .logoLink {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 0 0 auto;
     line-height: 0;
     min-height: 5em;
@@ -66,7 +68,7 @@
     width: auto;
     max-width: 100%;
     height: auto;
-    max-height: 109px;
+    max-height: none;
     object-fit: contain;
 }
 
@@ -130,7 +132,7 @@
 .getStartedIcon svg {
     width: 1em;
     height: 1em;
-    fill: currentColor;
+    fill: #ffffff;
 }
 
 /* ---------------------------------------------------------------- */
@@ -157,7 +159,7 @@
     }
 
     .logos {
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         gap: 1rem;
     }

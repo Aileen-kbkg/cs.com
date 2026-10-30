@@ -49,11 +49,17 @@ ul.CampaignHero-module__K1T9uW__badges {
 }
 
 a.CampaignHero-module__K1T9uW__button {
-    background: #B5EBA2;
-    font-size: 19px;
-    color: #3D8120;
-    font-weight: 700;
-    gap: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    background-color: #277ce6;
+    font-family: "Inter", Sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    padding: 15px 20px 15px 20px;
 }
 
 .CampaignHero-module__K1T9uW__buttonIcon svg {
@@ -63,7 +69,8 @@ a.CampaignHero-module__K1T9uW__button {
 }
 
 a.CampaignHero-module__K1T9uW__button:hover {
-    background: #9ED88A;
+    background: #284074;
+    color: #ffffff;
 }
 
 h1.CampaignHero-module__K1T9uW__heading {

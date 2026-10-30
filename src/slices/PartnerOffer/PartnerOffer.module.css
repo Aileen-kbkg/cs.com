@@ -60,6 +60,7 @@
     border: 1px solid #284074;
     border-radius: 10px;
     padding: 40px;
+    gap: 20px;
 }
 
 .title {
@@ -68,7 +69,7 @@
     font-weight: 500;
     color: var(--po-navy);
     text-wrap: balance;
-    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
+    font-size: clamp(1.5rem, 1.5rem + 0.94vw, 2.50rem);
 
 }
 
@@ -116,12 +117,23 @@
     background-size: 29% auto;
     font-family: "Inter", sans-serif;
     justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    height: initial;
+    flex-grow: 0;
+    align-self: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    border-radius: 10px;
+    padding: 40px;
 }
 
 .offer h2 {
 
     font-size: clamp(1.5rem, 2.8vw, 2.5rem);
-    line-height: 1.15;
+    line-height: 1;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -138,8 +150,8 @@
 
 .offerNote {
     margin: 0 0 1.5rem;
-    font-size: clamp(1.0625rem, 1.9vw, 1.375rem);
-    line-height: 1.3;
+    font-size: clamp(1.0625rem, 1.9vw, 25px);
+    line-height: 30px;
     font-weight: 700;
     color: #ffffff;
 }

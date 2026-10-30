@@ -1,0 +1,34 @@
+/*
+ * S8 Acquisition partner page.
+ */
+
+/*
+ * Passed to PartnerHeader as `actionsClassName`: hides Sign In and
+ * Get Started at 1024px and below. The repeated class outranks
+ * PartnerHeader's own `.actions` (display: flex) in any load order.
+ */
+@media (max-width: 1024px) {
+    .partnerActions.partnerActions {
+        display: none;
+    }
+}
+
+.partnerLogo.partnerLogo {
+    object-fit: contain;
+    width: auto;
+    max-width: 100%;
+    max-height: 179px;
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .partnerLogo.partnerLogo {
+        object-fit: contain;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        height: auto;
+        min-height: 64px;
+    }
+}

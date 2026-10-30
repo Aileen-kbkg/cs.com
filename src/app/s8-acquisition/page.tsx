@@ -7,6 +7,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PartnerHeader, { type PartnerLogo } from "@/components/PartnerHeader";
 
+import styles from "./S8Acquisition.module.css";
+
 /**
  * The `s8_acquisition` page type is not yet in the generated Prismic
  * types. Remove this block and the cast after "Pull to local".
@@ -99,11 +101,13 @@ export default async function Page() {
 		<>
 			{/* Co-branded header — no navigation menu, as on the live page.
 			    HeaderSlot suppresses the standard Navbar for this route. */}
-<PartnerHeader
+			<PartnerHeader
   partnerLogos={partnerLogos}
+  partnerLogoClassName={styles.partnerLogo}
   partnerLogoHeight={179}
   signIn={signIn}
   getStarted={getStarted}
+  actionsClassName={styles.partnerActions}
 />
 
 			<SliceZone slices={page.data.slices} components={components} />
