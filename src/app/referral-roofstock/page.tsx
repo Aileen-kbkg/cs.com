@@ -7,6 +7,9 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PartnerHeader, { type PartnerLogo } from "@/components/PartnerHeader";
 
+import styles from "./referral.module.css";
+
+
 /**
  * The `referral_roofstock` page type is not yet in the generated Prismic
  * types. Remove this block and the cast after "Pull to local".
@@ -95,7 +98,9 @@ export default async function Page() {
 				getStarted={getStarted}
 			/>
 
-			<SliceZone slices={page.data.slices} components={components} />
+			<div className={styles.slices}>
+						<SliceZone slices={page.data.slices} components={components} />
+						</div>
 		</>
 	);
 }

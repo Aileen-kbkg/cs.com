@@ -1,0 +1,3 @@
+.slices :global([data-slice-type="pricing"] [class*="loyalty"]) {
+    display: none;
+}
