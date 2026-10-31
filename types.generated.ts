@@ -108,6 +108,143 @@ interface AboutDocumentData {
  */
 export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
+type AffiliateProgramDocumentDataSlicesSlice = AnnouncementBarSlice
+
+/**
+ * Content for Affiliate program documents
+ */
+interface AffiliateProgramDocumentData {
+	/**
+	 * heading field in *Affiliate program*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+	
+	/**
+	 * intro field in *Affiliate program*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.intro
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	intro: prismic.RichTextField;
+	
+	/**
+	 * form_heading field in *Affiliate program*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.form_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	form_heading: prismic.RichTextField;
+	
+	/**
+	 * hubspot_portal_id field in *Affiliate program*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.hubspot_portal_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_portal_id: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_form_id field in *Affiliate program*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.hubspot_form_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_form_id: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_region field in *Affiliate program*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.hubspot_region
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_region: prismic.KeyTextField;
+	
+	/**
+	 * Image field in *Affiliate program*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Slice Zone field in *Affiliate program*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<AffiliateProgramDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Affiliate program*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: affiliate_program.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Affiliate program*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: affiliate_program.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Affiliate program*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: affiliate_program.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Affiliate program document from Prismic
+ *
+ * - **API ID**: `affiliate_program`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AffiliateProgramDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<AffiliateProgramDocumentData>, "affiliate_program", Lang>;
+
 /**
  * Item in *Blog Post → FAQs (shown as an accordion after the article)*
  */
@@ -268,6 +405,417 @@ interface BlogPostDocumentData {
  */
 export type BlogPostDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<BlogPostDocumentData>, "blog_post", Lang>;
 
+/**
+ * Item in *Empowered Investor → partner logos*
+ */
+export interface EmpoweredInvestorDocumentDataPartnerLogosItem {
+	/**
+	 * logo field in *Empowered Investor → partner logos*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.partner_logos[].logo
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo: prismic.ImageField<never>;
+	
+	/**
+	 * link field in *Empowered Investor → partner logos*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.partner_logos[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+type EmpoweredInvestorDocumentDataSlicesSlice = SectionReferenceSlice
+
+/**
+ * Content for Empowered Investor documents
+ */
+interface EmpoweredInvestorDocumentData {
+	/**
+	 * partner logos field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.partner_logos[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	partner_logos: prismic.GroupField<Simplify<EmpoweredInvestorDocumentDataPartnerLogosItem>>;
+	
+	/**
+	 * eyebrow field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.eyebrow
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * heading field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * intro field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.intro
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	intro: prismic.RichTextField;
+	
+	/**
+	 * Slice Zone field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<EmpoweredInvestorDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: empowered_investor.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: empowered_investor.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Empowered Investor*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: empowered_investor.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Empowered Investor document from Prismic
+ *
+ * - **API ID**: `empowered_investor`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EmpoweredInvestorDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<EmpoweredInvestorDocumentData>, "empowered_investor", Lang>;
+
+type FaqDocumentDataSlicesSlice = FaqAccordionSlice | AnnouncementBarSlice
+
+/**
+ * Content for Faq documents
+ */
+interface FaqDocumentData {
+	/**
+	 * heading field in *Faq*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: faq.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * intro field in *Faq*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: faq.intro
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	intro: prismic.RichTextField;
+	
+	/**
+	 * `slices` field in *Faq*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: faq.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<FaqDocumentDataSlicesSlice>;/**
+	 * meta_title field in *Faq*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: faq.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * meta_description field in *Faq*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: faq.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	meta_description: prismic.RichTextField;
+	
+	/**
+	 * meta_image field in *Faq*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: faq.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Faq document from Prismic
+ *
+ * - **API ID**: `faq`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FaqDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<FaqDocumentData>, "faq", Lang>;
+
+type ForCpasDocumentDataSlicesSlice = HeroSlice | TextWithImageSlice | SectionReferenceSlice | ProductCardsSlice
+
+/**
+ * Content for For CPAS documents
+ */
+interface ForCpasDocumentData {
+	/**
+	 * Form Heading field in *For CPAS*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_cpas.form_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	form_heading: prismic.KeyTextField;
+	
+	/**
+	 * Form field in *For CPAS*
+	 *
+	 * - **Field Type**: Embed
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_cpas.form
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/embed
+	 */
+	form: prismic.EmbedField
+	
+	/**
+	 * Button Text field in *For CPAS*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_cpas.button_text
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	button_text: prismic.KeyTextField;
+	
+	/**
+	 * Button Link field in *For CPAS*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_cpas.button_link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Slice Zone field in *For CPAS*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_cpas.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<ForCpasDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *For CPAS*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: for_cpas.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *For CPAS*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: for_cpas.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *For CPAS*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_cpas.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * For CPAS document from Prismic
+ *
+ * - **API ID**: `for_cpas`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ForCpasDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ForCpasDocumentData>, "for_cpas", Lang>;
+
+/**
+ * Item in *For tax advisors → Faq*
+ */
+export interface ForTaxAdvisorsDocumentDataFaqItem {
+	/**
+	 * Question field in *For tax advisors → Faq*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_tax_advisors.faq[].question
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	question: prismic.KeyTextField;
+	
+	/**
+	 * Answer field in *For tax advisors → Faq*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_tax_advisors.faq[].answer
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	answer: prismic.RichTextField;
+}
+
+type ForTaxAdvisorsDocumentDataSlicesSlice = FeatureGridSlice | TestimonialsSlice | ProductCardsSlice | CtaBannerSlice | PageHeroSlice | QuoteWithImageSlice | AnnouncementBarSlice
+
+/**
+ * Content for For tax advisors documents
+ */
+interface ForTaxAdvisorsDocumentData {
+	/**
+	 * Faq field in *For tax advisors*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_tax_advisors.faq[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	faq: prismic.GroupField<Simplify<ForTaxAdvisorsDocumentDataFaqItem>>;
+	
+	/**
+	 * Slice Zone field in *For tax advisors*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_tax_advisors.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<ForTaxAdvisorsDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *For tax advisors*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: for_tax_advisors.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *For tax advisors*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: for_tax_advisors.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *For tax advisors*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: for_tax_advisors.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * For tax advisors document from Prismic
+ *
+ * - **API ID**: `for_tax_advisors`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ForTaxAdvisorsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ForTaxAdvisorsDocumentData>, "for_tax_advisors", Lang>;
+
 type HomeDocumentDataSlicesSlice = HeroSlice | FeatureGridSlice | StepsSlice | PricingSlice | TestimonialsSlice | SuccessStoriesSlice | CalculatorSlice | VideoEmbedSlice | PostListSlice | CtaBannerSlice
 
 /**
@@ -327,6 +875,275 @@ interface HomeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type HomeDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+
+type ReiBusyseasonDocumentDataSlicesSlice = CampaignHeroSlice | SectionReferenceSlice | AnnouncementBarSlice
+
+/**
+ * Content for rei_busyseason documents
+ */
+interface ReiBusyseasonDocumentData {
+	/**
+	 * Slice Zone field in *rei_busyseason*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rei_busyseason.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<ReiBusyseasonDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *rei_busyseason*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: rei_busyseason.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *rei_busyseason*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: rei_busyseason.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *rei_busyseason*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rei_busyseason.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * rei_busyseason document from Prismic
+ *
+ * - **API ID**: `rei_busyseason`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ReiBusyseasonDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ReiBusyseasonDocumentData>, "rei_busyseason", Lang>;
+
+/**
+ * Item in *Resources → Cards*
+ */
+export interface ResourcesDocumentDataCardsItem {
+	/**
+	 * Title field in *Resources → Cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.cards[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+	
+	/**
+	 * Text field in *Resources → Cards*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.cards[].text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	text: prismic.RichTextField;
+	
+	/**
+	 * Link field in *Resources → Cards*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.cards[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Link label field in *Resources → Cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.cards[].link_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	link_label: prismic.KeyTextField;
+}
+
+type ResourcesDocumentDataSlicesSlice = AnnouncementBarSlice
+
+/**
+ * Content for Resources documents
+ */
+interface ResourcesDocumentData {
+	/**
+	 * heading field in *Resources*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * intro field in *Resources*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.intro
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	intro: prismic.RichTextField;
+	
+	/**
+	 * Cards field in *Resources*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.cards[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	cards: prismic.GroupField<Simplify<ResourcesDocumentDataCardsItem>>;
+	
+	/**
+	 * `slices` field in *Resources*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<ResourcesDocumentDataSlicesSlice>;/**
+	 * meta_title field in *Resources*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * meta_description field in *Resources*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	meta_description: prismic.RichTextField;
+	
+	/**
+	 * meta_image field in *Resources*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resources.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Resources document from Prismic
+ *
+ * - **API ID**: `resources`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ResourcesDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ResourcesDocumentData>, "resources", Lang>;
+
+type SharedSectionDocumentDataSlicesSlice = FeatureGridSlice | SuccessStoriesSlice | TestimonialsSlice | TextWithImageSlice | CalculatorSlice | ExpertGridSlice | CtaBannerSlice | ProductCardsSlice | PricingSlice | StepsSlice | AnnouncementBarSlice
+
+/**
+ * Content for shared_section documents
+ */
+interface SharedSectionDocumentData {
+	/**
+	 * name field in *shared_section*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: shared_section.name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+	
+	/**
+	 * Slice Zone field in *shared_section*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: shared_section.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<SharedSectionDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *shared_section*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: shared_section.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *shared_section*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: shared_section.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *shared_section*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: shared_section.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * shared_section document from Prismic
+ *
+ * - **API ID**: `shared_section`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SharedSectionDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<SharedSectionDocumentData>, "shared_section", Lang>;
 
 /**
  * Item in *Site Settings → Navigation*
@@ -809,7 +1626,538 @@ interface SiteSettingsDocumentData {
  */
 export type SiteSettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SiteSettingsDocumentData>, "site_settings", Lang>;
 
-export type AllDocumentTypes = AboutDocument | BlogPostDocument | HomeDocument | SiteSettingsDocument;
+type StayConnectedDocumentDataSlicesSlice = AnnouncementBarSlice
+
+/**
+ * Content for Stay connected documents
+ */
+interface StayConnectedDocumentData {
+	/**
+	 * heading field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * subheading field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.subheading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subheading: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_portal_id field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.hubspot_portal_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_portal_id: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_form_id field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.hubspot_form_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_form_id: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_region field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.hubspot_region
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_region: prismic.KeyTextField;
+	
+	/**
+	 * Slice Zone field in *Stay connected*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<StayConnectedDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: stay_connected.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Stay connected*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: stay_connected.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Stay connected*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: stay_connected.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Stay connected document from Prismic
+ *
+ * - **API ID**: `stay_connected`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StayConnectedDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<StayConnectedDocumentData>, "stay_connected", Lang>;
+
+type TestDocumentDataSlicesSlice = never
+
+/**
+ * Content for test documents
+ */
+interface TestDocumentData {
+	/**
+	 * Slice Zone field in *test*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: test.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<TestDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *test*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: test.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *test*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: test.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *test*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: test.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * test document from Prismic
+ *
+ * - **API ID**: `test`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TestDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<TestDocumentData>, "test", Lang>;
+
+/**
+ * Item in *Trends ebook → Card*
+ */
+export interface TrendsEbookDocumentDataCardItem {
+	/**
+	 * Icon field in *Trends ebook → Card*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.card[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	icon: prismic.ImageField<never>;
+	
+	/**
+	 * title field in *Trends ebook → Card*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.card[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+	
+	/**
+	 * Description field in *Trends ebook → Card*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.card[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+}
+
+type TrendsEbookDocumentDataSlicesSlice = SectionReferenceSlice
+
+/**
+ * Content for Trends ebook documents
+ */
+interface TrendsEbookDocumentData {
+	/**
+	 * hero_image field in *Trends ebook*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hero_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	hero_image: prismic.ImageField<never>;
+	
+	/**
+	 * hero_heading field in *Trends ebook*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hero_heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hero_heading: prismic.KeyTextField;
+	
+	/**
+	 * hero_subtitle field in *Trends ebook*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hero_subtitle
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	hero_subtitle: prismic.RichTextField;
+	
+	/**
+	 * hero_title field in *Trends ebook*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hero_title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	hero_title: prismic.RichTextField;
+	
+	/**
+	 * hubspot_portal_id field in *Trends ebook*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hubspot_portal_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_portal_id: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_form_id field in *Trends ebook*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hubspot_form_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_form_id: prismic.KeyTextField;
+	
+	/**
+	 * hubspot_region field in *Trends ebook*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.hubspot_region
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	hubspot_region: prismic.KeyTextField;
+	
+	/**
+	 * Card field in *Trends ebook*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.card[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	card: prismic.GroupField<Simplify<TrendsEbookDocumentDataCardItem>>;
+	
+	/**
+	 * Slice Zone field in *Trends ebook*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<TrendsEbookDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Trends ebook*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: trends_ebook.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Trends ebook*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: trends_ebook.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Trends ebook*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trends_ebook.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Trends ebook document from Prismic
+ *
+ * - **API ID**: `trends_ebook`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TrendsEbookDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<TrendsEbookDocumentData>, "trends_ebook", Lang>;
+
+type TutorialDocumentDataSlicesSlice = AnnouncementBarSlice
+
+/**
+ * Content for Tutorial documents
+ */
+interface TutorialDocumentData {
+	/**
+	 * heading field in *Tutorial*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tutorial.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * video field in *Tutorial*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tutorial.video
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video: prismic.LinkToMediaField<prismic.FieldState, never>;
+	
+	/**
+	 * poster field in *Tutorial*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tutorial.poster
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	poster: prismic.ImageField<never>;
+	
+	/**
+	 * body field in *Tutorial*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tutorial.body
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	body: prismic.RichTextField;
+	
+	/**
+	 * Slice Zone field in *Tutorial*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tutorial.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<TutorialDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Tutorial*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: tutorial.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Tutorial*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: tutorial.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Tutorial*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tutorial.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Tutorial document from Prismic
+ *
+ * - **API ID**: `tutorial`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TutorialDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<TutorialDocumentData>, "tutorial", Lang>;
+
+export type AllDocumentTypes = AboutDocument | AffiliateProgramDocument | BlogPostDocument | EmpoweredInvestorDocument | FaqDocument | ForCpasDocument | ForTaxAdvisorsDocument | HomeDocument | ReiBusyseasonDocument | ResourcesDocument | SharedSectionDocument | SiteSettingsDocument | StayConnectedDocument | TestDocument | TrendsEbookDocument | TutorialDocument;
+
+/**
+ * Primary content in *AnnouncementBar → Default → Primary*
+ */
+export interface AnnouncementBarSliceDefaultPrimary {
+	/**
+	 * text field in *AnnouncementBar → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: announcement_bar.default.primary.text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	text: prismic.RichTextField;
+	
+	/**
+	 * link field in *AnnouncementBar → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: announcement_bar.default.primary.link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * link_label field in *AnnouncementBar → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: announcement_bar.default.primary.link_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	link_label: prismic.KeyTextField;
+	
+	/**
+	 * style field in *AnnouncementBar → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: blue
+	 * - **API ID Path**: announcement_bar.default.primary.style
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	style: prismic.SelectField<"blue" | "navy", "filled">;
+}
+
+/**
+ * Default variation for AnnouncementBar Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AnnouncementBarSliceDefault = prismic.SharedSliceVariation<"default", Simplify<AnnouncementBarSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *AnnouncementBar*
+ */
+type AnnouncementBarSliceVariation = AnnouncementBarSliceDefault
+
+/**
+ * AnnouncementBar Shared Slice
+ *
+ * - **API ID**: `announcement_bar`
+ * - **Description**: AnnouncementBar
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AnnouncementBarSlice = prismic.SharedSlice<"announcement_bar", AnnouncementBarSliceVariation>;
 
 /**
  * Primary content in *Calculator → Default → Primary*
@@ -3297,12 +4645,39 @@ declare module "@prismicio/client" {
 			AboutDocument,
 			AboutDocumentData,
 			AboutDocumentDataSlicesSlice,
+			AffiliateProgramDocument,
+			AffiliateProgramDocumentData,
+			AffiliateProgramDocumentDataSlicesSlice,
 			BlogPostDocument,
 			BlogPostDocumentData,
 			BlogPostDocumentDataFaqsItem,
+			EmpoweredInvestorDocument,
+			EmpoweredInvestorDocumentData,
+			EmpoweredInvestorDocumentDataPartnerLogosItem,
+			EmpoweredInvestorDocumentDataSlicesSlice,
+			FaqDocument,
+			FaqDocumentData,
+			FaqDocumentDataSlicesSlice,
+			ForCpasDocument,
+			ForCpasDocumentData,
+			ForCpasDocumentDataSlicesSlice,
+			ForTaxAdvisorsDocument,
+			ForTaxAdvisorsDocumentData,
+			ForTaxAdvisorsDocumentDataFaqItem,
+			ForTaxAdvisorsDocumentDataSlicesSlice,
 			HomeDocument,
 			HomeDocumentData,
 			HomeDocumentDataSlicesSlice,
+			ReiBusyseasonDocument,
+			ReiBusyseasonDocumentData,
+			ReiBusyseasonDocumentDataSlicesSlice,
+			ResourcesDocument,
+			ResourcesDocumentData,
+			ResourcesDocumentDataCardsItem,
+			ResourcesDocumentDataSlicesSlice,
+			SharedSectionDocument,
+			SharedSectionDocumentData,
+			SharedSectionDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
 			SiteSettingsDocumentDataNavigationItem,
@@ -3311,7 +4686,24 @@ declare module "@prismicio/client" {
 			SiteSettingsDocumentDataLegalLinksItem,
 			SiteSettingsDocumentDataFooterResourcesItem,
 			SiteSettingsDocumentDataStayConnectedLinksItem,
+			StayConnectedDocument,
+			StayConnectedDocumentData,
+			StayConnectedDocumentDataSlicesSlice,
+			TestDocument,
+			TestDocumentData,
+			TestDocumentDataSlicesSlice,
+			TrendsEbookDocument,
+			TrendsEbookDocumentData,
+			TrendsEbookDocumentDataCardItem,
+			TrendsEbookDocumentDataSlicesSlice,
+			TutorialDocument,
+			TutorialDocumentData,
+			TutorialDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			AnnouncementBarSlice,
+			AnnouncementBarSliceDefaultPrimary,
+			AnnouncementBarSliceVariation,
+			AnnouncementBarSliceDefault,
 			CalculatorSlice,
 			CalculatorSliceDefaultPrimary,
 			CalculatorSliceVariation,
