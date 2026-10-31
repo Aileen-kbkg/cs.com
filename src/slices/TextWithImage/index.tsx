@@ -57,7 +57,7 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 
 	return (
 		<section
-			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} ${slice.primary.custom_css_class || ""}`}
+			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} `}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 			data-image-position={imageLeft ? "left" : "right"}
@@ -65,7 +65,7 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 			<div
   className={`${styles.inner} ${
     imageLeft ? styles.innerImageLeft : styles.innerImageRight
-  } ${index === 0 ? styles.innerHero : ""}`}
+  } ${index === 0 ? styles.innerHero : ""} ${primary.custom_css_class || ""}`}
 >
 				<div className={styles.body}>
 					{primary.eyebrow && (
