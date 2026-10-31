@@ -57,7 +57,7 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 
 	return (
 		<section
-			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""}`}
+			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} ${slice.primary.custom_css_class || ""}`}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 			data-image-position={imageLeft ? "left" : "right"}
