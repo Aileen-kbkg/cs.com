@@ -44,3 +44,200 @@
 .slices :global([data-slice-type="pricing"] [class*="loyalty"]) {
     display: none;
 }
+
+/* ================================================================== */
+/* S8 Acquisition — match https://www.costsegregation.com/s8-acquisition/ */
+/*                                                                    */
+/* Every value below was measured on the live page at 1440px and      */
+/* compared with this page's compiled slice CSS. All rules are scoped */
+/* to `.slices` (this page's own wrapper around <SliceZone>), so the  */
+/* shared slices are unchanged on every other page.                   */
+/*                                                                    */
+/* Slices are matched by their stable `data-slice-type` attribute,    */
+/* and inner elements by the local part of their CSS Module class     */
+/* (e.g. `__badges`), never by the build hash.                        */
+/* ================================================================== */
+
+
+/* ------------------------------------------------------------------ */
+/* Hero (campaign_hero)                                               */
+/* ------------------------------------------------------------------ */
+
+/* Live order: text → button → badges. Yours had badges above the button. */
+.slices :global([data-slice-type="campaign_hero"] [class*="__ctaRow"]) {
+    order: 1;
+    margin-top: 14px;
+    /* 20px column gap + 14 = 34px below the text, as live */
+}
+
+.slices :global([data-slice-type="campaign_hero"] [class*="__badges"]) {
+    order: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 23px;
+    margin-top: 3px;
+    /* 20 + 3 = 23px below the button, as live */
+}
+
+.slices :global([data-slice-type="campaign_hero"] [class*="__badges"] > li) {
+    gap: 5px;
+    width: auto;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.slices :global([data-slice-type="campaign_hero"] [class*="__badgeIcon"]),
+.slices :global([data-slice-type="campaign_hero"] [class*="__badgeIcon"] svg) {
+    width: 12px;
+    height: 12px;
+}
+
+/* Eyebrow pill: 45px tall, 12px icon gap, 16px text. */
+.slices :global([data-slice-type="campaign_hero"] p[class*="__eyebrow"]) {
+    gap: 12px;
+    padding: 10px 20px 5px;
+    font-size: 16px;
+}
+
+/* Get Started: 155 × 46 with a 16px chevron. */
+.slices :global([data-slice-type="campaign_hero"] [class*="__ctaRow"] > a) {
+    padding: 15px 20px;
+    line-height: 16px;
+}
+
+.slices :global([data-slice-type="campaign_hero"] [class*="__ctaRow"] > a svg) {
+    width: 16px;
+    height: 16px;
+}
+
+.slices :global([data-slice-type="campaign_hero"] div[class*="__text"]) {
+    line-height: 24px;
+}
+
+@media (min-width: 1025px) {
+
+    /* Live: 671px tall with the content vertically centred. */
+    .slices :global([data-slice-type="campaign_hero"]) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 671px;
+        padding: 0 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] > [class*="__inner"]) {
+        width: 100%;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="__text"]) {
+        max-width: 633px;
+    }
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Partner offer (partner_offer)                                      */
+/* ------------------------------------------------------------------ */
+
+.slices :global([data-slice-type="partner_offer"]) {
+    --po-gap: 20px;
+    background: #f4f7fb;
+    /* live page background; this slice defaults to white */
+}
+
+.slices :global([data-slice-type="partner_offer"] div[class*="__text"]) {
+    line-height: 24px;
+}
+
+.slices :global([data-slice-type="partner_offer"] div[class*="__text"] p) {
+    margin: 0;
+}
+
+/* Offer panel: heading, note, then the button 20px below — centred as a group. */
+.slices :global([data-slice-type="partner_offer"] [class*="__offerNote"]) {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.slices :global([data-slice-type="partner_offer"] aside > a[class*="__button"]) {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    gap: 10px;
+    line-height: 16px;
+    text-transform: capitalize;
+}
+
+/*
+ * Corner icon: live draws it as a background at `29% auto`, positioned
+ * `94% 94%`. Left/top 94% plus translate(-94%, -94%) puts the image at
+ * exactly the same spot at any card size.
+ */
+.slices :global([data-slice-type="partner_offer"] [class*="__offerIcon"]) {
+    top: 94%;
+    left: 94%;
+    right: auto;
+    bottom: auto;
+    width: 29%;
+    max-width: none;
+    transform: translate(-94%, -94%);
+}
+
+@media (min-width: 1025px) {
+
+    /* Live: no vertical padding; the two cards are the whole 334px section. */
+    .slices :global([data-slice-type="partner_offer"]) {
+        padding: 0 20px;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
+        font-size: 39.936px;
+    }
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Pricing (pricing)                                                  */
+/* ------------------------------------------------------------------ */
+
+/* Live keeps every "Report Includes" item on one line. */
+@media (min-width: 1025px) {
+    .slices :global([data-slice-type="pricing"] li) {
+        white-space: nowrap;
+    }
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Calculator (calculator)                                            */
+/* ------------------------------------------------------------------ */
+
+.slices :global([data-slice-type="calculator"]) {
+    padding: 60px 20px;
+    background-color: #f6f9ff;
+}
+
+/*
+ * Live shows a section heading above the card. The shared Calculator
+ * content has no field for it, so it is added here for this page only.
+ */
+.slices :global([data-slice-type="calculator"])::before {
+    content: "Estimate Your First Year Deductions";
+    display: block;
+    margin: 0 0 20px;
+    color: #284074;
+    font-family: Inter, "Inter Fallback", sans-serif;
+    font-size: clamp(1.75rem, 1rem + 2.4vw, 39.936px);
+    /* 39.936px at 1440, as live */
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+}
+
+/* Live card: 1190px wide, centred, with a stronger shadow and a 15px foot. */
+.slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+    max-width: 1190px !important;
+    padding-bottom: 55px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}

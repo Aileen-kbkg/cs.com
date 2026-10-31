@@ -41,7 +41,17 @@ type CampaignHeroSlice = {
 	items: never[];
 };
 
-export type CampaignHeroProps = SliceComponentProps<CampaignHeroSlice>;
+/**
+ * Optional SliceZone context. The S8 Acquisition page passes
+ * `{ page: "s8-acquisition" }` to opt into its own tablet/mobile layout;
+ * every other page passes nothing and renders exactly as before.
+ */
+type CampaignHeroContext = { page?: string } | undefined;
+
+export type CampaignHeroProps = SliceComponentProps<
+	CampaignHeroSlice,
+	CampaignHeroContext
+>;
 
 const ChevronRight = () => (
 	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -139,18 +149,38 @@ const BadgeIcon = ({
  * The illustration is decorative, so a CSS background is appropriate —
  * it carries no information the copy does not already state.
  */
-const CampaignHero = ({ slice }: CampaignHeroProps) => {
+const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 	const primary = slice.primary;
 	const badges = primary.badges ?? [];
 	const imageUrl = isFilled.image(primary.image) ? primary.image.url : null;
+
+	// S8 Acquisition only: its own tablet/mobile rules (.s8 in the CSS).
+	const isS8 = context?.page === "s8-acquisition";
+
+	// The live S8 heading breaks after its first sentence on tablet and
+	// mobile ("Don’t Wait 30+ Years. / Put Your Money to Work Now!"). The
+	// second sentence goes in a span that becomes a block at ≤1024px and
+	// stays inline on desktop, so desktop is unchanged.
+	const headingParts =
+		isS8 && primary.heading
+			? primary.heading.match(/^(.+?[.!?])\s+(.+)$/)
+			: null;
 
 	const sectionStyle = imageUrl
 		? ({ "--ch-hero-image": `url("${imageUrl}")` } as CSSProperties)
 		: undefined;
 
+	const sectionClass = [
+		styles.section,
+		imageUrl ? styles.hasImage : "",
+		isS8 ? styles.s8 : "",
+	]
+		.filter(Boolean)
+		.join(" ");
+
 	return (
 		<section
-			className={`${styles.section} ${imageUrl ? styles.hasImage : ""}`}
+			className={sectionClass}
 			style={sectionStyle}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
@@ -166,7 +196,18 @@ const CampaignHero = ({ slice }: CampaignHeroProps) => {
 						</p>
 					)}
 
-					{primary.heading && <h1 className={styles.heading}>{primary.heading}</h1>}
+					{primary.heading && (
+						<h1 className={styles.heading}>
+							{headingParts ? (
+								<>
+									{headingParts[1]}{" "}
+									<span className={styles.headingLine}>{headingParts[2]}</span>
+								</>
+							) : (
+								primary.heading
+							)}
+						</h1>
+					)}
 
 					{primary.subheading && (
 						<p className={styles.subheading}>{primary.subheading}</p>

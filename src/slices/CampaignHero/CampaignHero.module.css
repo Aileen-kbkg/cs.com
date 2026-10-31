@@ -970,3 +970,56 @@ Primary CTA .button {
         line-height: 1.2;
     }
 }
+
+
+/* ================================================================ */
+/* S8 Acquisition only — `.s8` is added by the component when the  */
+/* S8 page passes SliceZone context { page: "s8-acquisition" }.     */
+/* Fine-tunes the tablet/mobile block above to the live page        */
+/* (measured at 375, 480, 600, 767, 768, 900 and 1024px). Desktop,  */
+/* 1025px and up, is untouched; Roofstock and REI Busy Season don't */
+/* get `.s8`. Keep this block at the very END of the file.          */
+/* ================================================================ */
+
+@media (max-width: 1024px) {
+
+    /* The live heading breaks after "Years." — done with
+       .headingLine below — so the 11.7em width cap isn't needed. */
+    .s8 .heading {
+        max-width: none;
+    }
+
+    .s8 .headingLine {
+        display: block;
+    }
+
+    /* Counter text sits 2px lower on the live page. */
+    .s8 .counterPanel {
+        position: relative;
+        top: 2px;
+    }
+}
+
+/* Tablet: badges sit 23px below the button, not 20px. */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .s8 .badges {
+        margin-top: 3px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+    /* Fluid size, capped at 16px as on the live page. */
+    .s8 .eyebrow,
+    .s8 .text,
+    .s8 .counterHeading {
+        font-size: min(16px, calc(10.56px + 0.75vw));
+    }
+
+    /* Gap between the stacked badges grows with the screen
+       (3px at 375px → 9px at 767px). */
+    .s8 .badges {
+        row-gap: calc(1.53vw - 2.7px);
+    }
+}

@@ -110,7 +110,11 @@ export default async function Page() {
   actionsClassName={styles.partnerActions}
 />
 <div className={styles.slices}>
-			<SliceZone slices={page.data.slices} components={components} />
+		<SliceZone
+	slices={page.data.slices}
+	components={components}
+	context={{ page: "s8-acquisition" }}
+/>
 			</div>
 		</>
 	);
