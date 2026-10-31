@@ -87,5 +87,5 @@ p {
 }
 .About-module__8aBknG__page .TextWithImage-module__ssLXPW__innerImageRight .TextWithImage-module__ssLXPW__body
 {
-0 0 calc(47% - var(--twi-gap) / 2) !important
+flex: 0 0 calc(47% - var(--twi-gap) / 2) !important;
 }
