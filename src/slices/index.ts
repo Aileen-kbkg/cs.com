@@ -24,7 +24,7 @@ import VideoEmbed from "./VideoEmbed";
 import AnnouncementBar from "./AnnouncementBar";
 import PartnerOffer from "./PartnerOffer";
 import ProcessSteps from "./ProcessSteps";
-import PropertyCards from "./ProductCards";
+import PropertyCards from "./PropertyCards";
 
 export const components = {
 	calculator: Calculator,
