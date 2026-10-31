@@ -3,7 +3,8 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import type { ImageField, RichTextField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
+import SliceZone, { splitAnnouncementBar } from "@/components/SliceZone";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
@@ -92,9 +93,11 @@ export default async function Page() {
 
 	const cards = card ?? [];
 	const hasForm = Boolean(hubspot_portal_id && hubspot_form_id);
+	const { announcementBar, rest } = splitAnnouncementBar(slices);
 
 	return (
 		<main className={styles.page}>
+			<SliceZone slices={announcementBar} components={components} />
 			<section className={styles.hero}>
 				<div className={styles.heroInner}>
 					{/* Hidden below 1024px, as on the live page. */}
@@ -197,7 +200,7 @@ export default async function Page() {
 				</section>
 			) : null}
 
-			<SliceZone slices={slices} components={components} />
+			<SliceZone slices={rest} components={components} />
 		</main>
 	);
 }
