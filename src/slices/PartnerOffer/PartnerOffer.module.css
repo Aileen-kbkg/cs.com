@@ -69,7 +69,7 @@
     font-weight: 500;
     color: var(--po-navy);
     text-wrap: balance;
-    font-size: clamp(1.5rem, 1.5rem + 0.94vw, 2.50rem);
+    font-size: clamp(1.5rem, 1.25rem + 0.94vw, 2.50rem);
 
 }
 
@@ -320,13 +320,19 @@
 /* background.                                                      */
 /* ---------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------- */
+/* Offer panel colour — set by the `offer_color` Select in Prismic.  */
+/* Keep these AFTER the existing `.offer` rule so they override its  */
+/* background.                                                      */
+/* ---------------------------------------------------------------- */
+
 .offer {
     /* Anchor for the corner icon. */
     position: relative;
 }
 
 .offerOrange {
-    background-color: #F17422;
+    background-color: #f17422;
 }
 
 .offerYellow {
@@ -336,20 +342,32 @@
 
 /* ---------------------------------------------------------------- */
 /* Corner icon — `offercard_icon` in Prismic.                        */
-/* Measured from the live Roofstock card (552 × 417): the mark sits */
-/* 26px from the right and 22px from the bottom, ~156px wide.       */
+/* Live (S8 and Roofstock) draws it as a background image:           */
+/*   background-size: 29% auto; background-position: 94% 94%;      */
+/* Left/top 94% plus translate(-94%, -94%) places the <img> exactly */
+/* like that background at any card size.                           */
 /* ---------------------------------------------------------------- */
 
 .offerIcon {
     position: absolute;
-    right: 26px;
-    bottom: 22px;
+    top: 94%;
+    left: 94%;
+    z-index: 0;
     display: block;
-    width: 156px;
-    max-width: calc(100% - 52px);
+    width: 29%;
     height: auto;
     object-fit: contain;
+    transform: translate(-94%, -94%);
     pointer-events: none;
+}
+
+/*
+ * Like a background, the icon sits behind the panel's content, so it
+ * can never cover the heading, code or Get Started button.
+ */
+.offer> :not(.offerIcon):not(.srOnly) {
+    position: relative;
+    z-index: 1;
 }
 
 /* ---------------------------------------------------------------- */
@@ -385,6 +403,7 @@
 
 .offerEyebrow p {
     margin: 0;
+    color: #ffffff;
 }
 
 .offerEyebrow a {

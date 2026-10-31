@@ -33,13 +33,6 @@
     }
 }
 
-
-
-.S8AcquisitionSlices :global([class*="loyalty"]) {
-
-    display: none;
-}
-
 /* Hide the green Loyalty Discounts block in the Pricing slice — this page only. */
 .slices :global([data-slice-type="pricing"] [class*="loyalty"]) {
     display: none;
@@ -139,27 +132,46 @@
 /* Partner offer (partner_offer)                                      */
 /* ------------------------------------------------------------------ */
 
+/*
+ * Breakpoints follow the live (Elementor) page: desktop ≥1025px,
+ * tablet 768–1024px (cards stay side by side), mobile ≤767px (stacked).
+ */
+
 .slices :global([data-slice-type="partner_offer"]) {
     --po-gap: 20px;
+    padding: 0 20px;
+    /* live: no vertical padding at any width */
     background: #f4f7fb;
     /* live page background; this slice defaults to white */
 }
 
+/* Description card */
 .slices :global([data-slice-type="partner_offer"] div[class*="__text"]) {
+    font-size: 16px;
+    /* yours scaled down to 15px on tablet */
     line-height: 24px;
 }
 
+/* Live leaves one blank line (24px) between the two paragraphs. */
 .slices :global([data-slice-type="partner_offer"] div[class*="__text"] p) {
-    margin: 0;
+    margin: 0 0 24px;
 }
 
-/* Offer panel: heading, note, then the button 20px below — centred as a group. */
+.slices :global([data-slice-type="partner_offer"] div[class*="__text"] p:last-child) {
+    margin-bottom: 0;
+}
+
+/* Offer panel: heading, note, then the button 20px below. */
 .slices :global([data-slice-type="partner_offer"] [class*="__offerNote"]) {
     margin: 0;
+    font-size: 25px;
+    /* live: 25px at every width; yours shrank to ~15px */
     line-height: 1.5;
 }
 
 .slices :global([data-slice-type="partner_offer"] aside > a[class*="__button"]) {
+    width: auto;
+    /* yours went full-width below 640px; live stays 155px */
     margin-top: 20px;
     padding: 15px 20px;
     border-radius: 10px;
@@ -169,29 +181,92 @@
 }
 
 /*
- * Corner icon: live draws it as a background at `29% auto`, positioned
- * `94% 94%`. Left/top 94% plus translate(-94%, -94%) puts the image at
- * exactly the same spot at any card size.
+ * Corner icon. Live draws it as a background image; left/top N% plus
+ * translate(-N%, -N%) places the <img> exactly like
+ * `background-position: N% N%` at any card size.
  */
 .slices :global([data-slice-type="partner_offer"] [class*="__offerIcon"]) {
-    top: 94%;
-    left: 94%;
     right: auto;
     bottom: auto;
-    width: 29%;
     max-width: none;
-    transform: translate(-94%, -94%);
 }
 
+/* ---- Desktop ≥1025px (measured at 1440) ---- */
 @media (min-width: 1025px) {
-
-    /* Live: no vertical padding; the two cards are the whole 334px section. */
-    .slices :global([data-slice-type="partner_offer"]) {
-        padding: 0 20px;
-    }
-
     .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
         font-size: 39.936px;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] aside h2) {
+        font-size: 40px;
+    }
+
+    /* background-size: 29% auto; background-position: 94% 94% */
+    .slices :global([data-slice-type="partner_offer"] [class*="__offerIcon"]) {
+        top: 94%;
+        left: 94%;
+        width: 29%;
+        transform: translate(-94%, -94%);
+    }
+}
+
+/* ---- Tablet 768–1024px (from the 768px screenshot) ---- */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Live keeps the two cards side by side, about 60 / 40. */
+    .slices :global([data-slice-type="partner_offer"] [class*="__inner"]) {
+        flex-direction: row;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] [class*="__card"]) {
+        flex: 0 0 calc(60% - var(--po-gap) / 2);
+        width: auto;
+        min-width: 0;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] aside) {
+        flex: 1 1 0;
+        width: auto;
+    }
+
+    /* .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
+        font-size: 33px;
+    } */
+
+    .slices :global([data-slice-type="partner_offer"] aside h2) {
+        font-size: 34px;
+    }
+
+    /* Larger mark anchored bottom-right, behind the button as on live. */
+    .slices :global([data-slice-type="partner_offer"] [class*="__offerIcon"]) {
+        top: 100%;
+        left: 100%;
+        width: 85%;
+        transform: translate(-100%, -100%);
+    }
+}
+
+/* ---- Mobile ≤767px (from the 425px screenshot) ---- */
+@media (max-width: 767px) {
+    /* .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
+        font-size: 30px;
+    } */
+
+    .slices :global([data-slice-type="partner_offer"] aside h2) {
+        font-size: 30px;
+    }
+
+    /* Live: content sits at the top; ~100px below the button holds the mark. */
+    .slices :global([data-slice-type="partner_offer"] aside) {
+        justify-content: flex-start;
+        padding: 40px 40px 100px;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] [class*="__offerIcon"]) {
+        top: 94%;
+        left: 94%;
+        width: 60%;
+        transform: translate(-94%, -94%);
     }
 }
 

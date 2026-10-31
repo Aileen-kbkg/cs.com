@@ -2,7 +2,7 @@
  * Promotional hero — matched against
  * https://www.costsegregation.com/rei-busyseason/
  *
- * The illustration is the section's background, anchored right. The
+ * The illustration is the .inner background, anchored right. The
  * right column is an empty box the same size, holding the counter over
  * the artwork.
  */
@@ -32,17 +32,16 @@
 
 /* Illustration, supplied by the component as --ch-hero-image. */
 .hasImage {
-    background-image: var(--ch-hero-image);
-    /* background-position: right center;
-    background-size: 52% auto; */
-    /* background-position: 1050px 80px; */
-    background-repeat: no-repeat;
-    /* background-size: 35% auto; */
-
-    background-position: 407px 124px;
-    background-size: 553px;
     gap: 40px;
     padding: 60px 20px;
+}
+
+/* The background image is positioned relative to .inner, not the section. */
+.hasImage .inner {
+    background-image: var(--ch-hero-image);
+    background-repeat: no-repeat;
+    background-position: 654px 50px;
+    background-size: 52% auto;
 }
 
 .section *,
@@ -369,7 +368,7 @@
         margin: 0 auto;
     }
 
-    .hasImage {
+    .hasImage .inner {
         background-position: center bottom;
         background-size: 620px auto;
     }
@@ -378,7 +377,7 @@
 /* Mobile — no background artwork; it would be unreadable at this size
    and costs bandwidth for no benefit. The counter becomes a solid card. */
 @media (max-width: 639px) {
-    .hasImage {
+    .hasImage .inner {
         background-image: none;
     }
 
@@ -462,7 +461,7 @@
         margin: 0 auto;
     }
 
-    .hasImage {
+    .hasImage .inner {
         background-position: center bottom;
         background-size: 620px auto;
     }
@@ -542,7 +541,7 @@
         margin: 1rem auto 0;
     }
 
-    .hasImage {
+    .hasImage .inner {
         background-position: center bottom 24px;
         background-size: 320px auto;
     }
@@ -640,7 +639,7 @@ ul.badges,
     max-width: 400px;
 } */
 
-Primary CTA .button {
+.button {
     background: #b5eba2;
     font-size: 19px;
     color: #3d8120;
@@ -659,20 +658,23 @@ Primary CTA .button {
 } */
 
 /* Hero background positioning */
-.hasImage {
+/* .hasImage .inner {
     background-position: 100% 110px;
-}
+} */
 
 @media (max-width: 992px) {
-    .hasImage {
+    .hasImage .inner {
         background-position: left bottom;
     }
 }
 
 @media (max-width: 649px) {
-    .hasImage {
+    .hasImage .inner {
         background: url("https://costsegregationcom.cdn.prismic.io/costsegregationcom/E1XGsxMM_Aokxi2W_animated-2.svg?auto=compress,format") no-repeat left bottom;
         background-size: 470px;
+    }
+
+    .hasImage {
         padding-bottom: 130px;
     }
 
@@ -703,6 +705,9 @@ Primary CTA .button {
     /* Section — reference background tint and artwork. */
     .section.hasImage {
         background-color: #f6f9ff;
+    }
+
+    .section.hasImage .inner {
         background-image: var(--ch-hero-image);
         background-repeat: no-repeat;
     }
@@ -871,6 +876,9 @@ Primary CTA .button {
         align-items: center;
         min-height: 671px;
         padding: 0 20px;
+    }
+
+    .section.hasImage .inner {
         background-position: 407px 124px;
         background-size: 553px auto;
     }
@@ -915,6 +923,9 @@ Primary CTA .button {
         display: block;
         min-height: 0;
         padding: 20px 20px 60px;
+    }
+
+    .section.hasImage .inner {
         background-position: 192px 231px;
         background-size: 373px auto;
     }
@@ -1021,5 +1032,50 @@ Primary CTA .button {
        (3px at 375px → 9px at 767px). */
     .s8 .badges {
         row-gap: calc(1.53vw - 2.7px);
+    }
+}
+
+
+/* S8 Acquisition — background image positioning */
+@media (min-width: 1025px) {
+    .s8.hasImage {
+        background-image: none;
+    }
+
+    .s8 .inner {
+
+        background-image: var(--ch-hero-image);
+        min-height: 671px;
+        background-position: 654px 50px;
+        background-repeat: no-repeat;
+        background-size: 52% auto;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .s8.hasImage {
+        background-image: none;
+    }
+
+    .s8 .inner {
+        background-image: var(--ch-hero-image);
+        background-repeat: no-repeat;
+        background-position: right 0 top 124px;
+        /* background-size: 553px auto; */
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .s8.hasImage {
+        background-image: none;
+    }
+
+    .s8 .inner {
+        background-image: var(--ch-hero-image);
+        background-repeat: no-repeat;
+        background-position: 192px 231px;
+        background-size: 373px auto;
     }
 }

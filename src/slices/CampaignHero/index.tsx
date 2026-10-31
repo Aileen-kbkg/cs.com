@@ -1,3 +1,4 @@
+
 import type { CSSProperties } from "react";
 import { isFilled } from "@prismicio/client";
 import type {
@@ -12,11 +13,10 @@ import { PrismicRichText } from "@prismicio/react";
 import type { SliceComponentProps } from "@prismicio/react";
 
 import SavingsCounter from "./SavingsCounter";
-
-
 import styles from "./CampaignHero.module.css";
+
 /**
- * Local type until `campaign_hero` is pushed and types.generated.ts is
+ * Local type until campaign_hero is pushed and types.generated.ts is
  * regenerated. Then swap to SliceComponentProps<CampaignHeroSlice>.
  */
 type CampaignHeroSlice = {
@@ -42,9 +42,7 @@ type CampaignHeroSlice = {
 };
 
 /**
- * Optional SliceZone context. The S8 Acquisition page passes
- * `{ page: "s8-acquisition" }` to opt into its own tablet/mobile layout;
- * every other page passes nothing and renders exactly as before.
+ * Optional SliceZone context.
  */
 type CampaignHeroContext = { page?: string } | undefined;
 
@@ -88,20 +86,21 @@ const TrendIcon = () => (
 );
 
 /**
- * Fallback badge marks, used when a badge has no icon image set. The live
- * page uses a shield, a shield, a star and a dollar sign in that order.
+ * Fallback badge marks.
  */
 const FALLBACK_BADGE_ICONS = [
-	// shield
-	<path key="s1" d="M12 3l7 3v5c0 4.4-3 8.3-7 10-4-1.7-7-5.6-7-10V6l7-3z" />,
-	// shield
-	<path key="s2" d="M12 3l7 3v5c0 4.4-3 8.3-7 10-4-1.7-7-5.6-7-10V6l7-3z" />,
-	// star
+	<path
+		key="s1"
+		d="M12 3l7 3v5c0 4.4-3 8.3-7 10-4-1.7-7-5.6-7-10V6l7-3z"
+	/>,
+	<path
+		key="s2"
+		d="M12 3l7 3v5c0 4.4-3 8.3-7 10-4-1.7-7-5.6-7-10V6l7-3z"
+	/>,
 	<path
 		key="st"
 		d="M12 3.5l2.6 5.3 5.9.9-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.9L12 3.5z"
 	/>,
-	// dollar
 	<g key="d">
 		<line x1="12" y1="2.5" x2="12" y2="21.5" />
 		<path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -142,31 +141,24 @@ const BadgeIcon = ({
 };
 
 /**
- * Promotional hero — headline, sub-headline, supporting copy, trust
- * badges and CTAs on the left; the illustration sits as the section's
- * background on the right, with the savings counter over it.
- *
- * The illustration is decorative, so a CSS background is appropriate —
- * it carries no information the copy does not already state.
+ * Promotional hero component.
  */
 const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 	const primary = slice.primary;
 	const badges = primary.badges ?? [];
 	const imageUrl = isFilled.image(primary.image) ? primary.image.url : null;
 
-	// S8 Acquisition only: its own tablet/mobile rules (.s8 in the CSS).
+	// S8 Acquisition only.
 	const isS8 = context?.page === "s8-acquisition";
 
-	// The live S8 heading breaks after its first sentence on tablet and
-	// mobile ("Don’t Wait 30+ Years. / Put Your Money to Work Now!"). The
-	// second sentence goes in a span that becomes a block at ≤1024px and
-	// stays inline on desktop, so desktop is unchanged.
+	// Break the S8 heading after its first sentence on tablet and mobile.
 	const headingParts =
 		isS8 && primary.heading
 			? primary.heading.match(/^(.+?[.!?])\s+(.+)$/)
 			: null;
 
-	const sectionStyle = imageUrl
+	// Background image is now applied to .inner.
+	const innerStyle = imageUrl
 		? ({ "--ch-hero-image": `url("${imageUrl}")` } as CSSProperties)
 		: undefined;
 
@@ -181,11 +173,10 @@ const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 	return (
 		<section
 			className={sectionClass}
-			style={sectionStyle}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<div className={styles.inner}>
+			<div className={styles.inner} style={innerStyle}>
 				<div className={styles.body}>
 					{primary.eyebrow && (
 						<p className={styles.eyebrow}>
@@ -201,7 +192,9 @@ const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 							{headingParts ? (
 								<>
 									{headingParts[1]}{" "}
-									<span className={styles.headingLine}>{headingParts[2]}</span>
+									<span className={styles.headingLine}>
+										{headingParts[2]}
+									</span>
 								</>
 							) : (
 								primary.heading
@@ -237,7 +230,10 @@ const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 
 					<div className={styles.ctaRow}>
 						{isFilled.link(primary.cta_link) && (
-							<PrismicNextLink field={primary.cta_link} className={styles.button}>
+							<PrismicNextLink
+								field={primary.cta_link}
+								className={styles.button}
+							>
 								<span>{primary.cta_label || "Get Started"}</span>
 								<span className={styles.buttonIcon}>
 									<ChevronRight />
@@ -245,24 +241,27 @@ const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 							</PrismicNextLink>
 						)}
 
-						{isFilled.link(primary.secondary_link) && primary.secondary_label && (
-							<PrismicNextLink
-								field={primary.secondary_link}
-								className={styles.secondary}
-							>
-								{primary.secondary_label}
-							</PrismicNextLink>
-						)}
+						{isFilled.link(primary.secondary_link) &&
+							primary.secondary_label && (
+								<PrismicNextLink
+									field={primary.secondary_link}
+									className={styles.secondary}
+								>
+									{primary.secondary_label}
+								</PrismicNextLink>
+							)}
 					</div>
 				</div>
 
-				{/* Right column: holds the counter over the background artwork. */}
 				<div className={styles.media}>
 					<SavingsCounter
 						value={Number(primary.counter_value) || 23600}
-						heading={primary.counter_heading || "Average First Year Tax Savings"}
+						heading={
+							primary.counter_heading || "Average First Year Tax Savings"
+						}
 						footnote={
-							primary.counter_footnote || "*Based on $300,000 Building Purchase"
+							primary.counter_footnote ||
+							"*Based on $300,000 Building Purchase"
 						}
 					/>
 				</div>
