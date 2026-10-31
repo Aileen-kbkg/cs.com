@@ -144,9 +144,12 @@
 }
 
 .page [data-slice-type="text_with_image"]:nth-of-type(5) img {
-    max-width: 280px;
+    max-width: 100%;
     margin-inline: auto;
     border-radius: 0;
+    height: 200px;
+    width: auto;
+
 }
 
 /* ---------------------------------------------------------------- */
@@ -233,7 +236,7 @@
 }
 
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) li p {
-    margin: 0 20px;
+    margin: 0px;
     color: #374151;
     font-size: 16px;
     line-height: 1.4;
