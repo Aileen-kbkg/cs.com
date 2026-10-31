@@ -382,9 +382,13 @@
     background: #fff;
 }
 
+/* Heading — 32px navy, centred, ~18px above the list */
 .page [data-slice-type="faq_accordion"] h2 {
-    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 18px;
+    color: #284074;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.25;
     text-align: center;
 }
 
@@ -396,63 +400,94 @@
     border: 0;
 }
 
+/* Each question: 10px apart, no card around the answer */
 .page [data-slice-type="faq_accordion"] li {
-    margin-bottom: 0.625rem;
-    overflow: hidden;
-    background: var(--wics-band);
+    margin: 0 0 10px;
+    overflow: visible;
+    background: transparent;
     border: 0;
-    border-radius: 8px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.page [data-slice-type="faq_accordion"] li:last-child {
+    margin-bottom: 0;
 }
 
 .page [data-slice-type="faq_accordion"] li h3 {
     margin: 0;
 }
 
+/* Question bar — 44px tall, pale blue, 6px corners */
 .page [data-slice-type="faq_accordion"] button {
     display: flex;
     align-items: center;
-    gap: 0.875rem;
+    gap: 10px;
     width: 100%;
-    padding: 1rem 1.25rem;
-    color: var(--wics-navy);
-    font-size: clamp(0.9375rem, 1.5vw, 1rem);
+    min-height: 44px;
+    padding: 12px 10px;
+    color: #1f2937;
+    font-size: 16px;
     font-weight: 400;
+    line-height: 20px;
     text-align: left;
-    cursor: pointer;
-    background: transparent;
+    background: #f6f9ff;
     border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-/* "+" icon, turning into "×" when open */
+/* Open question — solid blue bar, white text */
+.page [data-slice-type="faq_accordion"] button[aria-expanded="true"] {
+    color: #fff;
+    background: #277ce6;
+}
+
+/* Icon: "+" when closed, "−" when open (drawn in currentColor) */
 .page [data-slice-type="faq_accordion"] button>span:first-child {
     flex: none;
-    width: 0.875rem;
-    height: 0.875rem;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%231f3a6e'%3E%3Cpath d='M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z'/%3E%3C/svg%3E");
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    transition: transform 0.2s;
+    width: 13px;
+    height: 13px;
+    background: currentColor;
+    background-image: none;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z'/%3E%3C/svg%3E") center / contain no-repeat;
+    transform: none;
+    transition: none;
+}
+
+.page [data-slice-type="faq_accordion"] button[aria-expanded="true"]>span:first-child {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M416 208H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M416 208H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z'/%3E%3C/svg%3E");
+    transform: none;
 }
 
 .page [data-slice-type="faq_accordion"] button>span:first-child svg {
     display: none;
 }
 
-/* Fixed: the space before [data-slice-type] was missing, so this never matched. */
-.page [data-slice-type="faq_accordion"] button[aria-expanded="true"]>span:first-child {
-    transform: rotate(45deg);
+/* Answer — plain text on white, lined up with the icon */
+.page [data-slice-type="faq_accordion"] [role="region"],
+.page [data-slice-type="faq_accordion"] [role="region"]>div {
+    background: transparent;
+    border: 0;
+}
+
+.page [data-slice-type="faq_accordion"] [role="region"]>div>div {
+    padding: 15px 10px 25px;
 }
 
 .page [data-slice-type="faq_accordion"] [role="region"] p {
-    padding: 0 1.25rem 0 3.125rem;
-    color: var(--wics-text);
-    font-size: 0.9375rem;
-    line-height: 1.7;
+    margin: 0 0 12px;
+    padding: 0;
+    color: #374151;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .page [data-slice-type="faq_accordion"] [role="region"] p:last-child {
-    padding-bottom: 1.125rem;
+    margin-bottom: 0;
 }
 
 /* ---------------------------------------------------------------- */
@@ -524,17 +559,13 @@
         width: 100%;
     }
 
-    .page [data-slice-type="faq_accordion"] button {
-        padding: 0.875rem 1rem;
-    }
-
-    .page [data-slice-type="faq_accordion"] [role="region"] p {
-        padding-left: 2.5rem;
+    .page [data-slice-type="faq_accordion"] h2 {
+        font-size: 26px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .page [data-slice-type="faq_accordion"] button>span:first-child {
+    .page [data-slice-type="faq_accordion"] button {
         transition: none;
     }
 }
