@@ -16,7 +16,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /*font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;*/
+  font-family:-apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   background: #fff;
   color: #111;
   -webkit-font-smoothing: antialiased;
@@ -71,4 +72,16 @@ p {
 }
 .About-module__8aBknG__page .TextWithImage-module__ssLXPW__media{
   flex: 0 0 calc(35% - var(--twi-gap) / 2) !important;
+}
+.About-module__8aBknG__page .TextWithImage-module__ssLXPW__body
+{
+    flex: 0 0 calc(69% - var(--twi-gap) / 2) !important;
+
+}
+.About-module__8aBknG__page .TextWithImage-module__ssLXPW__section
+{
+  background-color:#F6F9FF;
+}
+.About-module__8aBknG__page .TextWithImage-module__ssLXPW__innerImageRight .TextWithImage-module__ssLXPW__media {
+    flex: 0 0 calc(50% - var(--twi-gap) / 2) !important;
 }
