@@ -26,6 +26,21 @@ type AnnouncementBarSlice = {
 export type AnnouncementBarProps = SliceComponentProps<AnnouncementBarSlice>;
 
 /**
+ * A link of `#hs-cta-<id>` turns the bar text into a HubSpot CTA trigger
+ * (e.g. the newsletter pop-up). The HubSpot script in the root layout
+ * opens the pop-up for elements with these classes, as on the live site.
+ */
+const HUBSPOT_CTA_PREFIX = "#hs-cta-";
+
+const hubspotCtaId = (link: LinkField): string | null => {
+	if (!isFilled.link(link) || !("url" in link) || !link.url) return null;
+
+	return link.url.startsWith(HUBSPOT_CTA_PREFIX)
+		? link.url.slice(HUBSPOT_CTA_PREFIX.length) || null
+		: null;
+};
+
+/**
  * Promotional bar beneath the header.
  *
  * Added per page as a slice, so each page carries its own message — or
@@ -38,6 +53,7 @@ const AnnouncementBar = ({ slice }: AnnouncementBarProps) => {
 	if (!isFilled.richText(primary.text)) return null;
 
 	const theme = primary.style === "navy" ? styles.navy : styles.blue;
+	const ctaId = hubspotCtaId(primary.link);
 
 	return (
 		<div
@@ -46,12 +62,22 @@ const AnnouncementBar = ({ slice }: AnnouncementBarProps) => {
 			data-slice-variation={slice.variation}
 		>
 			<div className={styles.inner}>
-				<div className={styles.text}>
-					<PrismicRichText field={primary.text} />
-				</div>
+				{ctaId ? (
+					<div
+						className={`${styles.text} ${styles.ctaTrigger} hs-cta-trigger-button hs-cta-trigger-button-${ctaId}`}
+						tabIndex={0}
+						aria-haspopup="dialog"
+					>
+						<PrismicRichText field={primary.text} />
+					</div>
+				) : (
+					<div className={styles.text}>
+						<PrismicRichText field={primary.text} />
+					</div>
+				)}
 
 				{/* Optional trailing link — the bar renders without it. */}
-				{primary.link_label && isFilled.link(primary.link) && (
+				{!ctaId && primary.link_label && isFilled.link(primary.link) && (
 					<PrismicNextLink field={primary.link} className={styles.link}>
 						{primary.link_label}
 					</PrismicNextLink>

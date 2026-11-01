@@ -92,3 +92,13 @@
     outline-offset: 3px;
     border-radius: 2px;
 }
+/* Bar text that opens a HubSpot pop-up (link set to #hs-cta-<id>) */
+.ctaTrigger {
+    cursor: pointer;
+}
+
+.ctaTrigger:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+    border-radius: 2px;
+}

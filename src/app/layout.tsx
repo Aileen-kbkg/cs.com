@@ -2,6 +2,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName, createClient } from "@/prismicio";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
@@ -43,6 +44,14 @@ export default async function RootLayout({
         <Footer />
 
         <PrismicPreview repositoryName={repositoryName} />
+
+        {/* HubSpot tracking (portal 3615782), as on the live site. It also
+            powers the newsletter pop-up the announcement bar opens. */}
+        <Script
+          id="hs-script-loader"
+          src="https://js.hs-scripts.com/3615782.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
