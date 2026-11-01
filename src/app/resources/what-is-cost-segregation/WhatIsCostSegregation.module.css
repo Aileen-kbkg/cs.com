@@ -273,6 +273,16 @@
     margin: 0 0 10px;
 }
 
+/* The live third illustration is drawn smaller (215px tall) inside the
+   same 244px slot, padded 9px above and 20px below. */
+.page [data-slice-type="process_steps"] li:nth-child(3)>div:first-child {
+    padding: 9px 0 20px;
+}
+
+.page [data-slice-type="process_steps"] li:nth-child(3) img {
+    height: 215px;
+}
+
 .page [data-slice-type="process_steps"] h3 {
     position: relative;
     margin: 0 0 26px;
