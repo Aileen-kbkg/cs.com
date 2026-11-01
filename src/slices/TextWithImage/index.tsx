@@ -65,7 +65,7 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 			<div
   className={`${styles.inner} ${
     imageLeft ? styles.innerImageLeft : styles.innerImageRight
-  } ${index === 0 ? styles.innerHero : ""}${
+  } ${index === 0 ? styles.innerHero : ""} ${
     primary.custom_css_class || ""
   }`}
 >
