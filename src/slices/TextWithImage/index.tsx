@@ -54,7 +54,10 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 	const primary = slice.primary;
 	const imageLeft = primary.image_position === "left";
 	const Heading = index === 0 ? "h1" : "h2";
-
+const customClass = (
+  primary as typeof primary & { custom_css_class?: string }
+).custom_css_class;
+	
 	return (
 		<section
 			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} `}
@@ -65,9 +68,7 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 			<div
   className={`${styles.inner} ${
     imageLeft ? styles.innerImageLeft : styles.innerImageRight
-  } ${index === 0 ? styles.innerHero : ""} ${
-    primary.custom_css_class || ""
-  } `}
+  } ${index === 0 ? styles.innerHero : ""} ${customClass || ""} `}
 >
 				<div className={styles.body}>
 					{primary.eyebrow && (
