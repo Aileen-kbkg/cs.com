@@ -78,7 +78,7 @@ p {
     flex: 0 0 calc(69% - var(--twi-gap) / 2) !important;
 
 }
-.about-hero
+.TextWithImage-module__ssLXPW__section.about-hero
 {
   background-color:#F6F9FF;
 }
