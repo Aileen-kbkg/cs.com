@@ -81,6 +81,8 @@ p {
 .TextWithImage-module__ssLXPW__section.about-hero
 {
   background-color:#F6F9FF;
+  padding-top:80px;
+  padding-bottom:80px;
 }
 .About-module__8aBknG__page .TextWithImage-module__ssLXPW__innerImageRight .TextWithImage-module__ssLXPW__media {
     flex: 0 0 calc(50% - var(--twi-gap) / 2) !important;
