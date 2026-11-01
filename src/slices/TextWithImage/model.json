@@ -73,6 +73,14 @@
             "repeat": false
           }
         },
+        "icon": {
+          "type": "Image",
+          "config": {
+            "label": "Icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
         "custom_css_class": {
           "type": "Text",
           "config": {

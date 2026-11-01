@@ -1,4 +1,5 @@
 import { Content, isFilled } from "@prismicio/client";
+import type { ImageField } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
@@ -50,15 +51,24 @@ const TrendIcon = () => (
  * visually with `order: -1`; on mobile that is reset so text always leads.
  *
  * The first content slice on a page renders its title as <h1>, the rest as
- * <h2>. An announcement bar above it doesn't count.
+ * <h2>. An announcement bar above it doesn't count, and nor does a shared
+ * section — pages such as For CPAs pull their bar in through one.
  */
+/** Slices that may sit above the page's first content slice. */
+const LEAD_SLICE_TYPES = ["announcement_bar", "section_reference"];
+
 const TextWithImage = ({ slice, index, slices }: TextWithImageProps) => {
 	const primary = slice.primary;
 	const imageLeft = primary.image_position === "left";
 	const isFirstContent = slices
 		.slice(0, index)
-		.every((other) => other.slice_type === "announcement_bar");
+		.every((other) => LEAD_SLICE_TYPES.includes(other.slice_type));
 	const Heading = isFirstContent ? "h1" : "h2";
+	// Optional icon beside the title. Not yet in the generated types.
+	const icon = (primary as { icon?: ImageField }).icon;
+	const heading = primary.title ? (
+		<Heading className={styles.title}>{primary.title}</Heading>
+	) : null;
 
 	return (
 		<section
@@ -85,8 +95,15 @@ const TextWithImage = ({ slice, index, slices }: TextWithImageProps) => {
 						</p>
 					)}
 
-					{primary.title && (
-						<Heading className={styles.title}>{primary.title}</Heading>
+					{heading && isFilled.image(icon) ? (
+						<div className={styles.titleRow}>
+							<span className={styles.titleIcon}>
+								<PrismicNextImage field={icon} fallbackAlt="" />
+							</span>
+							{heading}
+						</div>
+					) : (
+						heading
 					)}
 
 					{isFilled.richText(primary.text) && (
@@ -113,7 +130,7 @@ const TextWithImage = ({ slice, index, slices }: TextWithImageProps) => {
 							field={primary.image}
 							className={styles.image}
 							sizes="(max-width: 767px) 100vw, 50vw"
-							priority={index === 0}
+							priority={isFirstContent}
 							fallbackAlt=""
 						/>
 					</div>

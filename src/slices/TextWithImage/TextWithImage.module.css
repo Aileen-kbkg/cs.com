@@ -121,6 +121,37 @@
     text-wrap: balance;
 }
 
+/* Title with an icon in a pale circle beside it */
+.titleRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    margin: 0 0 1.125rem;
+}
+
+.titleRow .title {
+    margin: 0;
+}
+
+.titleIcon {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: #cfe2f9;
+}
+
+.titleIcon img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
 .text {
     font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
     line-height: 1.75;
