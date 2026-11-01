@@ -35,21 +35,21 @@
             "placeholder": "Optional CSS class name for custom styling this slice."
           }
         },
-        "cta_label": {
+        "button_text": {
           "type": "Text",
           "config": {
-            "label": "Button label",
-            "placeholder": "Optional button below the cards, e.g. Connect with KBKG"
+            "label": "Button Text",
+            "placeholder": ""
           }
         },
-        "cta_link": {
+        "button_link": {
           "type": "Link",
           "config": {
-            "label": "Button link",
+            "label": "Button Link",
             "placeholder": "",
             "select": null,
             "allowTargetBlank": true,
-            "allowText": false,
+            "allowText": true,
             "repeat": false
           }
         }

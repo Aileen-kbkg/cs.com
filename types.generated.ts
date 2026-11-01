@@ -4028,24 +4028,24 @@ export interface ProductCardsSliceDefaultPrimary {
 	custom_class: prismic.KeyTextField;
 	
 	/**
-	 * Button label field in *ProductCards → Default → Primary*
+	 * Button Text field in *ProductCards → Default → Primary*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: Optional button below the cards, e.g. Connect with KBKG
-	 * - **API ID Path**: product_cards.default.primary.cta_label
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product_cards.default.primary.button_text
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	cta_label: prismic.KeyTextField;
+	button_text: prismic.KeyTextField;
 	
 	/**
-	 * Button link field in *ProductCards → Default → Primary*
+	 * Button Link field in *ProductCards → Default → Primary*
 	 *
 	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: product_cards.default.primary.cta_link
+	 * - **API ID Path**: product_cards.default.primary.button_link
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
-	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
