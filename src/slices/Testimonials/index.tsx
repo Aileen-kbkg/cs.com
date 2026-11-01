@@ -27,6 +27,10 @@ const Testimonials = ({ slice }: TestimonialsProps) => {
   const primary = slice.primary as Primary;
   const reviews = slice.items.filter((item) => isFilled.richText(item.quote) || item.author);
   const hasRating = typeof primary.rating === "number" || Boolean(primary.source_label);
+  // Skip the "4.9/5" prefix when the label already contains it.
+  const showRating =
+    typeof primary.rating === "number" &&
+    !primary.source_label?.includes(`${primary.rating}/5`);
 
   const cards = reviews.map((item, index) => (
     <div key={`${item.author ?? "review"}-${index}`} className={styles.card}>
@@ -69,8 +73,8 @@ const Testimonials = ({ slice }: TestimonialsProps) => {
               <StarIcon />
             </span>
             <p className={styles.ratingText}>
-              {typeof primary.rating === "number" && <strong>{primary.rating}/5</strong>}
-              {typeof primary.rating === "number" && primary.source_label && " "}
+              {showRating && <strong>{primary.rating}/5</strong>}
+              {showRating && primary.source_label && " "}
               {primary.source_label}
             </p>
           </div>
