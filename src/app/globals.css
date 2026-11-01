@@ -70,6 +70,8 @@ p {
   font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1.00rem);
   color: #333;
 }
+/*about*/
+
 main.About-module__8aBknG__page {
     font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
@@ -97,4 +99,10 @@ flex: 0 0 calc(47% - var(--twi-gap) / 2) !important;
 .about-kbkg {
   padding-top: clamp(2rem, 8vw, 8rem);
   padding-bottom: clamp(2rem, 8vw, 8rem);
+}
+/*about*/
+
+/*s8-acquisition*/
+CampaignHero-module__K1T9uW__heading span {
+  display: block;
 }
