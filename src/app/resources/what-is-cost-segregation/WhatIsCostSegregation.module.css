@@ -345,7 +345,7 @@
     padding: 0;
     overflow: hidden;
     background: #f6f9ff;
-    border: 1px solid #f0f0f0;
+    border: 2px solid #f0f0f0;
     border-radius: 15px;
     box-shadow: none;
 }
@@ -646,6 +646,7 @@
 /* ---------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
+
     .page [data-slice-type="text_with_image"]>div,
     .page [data-slice-type="text_with_image"]:nth-of-type(2)>div,
     .page [data-slice-type="text_with_image"]:nth-of-type(5)>div {
