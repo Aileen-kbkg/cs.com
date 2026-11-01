@@ -60,7 +60,7 @@ const customClass = (
 	
 	return (
 		<section
-			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} `}
+			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} ${customClass || ""}  `}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 			data-image-position={imageLeft ? "left" : "right"}
@@ -68,7 +68,7 @@ const customClass = (
 			<div
   className={`${styles.inner} ${
     imageLeft ? styles.innerImageLeft : styles.innerImageRight
-  } ${index === 0 ? styles.innerHero : ""} ${customClass || ""} `}
+  } ${index === 0 ? styles.innerHero : ""} `}
 >
 				<div className={styles.body}>
 					{primary.eyebrow && (
