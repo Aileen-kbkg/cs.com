@@ -76,6 +76,17 @@ const ProductCards = ({ slice }: ProductCardsProps) => {
 						</li>
 					))}
 				</ul>
+
+				{primary.cta_label && isFilled.link(primary.cta_link) && (
+					<div className={styles.ctaWrap}>
+						<PrismicNextLink field={primary.cta_link} className={styles.cta}>
+							<span>{primary.cta_label}</span>
+							<span className={styles.ctaIcon}>
+								<ChevronRight />
+							</span>
+						</PrismicNextLink>
+					</div>
+				)}
 			</div>
 		</section>
 	);

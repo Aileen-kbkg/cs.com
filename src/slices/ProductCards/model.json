@@ -34,6 +34,24 @@
             "label": "Custom CSS Class",
             "placeholder": "Optional CSS class name for custom styling this slice."
           }
+        },
+        "cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button label",
+            "placeholder": "Optional button below the cards, e.g. Connect with KBKG"
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
         }
       },
       "items": {
