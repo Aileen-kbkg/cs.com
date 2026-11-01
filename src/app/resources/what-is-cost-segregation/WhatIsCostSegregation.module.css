@@ -3,15 +3,21 @@
  *
  * Slices are styled from here, scoped to `.page`, so the shared slice
  * components keep their default look on every other page.
+ *
+ * Values are measured from the live costsegregation.com page (Elementor).
+ * Its breakpoints are tablet ≤1024px and mobile ≤767px, so the media
+ * queries below use the same ones.
  */
 
 .page {
     --wics-navy: #284074;
     --wics-blue: #277ce6;
-    --wics-text: #4a4a4a;
-    --wics-muted: #6b7280;
-    --wics-band: #f4f8fd;
-    --wics-border: #dbe6f6;
+    --wics-text: #374151;
+    --wics-band: #f6f9ff;
+    --wics-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    /* Elementor's buttons use Inter (loaded by the root layout). */
+    --wics-button-font: Inter, sans-serif;
 
     box-sizing: border-box;
     display: block;
@@ -30,21 +36,24 @@
 /* Section rhythm and backgrounds                                   */
 /* ---------------------------------------------------------------- */
 
-.page [data-slice-type] {
-    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+/* Section slices only (an announcement bar is a <div> and keeps its own
+   styling); kept low-specificity so the per-section rules below win. */
+.page>section {
+    padding: 50px;
+    font-family: var(--wics-font);
+}
+
+.page>section>div {
+    max-width: 1280px;
+    margin-inline: auto;
 }
 
 .page [data-slice-type="text_with_image"]:first-of-type {
     background: #fff;
-    padding-top: clamp(2rem, 4vw, 3.5rem);
 }
 
 .page [data-slice-type="text_with_image"]:nth-of-type(2) {
     background: var(--wics-band);
-}
-
-.page [data-slice-type="process_steps"] {
-    background: #fff;
 }
 
 .page [data-slice-type="text_with_image"]:nth-of-type(5) {
@@ -56,37 +65,32 @@
 /* ---------------------------------------------------------------- */
 
 .page h1,
-.page h2 {
+.page h2,
+.page h3 {
     color: var(--wics-navy);
-    text-wrap: balance;
+    font-family: var(--wics-font);
+    letter-spacing: normal;
 }
 
-.page [data-slice-type="text_with_image"]:first-of-type h1,
-.page [data-slice-type="text_with_image"]:first-of-type h2 {
-    font-size: clamp(1.75rem, 3.6vw, 2.5rem);
-    font-weight: 700;
-    line-height: 1.2;
+.page [data-slice-type] h2 {
+    margin: 0 0 20px;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
 }
 
-.page [data-slice-type="text_with_image"] h2 {
-    margin-bottom: 1rem;
-    font-size: clamp(1.5rem, 2.8vw, 2rem);
-    font-weight: 700;
-    line-height: 1.25;
-}
-
-.page p {
+.page>section p {
     color: var(--wics-text);
-    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 24px;
 }
 
-.page a {
+.page>section a {
     color: var(--wics-blue);
     text-decoration: none;
 }
 
-.page a:hover {
+.page>section a:hover {
     text-decoration: underline;
 }
 
@@ -97,7 +101,9 @@
 .page [data-slice-type="text_with_image"]>div {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.5rem, 4vw, 3.5rem);
+    gap: 0;
+    /* The slice's own 439px min-height isn't on the live sections. */
+    min-height: 0;
 }
 
 .page [data-slice-type="text_with_image"]>div>* {
@@ -107,70 +113,196 @@
 }
 
 .page [data-slice-type="text_with_image"] img {
+    display: block;
     max-width: 100%;
     height: auto;
+}
+
+.page [data-slice-type="text_with_image"] p {
+    margin: 0 0 14.4px;
+}
+
+/* Hero — two 50% columns, text vertically centred beside the image */
+.page [data-slice-type="text_with_image"]:first-of-type>div {
+    min-height: 400px;
+}
+
+.page [data-slice-type="text_with_image"]:first-of-type>div>div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 40px 40px 0;
+}
+
+.page [data-slice-type="text_with_image"]:first-of-type h1,
+.page [data-slice-type="text_with_image"]:first-of-type h2 {
+    /* The live heading breaks onto three lines ("Cost Segregation /
+       Explained for Real / Estate Investors"); this width gives the same
+       breaks from the plain Prismic title at every font size. */
+    max-width: 9.6em;
+    margin: 0;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 45px;
+    text-wrap: wrap;
+}
+
+.page [data-slice-type="text_with_image"]:first-of-type p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.page [data-slice-type="text_with_image"]:first-of-type>div>div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page [data-slice-type="text_with_image"]:first-of-type img {
+    width: 96%;
+    border-radius: 0;
+}
+
+/* "What Is Cost Segregation?" — 50% text, 50px gap, 42% image */
+.page [data-slice-type="text_with_image"]:nth-of-type(2)>div {
+    grid-template-columns: 50% 42%;
+    column-gap: 50px;
+}
+
+.page [data-slice-type="text_with_image"]:nth-of-type(2)>div>div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page [data-slice-type="text_with_image"]:nth-of-type(2) img {
+    width: 100%;
     border-radius: 20px;
 }
 
-/* "When Does Cost Segregation Make Sense?" checklist */
+/* "When Does Cost Segregation Make Sense?" — icon beside a 433px text
+   column, the pair centred in 723px */
+.page [data-slice-type="text_with_image"]:nth-of-type(5)>div {
+    grid-template-columns: 240px minmax(0, 1fr);
+    column-gap: 50px;
+    align-items: center;
+    max-width: 723px;
+}
+
+.page [data-slice-type="text_with_image"]:nth-of-type(5)>div>div:first-child {
+    order: 1;
+}
+
+.page [data-slice-type="text_with_image"]:nth-of-type(5)>div>div:last-child {
+    order: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.page [data-slice-type="text_with_image"]:nth-of-type(5) img {
+    width: auto;
+    height: 206px;
+    border-radius: 0;
+}
+
+.page [data-slice-type="text_with_image"]:nth-of-type(5) p {
+    margin: 0 0 20px;
+    line-height: 22px;
+}
+
+/* Checklist */
+/* Items are 10px apart; the negative margin cancels the outer 5px. */
 .page [data-slice-type="text_with_image"]:nth-of-type(5) ul {
-    margin: 1rem 0 0;
+    margin: -5px 0;
     padding: 0;
     list-style: none;
 }
 
 .page [data-slice-type="text_with_image"]:nth-of-type(5) li {
     position: relative;
-    margin-bottom: 0.75rem;
-    padding-left: 1.875rem;
-    color: var(--wics-text);
-    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
-    line-height: 1.6;
+    margin: 0;
+    padding: 5px 0 5px 25px;
+    color: #333;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .page [data-slice-type="text_with_image"]:nth-of-type(5) li::before {
     content: "";
     position: absolute;
-    top: 0.1875em;
+    top: 9px;
     left: 0;
-    width: 1.125rem;
-    height: 1.125rem;
-    border-radius: 50%;
+    width: 16px;
+    height: 16px;
     background-color: var(--wics-blue);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 6 9 17l-5-5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 0.75rem;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 387.3l184-184c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0L216 308.1l-70.1-70.1c-6.2-6.2-16.4-6.2-22.6 0l-22.6 22.6c-6.2 6.2-6.2 16.4 0 22.6l104 104c6.2 6.3 16.3 6.3 22.6.1z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 387.3l184-184c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0L216 308.1l-70.1-70.1c-6.2-6.2-16.4-6.2-22.6 0l-22.6 22.6c-6.2 6.2-6.2 16.4 0 22.6l104 104c6.2 6.3 16.3 6.3 22.6.1z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-.page [data-slice-type="text_with_image"]:nth-of-type(5) img {
-    max-width: 100%;
-    margin-inline: auto;
-    border-radius: 0;
-    height: 200px;
-    width: auto;
+/* ---------------------------------------------------------------- */
+/* Process steps                                                    */
+/* ---------------------------------------------------------------- */
 
+.page [data-slice-type="process_steps"] {
+    padding: 50px 30px 64px;
+    background: #fff;
+}
+
+.page [data-slice-type="process_steps"] h2 {
+    text-wrap: wrap;
+}
+
+.page [data-slice-type="process_steps"]>div>div:first-of-type {
+    margin: 0 0 44px;
+}
+
+.page [data-slice-type="process_steps"]>div>div:first-of-type p {
+    margin: 0;
+}
+
+.page [data-slice-type="process_steps"] ol {
+    gap: 20px;
+}
+
+.page [data-slice-type="process_steps"] li>div:first-child {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 10px;
+}
+
+.page [data-slice-type="process_steps"] h3 {
+    margin: 0 0 27px;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+/* The live steps have no rule under the heading. */
+.page [data-slice-type="process_steps"] h3::after {
+    display: none;
+}
+
+.page [data-slice-type="process_steps"] li p {
+    margin: 0;
 }
 
 /* ---------------------------------------------------------------- */
 /* Property cards                                                   */
 /* Matches the live "What Types of Properties…" section. Applies to  */
 /* this section whether it is a `property_cards` or `product_cards`  */
-/* slice. Values measured from the live page.                       */
+/* slice.                                                           */
 /* ---------------------------------------------------------------- */
 
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) {
-    background: #f6f9ff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    background: var(--wics-band);
 }
 
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) h2 {
-    margin: 0 0 20px;
     color: #284074;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 1.25;
     text-align: center;
 }
 
@@ -184,8 +316,6 @@
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"])>div>div:first-of-type p {
     margin: 0;
     color: #374151;
-    font-size: 16px;
-    line-height: 1.5;
 }
 
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) ul {
@@ -200,6 +330,8 @@
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) li {
     display: flex;
     flex-direction: column;
+    /* 200px image + the live card's 153px minimum text area */
+    min-height: 353px;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -239,7 +371,7 @@
     margin: 0px;
     color: #374151;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 22px;
 }
 
 /* "Read More" — bottom right of every card */
@@ -248,7 +380,8 @@
     margin: auto 20px 20px auto;
     padding: 12px 0 0;
     color: #277ce6;
-    font-size: 15px;
+    font-family: var(--wics-button-font);
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
     text-decoration: none;
@@ -269,23 +402,22 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* CTA banner                                                       */
+/* CTA banner — icon | 640px text | 230px button, centred as a group */
 /* ---------------------------------------------------------------- */
 
 .page [data-slice-type="cta_banner"] {
-    padding-block: clamp(2rem, 4vw, 3rem);
+    background: var(--wics-navy);
 }
 
 .page [data-slice-type="cta_banner"]>div {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 50px minmax(0, 640px) 230px;
     grid-template-areas:
         "icon title cta"
         "icon text  note";
+    justify-content: center;
     align-items: center;
-    gap: 0.5rem clamp(1.25rem, 3vw, 2.5rem);
-    max-width: 1200px;
-    margin-inline: auto;
+    gap: 20px 40px;
     text-align: left;
 }
 
@@ -293,8 +425,8 @@
 .page [data-slice-type="cta_banner"]>div::before {
     content: "";
     grid-area: icon;
-    width: clamp(2.25rem, 4vw, 3rem);
-    height: clamp(2.25rem, 4vw, 3rem);
+    width: 50px;
+    height: 56px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%23ffffff'%3E%3Cpath d='M400 0H48C22.4 0 0 22.4 0 48v416c0 25.6 22.4 48 48 48h352c25.6 0 48-22.4 48-48V48c0-25.6-22.4-48-48-48zM128 435.2c0 6.4-6.4 12.8-12.8 12.8H76.8c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm0-128c0 6.4-6.4 12.8-12.8 12.8H76.8c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm128 128c0 6.4-6.4 12.8-12.8 12.8h-38.4c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm0-128c0 6.4-6.4 12.8-12.8 12.8h-38.4c-6.4 0-12.8-6.4-12.8-12.8v-38.4c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v38.4zm128 128c0 6.4-6.4 12.8-12.8 12.8h-38.4c-6.4 0-12.8-6.4-12.8-12.8V268.8c0-6.4 6.4-12.8 12.8-12.8h38.4c6.4 0 12.8 6.4 12.8 12.8v166.4zm0-256c0 6.4-6.4 12.8-12.8 12.8H76.8c-6.4 0-12.8-6.4-12.8-12.8V76.8C64 70.4 70.4 64 76.8 64h294.4c6.4 0 12.8 6.4 12.8 12.8v102.4z'/%3E%3C/svg%3E");
     background-position: 50%;
     background-repeat: no-repeat;
@@ -303,42 +435,44 @@
 
 .page [data-slice-type="cta_banner"]>div>h2 {
     grid-area: title;
+    align-self: end;
     margin: 0;
     color: #fff;
-    font-size: clamp(1.25rem, 2.6vw, 1.75rem);
-    line-height: 1.25;
+    text-wrap: wrap;
 }
 
 .page [data-slice-type="cta_banner"]>div>div {
     grid-area: text;
+    align-self: start;
     margin: 0;
     opacity: 1;
 }
 
 .page [data-slice-type="cta_banner"]>div>div p {
+    max-width: none;
     margin: 0;
     color: #fff;
-    font-size: clamp(0.875rem, 1.4vw, 0.9375rem);
-    line-height: 1.5;
+    line-height: 22px;
 }
 
 .page [data-slice-type="cta_banner"]>div>a {
     grid-area: cta;
-    justify-self: end;
+    justify-self: start;
+    align-self: end;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     width: auto;
     margin: 0;
-    padding: 0.875rem 1.5rem;
+    padding: 15px 20px;
     color: #fff;
-    font-size: 1rem;
+    font-family: var(--wics-button-font);
+    font-size: 16px;
     font-weight: 700;
     line-height: 1;
     white-space: nowrap;
     text-decoration: none;
     background: var(--wics-blue);
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .page [data-slice-type="cta_banner"]>div>a:hover,
@@ -352,16 +486,21 @@
     color: inherit;
 }
 
+/* The live button has no arrow. */
+.page [data-slice-type="cta_banner"]>div>a>span:last-child:not(:first-child) {
+    display: none;
+}
+
 /* "Fast. Secure. No Obligation." */
 .page [data-slice-type="cta_banner"]>div>p {
     grid-area: note;
-    justify-self: end;
+    justify-self: start;
+    align-self: start;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 5px;
     margin: 0;
     color: #fff;
-    font-size: 0.9375rem;
     white-space: nowrap;
     opacity: 1;
 }
@@ -369,8 +508,8 @@
 .page [data-slice-type="cta_banner"]>div>p::before {
     content: "";
     flex: none;
-    width: 1rem;
-    height: 1rem;
+    width: 14px;
+    height: 14px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23ffffff'%3E%3Cpath d='M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 387.3l184-184c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0L216 308.1l-70.1-70.1c-6.2-6.2-16.4-6.2-22.6 0l-22.6 22.6c-6.2 6.2-6.2 16.4 0 22.6l104 104c6.2 6.3 16.3 6.3 22.6.1z'/%3E%3C/svg%3E");
     background-position: 50%;
     background-repeat: no-repeat;
@@ -378,20 +517,18 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* FAQ                                                              */
+/* FAQ — 888px column of 44px question bars, 10px apart             */
 /* ---------------------------------------------------------------- */
 
 .page [data-slice-type="faq_accordion"] {
     background: #fff;
 }
 
-/* Heading — 32px navy, centred, ~18px above the list */
+.page [data-slice-type="faq_accordion"]>div {
+    max-width: 888px;
+}
+
 .page [data-slice-type="faq_accordion"] h2 {
-    margin: 0 0 18px;
-    color: #284074;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 1.25;
     text-align: center;
 }
 
@@ -403,7 +540,6 @@
     border: 0;
 }
 
-/* Each question: 10px apart, no card around the answer */
 .page [data-slice-type="faq_accordion"] li {
     margin: 0 0 10px;
     overflow: visible;
@@ -421,22 +557,22 @@
     margin: 0;
 }
 
-/* Question bar — 44px tall, pale blue, 6px corners */
 .page [data-slice-type="faq_accordion"] button {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 11px;
     width: 100%;
     min-height: 44px;
-    padding: 12px 10px;
-    color: #1f2937;
+    padding: 10px;
+    color: #1f2124;
+    font-family: var(--wics-font);
     font-size: 16px;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 24px;
     text-align: left;
-    background: #f6f9ff;
+    background: var(--wics-band);
     border: 0;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
 }
@@ -444,7 +580,7 @@
 /* Open question — solid blue bar, white text */
 .page [data-slice-type="faq_accordion"] button[aria-expanded="true"] {
     color: #fff;
-    background: #277ce6;
+    background: var(--wics-blue);
 }
 
 /* Icon: "+" when closed, "−" when open (drawn in currentColor) */
@@ -478,15 +614,12 @@
 }
 
 .page [data-slice-type="faq_accordion"] [role="region"]>div>div {
-    padding: 15px 10px 25px;
+    padding: 20px 10px 24px;
 }
 
 .page [data-slice-type="faq_accordion"] [role="region"] p {
-    margin: 0 0 12px;
+    margin: 0 0 14.4px;
     padding: 0;
-    color: #374151;
-    font-size: 16px;
-    line-height: 1.5;
 }
 
 .page [data-slice-type="faq_accordion"] [role="region"] p:last-child {
@@ -494,76 +627,209 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Responsive                                                       */
+/* Tablet (≤1024px) — everything stacks and centres                 */
 /* ---------------------------------------------------------------- */
 
-@media (max-width: 1023px) {
-    .page [data-slice-type="product_cards"] ul {
+@media (max-width: 1024px) {
+    .page [data-slice-type="text_with_image"]>div,
+    .page [data-slice-type="text_with_image"]:nth-of-type(2)>div,
+    .page [data-slice-type="text_with_image"]:nth-of-type(5)>div {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: center;
+    }
+
+    /* Image above the text */
+    .page [data-slice-type="text_with_image"]>div>div:last-child {
+        order: -1;
+    }
+
+    /* Hero */
+    .page [data-slice-type="text_with_image"]:first-of-type>div {
+        min-height: 0;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type>div>div:first-child {
+        align-items: center;
+        padding: 40px 0;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type h1,
+    .page [data-slice-type="text_with_image"]:first-of-type h2 {
+        font-size: 36px;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type p {
+        max-width: 642px;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type img {
+        width: 83%;
+    }
+
+    /* What Is */
+    .page [data-slice-type="text_with_image"]:nth-of-type(2)>div {
+        row-gap: 30px;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(2)>div>div:last-child {
+        align-items: center;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(2)>div>div:first-child {
+        max-width: 642px;
+        margin-inline: auto;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(2) img {
+        width: 60%;
+    }
+
+    /* When Does */
+    .page [data-slice-type="text_with_image"]:nth-of-type(5)>div {
+        row-gap: 50px;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(5) ul {
+        text-align: left;
+    }
+
+    /* Process steps — one centred 500px column */
+    .page [data-slice-type="process_steps"] {
+        padding-bottom: 44px;
+        text-align: center;
+    }
+
+    .page [data-slice-type="process_steps"]>div>div:first-of-type {
+        margin-bottom: 74px;
+    }
+
+    .page [data-slice-type="process_steps"] ol {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 34px;
+        max-width: 500px;
+        margin-inline: auto;
+    }
+
+    /* Property cards — two columns */
+    .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) ul {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    /* CTA — one centred column */
     .page [data-slice-type="cta_banner"]>div {
-        grid-template-columns: auto 1fr;
-        grid-template-areas:
-            "icon title"
-            "icon text"
-            "cta  cta"
-            "note note";
-        gap: 0.5rem 1.25rem;
-    }
-
-    .page [data-slice-type="cta_banner"]>div>a {
-        justify-self: start;
-        margin-top: 1.25rem;
-    }
-
-    .page [data-slice-type="cta_banner"]>div>p {
-        justify-self: start;
-        margin-top: 0.5rem;
-    }
-}
-
-@media (max-width: 767px) {
-    .page [data-slice-type] {
-        padding-block: 2rem;
-    }
-
-    .page [data-slice-type="text_with_image"]>div {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .page [data-slice-type="text_with_image"]:nth-of-type(5) img {
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 639px) {
-    .page [data-slice-type="product_cards"] ul {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .page [data-slice-type="product_cards"] h2 {
-        font-size: 26px;
-    }
-
-    .page [data-slice-type="cta_banner"]>div {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 501px);
         grid-template-areas:
             "icon"
             "title"
             "text"
             "cta"
             "note";
-        justify-items: start;
+        justify-items: center;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .page [data-slice-type="cta_banner"]>div>h2 {
+        margin-top: 20px;
     }
 
     .page [data-slice-type="cta_banner"]>div>a {
-        justify-content: center;
+        justify-self: center;
+        margin-top: 20px;
+    }
+
+    .page [data-slice-type="cta_banner"]>div>p {
+        justify-self: center;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Mobile (≤767px)                                                  */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+    .page [data-slice-type] h2 {
+        font-size: 26px;
+    }
+
+    /* Elementor's mobile body text is 13.488px / 1.5. */
+    .page [data-slice-type="text_with_image"]:nth-of-type(2) p,
+    .page [data-slice-type="process_steps"] p,
+    .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"])>div>div:first-of-type p,
+    .page [data-slice-type="text_with_image"]:nth-of-type(5) li {
+        font-size: 13.488px;
+        line-height: 1.5;
+    }
+
+    /* Hero */
+    .page [data-slice-type="text_with_image"]:first-of-type {
+        padding: 20px;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type>div {
+        padding: 0;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type>div>div:first-child {
+        padding: 20px;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type h1,
+    .page [data-slice-type="text_with_image"]:first-of-type h2 {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+
+    .page [data-slice-type="text_with_image"]:first-of-type img {
         width: 100%;
     }
 
-    .page [data-slice-type="faq_accordion"] h2 {
-        font-size: 26px;
+    /* What Is / When Does keep 50px side padding */
+    .page [data-slice-type="text_with_image"]:nth-of-type(n+2)>div {
+        padding: 0;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(2) img {
+        width: 100%;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(5) li::before {
+        top: 7px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .page [data-slice-type="text_with_image"]:nth-of-type(5) img {
+        height: 165px;
+    }
+
+    /* Process steps keep their 32px heading */
+    .page [data-slice-type="process_steps"] h2 {
+        font-size: 32px;
+    }
+
+    .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) {
+        padding-inline: 20px;
+    }
+
+    .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"])>div>div:first-of-type {
+        text-align: left;
+    }
+
+    .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) ul {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .page [data-slice-type="cta_banner"]>div {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .page [data-slice-type="cta_banner"]>div>h2 {
+        font-size: 19px;
+    }
+
+    .page [data-slice-type="faq_accordion"] {
+        padding-inline: 20px;
     }
 }
 
