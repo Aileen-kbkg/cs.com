@@ -81,8 +81,8 @@ p {
 .TextWithImage-module__ssLXPW__section.about-hero
 {
   background-color:#F6F9FF;
-  padding-top:80px;
-  padding-bottom:80px;
+  padding-top:clamp(2rem, 8vw, 8rem);
+  padding-bottom:clamp(2rem, 8vw, 8rem);
 }
 .About-module__8aBknG__page .TextWithImage-module__ssLXPW__innerImageRight .TextWithImage-module__ssLXPW__media {
     flex: 0 0 calc(50% - var(--twi-gap) / 2) !important;
@@ -90,4 +90,8 @@ p {
 .About-module__8aBknG__page .TextWithImage-module__ssLXPW__innerImageRight .TextWithImage-module__ssLXPW__body
 {
 flex: 0 0 calc(47% - var(--twi-gap) / 2) !important;
+}
+.about-kbkg {
+  padding-top: clamp(2rem, 8vw, 8rem);
+  padding-bottom: clamp(2rem, 8vw, 8rem);
 }
