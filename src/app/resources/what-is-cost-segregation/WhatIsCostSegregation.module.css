@@ -577,6 +577,12 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
+/* Closed question on hover — light blue bar (open ones stay solid blue) */
+.page [data-slice-type="faq_accordion"] button[aria-expanded="false"]:hover {
+    color: #1f2124;
+    background: #cfe2f9;
+}
+
 /* Open question — solid blue bar, white text */
 .page [data-slice-type="faq_accordion"] button[aria-expanded="true"] {
     color: #fff;
