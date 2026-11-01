@@ -10,10 +10,10 @@ export type ProductCardsProps = SliceComponentProps<Content.ProductCardsSlice>;
 const ChevronRight = () => (
 	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 		<path
-			d="M9 5l7 7-7 7"
+			d="M7 4l9 8-9 8" 
 			fill="none"
 			stroke="currentColor"
-			strokeWidth="2"
+			strokeWidth="4"
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>
