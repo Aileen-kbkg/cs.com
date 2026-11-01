@@ -44,7 +44,8 @@ const Chevron = () => (
  */
 const FaqList = ({ items, title, className }: FaqListProps) => {
 	const baseId = useId();
-	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	// The first answer starts open, as on the live page.
+	const [openIndex, setOpenIndex] = useState<number | null>(0);
 
 	if (!items?.length) return null;
 

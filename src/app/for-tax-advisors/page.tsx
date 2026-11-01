@@ -6,6 +6,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import FaqList from "@/components/FaqList";
 
+import styles from "./ForTaxAdvisors.module.css";
+
 /**
  * The `for_tax_advisors` page type is not yet in the generated Prismic
  * types. Remove this block and the cast after "Pull to local".
@@ -81,14 +83,22 @@ export default async function Page() {
 	);
 
 	return (
-		<>
-			{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-			<SliceZone slices={mainSlices as any} components={components} />
+		// The wrapper scopes this page's slice overrides, so the same
+		// slices keep their own styling everywhere else.
+		<main className={styles.page}>
+			<SliceZone
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				slices={mainSlices as any}
+				components={components}
+				// The live feature cards show their full text, with no
+				// "Learn More" detail view.
+				context={{ fullCardText: true }}
+			/>
 
 			<FaqList items={faq} title="Frequently Asked Questions" />
 
 			{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 			<SliceZone slices={ctaSlices as any} components={components} />
-		</>
+		</main>
 	);
 }

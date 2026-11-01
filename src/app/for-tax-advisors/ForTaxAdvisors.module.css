@@ -1,0 +1,543 @@
+/*
+ * For Tax Advisors page.
+ *
+ * Slices are styled from here, scoped to `.page`, so the shared slice
+ * components keep their default look on every other page.
+ *
+ * Values are taken from the live costsegregation.com page. Its hero,
+ * feature and "Why CPAs" blocks sit in a min(92%, 1200px) wrapper inside
+ * Elementor's 1280px container (20px side padding); the content widths
+ * below reproduce that, and its clamp() sizes and auto-fit grids give the
+ * same responsive behaviour.
+ */
+
+.page {
+    --fta-navy: #284371;
+    --fta-blue: #277ce6;
+    --fta-muted: #536991;
+    --fta-border: #d4d9e3;
+    --fta-band: #f6f9ff;
+    /* The live custom blocks use this stack (Inter where Segoe UI is
+       missing, e.g. on macOS); its Elementor sections use the system one. */
+    --fta-font: "Segoe UI", Inter, Arial, sans-serif;
+    --fta-system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --fta-heading-font: Inter, sans-serif;
+
+    display: block;
+    width: 100%;
+    background: #fff;
+    overflow-x: clip;
+}
+
+/* Content width of the live top block (1130px at 1440px) */
+.page>:is([data-slice-type="page_hero"], [data-slice-type="feature_grid"], [data-slice-type="quote_with_image"])>div {
+    box-sizing: border-box;
+    width: calc(min(1280px, 100% - 40px) * 0.92 - 48px);
+    max-width: none;
+    margin-inline: auto;
+    padding-inline: 0;
+}
+
+.page>:is([data-slice-type="page_hero"], [data-slice-type="feature_grid"], [data-slice-type="quote_with_image"]) {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    padding-inline: 0;
+    font-family: var(--fta-font);
+}
+
+.page>section a:not([class]) {
+    color: var(--fta-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.page>section a:not([class]):hover {
+    color: var(--fta-navy);
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero                                                             */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="page_hero"] {
+    padding-block: 72px 80px;
+    background: var(--fta-band);
+}
+
+.page>[data-slice-type="page_hero"]>div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 56px;
+    align-items: center;
+}
+
+/* Image first, also when stacked, as on the live page */
+.page>[data-slice-type="page_hero"]>div>* {
+    order: 0;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    flex: none;
+}
+
+.page>[data-slice-type="page_hero"] img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+
+/* Eyebrow pill */
+.page>[data-slice-type="page_hero"]>div>div:last-child>p:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 24px;
+    padding: 7px 16px;
+    color: var(--fta-navy);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: #fff;
+    border: 1px solid var(--fta-border);
+    border-radius: 999px;
+}
+
+.page>[data-slice-type="page_hero"] h1 {
+    margin: 0 0 22px;
+    color: var(--fta-navy);
+    font-family: var(--fta-heading-font);
+    font-size: clamp(34px, 4.2vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.page>[data-slice-type="page_hero"] h1+div {
+    max-width: none;
+    margin: 0 0 32px;
+}
+
+.page>[data-slice-type="page_hero"] h1+div p {
+    max-width: 34em;
+    margin: 0;
+    color: var(--fta-navy);
+    font-size: 18px;
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+/* CTA row */
+.page>[data-slice-type="page_hero"] h1~div:last-child {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.page>[data-slice-type="page_hero"] h1~div:last-child>a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    padding: 15px 30px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    background: var(--fta-blue);
+    border-radius: 6px;
+}
+
+.page>[data-slice-type="page_hero"] h1~div:last-child>a:hover,
+.page>[data-slice-type="page_hero"] h1~div:last-child>a:focus-visible {
+    color: #fff;
+    background: var(--fta-navy);
+}
+
+.page>[data-slice-type="page_hero"] h1~div:last-child>a svg {
+    width: 9px;
+    height: 9px;
+}
+
+.page>[data-slice-type="page_hero"] h1~div:last-child>p {
+    margin: 0;
+    color: var(--fta-muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- */
+/* Feature grids — shared heading style                             */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="feature_grid"] {
+    padding-block: 88px;
+}
+
+.page>[data-slice-type="feature_grid"]>div>div:first-child {
+    max-width: none;
+    margin: 0;
+    text-align: left;
+}
+
+.page>[data-slice-type="feature_grid"] h2 {
+    margin: 0 0 24px;
+    color: var(--fta-navy);
+    font-family: var(--fta-heading-font);
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    text-align: left;
+    text-wrap: wrap;
+}
+
+.page>[data-slice-type="feature_grid"]>div>div:first-child p {
+    max-width: none;
+    margin: 0 0 18px;
+    color: var(--fta-navy);
+    font-size: 17px;
+    line-height: 1.65;
+    text-align: left;
+    text-wrap: pretty;
+}
+
+/* The closing intro line is bold on the live page. */
+.page>[data-slice-type="feature_grid"]>div>div:first-child p:last-child:not(:first-child) {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.page>[data-slice-type="feature_grid"] article {
+    box-sizing: border-box;
+    width: auto;
+    margin: 0;
+    /* Spacing comes from the margins below, as on the live cards. */
+    gap: 0;
+    min-height: 0;
+    text-align: left;
+    box-shadow: none;
+    cursor: default;
+    transform: none;
+}
+
+.page>[data-slice-type="feature_grid"] article h3 {
+    color: var(--fta-navy);
+    font-family: var(--fta-heading-font);
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.page>[data-slice-type="feature_grid"] article p {
+    color: var(--fta-muted);
+    font-size: 15.5px;
+    text-align: left;
+}
+
+/* "How Our Software Helps" — six bordered cards with icons. Its live
+   section also holds the quote block, so it has no bottom padding. */
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] {
+    padding-bottom: 0;
+    background: #fff;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] h2 {
+    line-height: 1.15;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"]>div>div:first-child {
+    margin-bottom: 44px;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"]>div>div:last-child {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] article {
+    padding: 28px;
+    background: #fff;
+    border: 1px solid var(--fta-border);
+    border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] article:hover {
+    border-color: #c6d7f1;
+    box-shadow: 0 6px 20px rgba(40, 67, 113, 0.08);
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] article>:first-child:not(h3) {
+    display: block;
+    width: 26px;
+    height: 26px;
+    /* The live icon is an inline SVG; its line box adds 5px below it. */
+    margin: 0 0 5px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] article h3 {
+    margin: 16px 0 10px;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+}
+
+.page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"] article p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ---------------------------------------------------------------- */
+/* Supporting quote + image (inside the live features section)      */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="quote_with_image"] {
+    padding-block: 56px 88px;
+    background: #fff;
+}
+
+.page>[data-slice-type="quote_with_image"]>div {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 40px;
+    align-items: center;
+    padding: clamp(24px, 3vw, 36px);
+    background: var(--fta-band);
+    border-radius: 14px;
+}
+
+.page>[data-slice-type="quote_with_image"]>div>* {
+    width: auto;
+    min-width: 0;
+    flex: none;
+}
+
+.page>[data-slice-type="quote_with_image"] p {
+    margin: 0;
+    color: var(--fta-navy);
+    font-size: clamp(21.6px, 2.16vw, 25.92px);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.page>[data-slice-type="quote_with_image"] img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Why CPAs Choose — white cards with a blue top rule               */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"] {
+    background: var(--fta-band);
+}
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"]>div>div:first-child {
+    margin-bottom: 48px;
+}
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"]>div>div:last-child {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"] article {
+    padding: 32px;
+    background: #fff;
+    border: 0;
+    border-top: 3px solid var(--fta-blue);
+    border-radius: 12px;
+}
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"] article h3 {
+    margin: 0 0 14px;
+    font-size: 21px;
+    letter-spacing: -0.02em;
+}
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"] article p {
+    margin: 0 0 12px;
+    line-height: 1.65;
+}
+
+.page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"] article p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------- */
+/* Testimonials                                                     */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="testimonials"] {
+    padding: 60px 20px;
+    background: var(--fta-band);
+}
+
+/* Live cards are a fixed 400px wide (3 / 2 / 1 visible). On phones that
+   is wider than the screen, so cap it there instead of cutting it off. */
+.page>[data-slice-type="testimonials"] [class*="carousel"] {
+    --slide-w: min(400px, 100%);
+}
+
+.page>[data-slice-type="testimonials"]>div>div:last-child>a {
+    padding: 15px 20px;
+    font-family: var(--fta-heading-font);
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 10px;
+}
+
+.page>[data-slice-type="testimonials"]>div>div:last-child>a svg {
+    width: 25px;
+    height: 25px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Other Software Products                                          */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="product_cards"] {
+    padding: 50px 100px;
+}
+
+/* Elementor's 1280px container, inside 100px (≤1024px: 20px) padding */
+.page>[data-slice-type="product_cards"]>div {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 0;
+}
+
+.page>[data-slice-type="product_cards"] h2 {
+    margin: 0 0 20px;
+    line-height: 1;
+}
+
+.page>[data-slice-type="product_cards"] ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    margin: 0;
+}
+
+.page>[data-slice-type="product_cards"] li {
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.page>[data-slice-type="product_cards"] li h3 {
+    margin: 0;
+    color: #333;
+    font-family: var(--fta-heading-font);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.page>[data-slice-type="product_cards"] li h3+div {
+    margin: 0;
+}
+
+.page>[data-slice-type="product_cards"] li h3+div p {
+    margin: 0;
+    color: #333;
+    font-family: var(--fta-system-font);
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.page>[data-slice-type="product_cards"] li>a {
+    margin-top: auto;
+    color: #284074;
+    background: #fff;
+    border: 1.6px solid #284074;
+}
+
+/* ---------------------------------------------------------------- */
+/* Closing CTA — 900px column in the live min(78%, 1100px) wrapper  */
+/* ---------------------------------------------------------------- */
+
+.page>[data-slice-type="cta_banner"] {
+    padding: 72px 0;
+    font-family: var(--fta-font);
+}
+
+.page>[data-slice-type="cta_banner"]>div {
+    box-sizing: border-box;
+    width: min(900px, calc(min(calc(min(1280px, 100%) * 0.78), 1100px) - 48px));
+    max-width: none;
+    margin-inline: auto;
+    padding: 0;
+}
+
+.page>[data-slice-type="cta_banner"] h2 {
+    margin: 0 0 18px;
+    color: #fff;
+    font-family: var(--fta-heading-font);
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.page>[data-slice-type="cta_banner"] h2+div p {
+    max-width: 620px;
+    margin: 0 auto 30px;
+    color: #d4d9e3;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.page>[data-slice-type="cta_banner"]>div>a {
+    padding: 16px 32px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 6px;
+}
+
+.page>[data-slice-type="cta_banner"]>div>a:hover,
+.page>[data-slice-type="cta_banner"]>div>a:focus-visible {
+    background: var(--fta-navy);
+}
+
+/* ---------------------------------------------------------------- */
+/* Tablet (≤1024px) and mobile (≤767px) — Elementor breakpoints     */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .page>[data-slice-type="product_cards"] {
+        padding-inline: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .page>[data-slice-type="product_cards"] ul {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .page>[data-slice-type="cta_banner"]>div {
+        width: min(900px, calc(90% - 48px));
+    }
+}

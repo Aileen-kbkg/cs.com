@@ -177,9 +177,14 @@ const FeatureGridAbout = ({ slice }: FeatureGridProps) => {
   );
 };
 
-const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
+const FeatureGridDefault = ({ slice, context }: FeatureGridProps) => {
   const primary = slice.primary as FeatureGridSlice["primary"] & DetailPrimary;
   const items = slice.items as Item[];
+
+  // A page can pass `context={{ fullCardText: true }}` to its SliceZone to
+  // show every paragraph on the card instead of a "Learn More" detail view.
+  const fullCardText =
+    (context as { fullCardText?: boolean } | undefined)?.fullCardText === true;
 
   const ctaLabel = getText(primary.cta_label, "Learn More >");
   const backLabel = getText(primary.back_label, "Back to all benefits");
@@ -256,14 +261,17 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
           <div className={`${styles.grid} ${animClass}`}>
             {items.map((item, index) => {
               const resolved = resolveCard(item);
-              const { cardText } = resolved;
+              const cardText = fullCardText
+                ? ((item.text ?? []) as RichTextField)
+                : resolved.cardText;
 
               // Only cards with something behind them are clickable and
               // show the "Learn More" link.
               const hasDetail =
-                Boolean(resolved.intro) ||
-                isFilled.richText(resolved.list) ||
-                isFilled.richText(resolved.paragraph);
+                !fullCardText &&
+                (Boolean(resolved.intro) ||
+                  isFilled.richText(resolved.list) ||
+                  isFilled.richText(resolved.paragraph));
 
               return (
                 <article
