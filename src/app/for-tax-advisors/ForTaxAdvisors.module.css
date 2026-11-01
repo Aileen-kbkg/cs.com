@@ -68,7 +68,9 @@
 
 .page>[data-slice-type="page_hero"]>div {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* min(100%, …) keeps the column inside narrow phones (the live grid
+       overflows its container there and sits off-centre). */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 56px;
     align-items: center;
 }
@@ -259,7 +261,7 @@
 
 .page>[data-slice-type="page_hero"]+[data-slice-type="feature_grid"]>div>div:last-child {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 20px;
 }
 
@@ -355,7 +357,7 @@
 
 .page>[data-slice-type="quote_with_image"]+[data-slice-type="feature_grid"]>div>div:last-child {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 24px;
 }
 
@@ -432,7 +434,9 @@
 }
 
 .page>[data-slice-type="product_cards"] ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* 3 columns from ~900px (as live at 1024px+), 2 below that, 1 on
+       phones — live squeezes 3 columns down to 211px at 768px. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: 40px;
     margin: 0;
 }
@@ -555,9 +559,16 @@
     }
 }
 
-@media (max-width: 767px) {
+/* Two product columns: centre the odd card under the other two. */
+@media (min-width: 600px) and (max-width: 914px) {
     .page>[data-slice-type="product_cards"] ul {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page>[data-slice-type="product_cards"] li:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc((100% - 40px) / 2);
     }
 }
 
