@@ -34,12 +34,22 @@ export const sanitizeClassNames = (value: string | null | undefined): string => 
 	return Array.from(new Set(tokens)).join(" ");
 };
 
-/** The sanitized `custom_class` value of a slice, or "" when unset. */
+/**
+ * The sanitized custom classes of a slice, or "" when unset. TextWithImage
+ * predates `custom_class` and stores the same thing in `custom_css_class`
+ * (used by the About page), so both are read.
+ */
 export const getCustomClass = (slice: SliceLike): string => {
-	const value = (slice.primary as { custom_class?: unknown } | null | undefined)
-		?.custom_class;
+	const primary = slice.primary as
+		| { custom_class?: unknown; custom_css_class?: unknown }
+		| null
+		| undefined;
 
-	return typeof value === "string" ? sanitizeClassNames(value) : "";
+	const values = [primary?.custom_class, primary?.custom_css_class].filter(
+		(value): value is string => typeof value === "string",
+	);
+
+	return sanitizeClassNames(values.join(" "));
 };
 
 /**

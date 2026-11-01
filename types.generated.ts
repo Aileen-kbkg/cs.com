@@ -4754,16 +4754,6 @@ export interface TextWithImageSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	custom_css_class: prismic.KeyTextField;
-	
-	/**
-	 * Custom CSS Class field in *TextWithImage → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
-	 * - **API ID Path**: text_with_image.default.primary.custom_class
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	custom_class: prismic.KeyTextField;
 }
 
 /**

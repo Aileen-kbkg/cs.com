@@ -79,13 +79,6 @@
             "label": "Custom CSS Class",
             "placeholder": ""
           }
-        },
-        "custom_class": {
-          "type": "Text",
-          "config": {
-            "label": "Custom CSS Class",
-            "placeholder": "Optional CSS class name for custom styling this slice."
-          }
         }
       },
       "items": {}
