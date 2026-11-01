@@ -70,6 +70,9 @@ p {
   font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1.00rem);
   color: #333;
 }
+main.About-module__8aBknG__page {
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
 .About-module__8aBknG__page .TextWithImage-module__ssLXPW__media{
   flex: 0 0 calc(35% - var(--twi-gap) / 2) !important;
 }
