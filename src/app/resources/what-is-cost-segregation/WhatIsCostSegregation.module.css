@@ -274,16 +274,25 @@
 }
 
 .page [data-slice-type="process_steps"] h3 {
-    margin: 0 0 27px;
+    position: relative;
+    margin: 0 0 26px;
     padding: 0;
     font-size: 22px;
     font-weight: 500;
     line-height: 22px;
 }
 
-/* The live steps have no rule under the heading. */
+/* Short blue rule 12px under each step heading — 10% of the column wide,
+   2.4px thick, as the live divider. */
 .page [data-slice-type="process_steps"] h3::after {
-    display: none;
+    top: calc(100% + 12px);
+    bottom: auto;
+    left: 0;
+    width: 10%;
+    height: 0;
+    border-top: 2.4px solid var(--wics-blue);
+    border-radius: 0;
+    background: none;
 }
 
 .page [data-slice-type="process_steps"] li p {
@@ -703,6 +712,10 @@
     .page [data-slice-type="process_steps"] {
         padding-bottom: 44px;
         text-align: center;
+    }
+
+    .page [data-slice-type="process_steps"] h3::after {
+        left: 45%;
     }
 
     .page [data-slice-type="process_steps"]>div>div:first-of-type {
