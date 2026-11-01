@@ -49,12 +49,16 @@ const TrendIcon = () => (
  * `primary.image_position` is "left" the image column is pulled ahead
  * visually with `order: -1`; on mobile that is reset so text always leads.
  *
- * The first slice on a page renders its title as <h1>, the rest as <h2>.
+ * The first content slice on a page renders its title as <h1>, the rest as
+ * <h2>. An announcement bar above it doesn't count.
  */
-const TextWithImage = ({ slice, index }: TextWithImageProps) => {
+const TextWithImage = ({ slice, index, slices }: TextWithImageProps) => {
 	const primary = slice.primary;
 	const imageLeft = primary.image_position === "left";
-	const Heading = index === 0 ? "h1" : "h2";
+	const isFirstContent = slices
+		.slice(0, index)
+		.every((other) => other.slice_type === "announcement_bar");
+	const Heading = isFirstContent ? "h1" : "h2";
 
 	return (
 		<section

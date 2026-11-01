@@ -24,9 +24,11 @@ const SCROLL_IDLE_MS = 120;
 /** Give up waiting for a programmatic scroll to finish after this long. */
 const SCROLL_TIMEOUT_MS = 1200;
 
-// Same breakpoints as the image `sizes` attribute: ≤639px mobile, ≤1023px tablet.
-const MOBILE_QUERY = "(max-width: 639px)";
-const TABLET_QUERY = "(max-width: 1023px)";
+/**
+ * Slides are a fixed 420px, as on the live page (narrower only when the
+ * track itself is), so 3 fit at 1280px and fewer below.
+ */
+const SLIDE_WIDTH = 420;
 
 const useIsomorphicLayoutEffect =
 	typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -35,12 +37,15 @@ const useIsomorphicLayoutEffect =
 const mod = (value: number, length: number) =>
 	((value % length) + length) % length;
 
-const getVisibleCount = () => {
-	if (typeof window === "undefined") return MAX_VISIBLE;
-	if (window.matchMedia(MOBILE_QUERY).matches) return 1;
-	if (window.matchMedia(TABLET_QUERY).matches) return 2;
-	return MAX_VISIBLE;
-};
+/** How many whole slides fit in a track of this width (1 to MAX_VISIBLE). */
+const getVisibleCount = (trackWidth: number, gap: number) =>
+	Math.max(
+		1,
+		Math.min(
+			MAX_VISIBLE,
+			Math.floor((trackWidth + gap) / (SLIDE_WIDTH + gap)),
+		),
+	);
 
 const Arrow = ({ direction }: { direction: "prev" | "next" }) => (
 	<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -158,12 +163,13 @@ const ExpertGrid = ({ slice }: ExpertGridProps) => {
 
 	useIsomorphicLayoutEffect(() => {
 		const update = () => {
-			setVisible(getVisibleCount());
 			const track = trackRef.current;
-			if (track) {
-				const value = Number.parseFloat(getComputedStyle(track).columnGap);
-				setGap(Number.isNaN(value) ? 0 : value);
-			}
+			if (!track) return;
+
+			const value = Number.parseFloat(getComputedStyle(track).columnGap);
+			const trackGap = Number.isNaN(value) ? 0 : value;
+			setGap(trackGap);
+			setVisible(getVisibleCount(track.clientWidth, trackGap));
 		};
 		update();
 		window.addEventListener("resize", update);
@@ -268,7 +274,7 @@ const ExpertGrid = ({ slice }: ExpertGridProps) => {
 			}));
 
 	// Exactly `visible` cards per view: 3 desktop / 2 tablet / 1 mobile.
-	const slideBasis = `calc((100% - ${(visible - 1) * gap}px) / ${visible})`;
+	const slideBasis = `min(${SLIDE_WIDTH}px, calc((100% - ${(visible - 1) * gap}px) / ${visible}))`;
 
 	const handleArrow = (direction: -1 | 1) => {
 		move(direction);
