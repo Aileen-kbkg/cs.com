@@ -6,6 +6,7 @@ import { PrismicRichText } from "@prismicio/react";
 import type { SliceComponentProps } from "@prismicio/react";
 import type { Content } from "@prismicio/client";
 import styles from "./ExclusiveDiscounts.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 type Props = SliceComponentProps<Content.ExclusiveDiscountsSlice>;
 
@@ -79,7 +80,7 @@ export default function ExclusiveDiscounts({
   }, []);
 
   return (
-    <section className={styles.section}>
+    <section className={withCustomClass(styles.section, slice)}>
       <div className={styles.inner}>
         <h2 className={styles.heading}>
           {slice.primary.heading}

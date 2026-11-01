@@ -10,6 +10,7 @@ import type { FeatureGridSlice } from "../../../types.generated";
 
 import styles from "./FeatureGrid.module.css";
 import { LIVE_ICONS, liveIdFromTitle } from "./liveIcons";
+import { withCustomClass } from "@/lib/customClass";
 
 export type FeatureGridProps = SliceComponentProps<FeatureGridSlice>;
 
@@ -127,7 +128,7 @@ const FeatureGridAbout = ({ slice }: FeatureGridProps) => {
 
   return (
     <section
-      className={styles.aboutSection}
+      className={withCustomClass(styles.aboutSection, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
@@ -234,7 +235,7 @@ const FeatureGridDefault = ({ slice }: FeatureGridProps) => {
 
   return (
     <section
-      className={styles.section}
+      className={withCustomClass(styles.section, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

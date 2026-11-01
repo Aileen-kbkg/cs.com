@@ -5,6 +5,7 @@ import { PrismicRichText } from "@prismicio/react";
 import type { SliceComponentProps } from "@prismicio/react";
 
 import styles from "./ProcessSteps.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Local type until `process_steps` is pushed and types.generated.ts is
@@ -45,7 +46,7 @@ const ProcessSteps = ({ slice }: ProcessStepsProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

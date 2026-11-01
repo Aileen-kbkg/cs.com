@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { withCustomClass } from "@/lib/customClass";
 
 export type CalculatorProps = SliceComponentProps<Content.CalculatorSlice>;
 
@@ -11,7 +12,7 @@ const Calculator: FC<CalculatorProps> = ({ slice }) => {
       id="calculator"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-slate-50"
+      className={withCustomClass("bg-slate-50", slice)}
     >
       <div className="mx-auto max-w-3xl px-6 py-16">
         <h2 className="text-3xl font-bold text-slate-900">{p.title}</h2>

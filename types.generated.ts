@@ -2134,6 +2134,16 @@ export interface AnnouncementBarSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	style: prismic.SelectField<"blue" | "navy", "filled">;
+	
+	/**
+	 * Custom CSS Class field in *AnnouncementBar → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: announcement_bar.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2352,6 +2362,16 @@ export interface CalculatorSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	discovery_sources: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *Calculator → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: calculator.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2525,6 +2545,16 @@ export interface CampaignHeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	counter_footnote: prismic.KeyTextField;
+	
+	/**
+	 * Custom CSS Class field in *CampaignHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: campaign_hero.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2614,6 +2644,16 @@ export interface CtaBannerSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	style: prismic.SelectField<"light" | "dark" | "brand", "filled">;
+	
+	/**
+	 * Custom CSS Class field in *CtaBanner → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: cta_banner.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2662,6 +2702,16 @@ export interface ExclusiveDiscountsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	details: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *Exclusive Discounts → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: exclusive_discounts.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2775,6 +2825,16 @@ export interface ExpertGridSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	experts: prismic.GroupField<Simplify<ExpertGridSliceDefaultPrimaryExpertsItem>>;
+	
+	/**
+	 * Custom CSS Class field in *ExpertGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: expert_grid.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2823,6 +2883,16 @@ export interface FaqAccordionSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	intro: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *FaqAccordion → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: faq_accordion.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -2981,6 +3051,16 @@ export interface FeatureGridSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	columns: prismic.GroupField<Simplify<FeatureGridSliceDefaultPrimaryColumnsItem>>;
+	
+	/**
+	 * Custom CSS Class field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: feature_grid.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -3219,6 +3299,16 @@ export interface HeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	stat_note: prismic.KeyTextField;
+	
+	/**
+	 * Custom CSS Class field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: hero.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -3308,6 +3398,16 @@ export interface LeadFormSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	privacy_note: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *LeadForm → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: lead_form.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -3417,6 +3517,16 @@ export interface PageHeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	cta_note: prismic.KeyTextField;
+	
+	/**
+	 * Custom CSS Class field in *PageHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: page_hero.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -3495,6 +3605,16 @@ export interface PostListSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	view_all_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Custom CSS Class field in *PostList → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: post_list.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -3683,6 +3803,16 @@ export interface PricingSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	custom_quote_text: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: pricing.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -3886,6 +4016,16 @@ export interface ProductCardsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	intro: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *ProductCards → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: product_cards.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4000,6 +4140,16 @@ export interface QuoteWithImageSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	image_position: prismic.SelectField<"left" | "right", "filled">;
+	
+	/**
+	 * Custom CSS Class field in *QuoteWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: quote_with_image.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4038,6 +4188,16 @@ export interface RichTextSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	content: prismic.RichTextField;
+	
+	/**
+	 * Custom CSS Class field in *RichText → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: rich_text.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4076,6 +4236,16 @@ export interface SectionReferenceSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
 	section: prismic.ContentRelationshipField<"shared_section">;
+	
+	/**
+	 * Custom CSS Class field in *SectionReference → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: section_reference.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4144,6 +4314,16 @@ export interface StepsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Custom CSS Class field in *Steps → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: steps.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4257,6 +4437,16 @@ export interface SuccessStoriesSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	deduction_label: prismic.KeyTextField;
+	
+	/**
+	 * Custom CSS Class field in *SuccessStories → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: success_stories.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4410,6 +4600,16 @@ export interface TestimonialsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	review_cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Custom CSS Class field in *Testimonials → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: testimonials.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4544,6 +4744,26 @@ export interface TextWithImageSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Custom CSS Class field in *TextWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: text_with_image.default.primary.custom_css_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_css_class: prismic.KeyTextField;
+	
+	/**
+	 * Custom CSS Class field in *TextWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: text_with_image.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**
@@ -4602,6 +4822,16 @@ export interface VideoEmbedSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	caption: prismic.KeyTextField;
+	
+	/**
+	 * Custom CSS Class field in *VideoEmbed → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Optional CSS class name for custom styling this slice.
+	 * - **API ID Path**: video_embed.default.primary.custom_class
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	custom_class: prismic.KeyTextField;
 }
 
 /**

@@ -5,6 +5,7 @@ import { Content, isFilled } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./FaqAccordion.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 export type FaqAccordionProps = SliceComponentProps<Content.FaqAccordionSlice>;
 
@@ -41,7 +42,7 @@ const FaqAccordion = ({ slice }: FaqAccordionProps) => {
 
 	return (
 		<section
-  className={styles.section}
+  className={withCustomClass(styles.section, slice)}
   id={(primary as { anchor?: string }).anchor || undefined}
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}

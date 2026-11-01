@@ -14,6 +14,7 @@ import { PrismicRichText } from "@prismicio/react";
 import type { SliceComponentProps } from "@prismicio/react";
 
 import styles from "./PartnerOffer.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Local type until `partner_offer` is pushed and types.generated.ts is
@@ -111,7 +112,7 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

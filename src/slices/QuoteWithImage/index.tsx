@@ -5,6 +5,7 @@ import type { SliceComponentProps } from "@prismicio/react";
 import type { QuoteWithImageSlice } from "../../../types.generated";
 
 import styles from "./QuoteWithImage.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 export type QuoteWithImageProps = SliceComponentProps<QuoteWithImageSlice>;
 
@@ -20,7 +21,7 @@ const QuoteWithImage = ({ slice }: QuoteWithImageProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

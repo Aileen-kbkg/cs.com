@@ -9,6 +9,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./PageHero.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Local type until `page_hero` is pushed to Prismic and
@@ -81,7 +82,7 @@ const PageHero = ({ slice }: PageHeroProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

@@ -5,6 +5,7 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { ChevronRightIcon, FiveStarsIcon, QuoteIcon, StarIcon } from "./icons";
 import TestimonialCarousel from "./TestimonialCarousel";
 import styles from "./Testimonials.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Props for `Testimonials` ("What Our Clients Are Saying").
@@ -55,7 +56,7 @@ const Testimonials = ({ slice }: TestimonialsProps) => {
 
   return (
     <section
-      className={styles.section}
+      className={withCustomClass(styles.section, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

@@ -3,6 +3,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./Steps.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Props for `Steps` ("How it Works").
@@ -36,7 +37,7 @@ const Steps = ({ slice }: StepsProps) => {
 
   return (
     <section
-      className={styles.section}
+      className={withCustomClass(styles.section, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

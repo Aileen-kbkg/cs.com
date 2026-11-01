@@ -20,6 +20,13 @@
             "multi": "paragraph,heading2,heading3,heading4,strong,em,hyperlink,image,embed,list-item,o-list-item",
             "allowTargetBlank": true
           }
+        },
+        "custom_class": {
+          "type": "Text",
+          "config": {
+            "label": "Custom CSS Class",
+            "placeholder": "Optional CSS class name for custom styling this slice."
+          }
         }
       },
       "items": {}

@@ -3,6 +3,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./ProductCards.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 export type ProductCardsProps = SliceComponentProps<Content.ProductCardsSlice>;
 
@@ -29,7 +30,7 @@ const ProductCards = ({ slice }: ProductCardsProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

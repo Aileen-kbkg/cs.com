@@ -3,6 +3,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./TextWithImage.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 export type TextWithImageProps =
 	SliceComponentProps<Content.TextWithImageSlice>;
@@ -54,13 +55,13 @@ const TextWithImage = ({ slice, index }: TextWithImageProps) => {
 	const primary = slice.primary;
 	const imageLeft = primary.image_position === "left";
 	const Heading = index === 0 ? "h1" : "h2";
-const customClass = (
-  primary as typeof primary & { custom_css_class?: string }
-).custom_css_class;
-	
+
 	return (
 		<section
-			className={`${styles.section} ${index === 0 ? styles.sectionBand : ""} ${customClass || ""}  `}
+			className={withCustomClass(
+				`${styles.section} ${index === 0 ? styles.sectionBand : ""}`,
+				slice,
+			)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 			data-image-position={imageLeft ? "left" : "right"}

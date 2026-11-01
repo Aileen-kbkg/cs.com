@@ -14,6 +14,7 @@ import type { CSSProperties } from "react";
 
 import HeroCounter from "./HeroCounter";
 import styles from "./Hero.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Props for `Hero`.
@@ -113,7 +114,7 @@ const Hero = ({ slice }: HeroProps) => {
 
   return (
     <section
-      className={styles.section}
+      className={withCustomClass(styles.section, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

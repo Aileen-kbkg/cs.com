@@ -4,6 +4,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./AnnouncementBar.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Local type until `announcement_bar` is in types.generated.ts.
@@ -40,7 +41,7 @@ const AnnouncementBar = ({ slice }: AnnouncementBarProps) => {
 
 	return (
 		<div
-			className={`${styles.bar} ${theme}`}
+			className={withCustomClass(`${styles.bar} ${theme}`, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

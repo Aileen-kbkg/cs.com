@@ -116,6 +116,13 @@
                         "label": "Counter Footnote",
                         "placeholder": "*Based on $300,000 Building Purchase"
                     }
+                },
+                "custom_class": {
+                    "type": "Text",
+                    "config": {
+                        "label": "Custom CSS Class",
+                        "placeholder": "Optional CSS class name for custom styling this slice."
+                    }
                 }
             },
             "items": {}

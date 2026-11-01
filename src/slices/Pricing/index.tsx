@@ -14,6 +14,7 @@ import { CheckCircleIcon, ChevronRightIcon } from "./icons";
 import PlanCalculator from "./PlanCalculator";
 import type { PriceRule } from "./pricing";
 import styles from "./Pricing.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Props for `Pricing` ("Transparent, All Inclusive Pricing").
@@ -105,7 +106,7 @@ const Pricing = ({ slice }: PricingProps) => {
   return (
     <section
       id="pricing"
-      className={styles.section}
+      className={withCustomClass(styles.section, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

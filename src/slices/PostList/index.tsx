@@ -2,6 +2,7 @@ import { Content, asText } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextLink } from "@prismicio/next";
 import { createClient } from "@/prismicio";
+import { withCustomClass } from "@/lib/customClass";
 
 export type PostListProps = SliceComponentProps<Content.PostListSlice>;
 
@@ -19,7 +20,7 @@ const PostList = async ({ slice }: PostListProps) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-white"
+      className={withCustomClass("bg-white", slice)}
     >
       <div className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-3xl font-bold text-slate-900">{p.title}</h2>

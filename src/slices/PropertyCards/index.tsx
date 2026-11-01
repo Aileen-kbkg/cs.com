@@ -9,6 +9,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, type SliceComponentProps } from "@prismicio/react";
 
 import styles from "./PropertyCards.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Property Cards — reads its cards from the `card` repeatable group
@@ -47,7 +48,7 @@ const PropertyCards = ({ slice }: PropertyCardsProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

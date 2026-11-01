@@ -3,6 +3,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./SuccessStories.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Props for `SuccessStories`.
@@ -34,7 +35,7 @@ const SuccessStories = ({ slice }: SuccessStoriesProps) => {
 
   return (
     <section
-      className={styles.section}
+      className={withCustomClass(styles.section, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

@@ -3,6 +3,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./CtaBanner.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 export type CtaBannerProps = SliceComponentProps<Content.CtaBannerSlice>;
 
@@ -38,7 +39,7 @@ const CtaBanner = ({ slice }: CtaBannerProps) => {
 
 	return (
 		<section
-			className={`${styles.section} ${themeClass}`}
+			className={withCustomClass(`${styles.section} ${themeClass}`, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

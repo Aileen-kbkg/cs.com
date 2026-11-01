@@ -12,6 +12,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from "./ExpertGrid.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 export type ExpertGridProps = SliceComponentProps<Content.ExpertGridSlice>;
 
@@ -281,7 +282,7 @@ const ExpertGrid = ({ slice }: ExpertGridProps) => {
 
 	return (
 		<section
-			className={styles.section}
+			className={withCustomClass(styles.section, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

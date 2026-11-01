@@ -4,6 +4,7 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import Estimator, { type EstimatorContent, type EstimatorVariant } from "./Estimator";
 import styles from "./Calculator.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Props for `Calculator` ("Estimate Your First Year Tax Savings").
@@ -136,7 +137,7 @@ const Calculator = ({ slice }: CalculatorProps) => {
   return (
     <section
       id="calculator"
-      className={styles.root}
+      className={withCustomClass(styles.root, slice)}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

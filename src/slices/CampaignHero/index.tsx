@@ -14,6 +14,7 @@ import type { SliceComponentProps } from "@prismicio/react";
 
 import SavingsCounter from "./SavingsCounter";
 import styles from "./CampaignHero.module.css";
+import { withCustomClass } from "@/lib/customClass";
 
 /**
  * Local type until campaign_hero is pushed and types.generated.ts is
@@ -172,7 +173,7 @@ const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 
 	return (
 		<section
-			className={sectionClass}
+			className={withCustomClass(sectionClass, slice)}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>

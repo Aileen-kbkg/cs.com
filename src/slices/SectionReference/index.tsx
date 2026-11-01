@@ -2,6 +2,7 @@ import { Content } from "@prismicio/client";
 import { SliceZone, SliceComponentProps } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import { getCustomClass } from "@/lib/customClass";
 
 type SectionReferenceSlice = {
   id: string;
@@ -45,12 +46,25 @@ const SectionReference = async ({ slice }: SectionReferenceProps) => {
 
 	const sectionSlices = (section.data as { slices?: unknown }).slices ?? [];
 
-	return (
+	const zone = (
 		<SliceZone
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			slices={sectionSlices as any}
 			components={components}
 		/>
+	);
+
+	// This slice has no element of its own, so a custom class needs a
+	// wrapper. `display: contents` keeps it out of layout; without a class
+	// the output is unchanged.
+	const customClass = getCustomClass(slice);
+
+	return customClass ? (
+		<div className={customClass} style={{ display: "contents" }}>
+			{zone}
+		</div>
+	) : (
+		zone
 	);
 };
 
