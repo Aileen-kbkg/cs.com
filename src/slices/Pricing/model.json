@@ -141,6 +141,22 @@
             "allowTargetBlank": true
           }
         },
+        "note_under_the_button": {
+          "type": "Group",
+          "config": {
+            "label": "Note under the button",
+            "repeat": true,
+            "fields": {
+              "plan_note": {
+                "type": "Text",
+                "config": {
+                  "label": "plan_note",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
         "custom_class": {
           "type": "Text",
           "config": {

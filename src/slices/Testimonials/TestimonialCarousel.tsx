@@ -13,6 +13,11 @@ import styles from "./Testimonials.module.css";
 
 type TestimonialCarouselProps = {
   slides: ReactNode[];
+  /**
+   * Show this many slides, picked at random on each visit (live shows six
+   * random reviews per load). Unset or ≥ the slide count shows them all.
+   */
+  pick?: number;
   /** Live site: autoplay every 3000ms, 500ms slide transition. */
   autoplayMs?: number;
   speedMs?: number;
@@ -28,10 +33,32 @@ const SWIPE_THRESHOLD = 50;
  * that pauses on hover and stops after user interaction, bullet pagination.
  */
 export default function TestimonialCarousel({
-  slides,
+  slides: allSlides,
+  pick,
   autoplayMs = 3000,
   speedMs = 500,
 }: TestimonialCarouselProps) {
+  const total = allSlides.length;
+  const picking = typeof pick === "number" && pick > 0 && pick < total;
+
+  // The server renders the first `pick` slides; after hydration a random
+  // set replaces them, so every visit shows a different selection.
+  const [picked, setPicked] = useState<number[] | null>(null);
+
+  useEffect(() => {
+    if (!picking) return;
+    const order = Array.from({ length: total }, (_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+    setPicked(order.slice(0, pick));
+  }, [picking, pick, total]);
+
+  const slides = picking
+    ? (picked ?? Array.from({ length: pick }, (_, i) => i)).map((i) => allSlides[i])
+    : allSlides;
+
   const count = slides.length;
   const loop = count > 1;
   const clones = loop ? Math.min(CLONES, count) : 0;

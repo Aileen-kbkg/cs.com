@@ -32,6 +32,12 @@ type PricingPrimaryExtras = {
   loyalty_cta_link?: LinkField;
   custom_quote_title?: KeyTextField;
   custom_quote_text?: RichTextField;
+  /**
+   * Notes under the plan buttons ("Loyalty discounts for repeat users!"):
+   * the first note goes under the first plan, the second under the second.
+   * A single note goes under every plan.
+   */
+  note_under_the_button?: Array<{ plan_note?: KeyTextField }>;
 };
 
 type PricingItemExtras = {
@@ -86,6 +92,11 @@ const toColumns = (field: RichTextField, size = 2) => {
 const Pricing = ({ slice }: PricingProps) => {
   const primary = slice.primary as Primary;
   const items = slice.items as Item[];
+
+  const notes = (primary.note_under_the_button ?? []).map((note) => note.plan_note || null);
+  const filledNotes = notes.filter(Boolean);
+  const planNote = (index: number) =>
+    filledNotes.length === 1 ? filledNotes[0] : (notes[index] ?? null);
 
   const min = num(primary.slider_min) ?? 0;
   const max = num(primary.slider_max) ?? 1_500_000;
@@ -241,6 +252,8 @@ const Pricing = ({ slice }: PricingProps) => {
                       </PrismicNextLink>
                     </div>
                   )}
+
+                  {planNote(index) && <p className={styles.planNote}>{planNote(index)}</p>}
                 </div>
               );
             })}

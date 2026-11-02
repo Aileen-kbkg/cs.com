@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   gap: 0;
   width: 100%;
   max-width: 1280px;
@@ -122,18 +122,22 @@
   margin-bottom: 1px;
 }
 
-/* Tagline row bb9f322: two text widgets sharing the row */
+/* Tagline row bb9f322: two text widgets side by side, 20px apart. Each
+   paragraph keeps Elementor's 14.4px bottom margin, so the row is 38px. */
 .taglineRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
   padding: 0;
-  display: block;
-  margin-bottom: 15px;
 }
 
 .taglineItem {
-  flex: 1 1 0;
+  flex: 0 1 auto;
   min-width: 0;
-  float: left;
-  margin-right: 20px;
+}
+
+.inner .taglineItem p {
+  margin-bottom: 14.4px;
 }
 
 /* Contact container cd23acf: no padding, no gap */
@@ -145,9 +149,20 @@
   width: 95.156%;
 }
 
-.contactText p {
+/* Live keeps this copy in one paragraph with a blank line (<br><br>)
+   before "Please note…", so paragraphs here are a line apart. */
+.inner .contactText p {
   color: #ffffff;
-  margin-bottom: 15px !important;
+  margin-bottom: 1.5em;
+}
+
+.inner .contactText p:last-child {
+  margin-bottom: 14.4px;
+}
+
+/* Navigation links (Affiliate Program) — one text widget each */
+.inner .contact > p {
+  margin-bottom: 14.4px;
 }
 
 .contact .whiteLink,
@@ -155,24 +170,18 @@
   color: #ffffff;
 }
 
-/* Social icons a207f4b: 24px icons, 16px spacing (inline-block grid + word-spacing) */
+/* Social icons a207f4b: 24px icons, 16px apart, 10px below the links */
 .social {
-  display: block;
-  margin: 24px 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 10px 0 0;
   padding: 0;
   list-style: none;
-  font-size: 0;
-
 }
 
 .social li {
-  display: inline-block;
-  margin-right: 16px;
-  font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
-}
-
-.social li:last-child {
-  margin-right: 0;
+  display: flex;
 }
 
 .social a {
@@ -192,10 +201,15 @@
   fill: #ffffff;
 }
 
-.legal p {
+/* Live wraps the legal lines in empty paragraphs (a blank line plus
+   Elementor's 14.4px paragraph margin above and below). */
+.legal {
+  padding: calc(1.5em + 14.4px) 0;
+}
+
+.inner .legal p {
   color: #ffffff;
-  padding: 0 !important;
-  margin-top: 15px;
+  margin: 0 0 14.4px;
 }
 
 /* Right column beb365b: 25% */
@@ -241,10 +255,10 @@
   font-weight: 700;
 }
 
-.linkList p {
+.inner .linkList p {
   text-align: start;
   color: #ffffff;
-  margin-bottom: 14px;
+  margin-bottom: 14.4px;
 }
 
 .inner .linkList a {
@@ -266,7 +280,6 @@
 
   .secondary {
     flex-direction: row;
-    margin-top: 54px;
   }
 
   .secondary>.column {
@@ -274,8 +287,8 @@
     min-width: 0;
   }
 
-  .social li {
-    margin-right: 10px;
+  .social {
+    gap: 10px;
   }
 
   .posts {
@@ -298,20 +311,6 @@
     display: none;
   }
 
-  /* The taglines stack; the float put them on one line. */
-  .taglineRow {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 15px;
-  }
-
-  .taglineItem {
-    float: none;
-    width: 100%;
-    margin-right: 0;
-  }
-
   .contact {
     width: 100%;
   }
@@ -321,22 +320,17 @@
   }
 
   .social {
-    margin-top: 20px;
+    margin-top: 4px;
   }
 
   /* Recent News, Software and Stay connected run down one column —
 	   the tablet rule above turns .secondary into a row. */
   .secondary {
     flex-direction: column;
-    gap: 40px;
-    margin-top: 0;
+    gap: 20px;
   }
 
   .posts {
     grid-template-columns: repeat(1, 1fr);
-  }
-
-  .partnerLogo {
-    height: 70px;
   }
 }

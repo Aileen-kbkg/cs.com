@@ -7,7 +7,7 @@
         {
             "id": "default",
             "name": "Default",
-            "docURL": null,
+            "docURL": "...",
             "version": "initial",
             "description": "Exclusive Discounts",
             "primary": {

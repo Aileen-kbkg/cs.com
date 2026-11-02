@@ -58,6 +58,22 @@
             "repeat": false
           }
         },
+        "reviews_per_visit": {
+          "type": "Group",
+          "config": {
+            "label": "Reviews per visit",
+            "repeat": false,
+            "fields": {
+              "random_count": {
+                "type": "Number",
+                "config": {
+                  "label": "random_count",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
         "custom_class": {
           "type": "Text",
           "config": {

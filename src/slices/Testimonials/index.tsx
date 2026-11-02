@@ -1,4 +1,4 @@
-import { Content, isFilled, KeyTextField, LinkField } from "@prismicio/client";
+import { Content, isFilled, KeyTextField, LinkField, NumberField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
@@ -19,6 +19,8 @@ export type TestimonialsProps = SliceComponentProps<Content.TestimonialsSlice>;
 type ReviewCta = {
   review_cta_label?: KeyTextField;
   review_cta_link?: LinkField;
+  /** Non-repeating group: `random_count` reviews picked at random per visit. */
+  reviews_per_visit?: Array<{ random_count?: NumberField }>;
 };
 
 type Primary = Omit<Content.TestimonialsSlice["primary"], keyof ReviewCta> & ReviewCta;
@@ -80,7 +82,12 @@ const Testimonials = ({ slice }: TestimonialsProps) => {
           </div>
         )}
 
-        {cards.length > 0 && <TestimonialCarousel slides={cards} />}
+        {cards.length > 0 && (
+          <TestimonialCarousel
+            slides={cards}
+            pick={primary.reviews_per_visit?.[0]?.random_count ?? undefined}
+          />
+        )}
 
         {primary.review_cta_label && isFilled.link(primary.review_cta_link) && (
           <div className={styles.ctaWrap}>
