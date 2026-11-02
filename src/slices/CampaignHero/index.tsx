@@ -152,11 +152,12 @@ const CampaignHero = ({ slice, context }: CampaignHeroProps) => {
 	// S8 Acquisition only.
 	const isS8 = context?.page === "s8-acquisition";
 
-	// Break the S8 heading after its first sentence on tablet and mobile.
-	const headingParts =
-		isS8 && primary.heading
-			? primary.heading.match(/^(.+?[.!?])\s+(.+)$/)
-			: null;
+	// Wrap everything after the heading's first sentence in .headingLine.
+	// It stays inline unless a page breaks it onto its own line (S8 on
+	// tablet and mobile, REI Busy Season at every width).
+	const headingParts = primary.heading
+		? primary.heading.match(/^(.+?[.!?])\s+(.+)$/)
+		: null;
 
 	// Background image is now applied to .inner.
 	const innerStyle = imageUrl

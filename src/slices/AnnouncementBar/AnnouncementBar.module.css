@@ -34,10 +34,18 @@
     background: #277ce6;
 }
 
-/* Campaign bar — deeper navy, as on the REI busy season page. */
+/* Campaign bar, as on the REI busy season page: 120px tall with the
+   text centred, 28px bold (24px on tablet, 22px on phones). */
 .navy {
-    background: #0e1f63;
-    padding-block: clamp(1rem, 2.5vw, 1.75rem);
+    display: flex;
+    align-items: center;
+    min-height: 120px;
+    padding: 0 20px;
+    background: #0a1172;
+}
+
+.navy .inner {
+    width: 100%;
 }
 
 .inner {
@@ -56,8 +64,25 @@
     line-height: 1.4;
 }
 
-.navy .text {
-    font-size: clamp(1rem, 2.2vw, 1.5rem);
+.navy .text,
+.navy .text p {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .navy .text,
+    .navy .text p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .navy .text,
+    .navy .text p {
+        font-size: 22px;
+    }
 }
 
 .text p {

@@ -5,6 +5,8 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
+import styles from "./ReiBusySeason.module.css";
+
 /**
  * The `rei_busyseason` page type is not yet in the generated Prismic
  * types. Remove this block and the cast after "Pull to local".
@@ -58,5 +60,9 @@ export default async function Page() {
 		notFound();
 	}
 
-	return <SliceZone slices={page.data.slices} components={components} />;
+	return (
+		<div className={styles.page}>
+			<SliceZone slices={page.data.slices} components={components} />
+		</div>
+	);
 }
