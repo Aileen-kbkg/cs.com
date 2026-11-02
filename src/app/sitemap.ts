@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { createClient } from "@/prismicio";
+import { getAllCmsPages, isNoindex } from "@/lib/cmsPages";
 import { postPath } from "@/lib/postUrl";
 import { SITE_URL } from "@/lib/site";
 
@@ -27,8 +28,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		})
 		.catch(() => []);
 
+	// Pages built in Prismic and served by the generic /[uid]/ route.
+	const cmsPages = (await getAllCmsPages(client)).filter(
+		(page) => !isNoindex(page) && typeof page.uid === "string" && page.uid.length > 0,
+	);
+
 	return [
 		...PAGES.map((path) => ({ url: `${SITE_URL}${path}` })),
+		...cmsPages.map((page) => ({
+			url: `${SITE_URL}/${page.uid}/`,
+			lastModified: page.last_publication_date,
+		})),
 		...posts
 			.filter((post) => typeof post.uid === "string" && post.uid.length > 0)
 			.map((post) => ({
