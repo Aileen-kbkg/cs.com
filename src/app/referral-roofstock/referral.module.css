@@ -55,15 +55,9 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Sections — white, except the pale bands live uses                 */
+/* Sections — live's page is #f4f7fb (the slices' own default); only */
+/* the hero, How it Works, testimonials and calculator are paler     */
 /* ---------------------------------------------------------------- */
-
-.slices :global([data-slice-type="feature_grid"]),
-.slices :global([data-slice-type="pricing"]),
-.slices :global([data-slice-type="success_stories"]) {
-    --wc-bg: #fff;
-    background-color: #fff;
-}
 
 .slices :global([data-slice-type="calculator"]) {
     background-color: var(--rs-band);
@@ -232,7 +226,7 @@
 
 .slices :global([data-slice-type="partner_offer"]) {
     padding: 0 20px;
-    background: #fff;
+    background: #f4f7fb;
 }
 
 .slices :global([data-slice-type="partner_offer"] > div) {

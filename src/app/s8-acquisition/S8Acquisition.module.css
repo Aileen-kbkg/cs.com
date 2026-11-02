@@ -13,24 +13,50 @@
     }
 }
 
+/*
+ * The combined CS.com + S8 logo, sized as live: 2/7 of the container up
+ * to 358px on desktop (179px tall), scaling from 354px at 768 to 483px
+ * at 1024 on tablet, and half the width on phones. The header has no
+ * padding of its own, so its height is the logo's (6px above and below
+ * on phones).
+ */
 .partnerLogo.partnerLogo {
-    object-fit: contain;
-    width: auto;
-    max-width: 100%;
-    max-height: 179px;
     display: block;
+    width: min(358px, calc((100vw - 40px) * 2 / 7));
+    max-width: none;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+    .partnerLogo.partnerLogo {
+        width: calc(50.4vw - 33px);
+    }
 }
 
 @media (max-width: 767px) {
     .partnerLogo.partnerLogo {
-        object-fit: contain;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        display: block;
-        height: auto;
-        min-height: 64px;
+        width: calc(50vw - 34px);
+        min-height: 0;
+        margin: 6px 0 6px 8px;
     }
+}
+
+/* Live's header has no vertical padding; Sign In and Get Started sit 20px apart. */
+:global(header):has(.partnerLogo) > div {
+    min-height: 0;
+    padding: 0;
+}
+
+.partnerActions.partnerActions {
+    gap: 20px;
+}
+
+/* The logo's wrapper is a fixed 3.5em on phones; let the logo set it. */
+:global(header):has(.partnerLogo) [class*="logoLink"] {
+    height: auto;
+    min-height: 0;
 }
 
 /* Hide the green Loyalty Discounts block in the Pricing slice — this page only. */
@@ -56,15 +82,17 @@
 /* Hero (campaign_hero)                                               */
 /* ------------------------------------------------------------------ */
 
-/* Live order: text → button → badges. Yours had badges above the button. */
+/* Live order: text → button → badges. 4 and 5 sit after the eyebrow,
+   heading and text at every width (the tablet/mobile rules number those
+   1–3). */
 .slices :global([data-slice-type="campaign_hero"] [class*="__ctaRow"]) {
-    order: 1;
-    margin-top: 14px;
-    /* 20px column gap + 14 = 34px below the text, as live */
+    order: 4;
+    /* The text's 14.4px margin + the 20px column gap = 34px, as live */
+    margin-top: 0;
 }
 
 .slices :global([data-slice-type="campaign_hero"] [class*="__badges"]) {
-    order: 2;
+    order: 5;
     display: flex;
     flex-wrap: wrap;
     gap: 8px 23px;
@@ -103,8 +131,9 @@
     height: 16px;
 }
 
+/* 1.5 — 24px at 16px, 20.7px at the phone body size, as live */
 .slices :global([data-slice-type="campaign_hero"] div[class*="__text"]) {
-    line-height: 24px;
+    line-height: 1.5;
 }
 
 @media (min-width: 1025px) {
@@ -145,16 +174,28 @@
     /* live page background; this slice defaults to white */
 }
 
-/* Description card */
-.slices :global([data-slice-type="partner_offer"] div[class*="__text"]) {
-    font-size: 16px;
-    /* yours scaled down to 15px on tablet */
-    line-height: 24px;
+/* Title — the kit's h2 size (36px at 1024, 40px at 1440); 25px on phones */
+.slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+    line-height: 1;
 }
 
-/* Live leaves one blank line (24px) between the two paragraphs. */
+/* Description card — live body size (16px from ~725px, 13.8px at 430) */
+.slices :global([data-slice-type="partner_offer"] div[class*="__text"]),
 .slices :global([data-slice-type="partner_offer"] div[class*="__text"] p) {
-    margin: 0 0 24px;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+    line-height: 1.5;
+}
+
+/* Live leaves one blank line between the two paragraphs. */
+.slices :global([data-slice-type="partner_offer"] div[class*="__text"] p) {
+    margin: 0 0 1.5em;
+}
+
+/* Offer heading — the kit's h2 size at every width */
+.slices :global([data-slice-type="partner_offer"] aside h2) {
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+    line-height: 1;
 }
 
 .slices :global([data-slice-type="partner_offer"] div[class*="__text"] p:last-child) {
@@ -193,12 +234,11 @@
 
 /* ---- Desktop ≥1025px (measured at 1440) ---- */
 @media (min-width: 1025px) {
-    .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
-        font-size: 39.936px;
-    }
 
-    .slices :global([data-slice-type="partner_offer"] aside h2) {
-        font-size: 40px;
+
+    /* Live splits the cards 65 / 35, 20px apart (819 / 441 at 1440). */
+    .slices :global([data-slice-type="partner_offer"] [class*="__card"]) {
+        flex: 0 0 calc((100% - var(--po-gap)) * 0.65);
     }
 
     /* background-size: 29% auto; background-position: 94% 94% */
@@ -219,7 +259,7 @@
     }
 
     .slices :global([data-slice-type="partner_offer"] [class*="__card"]) {
-        flex: 0 0 calc(60% - var(--po-gap) / 2);
+        flex: 0 0 calc((100% - var(--po-gap)) * 0.6);
         width: auto;
         min-width: 0;
     }
@@ -233,9 +273,6 @@
         font-size: 33px;
     } */
 
-    .slices :global([data-slice-type="partner_offer"] aside h2) {
-        font-size: 34px;
-    }
 
     /* Larger mark anchored bottom-right, behind the button as on live. */
     .slices :global([data-slice-type="partner_offer"] [class*="__offerIcon"]) {
@@ -252,9 +289,6 @@
         font-size: 30px;
     } */
 
-    .slices :global([data-slice-type="partner_offer"] aside h2) {
-        font-size: 30px;
-    }
 
     /* Live: content sits at the top; ~100px below the button holds the mark. */
     .slices :global([data-slice-type="partner_offer"] aside) {
@@ -315,4 +349,291 @@
     padding-bottom: 55px !important;
     border-radius: 10px !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+/* Partner title is 25px on phones, as live */
+@media (max-width: 767px) {
+    .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
+        font-size: 25px;
+    }
+}
+
+/* Hero on phones — 40px above the copy, ~121px under the counter, and
+   the two badges as 21px rows with no gap, as live */
+@media (max-width: 767px) {
+    .slices :global([data-slice-type="campaign_hero"]) {
+        padding: 40px 20px 115px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] [class*="__badges"]) {
+        gap: 0;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] [class*="__badges"] > li) {
+        align-items: center;
+        min-height: 21px;
+    }
+}
+
+/* Hero (desktop) — the same live template as the Roofstock page: 671px
+   band, copy centred, eyebrow pill, blue button before the badges, and
+   the outlined counter panel over the artwork. */
+@media (min-width: 1025px) {
+    .slices :global([data-slice-type="campaign_hero"]) {
+        padding: 0 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] > div) {
+        align-items: center;
+        gap: 60px;
+        min-height: 671px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] > div > div:first-child) {
+        flex: 0 0 633px;
+        gap: 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="eyebrow"]) {
+        gap: 20px;
+        min-height: 45px;
+        padding: 10px 20px 5px;
+        border-radius: 1000px;
+        background: #fff;
+        box-shadow: none;
+        color: #284074;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] span[class*="eyebrowIcon"] svg) {
+        width: 24px;
+        height: 24px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] h1) {
+        max-width: none;
+        color: #284074;
+        font-family: Inter, sans-serif;
+        font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="text"]) {
+        max-width: none;
+        margin: 0 0 14.4px;
+        color: #284074;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="text"] p) {
+        margin: 0;
+        color: #284074;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"]) {
+        order: 4;
+        max-width: none;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] > a) {
+        gap: 10px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        background: #277ce6;
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 16px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] > a:hover),
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] > a:focus-visible) {
+        background: #284074;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] svg) {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Each live badge is a 24px row with ~29px of space after its text */
+    .slices :global([data-slice-type="campaign_hero"] ul[class*="badges"]) {
+        order: 5;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        max-width: none;
+        margin: 0;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] li[class*="badge"]) {
+        align-items: center;
+        gap: 5px;
+        min-height: 24px;
+        padding-right: 29px;
+        color: #284074;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] span[class*="badgeIcon"]),
+    .slices :global([data-slice-type="campaign_hero"] span[class*="badgeIcon"] svg) {
+        width: 12px;
+        height: 12px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="counterPanel"]) {
+        max-width: 412px;
+        padding: 20px;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="counterNumber"]) {
+        justify-content: center;
+        margin: 0;
+        color: #284074;
+        font-family: Inter, sans-serif;
+        font-size: 59.984px;
+        line-height: 1;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] span[class*="counterSuffix"]) {
+        font-size: 1em;
+        line-height: 1;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="counterHeading"]) {
+        margin: 2px 0 0;
+        color: #284074;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="counterFootnote"]) {
+        margin: 2px 0 0;
+        color: #284074;
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
+
+/* Calculator on tablet and phones — the card is 85% of the band as
+   live, and from 768px down the results sit under the form. */
+@media (max-width: 1024px) {
+    .slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+        width: 85% !important;
+        max-width: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .slices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+        flex-direction: column !important;
+    }
+
+    /* Stacked results keep their 40px inset and divider line */
+    .slices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+        padding-left: 40px !important;
+        border-left: 1px solid #e2e8f0 !important;
+    }
+}
+
+/* Phones: the card fills the band */
+@media (max-width: 767px) {
+    .slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+        width: 100% !important;
+    }
+}
+
+/* How it Works — live keeps the four steps in a row down to ~880px
+   (the slice switches to its vertical timeline at 1024px), so the
+   horizontal layout is restored between 881px and 1024px. */
+@media (min-width: 881px) and (max-width: 1024px) {
+    /* Live squeezes the row into 45% of the band, so the copy wraps */
+    .slices :global([data-slice-type="steps"] ol),
+    .slices :global([data-slice-type="steps"] ul) {
+        flex-direction: row;
+        width: 45%;
+        max-width: none;
+    }
+
+    .slices :global([data-slice-type="steps"] li[class*="__step"]) {
+        flex-direction: column;
+        align-items: normal;
+    }
+
+    .slices :global([data-slice-type="steps"] [class*="__highlight"]) {
+        flex-direction: row;
+    }
+
+    .slices :global([data-slice-type="steps"] [class*="__line"]) {
+        width: auto;
+        height: 2px;
+        min-height: 0;
+    }
+
+    .slices :global([data-slice-type="steps"] [class*="__spacer"]) {
+        width: 10px;
+    }
+
+    .slices :global([data-slice-type="steps"] [class*="__content"]) {
+        display: block;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .slices :global([data-slice-type="steps"] [class*="__title"]) {
+        margin-top: 10px;
+    }
+}
+
+/* Vertical timeline (≤880px): steps 130px apart, as live */
+@media (max-width: 880px) {
+    .slices :global([data-slice-type="steps"] [class*="__line"]) {
+        min-height: 25px;
+    }
+
+    /* The hidden lead-in and tail take no space */
+    .slices :global([data-slice-type="steps"] li:first-child [class*="__highlight"] > [class*="__line"]:first-child),
+    .slices :global([data-slice-type="steps"] li:last-child [class*="__highlight"] > [class*="__line"]:last-child) {
+        min-height: 0;
+    }
+}
+
+/* How it Works button and foot on tablet, as measured on live */
+@media (min-width: 881px) and (max-width: 1024px) {
+    .slices :global([data-slice-type="steps"] a[class*="__cta"]) {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 880px) {
+    .slices :global([data-slice-type="steps"] a[class*="__cta"]) {
+        margin-top: 5px;
+    }
+}
+
+/* Step icons stay 48px on phones, as live */
+@media (max-width: 767px) {
+    .slices :global([data-slice-type="steps"] img[class*="__iconImage"]) {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .slices :global([data-slice-type="steps"]) {
+        padding-bottom: 45px;
+    }
 }
