@@ -7,6 +7,7 @@ import SliceZone, { splitAnnouncementBar } from "@/components/SliceZone";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
+import TutorialVideo from "./TutorialVideo";
 import styles from "./Tutorial.module.css";
 
 /**
@@ -92,15 +93,10 @@ export default async function Page() {
 
 					{videoSrc ? (
 						<div className={styles.videoWrap}>
-							{/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-							<video
+							<TutorialVideo
 								className={styles.video}
 								src={videoSrc}
 								poster={poster?.url ?? undefined}
-								controls
-								preload="none"
-								controlsList="nodownload"
-								playsInline
 							/>
 						</div>
 					) : null}
