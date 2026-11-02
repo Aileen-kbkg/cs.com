@@ -425,3 +425,197 @@
 .slices :global([data-slice-type="pricing"] [class*="loyalty"]) {
     display: none;
 }
+
+/* ---------------------------------------------------------------- */
+/* Estimate Your First Year Deductions (classic calculator) — white  */
+/* 1177px card, 400px form centred in the left half, results at the  */
+/* foot of a plain white right half.                                 */
+/* The Calculator slice marks nearly every property !important, so   */
+/* the overrides here have to as well; they stay scoped to this page. */
+/* ---------------------------------------------------------------- */
+
+.page .slices :global([data-slice-type="calculator"]) {
+    padding: 60px 20px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] h2.kbkg-estimator-title) {
+    margin: 0 0 20px !important;
+    color: var(--rs-navy) !important;
+    font-family: Inter, sans-serif !important;
+    font-size: var(--rs-h2) !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: normal !important;
+}
+
+/* Live has no 1280px cap here: the card is 85% of the full band */
+.page .slices :global([data-slice-type="calculator"] > div) {
+    max-width: none !important;
+}
+
+/* 85% of the band's content width, as live (1177px at 1440) */
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+    width: 85% !important;
+    max-width: none !important;
+    padding: 0 0 15px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-form) {
+    padding: 15px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-form > *) {
+    max-width: 400px !important;
+    margin-inline: auto !important;
+}
+
+/* Fields: 32px label, 41px box, 98px from one label to the next */
+.page .slices :global([data-slice-type="calculator"] .kbkg-field-group) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 9px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Labels and fields are set in Inter on live */
+.page .slices :global([data-slice-type="calculator"] .kbkg-field-label) {
+    margin: 0 !important;
+    font-family: Inter, sans-serif !important;
+    padding: 4px !important;
+    color: var(--rs-navy) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-toggle-label) {
+    padding: 4px !important;
+    font-family: Inter, sans-serif !important;
+    color: var(--rs-navy) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-field-input) {
+    height: 41px !important;
+    font-family: Inter, sans-serif !important;
+    padding: 12px 20px !important;
+    border: 1px solid #d1cfcf !important;
+    border-radius: 6px !important;
+    font-size: 13.333px !important;
+    line-height: 15px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-field-select) {
+    height: 41px !important;
+    font-family: Inter, sans-serif !important;
+    padding: 0 20px !important;
+    border: 1px solid #d1cfcf !important;
+    border-radius: 6px !important;
+    font-size: 13.333px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-input-with-prefix .kbkg-field-input) {
+    padding-left: 28px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-field-group > input) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-field-group > select) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-input-with-prefix) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-date-wrapper) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-toggle-row) {
+    gap: 11px !important;
+    margin-bottom: 20px !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-toggle-control) {
+    margin-inline: 4px !important;
+}
+
+/* 388px, centred, with the live form's 16px below it */
+.page .slices :global([data-slice-type="calculator"] button.kbkg-submit-btn) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    height: 46px !important;
+    margin: 0 auto 16px !important;
+    padding: 0 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+
+/* Results — plain white, content at the bottom, no illustration */
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+    justify-content: flex-end !important;
+    gap: 0 !important;
+    padding: 40px !important;
+    border-left: 0 !important;
+    background: #fff !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-classic-illustration) {
+    display: none !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-classic-results-title) {
+    margin: 0 0 20px !important;
+    color: #333 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1.17rem, 1.03rem + 0.59vw, 1.56rem) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-classic-panel) {
+    width: 100% !important;
+    min-height: 74px !important;
+    border: 1px solid #e6e6e6 !important;
+    border-radius: 10px !important;
+    background: #f0f6fd !important;
+}
+
+/* Mobile — the card fills the band, results under the form */
+@media (max-width: 767px) {
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+    width: 100% !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+}
+
+.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+    padding: 20px 14px 103px !important;
+}
+}
