@@ -91,13 +91,13 @@ export default async function Page() {
 
 			<section className={styles.section}>
 				<div className={styles.inner}>
-					{/* Desktop only; the column stays as an empty track on tablet. */}
+					{/* Below 1025px only the illustration shows, above the form. */}
 					<div className={styles.aside}>
 						{isFilled.image(image) ? (
 							<PrismicNextImage
 								field={image}
 								className={styles.illustration}
-								sizes="(max-width: 1024px) 0px, 562px"
+								sizes="(max-width: 1024px) min(560px, 100vw), 562px"
 								// imgix compression blurs the illustration's edges.
 								imgixParams={{ auto: ["format"] }}
 								priority

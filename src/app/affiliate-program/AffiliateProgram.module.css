@@ -144,52 +144,92 @@
     }
 }
 
+/* Below this, the live form spills past the right edge; keep it inside. */
+@media (max-width: 1300px) {
+    .inner {
+        padding: 0 20px;
+    }
+
+    .formPanel {
+        margin-right: 0;
+    }
+}
+
+/*
+ * Tablet and phone improve on the live page, which hides the illustration
+ * and leaves the left column as an empty half-width track: one centred
+ * column with the illustration, heading, intro and form.
+ */
 @media (max-width: 1024px) {
-    /* The left track stays, empty, as on the live page. */
+    .inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        max-width: 720px;
+        padding: 0 32px 60px;
+    }
+
     .aside {
+        width: 100%;
+        max-width: 560px;
+        min-height: 0;
+        margin: 40px auto 0;
+        padding-top: 0;
+    }
+
+    /* The intro is repeated under the form heading instead. */
+    .title,
+    .intro {
         display: none;
     }
 
+    .illustration {
+        position: static;
+    }
+
     .main {
-        grid-column: 2;
+        padding-top: 32px;
     }
 
     .formTitle {
         font-size: 22px;
+        line-height: 1.25;
         text-align: center;
     }
 
     .introMobile {
         display: block;
+        margin: 0;
+    }
+
+    /* Offsets the form's own 40px side padding so the fields line up. */
+    .formPanel {
+        margin: 0 -40px;
     }
 }
 
 @media (max-width: 767px) {
-    .section {
-        padding-top: 20px;
+    /* Wider than the column, the form switches to two columns and spills. */
+    .formPanel {
+        margin: 0;
     }
 
     .inner {
-        grid-template-columns: minmax(0, 1fr);
+        padding: 0 20px 40px;
+    }
+
+    .aside {
+        margin-top: 24px;
     }
 
     .main {
-        grid-column: 1;
-        padding-top: 30px;
+        padding-top: 24px;
     }
 
     .formTitle {
         font-size: 24px;
     }
 
-    .formPanel {
-        margin: 0;
-    }
-
-    /* Live's widget margins: 4px below the heading, form 3px under the text. */
     .introMobile {
-        margin: 4px 0 -17px;
-        padding: 0 20px;
         font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
         line-height: 1.5;
         text-align: justify;
