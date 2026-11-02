@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -6,7 +5,9 @@ import { isFilled } from "@prismicio/client";
 import type { ImageField, RichTextField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
+import SliceZone, { splitAnnouncementBar } from "@/components/SliceZone";
 import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 
 import styles from "./AffiliateProgram.module.css";
 
@@ -23,6 +24,7 @@ type AffiliateProgramDocument = {
 		hubspot_portal_id: string | null;
 		hubspot_form_id: string | null;
 		hubspot_region: string | null;
+		slices: never[];
 		meta_title: string | null;
 		meta_description: string | null;
 		meta_image: ImageField;
@@ -77,78 +79,94 @@ export default async function Page() {
 		hubspot_portal_id,
 		hubspot_form_id,
 		hubspot_region,
+		slices,
 	} = page.data;
 
 	const hasForm = Boolean(hubspot_portal_id && hubspot_form_id);
+	const { announcementBar, rest } = splitAnnouncementBar(slices);
 
 	return (
 		<main className={styles.page}>
-			<div className={styles.inner}>
-				{/* Desktop-only, as on the live page. */}
-	<div className={styles.aside}>
-  {isFilled.image(image) ? (
-    <PrismicNextImage
-      field={image}
-      className={styles.illustration}
-      sizes="(max-width: 1023px) 100vw, 50vw"
-      priority
-      fallbackAlt=""
-    />
-  ) : null}
+			<SliceZone slices={announcementBar} components={components} />
 
-  {heading?.length ? (
-    <PrismicRichText field={heading} components={{ /* unchanged */ }} />
-  ) : null}
-
-  {intro?.length ? (
-    <div className={styles.intro}>
-      <PrismicRichText field={intro} />
-    </div>
-  ) : null}
-</div>
-
-				<div className={styles.main}>
-					{form_heading?.length ? (
-						<PrismicRichText
-							field={form_heading}
-							components={{
-								heading2: ({ children, key }) => (
-									<h2 key={key} className={styles.formTitle}>
-										{children}
-									</h2>
-								),
-								paragraph: ({ children, key }) => (
-									<h2 key={key} className={styles.formTitle}>
-										{children}
-									</h2>
-								),
-							}}
-						/>
-					) : null}
-
-					{/* The live page repeats the intro here on mobile only. */}
-					{intro?.length ? (
-						<div className={styles.introMobile}>
-							<PrismicRichText field={intro} />
-						</div>
-					) : null}
-
-					{hasForm ? (
-						<div className={styles.formPanel}>
-							<div
-								className="hs-form-frame"
-								data-region={hubspot_region || "na1"}
-								data-form-id={hubspot_form_id as string}
-								data-portal-id={hubspot_portal_id as string}
+			<section className={styles.section}>
+				<div className={styles.inner}>
+					{/* Desktop only; the column stays as an empty track on tablet. */}
+					<div className={styles.aside}>
+						{isFilled.image(image) ? (
+							<PrismicNextImage
+								field={image}
+								className={styles.illustration}
+								sizes="(max-width: 1024px) 0px, 562px"
+								priority
+								fallbackAlt=""
 							/>
-							<Script
-								src={`https://js.hsforms.net/forms/embed/${hubspot_portal_id}.js`}
-								strategy="afterInteractive"
+						) : null}
+
+						{heading?.length ? (
+							<PrismicRichText
+								field={heading}
+								components={{
+									heading1: ({ children, key }) => (
+										<h1 key={key} className={styles.title}>
+											{children}
+										</h1>
+									),
+									paragraph: ({ children, key }) => (
+										<h1 key={key} className={styles.title}>
+											{children}
+										</h1>
+									),
+								}}
 							/>
-						</div>
-					) : null}
+						) : null}
+
+						{intro?.length ? (
+							<div className={styles.intro}>
+								<PrismicRichText field={intro} />
+							</div>
+						) : null}
+					</div>
+
+					<div className={styles.main}>
+						{/* Paragraphs under the heading are the tablet/mobile intro. */}
+						{form_heading?.length ? (
+							<PrismicRichText
+								field={form_heading}
+								components={{
+									heading2: ({ children, key }) => (
+										<h2 key={key} className={styles.formTitle}>
+											{children}
+										</h2>
+									),
+									paragraph: ({ children, key }) => (
+										<p key={key} className={styles.introMobile}>
+											{children}
+										</p>
+									),
+								}}
+							/>
+						) : null}
+
+						{hasForm ? (
+							<div className={styles.formPanel}>
+								<div
+									className="hs-form-frame"
+									data-region={hubspot_region || "na1"}
+									data-form-id={hubspot_form_id as string}
+									data-portal-id={hubspot_portal_id as string}
+								/>
+								<Script
+									src={`https://js.hsforms.net/forms/embed/${hubspot_portal_id}.js`}
+									strategy="afterInteractive"
+								/>
+							</div>
+						) : null}
+					</div>
 				</div>
-			</div>
+			</section>
+
+			<SliceZone slices={rest} components={components} />
 		</main>
 	);
 }

@@ -1,23 +1,16 @@
 /*
- * Affiliate Program — pale blue band, desktop-only left column with the
- * heading and intro, right column with the heading and HubSpot form.
+ * Affiliate Program — pale blue band with a two-column grid: the
+ * illustration, heading and intro on the left (desktop only), the form
+ * heading and HubSpot form on the right.
  * Matched against https://www.costsegregation.com/affiliate-program/
  */
 .page {
     --ap-navy: #284074;
-    --ap-blue: #277ce6;
-    --ap-text: #4a4a4a;
-    --ap-band: #F6F9FF;
-    --ap-gap: 20px;
+    --ap-text: #333333;
+    --ap-band: #f6f9ff;
 
-    box-sizing: border-box;
-    width: 100%;
-    padding: 80px 0 150px 0;
-    background: var(--ap-band);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    color: var(--ap-text);
-    overflow-x: hidden;
 }
 
 .page *,
@@ -26,249 +19,179 @@
     box-sizing: border-box;
 }
 
+.section {
+    width: 100%;
+    background: var(--ap-band);
+    color: var(--ap-text);
+    overflow-x: clip;
+}
+
 .inner {
-    display: flex;
-    align-items: center;
-    gap: var(--ap-gap);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
     max-width: 1280px;
     margin: 0 auto;
-}
-
-.aside,
-.main {
-    flex: 0 0 calc(50% - var(--ap-gap) / 2);
-    min-width: 0;
-}
-
-.aside {
-    background-image: var(--aside-image);
-    background-position: -8px 4px;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    display: flex;
-    margin-top: 89px;
-    margin-bottom: 0;
-    margin-left: 21px;
-    margin-right: 37px;
-    flex-direction: column;
-
-}
-
-.aside img {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 20px;
-}
-
-.aside h1 {
-    font-size: 35px;
-    font-weight: 500;
-    margin: 0;
-}
-
-.aside strong {
-    font-weight: 700 !important;
 }
 
 /* ---------------------------------------------------------------- */
 /* Left column                                                      */
 /* ---------------------------------------------------------------- */
 
+.aside {
+    position: relative;
+    width: 562px;
+    max-width: calc(100% - 21px);
+    min-height: 802px;
+    margin: 89px 0 0 21px;
+    padding-top: 339px;
+}
+
+/* A background on the live page, so it does not push the text down. */
+.illustration {
+    position: absolute;
+    top: 4px;
+    left: -8px;
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
 .title {
-    margin: 20px 0 6px 0px;
-    font-size: 35px !important;
-    line-height: 1.2;
+    position: relative;
+    margin: 0 0 4px;
+    font-size: 35px;
+    line-height: 35px;
     font-weight: 500;
     color: var(--ap-navy);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    ;
-
 }
 
 .title strong {
-    font-weight: 700 !important;
+    font-weight: 700;
 }
 
 .intro {
-    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
-    line-height: 1.7;
+    position: relative;
+    font-size: 16px;
+    line-height: 27px;
     color: var(--ap-text);
 }
 
+/* The live page keeps the bottom margin on the last paragraph too. */
 .intro p {
-    margin: 0 0 0.875rem;
-    overflow-wrap: break-word;
-}
-
-.intro p:last-child {
-    margin-bottom: 0;
-}
-
-/* Repeated under the form heading on mobile only. */
-.introMobile {
-    display: none;
-    margin-bottom: 1.5rem;
-    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
-    line-height: 1.7;
-    color: var(--ap-text);
-}
-
-.introMobile p {
-    margin: 0 0 0.875rem;
-}
-
-.introMobile p:last-child {
-    margin-bottom: 0;
+    margin: 0 0 14.4px;
 }
 
 /* ---------------------------------------------------------------- */
 /* Right column                                                     */
 /* ---------------------------------------------------------------- */
 
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+    padding-top: 80px;
+}
+
 .formTitle {
-    margin: 0 0 1.5rem;
-    font-size: clamp(1.5rem, 2.6vw, 1.75rem);
+    margin: 0;
+    font-size: 28px;
     line-height: 1;
     font-weight: 500;
     color: var(--ap-navy);
-    text-align: center;
-    white-space: normal;
-
+    text-align: left;
 }
 
 .formTitle strong {
     font-weight: 700;
 }
 
-.formPanel {
-    width: 100%;
-    margin: -22px -21px 30px -37px;
-
+/* The live page repeats the intro under the heading below 1025px. */
+.introMobile {
+    display: none;
+    margin: 0 0 14.4px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--ap-text);
 }
 
-/* The embed renders in an iframe, so only outer sizing is ours. */
+/* Live pulls the form widget out of its column: 688px wide at 1440. */
+.formPanel {
+    width: auto;
+    margin: -22px -21px 30px -37px;
+}
+
+/* The embed renders in an iframe and sets its own height. */
 .formPanel :global(.hs-form-frame) {
     width: 100%;
-    min-height: 604px;
 }
 
 .formPanel :global(iframe) {
+    display: block;
     width: 100%;
-    min-height: 640px;
     border: 0;
-}
-
-.formPanel :global(.hsfc-Step__Content) {
-    padding: 40px 0 0 0 !important;
 }
 
 /* ---------------------------------------------------------------- */
 /* Responsive                                                       */
 /* ---------------------------------------------------------------- */
 
-@media (max-width: 1023px) {
-    .inner {
-        flex-direction: column;
-        align-items: stretch;
+@media (max-width: 1366px) {
+    .formTitle {
+        font-size: 24px;
     }
+}
 
-    /* Heading and intro are desktop-only on the live page; the intro is
-	   repeated inside the right column instead. */
+@media (max-width: 1024px) {
+    /* The left track stays, empty, as on the live page. */
     .aside {
         display: none;
     }
 
     .main {
-        flex: 1 1 auto;
-        width: 100%;
+        grid-column: 2;
+    }
+
+    .formTitle {
+        font-size: 22px;
+        text-align: center;
     }
 
     .introMobile {
         display: block;
-        text-align: justify;
+    }
+}
+
+@media (max-width: 767px) {
+    .section {
+        padding-top: 20px;
+    }
+
+    .inner {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .main {
+        grid-column: 1;
+        padding-top: 30px;
+    }
+
+    .formTitle {
+        font-size: 24px;
     }
 
     .formPanel {
-        width: 100%;
         margin: 0;
     }
 
-    .formPanel :global(.hs-form-frame) {
-        min-height: 700px;
-    }
-
-    .formTitle {
-
-        white-space: normal;
-
-    }
-
-}
-
-@media (max-width: 1300px) {
-    .formTitle {
-
-        white-space: nowrap;
-        text-wrap: balance;
-        text-align: center !important;
-
-    }
-
-    .formPanel :global(iframe) {
-        width: 100% !important;
-        min-height: 0px;
-        border: 0;
-    }
-
-    .formPanel {
-        width: 100%;
-        margin-left: -20px;
-    }
-
-    .page {
-        padding: 60px 20px;
+    /* Live's widget margins: 4px below the heading, form 3px under the text. */
+    .introMobile {
+        margin: 4px 0 -17px;
+        padding: 0 20px;
+        font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+        line-height: 1.5;
+        text-align: justify;
     }
 }
-
-
-.inner {
-    display: flex;
-    align-items: flex-start;
-}
-
-.aside {
-    margin-top: 0;
-    max-width: 560px;
-}
-
-.aside img {
-    margin-bottom: 40px;
-}
-
-.formTitle {
-    text-align: left;
-}
-
-@media screen and (max-width: 1023px) {
-    .hsfc-Step .hsfc-Step__Content {
-        padding-right: 0 !important;
-    }
-
-}
-
-.hsfc-Step .hsfc-Step__Content {
-    padding-right: 0 !important;
-}
-
-@media (max-width: 991px) {
-    .formPanel :global(.hs-form-frame) {
-        width: 100vw;
-    }
-}
-
-/* @media (max-width:991px) {
-    .AffiliateProgram-module__eKe35W__formPanel .hs-form-frame {
-        width: 100vw;
-    }
-} */
