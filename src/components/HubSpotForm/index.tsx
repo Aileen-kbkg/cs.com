@@ -17,7 +17,7 @@ type HubSpotWindow = Window & {
         portalId: string;
         formId: string;
         target: string;
-        onFormReady?: () => void;
+        onFormReady?: (form: unknown) => void;
         onFormSubmitted?: () => void;
       }) => void;
     };
@@ -35,6 +35,49 @@ type HubSpotFormProps = {
   formId?: string;
   region?: string;
   onSubmitted?: () => void;
+  /**
+   * Values to fill in once the form renders, keyed by HubSpot field name.
+   * Fields the form does not have, and empty values, are skipped.
+   */
+  fieldValues?: Record<string, string>;
+};
+
+/** Forms built in HubSpot's newer editor render inside a same-origin iframe. */
+const findForm = (container: HTMLElement, form: unknown): HTMLFormElement | null => {
+  if (form instanceof HTMLFormElement) return form;
+  const jqueryForm = (form as { 0?: unknown } | null)?.[0];
+  if (jqueryForm instanceof HTMLFormElement) return jqueryForm;
+  const frame = container.querySelector("iframe");
+  return frame?.contentDocument?.querySelector("form") ?? container.querySelector("form");
+};
+
+/**
+ * Sets field values through the native setters and fires the events
+ * HubSpot listens to, so its own validation sees them.
+ */
+const fillForm = (form: HTMLFormElement, values: Record<string, string>) => {
+  const view = form.ownerDocument.defaultView ?? window;
+
+  Object.entries(values).forEach(([name, value]) => {
+    if (!value) return;
+    const field = form.querySelector<HTMLInputElement | HTMLSelectElement>(
+      `[name="${name}"]`,
+    );
+    if (!field) return;
+
+    if (field instanceof view.HTMLInputElement && field.type === "checkbox") {
+      if (field.checked !== (value === "true")) field.click();
+      return;
+    }
+
+    const proto =
+      field instanceof view.HTMLSelectElement
+        ? view.HTMLSelectElement.prototype
+        : view.HTMLInputElement.prototype;
+    Object.getOwnPropertyDescriptor(proto, "value")?.set?.call(field, value);
+    field.dispatchEvent(new view.Event("input", { bubbles: true }));
+    field.dispatchEvent(new view.Event("change", { bubbles: true }));
+  });
 };
 
 /**
@@ -50,10 +93,12 @@ export default function HubSpotForm({
   formId = DEFAULT_FORM_ID,
   region = "na1",
   onSubmitted,
+  fieldValues,
 }: HubSpotFormProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const createdRef = useRef(false);
   const submittedRef = useRef(onSubmitted);
+  const valuesRef = useRef(fieldValues);
 
   // A unique target per instance, so two forms on one page cannot
   // collide on the same DOM id. useId emits colons, which are invalid
@@ -65,7 +110,8 @@ export default function HubSpotForm({
   // tear the form down and rebuild it.
   useEffect(() => {
     submittedRef.current = onSubmitted;
-  }, [onSubmitted]);
+    valuesRef.current = fieldValues;
+  }, [onSubmitted, fieldValues]);
 
   useEffect(() => {
     if (!active) return;
@@ -87,6 +133,11 @@ export default function HubSpotForm({
         portalId,
         formId,
         target: `#${targetId}`,
+        onFormReady: (form: unknown) => {
+          const values = valuesRef.current;
+          const element = values ? findForm(container, form) : null;
+          if (element && values) fillForm(element, values);
+        },
         onFormSubmitted: () => submittedRef.current?.(),
       });
     };

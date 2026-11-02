@@ -4,6 +4,9 @@ import HubSpotTestForm from "@/components/HubSpotForm";
 import {
   getPersistedAffiliateId,
   getPersistedGoogleClickParams,
+  getPersistedUtmParams,
+  GOOGLE_CLICK_TO_HS_FIELD,
+  UTM_TO_HS_FIELD,
 } from "./tracking";
 /** Same values as the live estimator script. */
 const TAX_RATE = 0.35;
@@ -254,6 +257,38 @@ export default function Estimator({
   const savingsText = result
     ? `${formatMoney(result.low * TAX_RATE)} to ${formatMoney(result.high * TAX_RATE)}`
     : "$0";
+  /**
+   * Prefills the contact form with the estimate and attribution, matching
+   * the fields the live estimator sends to HubSpot.
+   */
+  const hubSpotValues = (): Record<string, string> => {
+    if (!result) return {};
+    const [month, day, year] = date.trim().split("/");
+    const values: Record<string, string> = {
+      full_property_address: address.trim(),
+      building_basis: String(priceNumber),
+      date_of_purchase:
+        year && month && day
+          ? `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
+          : "",
+      property_type_dropdown: propertyType,
+      shortterm_or_vacation_rental: shortTerm ? "true" : "false",
+      cost_segregation_calculator_low_tax_deductions_year_1: String(Math.round(result.low)),
+      cost_segregation_calculator_high_tax_deductions_year_1: String(Math.round(result.high)),
+      year_1_tax_savings_low_end: String(Math.round(result.low * TAX_RATE)),
+      year_1_tax_savings_high_end: String(Math.round(result.high * TAX_RATE)),
+      affiliate_id: getPersistedAffiliateId(),
+    };
+    const utms = getPersistedUtmParams();
+    (Object.keys(UTM_TO_HS_FIELD) as (keyof typeof UTM_TO_HS_FIELD)[]).forEach((key) => {
+      if (utms[key]) values[UTM_TO_HS_FIELD[key]] = utms[key];
+    });
+    const clicks = getPersistedGoogleClickParams();
+    Object.entries(GOOGLE_CLICK_TO_HS_FIELD).forEach(([key, field]) => {
+      if (clicks[key]) values[field] = clicks[key];
+    });
+    return values;
+  };
   const sendEmail = async () => {
     const nextErrors = {
       fname: !emailForm.fname.trim(),
@@ -817,7 +852,10 @@ return (
               <p>{content.contactText}</p>
             </div>
           )}
-          <HubSpotTestForm active={contactOpen} />
+          <HubSpotTestForm
+            active={contactOpen}
+            fieldValues={contactOpen ? hubSpotValues() : undefined}
+          />
         </div>
       </div>
     </>

@@ -81,7 +81,7 @@
 /* Live sections: 14.4px paragraph margin + 20px gap + 8px heading margin. */
 .sectionTitle {
     margin: 42.4px 0 16px;
-    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+    font-size: clamp(1.88rem, 1.5rem + 0.94vw, 2.5rem);
     line-height: 1.2;
     font-weight: 500;
     color: var(--tut-navy);
