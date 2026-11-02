@@ -17,8 +17,10 @@ export type SavingsCounterProps = {
 
 /**
  * Counts up to `value` once the panel scrolls into view, as the live
- * Elementor counter does. Shows the final figure immediately when the
- * visitor prefers reduced motion.
+ * Elementor counter does. The final figure is rendered until then, so
+ * the server HTML, crawlers and anything that never scrolls the panel
+ * into view show the real amount rather than $0. Reduced motion skips
+ * the count entirely.
  */
 export default function SavingsCounter({
 	value,
@@ -29,7 +31,7 @@ export default function SavingsCounter({
 	duration = 4000,
 }: SavingsCounterProps) {
 	const ref = useRef<HTMLDivElement>(null);
-	const [display, setDisplay] = useState(0);
+	const [display, setDisplay] = useState(value);
 	const [started, setStarted] = useState(false);
 
 	useEffect(() => {
@@ -40,11 +42,7 @@ export default function SavingsCounter({
 			typeof window !== "undefined" &&
 			window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-		if (reduced) {
-			setDisplay(value);
-			setStarted(true);
-			return;
-		}
+		if (reduced) return;
 
 		const observer = new IntersectionObserver(
 			(entries) => {

@@ -1,3 +1,427 @@
+/* ================================================================
+   Roofstock referral page.
+
+   Scoped under .page and keyed to data-slice-type (and partial class
+   names for the header), which survive a rebuild. CampaignHero,
+   PartnerOffer and PartnerHeader are shared with S8 Acquisition, REI
+   Busy Season and Empowered Investor, so nothing here leaks to them.
+
+   Values are measured from the live costsegregation.com page
+   (Elementor: tablet ≤1024px, mobile ≤767px).
+   ================================================================ */
+
+.page {
+    --rs-navy: #284074;
+    --rs-blue: #277ce6;
+    --rs-band: #f6f9ff;
+    --rs-h2: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+    /* Live body size: 16px from ~725px, down to 12px on small phones */
+    --rs-body: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+}
+
+/* ---------------------------------------------------------------- */
+/* Co-branded header — white, 105px, both logos about 214px wide     */
+/* ---------------------------------------------------------------- */
+
+.page > header {
+    background: #fff;
+}
+
+.page > header > div {
+    padding: 0;
+}
+
+.page > header :global([class*="logos"]) {
+    gap: 20px;
+}
+
+.page > header :global([class*="logoLink"]) {
+    min-height: 0;
+}
+
+.page > header :global(img[class*="logo"]:not([class*="partnerLogo"])) {
+    width: 214px;
+    max-width: 214px;
+    height: auto;
+    max-height: 105px;
+}
+
+.page > header :global(img[class*="partnerLogo"]) {
+    height: 100px;
+}
+
+.page > header :global([class*="actions"]) {
+    gap: 20px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Sections — white, except the pale bands live uses                 */
+/* ---------------------------------------------------------------- */
+
+.slices :global([data-slice-type="feature_grid"]),
+.slices :global([data-slice-type="pricing"]),
+.slices :global([data-slice-type="success_stories"]) {
+    --wc-bg: #fff;
+    background-color: #fff;
+}
+
+.slices :global([data-slice-type="calculator"]) {
+    background-color: var(--rs-band);
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero (desktop) — 671px band, copy centred, button before badges,  */
+/* outlined counter panel over the artwork                           */
+/* ---------------------------------------------------------------- */
+
+@media (min-width: 1025px) {
+    .slices :global([data-slice-type="campaign_hero"]) {
+        padding: 0 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] > div) {
+        align-items: center;
+        gap: 60px;
+        min-height: 671px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] > div > div:first-child) {
+        flex: 0 0 633px;
+        gap: 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="eyebrow"]) {
+        gap: 20px;
+        min-height: 45px;
+        padding: 10px 20px 5px;
+        border-radius: 1000px;
+        background: #fff;
+        box-shadow: none;
+        color: var(--rs-navy);
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] span[class*="eyebrowIcon"] svg) {
+        width: 24px;
+        height: 24px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] h1) {
+        max-width: none;
+        color: var(--rs-navy);
+        font-family: Inter, sans-serif;
+        font-size: var(--rs-h2);
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="text"]) {
+        max-width: none;
+        margin: 0 0 14.4px;
+        color: var(--rs-navy);
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="text"] p) {
+        margin: 0;
+        color: var(--rs-navy);
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"]) {
+        order: 4;
+        max-width: none;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] > a) {
+        gap: 10px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        background: var(--rs-blue);
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 16px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] > a:hover),
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] > a:focus-visible) {
+        background: var(--rs-navy);
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="ctaRow"] svg) {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Each live badge is a 24px row with ~29px of space after its text */
+    .slices :global([data-slice-type="campaign_hero"] ul[class*="badges"]) {
+        order: 5;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        max-width: none;
+        margin: 0;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] li[class*="badge"]) {
+        align-items: center;
+        gap: 5px;
+        min-height: 24px;
+        padding-right: 29px;
+        color: var(--rs-navy);
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] span[class*="badgeIcon"]),
+    .slices :global([data-slice-type="campaign_hero"] span[class*="badgeIcon"] svg) {
+        width: 12px;
+        height: 12px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] div[class*="counterPanel"]) {
+        max-width: 412px;
+        padding: 20px;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="counterNumber"]) {
+        justify-content: center;
+        margin: 0;
+        color: var(--rs-navy);
+        font-family: Inter, sans-serif;
+        font-size: 59.984px;
+        line-height: 1;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] span[class*="counterSuffix"]) {
+        font-size: 1em;
+        line-height: 1;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="counterHeading"]) {
+        margin: 2px 0 0;
+        color: var(--rs-navy);
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+    }
+
+    .slices :global([data-slice-type="campaign_hero"] p[class*="counterFootnote"]) {
+        margin: 2px 0 0;
+        color: var(--rs-navy);
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Costsegregation.com + Roofstock — bordered card and orange offer, */
+/* 65 / 35, 20px apart, no band padding                              */
+/* ---------------------------------------------------------------- */
+
+.slices :global([data-slice-type="partner_offer"]) {
+    padding: 0 20px;
+    background: #fff;
+}
+
+.slices :global([data-slice-type="partner_offer"] > div) {
+    display: grid;
+    grid-template-columns: minmax(0, 65fr) minmax(0, 35fr);
+    gap: 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.slices :global([data-slice-type="partner_offer"] div[class*="card"]) {
+    padding: 40px;
+    border: 0.8px solid var(--rs-navy);
+    border-radius: 10px;
+}
+
+/* The card's 20px flex gap spaces the title from the text */
+.slices :global([data-slice-type="partner_offer"] h2[class*="title"]) {
+    margin: 0;
+    color: var(--rs-navy);
+    font-family: Inter, sans-serif;
+    font-size: var(--rs-h2);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.slices :global([data-slice-type="partner_offer"] div[class*="text"]) {
+    margin: 0;
+}
+
+/* A blank line between paragraphs, as live */
+.slices :global([data-slice-type="partner_offer"] div[class*="text"] p) {
+    margin: 0 0 1.5em;
+    color: #333;
+    font-size: var(--rs-body);
+    line-height: 1.5;
+}
+
+.slices :global([data-slice-type="partner_offer"] div[class*="text"] p:last-child) {
+    margin-bottom: 0;
+}
+
+/* Offer — content centred in the card */
+.slices :global([data-slice-type="partner_offer"] aside) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.slices :global([data-slice-type="partner_offer"] aside div[class*="offerEyebrow"]),
+.slices :global([data-slice-type="partner_offer"] aside div[class*="offerEyebrow"] p) {
+    margin: 0;
+    font-size: var(--rs-body);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Code and its Copy button share one row at every width */
+.slices :global([data-slice-type="partner_offer"] aside p[class*="codeRow"]) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+    min-height: 40px;
+    margin: 0;
+}
+
+/* The code is plain white heading text on live, not a chip */
+.slices :global([data-slice-type="partner_offer"] aside code) {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: var(--rs-h2);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+.slices :global([data-slice-type="partner_offer"] aside p[class*="offerNote"]) {
+    margin: 0;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 37.5px;
+}
+
+.slices :global([data-slice-type="partner_offer"] aside > a) {
+    gap: 10px;
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+}
+
+.slices :global([data-slice-type="partner_offer"] aside > a svg) {
+    width: 16px;
+    height: 16px;
+}
+
+/* Live shows no Roofstock logo in the offer card */
+.slices :global([data-slice-type="partner_offer"] aside img[class*="offerIcon"]) {
+    display: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Tablet (≤1024px) — logos only, scaling with the screen; offer     */
+/* split 60 / 40                                                     */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .page > header > div {
+        min-height: 100px;
+        padding: 0;
+    }
+
+    .page > header :global([class*="actions"]) {
+        display: none;
+    }
+
+    .page > header :global(img[class*="logo"]:not([class*="partnerLogo"])),
+    .page > header :global(img[class*="partnerLogo"]) {
+        width: calc(25vw - 25px);
+        max-width: none;
+        height: auto;
+        max-height: none;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] > div) {
+        grid-template-columns: minmax(0, 60fr) minmax(0, 40fr);
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Mobile (≤767px) — logos side by side, offer under the card        */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+    .page > header > div {
+        justify-content: center;
+        min-height: 99px;
+    }
+
+    /* Hero — 40px above the copy, about 120px under the counter */
+    .slices :global([data-slice-type="campaign_hero"]) {
+        padding: 40px 20px 119px;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] h2[class*="title"]) {
+        font-size: 25px;
+    }
+
+    /* Offer — top-aligned, 100px under the button, button not full width */
+    .slices :global([data-slice-type="partner_offer"] aside) {
+        justify-content: flex-start;
+        padding: 40px 40px 100px;
+    }
+
+    .slices :global([data-slice-type="partner_offer"] aside > a) {
+        width: auto;
+    }
+
+    .page > header :global([class*="logos"]) {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .page > header :global(img[class*="logo"]:not([class*="partnerLogo"])),
+    .page > header :global(img[class*="partnerLogo"]) {
+        width: min(181px, calc(50vw - 34px));
+    }
+
+    .slices :global([data-slice-type="partner_offer"] > div) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Live Roofstock has no loyalty banner above the pricing cards */
 .slices :global([data-slice-type="pricing"] [class*="loyalty"]) {
     display: none;
 }

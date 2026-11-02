@@ -88,7 +88,7 @@ export default async function Page() {
 			: null;
 
 	return (
-		<>
+		<div className={styles.page}>
 			{/* Co-branded header — no navigation menu, as on the live page.
 			    HeaderSlot suppresses the standard Navbar for this route. */}
 			<PartnerHeader
@@ -99,8 +99,8 @@ export default async function Page() {
 			/>
 
 			<div className={styles.slices}>
-						<SliceZone slices={page.data.slices} components={components} />
-						</div>
-		</>
+				<SliceZone slices={page.data.slices} components={components} />
+			</div>
+		</div>
 	);
 }

@@ -92,12 +92,27 @@ const PartnerOffer = ({ slice }: PartnerOfferProps) => {
 	}, [copied]);
 
 	const copy = async () => {
-		if (!primary.code || !navigator.clipboard) return;
+		if (!primary.code) return;
 		try {
 			await navigator.clipboard.writeText(primary.code);
 			setCopied(true);
 		} catch {
-			// Clipboard blocked — the code is still readable on screen.
+			// The async Clipboard API is missing or blocked (older browsers,
+			// in-app browsers, insecure origins): fall back to a hidden
+			// textarea and execCommand. If that fails too, the code is still
+			// readable on screen.
+			const field = document.createElement("textarea");
+			field.value = primary.code;
+			field.setAttribute("readonly", "");
+			field.style.position = "fixed";
+			field.style.opacity = "0";
+			document.body.appendChild(field);
+			field.select();
+			try {
+				if (document.execCommand("copy")) setCopied(true);
+			} finally {
+				field.remove();
+			}
 		}
 	};
 
