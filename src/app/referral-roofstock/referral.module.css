@@ -23,34 +23,34 @@
 /* Co-branded header — white, 105px, both logos about 214px wide     */
 /* ---------------------------------------------------------------- */
 
-.page > header {
+.page>header {
     background: #fff;
 }
 
-.page > header > div {
+.page>header>div {
     padding: 0;
 }
 
-.page > header :global([class*="logos"]) {
+.page>header :global([class*="logos"]) {
     gap: 20px;
 }
 
-.page > header :global([class*="logoLink"]) {
+.page>header :global([class*="logoLink"]) {
     min-height: 0;
 }
 
-.page > header :global(img[class*="logo"]:not([class*="partnerLogo"])) {
+.page>header :global(img[class*="logo"]:not([class*="partnerLogo"])) {
     width: 214px;
     max-width: 214px;
     height: auto;
     max-height: 105px;
 }
 
-.page > header :global(img[class*="partnerLogo"]) {
+.page>header :global(img[class*="partnerLogo"]) {
     height: 100px;
 }
 
-.page > header :global([class*="actions"]) {
+.page>header :global([class*="actions"]) {
     gap: 20px;
 }
 
@@ -339,9 +339,9 @@
 }
 
 /* Live shows no Roofstock logo in the offer card */
-.slices :global([data-slice-type="partner_offer"] aside img[class*="offerIcon"]) {
+/* .slices :global([data-slice-type="partner_offer"] aside img[class*="offerIcon"]) {
     display: none;
-}
+} */
 
 /* ---------------------------------------------------------------- */
 /* Tablet (≤1024px) — logos only, scaling with the screen; offer     */
@@ -349,17 +349,17 @@
 /* ---------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
-    .page > header > div {
+    .page>header>div {
         min-height: 100px;
         padding: 0;
     }
 
-    .page > header :global([class*="actions"]) {
+    .page>header :global([class*="actions"]) {
         display: none;
     }
 
-    .page > header :global(img[class*="logo"]:not([class*="partnerLogo"])),
-    .page > header :global(img[class*="partnerLogo"]) {
+    .page>header :global(img[class*="logo"]:not([class*="partnerLogo"])),
+    .page>header :global(img[class*="partnerLogo"]) {
         width: calc(25vw - 25px);
         max-width: none;
         height: auto;
@@ -376,7 +376,7 @@
 /* ---------------------------------------------------------------- */
 
 @media (max-width: 767px) {
-    .page > header > div {
+    .page>header>div {
         justify-content: center;
         min-height: 99px;
     }
@@ -400,13 +400,13 @@
         width: auto;
     }
 
-    .page > header :global([class*="logos"]) {
+    .page>header :global([class*="logos"]) {
         flex-wrap: nowrap;
         justify-content: center;
     }
 
-    .page > header :global(img[class*="logo"]:not([class*="partnerLogo"])),
-    .page > header :global(img[class*="partnerLogo"]) {
+    .page>header :global(img[class*="logo"]:not([class*="partnerLogo"])),
+    .page>header :global(img[class*="partnerLogo"]) {
         width: min(181px, calc(50vw - 34px));
     }
 
@@ -600,16 +600,16 @@
 
 /* Mobile — the card fills the band, results under the form */
 @media (max-width: 767px) {
-.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
-    width: 100% !important;
-}
+    .page .slices :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+        width: 100% !important;
+    }
 
-.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 0 !important;
-}
+    .page .slices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 0 !important;
+    }
 
-.page .slices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
-    padding: 20px 14px 103px !important;
-}
+    .page .slices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+        padding: 20px 14px 103px !important;
+    }
 }
