@@ -98,6 +98,8 @@ export default async function Page() {
 								field={image}
 								className={styles.illustration}
 								sizes="(max-width: 1024px) 0px, 562px"
+								// imgix compression blurs the illustration's edges.
+								imgixParams={{ auto: ["format"] }}
 								priority
 								fallbackAlt=""
 							/>
