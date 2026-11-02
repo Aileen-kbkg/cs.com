@@ -8,7 +8,7 @@
     --tut-navy: #284074;
     --tut-blue: #277ce6;
     --tut-text: #333333;
-    --tut-band: #f2f7fd;
+    --tut-band: #f6f9ff;
 
     box-sizing: border-box;
     width: 100%;
@@ -17,7 +17,6 @@
     color: var(--tut-text);
     background: #ffffff;
     overflow-x: hidden;
-
 }
 
 .page *,
@@ -32,7 +31,7 @@
 
 .hero {
     width: 100%;
-    padding: 3.75rem 1.25rem;
+    padding: 70px 20px 60px;
     background: var(--tut-band);
 }
 
@@ -42,16 +41,12 @@
 }
 
 .title {
-    margin: 10px 0 60px 0;
-    font-size: clamp(1.75rem, 1.65rem + 0.94vw, 2.50rem);
+    margin: 0 0 60px;
+    font-size: 40px;
     line-height: 1;
     font-weight: 500;
     color: var(--tut-navy);
     text-align: center;
-    text-wrap: balance;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .videoWrap {
@@ -65,7 +60,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     background: #000000;
 }
 
@@ -75,52 +70,45 @@
 
 .content {
     max-width: 1280px;
-    margin: 0 auto 84px;
-    /* padding: 0 20px; */
+    margin: 0 auto;
+    padding-bottom: 70px;
 }
 
 .content> :first-child {
     margin-top: 8px;
 }
 
+/* Live sections: 14.4px paragraph margin + 20px gap + 8px heading margin. */
 .sectionTitle {
-    margin: 42px 0 16px 0;
-    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
-    line-height: 1.25;
+    margin: 42.4px 0 16px;
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
+    line-height: 1.2;
     font-weight: 500;
     color: var(--tut-navy);
-    text-wrap: balance;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.sectionTitle> :first-child {
-    margin-top: 8px;
+.list+.sectionTitle {
+    margin-top: 28px;
 }
 
 .content p {
-    margin: 0 0 0.875rem;
-    font-size: clamp(13.752px, 1.5vw, 16px);
-    line-height: 24px;
+    margin: 0 0 14.4px;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+    line-height: 1.5;
     color: var(--tut-text);
     overflow-wrap: break-word;
 }
 
-.content p:last-child {
-    margin-bottom: 0;
-}
-
 .list {
-    margin: 0rem;
-    padding-left: 2.5rem;
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
-    line-height: 24px;
+    margin: 0;
+    padding-left: 40px;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+    line-height: 1.5;
     color: var(--tut-text);
 }
 
 .list li {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .content strong {
@@ -129,12 +117,6 @@
 
 .cta {
     color: var(--tut-blue);
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.cta:hover,
-.cta:focus-visible {
     text-decoration: none;
 }
 
@@ -144,20 +126,9 @@
     border-radius: 2px;
 }
 
-@media (max-width: 767px) {
-    .hero {
-        padding-top: 1.5rem;
-    }
-
-    .title {}
-
-    .sectionTitle {
-        margin-top: 2rem;
-    }
-}
-
-@media (max-width: 1289px) {
+/* Below this the live text runs to the screen edge; keep a 20px gutter. */
+@media (max-width: 1320px) {
     .content {
-        padding: 0 20px;
+        padding: 0 20px 70px;
     }
 }

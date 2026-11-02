@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ImageField, LinkField, RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
-import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
+import SliceZone, { splitAnnouncementBar } from "@/components/SliceZone";
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 
 import styles from "./Tutorial.module.css";
 
@@ -25,6 +27,7 @@ type TutorialDocument = {
 		video: LinkField;
 		poster: ImageField;
 		body: RichTextField;
+		slices: never[];
 		meta_title: string | null;
 		meta_description: string | null;
 		meta_image: ImageField;
@@ -75,11 +78,14 @@ export default async function Page() {
 		notFound();
 	}
 
-	const { heading, video, poster, body } = page.data;
+	const { heading, video, poster, body, slices } = page.data;
 	const videoSrc = mediaUrl(video) ?? FALLBACK_VIDEO;
+	const { announcementBar, rest } = splitAnnouncementBar(slices);
 
 	return (
 		<main className={styles.page}>
+			<SliceZone slices={announcementBar} components={components} />
+
 			<section className={styles.hero}>
 				<div className={styles.heroInner}>
 					{heading ? <h1 className={styles.title}>{heading}</h1> : null}
@@ -117,14 +123,20 @@ export default async function Page() {
 								</ul>
 							),
 							hyperlink: ({ children, node, key }) => (
-  <PrismicNextLink key={key} field={node.data} className={styles.cta}>
-    {children}
-  </PrismicNextLink>
-),
+								<PrismicNextLink
+									key={key}
+									field={node.data}
+									className={styles.cta}
+								>
+									{children}
+								</PrismicNextLink>
+							),
 						}}
 					/>
 				</div>
 			) : null}
+
+			<SliceZone slices={rest} components={components} />
 		</main>
 	);
 }
