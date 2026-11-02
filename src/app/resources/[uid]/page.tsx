@@ -12,15 +12,10 @@ import {
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { createClient } from "@/prismicio";
+import { postPath } from "@/lib/postUrl";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 import styles from "./Article.module.css";
-
-/**
- * Absolute base used in the "Email this insight" link. Set
- * NEXT_PUBLIC_SITE_URL in Vercel once a custom domain is attached.
- */
-const siteUrl =
-	process.env.NEXT_PUBLIC_SITE_URL ?? "https://cost-segregation.vercel.app";
 
 /**
  * Fields that exist on the `blog_post` custom type in Prismic but are missing
@@ -91,12 +86,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: `/resources/${post.uid}` },
+		alternates: { canonical: postPath(post.uid) },
 		openGraph: {
 			type: "article",
 			title,
 			description,
+			url: postPath(post.uid),
 			publishedTime: data.date ?? undefined,
+			modifiedTime: post.last_publication_date,
 			images: image ? [{ url: image }] : undefined,
 		},
 	};
@@ -120,7 +117,7 @@ export default async function Page({ params }: Props) {
 		answer: RichTextField;
 	}> = data.faqs ?? [];
 	const headline = asText(data.title);
-	const canonical = `${siteUrl}/resources/${post.uid}`;
+	const canonical = `${SITE_URL}${postPath(post.uid)}`;
 	const hasAuthor = Boolean(data.author_name) || isFilled.image(data.author_image);
 
 	const mailto = `mailto:?subject=${encodeURIComponent(
@@ -138,8 +135,32 @@ export default async function Page({ params }: Props) {
 		.filter((item) => item.uid !== post.uid)
 		.slice(0, 3);
 
+	const image = data.meta_image?.url || data.featured_image?.url;
+	const structuredData = {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline,
+		description: data.meta_description || data.excerpt || undefined,
+		image: image ? [image] : undefined,
+		datePublished: data.date ?? post.first_publication_date,
+		dateModified: post.last_publication_date,
+		mainEntityOfPage: canonical,
+		url: canonical,
+		author: data.author_name
+			? { "@type": "Person", name: data.author_name }
+			: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+		publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+	};
+
 	return (
 		<main className={styles.page}>
+			<script
+				type="application/ld+json"
+				// JSON.stringify output; "<" is escaped so content cannot close the tag.
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+				}}
+			/>
 			<section className={styles.hero}>
 				<div className={styles.heroInner}>
 					<h1 className={styles.title}>
@@ -154,7 +175,7 @@ export default async function Page({ params }: Props) {
 					<nav className={styles.breadcrumb} aria-label="Breadcrumb">
 						<Link href="/">Home</Link>
 						<span className={styles.breadcrumbSep}>-</span>
-						<Link href="/resources">Resources</Link>
+						<Link href="/resources/">Resources</Link>
 						<span className={styles.breadcrumbSep}>-</span>
 						<span>{headline}</span>
 					</nav>
@@ -246,7 +267,7 @@ export default async function Page({ params }: Props) {
 							<li key={item.id} className={styles.relatedCard}>
 								{item.data.featured_image?.url ? (
 									<Link
-										href={`/resources/${item.uid}`}
+										href={postPath(item.uid as string)}
 										className={styles.relatedImageLink}
 										tabIndex={-1}
 										aria-hidden="true"
@@ -262,7 +283,7 @@ export default async function Page({ params }: Props) {
 
 								<div className={styles.relatedBody}>
 									<h3 className={styles.relatedCardTitle}>
-										<Link href={`/resources/${item.uid}`}>
+										<Link href={postPath(item.uid as string)}>
 											<PrismicText field={item.data.title} />
 										</Link>
 									</h3>
@@ -272,7 +293,7 @@ export default async function Page({ params }: Props) {
 									) : null}
 
 									<Link
-										href={`/resources/${item.uid}`}
+										href={postPath(item.uid as string)}
 										className={styles.relatedMore}
 									>
 										Learn more
@@ -282,7 +303,7 @@ export default async function Page({ params }: Props) {
 						))}
 					</ul>
 
-					<Link href="/resources/blog" className={styles.viewAll}>
+					<Link href="/resources/blog/" className={styles.viewAll}>
 						View All Articles
 					</Link>
 				</section>

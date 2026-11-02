@@ -11,7 +11,7 @@ const HUBSPOT_REGION = "na1";
 export const metadata: Metadata = {
 	title: "Stay connected - Cost Segregation",
 	description: "Sign Up for SMS Notifications",
-	alternates: { canonical: "/stay-connected" },
+	alternates: { canonical: "/stay-connected/" },
 	// The live page is noindex, nofollow.
 	robots: { index: false, follow: false },
 	openGraph: {

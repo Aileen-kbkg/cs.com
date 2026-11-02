@@ -60,9 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/trends-ebook" },
-		// Matches the live page, which is a gated landing page.
-		robots: { index: false, follow: false },
+		alternates: { canonical: "/trends-ebook/" },
 		openGraph: {
 			type: "article",
 			title,

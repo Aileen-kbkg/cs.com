@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/for-tax-advisors" },
+		alternates: { canonical: "/for-tax-advisors/" },
 		openGraph: {
 			type: "article",
 			title,

@@ -15,6 +15,7 @@ import { createClient } from "@/prismicio";
 
 import styles from "./Footer.module.css";
 import { SOCIAL_ICONS } from "./socialIcons";
+import { postPath } from "@/lib/postUrl";
 
 type LabelLink = { label: KeyTextField; link: LinkField };
 
@@ -217,7 +218,7 @@ export default async function Footer() {
               )}
               <ul className={styles.posts}>
                 {posts.map((post) => {
-                  const href = post.url ?? `/resources/${post.uid}/`;
+                  const href = postPath(post.uid as string);
                   const title = asText(post.data.title);
                   return (
                     <li key={post.id}>

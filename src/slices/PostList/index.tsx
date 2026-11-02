@@ -3,6 +3,7 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextLink } from "@prismicio/next";
 import { createClient } from "@/prismicio";
 import { withCustomClass } from "@/lib/customClass";
+import { postPath } from "@/lib/postUrl";
 
 export type PostListProps = SliceComponentProps<Content.PostListSlice>;
 
@@ -31,7 +32,7 @@ const PostList = async ({ slice }: PostListProps) => {
           {posts.map((post) => (
             <li key={post.id} className="rounded-lg border border-slate-200 p-5">
               <a
-                href={`/resources/${post.uid}/`}
+                href={postPath(post.uid as string)}
                 className="font-semibold text-slate-900 hover:text-blue-700"
               >
                 {asText(post.data.title)}

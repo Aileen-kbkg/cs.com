@@ -10,6 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page?.data.meta_title ?? "Best Cost Segregation Software - Cost Segregation",
     description: page?.data.meta_description ?? "Maximize Your Tax Savings",
+    alternates: { canonical: "/" },
   };
 }
 

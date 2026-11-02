@@ -31,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page.data.meta_title || "For CPAs | CostSegregation.com",
     description: page.data.meta_description || undefined,
+    alternates: { canonical: "/for-cpas/" },
   };
 }
 

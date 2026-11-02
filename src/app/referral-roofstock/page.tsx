@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/referral-roofstock" },
+		alternates: { canonical: "/referral-roofstock/" },
 		// Partner referral page — not for search.
 		robots: { index: false, follow: true },
 		openGraph: {

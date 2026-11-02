@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/empowered-investor" },
+		alternates: { canonical: "/empowered-investor/" },
 		// Partner landing page — not for search.
 		robots: { index: false, follow: true },
 		openGraph: {

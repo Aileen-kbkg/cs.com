@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/s8-acquisition" },
+		alternates: { canonical: "/s8-acquisition/" },
 		// Partner page — follow, noindex, matching the live reference.
 		robots: { index: false, follow: true },
 		openGraph: {

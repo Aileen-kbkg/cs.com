@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicText } from "@prismicio/react";
 import { createClient } from "@/prismicio";
+import { postPath } from "@/lib/postUrl";
 import styles from "./Blog.module.css";
 export const dynamic = "force-dynamic";
 
@@ -11,14 +12,14 @@ const POSTS_PER_PAGE = 6;
 export const metadata: Metadata = {
 	title: "Blog - Cost Segregation",
 	description:
-		"Written by the experts at CostSegregation.com, this page contains cost segregation insights, guides, and much more!",
+		"Read our cost segregation blog for expert insights, tax strategies, and tips on maximizing real estate depreciation benefits.",
 	alternates: {
 		canonical: "/resources/blog/",
 	},
 	openGraph: {
 		title: "Blog - Cost Segregation",
 		description:
-			"Written by the experts at CostSegregation.com, this page contains cost segregation insights, guides, and much more!",
+			"Read our cost segregation blog for expert insights, tax strategies, and tips on maximizing real estate depreciation benefits.",
 		type: "article",
 	},
 };
@@ -63,7 +64,7 @@ export default async function Page({ searchParams }: Props) {
 						<li key={post.id} className={styles.card}>
 							{post.data.featured_image?.url ? (
 								<Link
-									href={`/resources/${post.uid}`}
+									href={postPath(post.uid as string)}
 									className={styles.imageLink}
 									tabIndex={-1}
 									aria-hidden="true"
@@ -79,7 +80,7 @@ export default async function Page({ searchParams }: Props) {
 
 							<div className={styles.body}>
 								<h3 className={styles.cardTitle}>
-									<Link href={`/resources/${post.uid}`}>
+									<Link href={postPath(post.uid as string)}>
 										<PrismicText field={post.data.title} />
 									</Link>
 								</h3>
@@ -88,7 +89,7 @@ export default async function Page({ searchParams }: Props) {
 									<p className={styles.excerpt}>{post.data.excerpt}</p>
 								) : null}
 
-								<Link href={`/resources/${post.uid}`} className={styles.more}>
+								<Link href={postPath(post.uid as string)} className={styles.more}>
 									Learn more
 								</Link>
 							</div>
@@ -115,7 +116,7 @@ export default async function Page({ searchParams }: Props) {
 									key={pageNumber}
 									href={
 										pageNumber === 1
-											? "/resources/blog"
+											? "/resources/blog/"
 											: `/resources/blog?page=${pageNumber}`
 									}
 									className={styles.pageLink}

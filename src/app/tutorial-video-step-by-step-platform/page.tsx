@@ -62,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/tutorial-video-step-by-step-platform" },
+		alternates: { canonical: "/tutorial-video-step-by-step-platform/" },
 		openGraph: {
 			type: "article",
 			title,

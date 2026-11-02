@@ -52,9 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/affiliate-program" },
-		// Matches the live page, which is noindex, nofollow.
-		robots: { index: false, follow: false },
+		alternates: { canonical: "/affiliate-program/" },
 		openGraph: {
 			type: "article",
 			title,

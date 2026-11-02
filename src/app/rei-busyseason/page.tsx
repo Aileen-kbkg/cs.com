@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title,
 		description,
-		alternates: { canonical: "/rei-busyseason" },
+		alternates: { canonical: "/rei-busyseason/" },
 		// Matches the live page: follow, noindex — it is a campaign landing page.
 		robots: { index: false, follow: true },
 		openGraph: {
