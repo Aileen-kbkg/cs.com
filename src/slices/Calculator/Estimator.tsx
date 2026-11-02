@@ -160,7 +160,12 @@ export default function Estimator({
   const [address, setAddress] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
-  const [propertyType, setPropertyType] = useState("");
+  // The live classic estimator starts on "Single Family Home".
+  const [propertyType, setPropertyType] = useState(() =>
+    classic && (content.propertyTypes ?? []).includes("Single Family Home")
+      ? "Single Family Home"
+      : "",
+  );
   const [shortTerm, setShortTerm] = useState(false);
   const [strVisible, setStrVisible] = useState(true);
   const [errors, setErrors] = useState({ address: false, price: false, date: false, type: false });

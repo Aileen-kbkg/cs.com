@@ -413,16 +413,16 @@
     }
 }
 
-/* Vertical timeline (≤880px): live's step copy ends in an empty line,
-   so every step but the last is 130px tall; copy 100px from the left */
+/* Vertical timeline (≤880px): copy 100px from the left of the icon */
 @media (max-width: 880px) {
     .page :global([data-slice-type="steps"] [class*="__spacer"]) {
         width: 10px;
     }
 
+    /* 10px more below: live's empty step description keeps its margin */
     .page :global([data-slice-type="steps"] [class*="__content"]) {
         justify-content: flex-start;
-        padding: 10px;
+        padding: 10px 10px 20px;
     }
 
     /* Icons at the top of each step; the connector fills the space below */
@@ -439,7 +439,9 @@
         min-height: 0;
     }
 
-    .page :global([data-slice-type="steps"] li:not(:last-child) [class*="__content"]) {
+    /* Steps 1 and 3 end in an empty line on live, so they stay 130px */
+    .page :global([data-slice-type="steps"] li:nth-child(1) [class*="__content"]),
+    .page :global([data-slice-type="steps"] li:nth-child(3) [class*="__content"]) {
         min-height: 130px;
     }
 

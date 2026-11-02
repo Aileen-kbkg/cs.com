@@ -52,6 +52,8 @@ const LIVE_DEFAULTS = {
   savingsNote:
     "Potential cash savings in your first year. State income tax benefits may be higher.",
   helperText: "Enter your property details and click Estimate Savings.",
+  /** The classic variation's panel text on live (it has no helper field). */
+  classicHelperText: "Enter your property information to estimate your tax savings.",
   emailButtonLabel: "Email My Estimate",
   emailFormTitle: "Email Your Results",
   emailFormSubtitle:
@@ -118,7 +120,8 @@ const Calculator = ({ slice }: CalculatorProps) => {
     deductionsDescription: p.deductions_description || d.deductionsDescription,
     savingsLabel: p.savings_label || d.savingsLabel,
     savingsNote: p.savings_note || d.savingsNote,
-    helperText: p.helper_text || d.helperText,
+    helperText:
+      p.helper_text || (variant === "classic" ? d.classicHelperText : d.helperText),
     disclaimer: asText(p.disclaimer),
     emailButtonLabel: p.email_button_label || d.emailButtonLabel,
     emailFormTitle: p.email_form_title || d.emailFormTitle,

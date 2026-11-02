@@ -93,13 +93,16 @@ export default async function Page() {
 
 	return (
 		<>
-			<PartnerHeader
-				logo={settings?.data.logo as ImageField}
-				partnerLogos={partner_logos ?? []}
-				signIn={signIn}
-				getStarted={getStarted}
-				partnerLogoClassName={styles.partnerLogo}
-			/>
+			{/* Wrapped so this page's CSS can size the three logos as live does
+			    without touching the shared header on S8 / Roofstock. */}
+			<div className={styles.partnerHeader}>
+				<PartnerHeader
+					logo={settings?.data.logo as ImageField}
+					partnerLogos={partner_logos ?? []}
+					signIn={signIn}
+					getStarted={getStarted}
+				/>
+			</div>
 
 			<main className={styles.page}>
 				<section className={styles.hero}>

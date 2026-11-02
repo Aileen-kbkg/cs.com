@@ -28,98 +28,88 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Hero                                                             */
+/* Hero — live container 98be291: a #f6f9ff band holding a 1280px,  */
+/* two-column grid 20px apart. Left: the illustration with the      */
+/* heading and strapline under it; right: the headline and the      */
+/* HubSpot form. ≤1024px the left column empties; ≤767px one column. */
 /* ---------------------------------------------------------------- */
 
 .hero {
     width: 100%;
-    padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4vw, 1.5rem);
-    background: var(--te-band);
+    background: #f6f9ff;
 }
 
 .heroInner {
-    display: flex;
-    align-items: center;
-    gap: 67px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
     max-width: 1280px;
     margin: 0 auto;
 }
 
+/* The illustration fills the column 21px in, 89px down; the heading
+   sits 340px below that (live spaces it with empty paragraphs). */
 .heroAside {
-
-    width: 50%;
-}
-
-.heroAside h2 {
-    font-size: clamp(1.64rem, 1.45rem + 0.82vw, 2.19rem);
-    margin: 0;
+    position: relative;
+    align-self: start;
+    margin: 89px 7.46% 0 3.33%;
+    padding-top: 340px;
 }
 
 .heroAside img {
+    position: absolute;
+    top: 4px;
+    left: -8px;
     width: 100%;
     height: auto;
-    margin-bottom: 73px;
 }
 
-.heroAside p {
-    margin-top: 8px;
-}
-
-.heroMain {
-
-    width: 50%;
-}
-
-.illustration {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin-bottom: 1.5rem;
-}
-
-.eyebrow {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
-    font-weight: 700;
-    color: var(--te-navy);
-}
-
-.subtitle {
+.heroAside h2 {
+    position: relative;
     margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--te-text);
-    max-width: 30rem;
+    color: #284074;
+    font-family: Inter, sans-serif;
+    font-size: clamp(1.64rem, 1.45rem + 0.82vw, 2.19rem);
+    font-weight: 700;
+    line-height: 1.2;
 }
 
-.heroRight {
-    flex: 1 1 55%;
+/* Live's strapline overhangs its container; the band ends 2px under it */
+.heroAside p {
+    position: relative;
+    margin: 4px 0 2px;
+    color: #333333;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Headline 40px from the top, the form 20px under it */
+.heroMain {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     min-width: 0;
+    padding-top: 40px;
 }
 
 .title {
-    margin: 0 0 1.75rem;
-    /* font-size: clamp(1.5rem, 3.2vw, 2rem); */
-    line-height: 1.2;
+    margin: 8px 0 16px;
+    color: #284074;
+    font-size: 40px;
     font-weight: 500;
-    color: var(--te-navy);
-    text-wrap: balance;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    line-height: 48px;
 }
 
 .title strong {
-    font-weight: 800;
+    font-weight: 700;
 }
 
 /* ---------------------------------------------------------------- */
-/* HubSpot form                                                     */
+/* HubSpot form — fields sit directly on the band                   */
 /* ---------------------------------------------------------------- */
 
-/* Fields sit directly on the band — no white card on the live page. */
 .formPanel {
     width: 100%;
-    margin-left: -40px;
 }
 
 .formPanel :global(.hs-form-frame) {
@@ -131,29 +121,30 @@
     border: 0;
 }
 
-.hsfc-Step .hsfc-Step__Content {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 !important;
+/* Tablet: the left column stays as an empty grid cell */
+@media (max-width: 1024px) {
+    .heroAside {
+        margin: 0;
+        padding: 0;
+    }
+
+    .heroAside > * {
+        display: none;
+    }
 }
 
-/* ---------------------------------------------------------------- */
-/* Responsive — left column drops out below desktop                 */
-/* ---------------------------------------------------------------- */
+/* Phones: one column, the headline centred, 60px from the top */
+@media (max-width: 767px) {
+    .heroInner {
+        grid-template-columns: minmax(0, 1fr);
+    }
 
-@media (max-width: 1023px) {
-    .heroLeft {
+    .heroAside {
         display: none;
     }
 
-    .heroInner {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .heroRight {
-        flex: 1 1 auto;
-        width: 100%;
+    .heroMain {
+        padding-top: 60px;
     }
 
     .title {
@@ -161,28 +152,14 @@
     }
 }
 
-@media (max-width: 767px) {
-    .title br {
-        display: none;
-    }
-
-    .heroAside,
-    .heroMain {
-        width: 100%;
-    }
-
-    .formPanel {
-        width: 100%;
-        margin-left: 0px;
-    }
-}
-
 /* ---------------------------------------------------------------- */
-/* Card section — "Quick and Easy Cost Segregation Results"         */
+/* Cards — "Quick and Easy Cost Segregation Results": three white   */
+/* cards per row, 40px apart, 60px above the heading, 100px below   */
+/* the grid (60px ≤1024px), one column ≤767px                       */
 /* ---------------------------------------------------------------- */
 
 .cards {
-    padding: 3.75rem 1.25rem;
+    padding: 60px 100px 100px;
     background: #ffffff;
 }
 
@@ -192,19 +169,19 @@
 }
 
 .cardsTitle {
-    margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
-    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.50rem);
-    line-height: 1.25;
+    margin: 0 0 20px;
+    color: #284074;
+    font-family: Inter, sans-serif;
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem);
     font-weight: 700;
-    color: var(--te-navy);
+    line-height: 1;
     text-align: center;
-    text-wrap: balance;
 }
 
 .cardGrid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1rem, 2vw, 2.5rem);
+    gap: 40px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -213,71 +190,280 @@
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    --background-transition: 0.3s;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 20px;
     align-items: center;
-
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
+/* 101px icon in the icon widget's 115px line box */
 .cardIconWrap {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100%;
-    margin-bottom: 1.125rem;
-    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    height: 115px;
 }
 
 .cardIcon {
     display: block;
     width: auto;
     max-width: 100%;
-    max-height: 100%;
-    height: 109px;
+    height: 101px;
 }
 
 .cardTitle {
-    margin: 0 0 0.75rem;
-    font-size: 0.9375rem;
-    line-height: 1.4;
+    margin: 0;
+    color: #333333;
+    font-size: clamp(0.94rem, 0.83rem + 0.47vw, 1.25rem);
     font-weight: 700;
-    color: var(--te-navy);
-    text-wrap: balance;
-}
-
-.cardText {
-    font-size: 0.8125rem;
-    line-height: 1.65;
-    color: var(--te-text);
-}
-
-.cardText p {
-    margin: 0 0 0.625rem;
-    overflow-wrap: break-word;
+    line-height: 1;
     text-align: center;
 }
 
-.cardText p:last-child {
-    margin-bottom: 0;
+.cardText {
+    width: 100%;
+    color: #333333;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+    line-height: 1.5;
+    text-align: center;
 }
 
-@media (max-width: 1023px) {
-    .cardGrid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+.cardText p {
+    margin: 0 0 14.4px;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        padding: 60px 20px;
     }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 767px) {
     .cardGrid {
         grid-template-columns: minmax(0, 1fr);
     }
+}
 
-    .card {
-        max-width: 420px;
-        width: 100%;
-        margin: 0 auto;
-    }
+/* ---------------------------------------------------------------- */
+/* Estimate Your First Year Deductions (classic calculator) — live's */
+/* white band with a 1177px card: a 400px form centred in the left   */
+/* half, the neighbourhood and results in the right half. Same       */
+/* geometry as the Roofstock page, measured on the live Trends page. */
+/* The Calculator slice marks nearly every property !important, so   */
+/* these overrides do too; they stay scoped to this page.            */
+/* ---------------------------------------------------------------- */
+
+.page :global([data-slice-type="calculator"]) {
+    background-color: #ffffff !important;
+}
+
+.page :global([data-slice-type="calculator"]) {
+    padding: 60px 20px !important;
+}
+
+.page :global([data-slice-type="calculator"] h2.kbkg-estimator-title) {
+    margin: 0 0 20px !important;
+    color: #284074 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1.88rem, 1.65rem + 0.94vw, 2.5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: normal !important;
+}
+
+/* Live has no 1280px cap here: the card is 85% of the full band */
+.page :global([data-slice-type="calculator"] > div) {
+    max-width: none !important;
+}
+
+/* 85% of the band's content width, as live (1177px at 1440) */
+.page :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+    width: 85% !important;
+    max-width: none !important;
+    padding: 0 0 15px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-estimator-form) {
+    padding: 15px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-estimator-form > *) {
+    max-width: 400px !important;
+    margin-inline: auto !important;
+}
+
+/* Fields: 32px label, 41px box, 98px from one label to the next */
+.page :global([data-slice-type="calculator"] .kbkg-field-group) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 9px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Labels and fields are set in Inter on live */
+.page :global([data-slice-type="calculator"] .kbkg-field-label) {
+    margin: 0 !important;
+    font-family: Inter, sans-serif !important;
+    padding: 4px !important;
+    color: #284074 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-toggle-label) {
+    padding: 4px !important;
+    font-family: Inter, sans-serif !important;
+    color: #284074 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-field-input) {
+    height: 41px !important;
+    font-family: Inter, sans-serif !important;
+    padding: 12px 20px !important;
+    border: 1px solid #d1cfcf !important;
+    border-radius: 6px !important;
+    font-size: 13.333px !important;
+    line-height: 15px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-field-select) {
+    height: 41px !important;
+    font-family: Inter, sans-serif !important;
+    padding: 0 20px !important;
+    border: 1px solid #d1cfcf !important;
+    border-radius: 6px !important;
+    font-size: 13.333px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-input-with-prefix .kbkg-field-input) {
+    padding-left: 28px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-field-group > input) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-field-group > select) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-input-with-prefix) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-date-wrapper) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    margin-inline: 4px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-toggle-row) {
+    gap: 11px !important;
+    margin-bottom: 20px !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-toggle-control) {
+    margin-inline: 4px !important;
+}
+
+/* 388px, centred, with the live form's 16px below it */
+.page :global([data-slice-type="calculator"] button.kbkg-submit-btn) {
+    width: calc(100% - 12px) !important;
+    max-width: 388px !important;
+    height: 46px !important;
+    margin: 0 auto 16px !important;
+    padding: 0 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+
+/* Results — plain white, content at the bottom, no illustration */
+.page :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+    justify-content: flex-end !important;
+    gap: 0 !important;
+    padding: 40px !important;
+    border-left: 0 !important;
+    background: #fff !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+    position: relative !important;
+}
+
+/* Live draws the neighbourhood as the right half's background,
+   centred 30px from the top and scaled to fit */
+.page :global([data-slice-type="calculator"] .kbkg-classic-illustration) {
+    position: absolute !important;
+    top: 30px !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    /* ends above the results title, as live's wider artwork does */
+    height: calc(100% - 200px) !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    object-position: 50% 0 !important;
+    pointer-events: none;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-classic-results-title),
+.page :global([data-slice-type="calculator"] .kbkg-classic-panel) {
+    position: relative !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-classic-results-title) {
+    margin: 0 0 20px !important;
+    color: #333 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: clamp(1.17rem, 1.03rem + 0.59vw, 1.56rem) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-classic-panel) {
+    width: 100% !important;
+    min-height: 74px !important;
+    border: 1px solid #e6e6e6 !important;
+    border-radius: 10px !important;
+    background: #f0f6fd !important;
+}
+
+/* Mobile — the card fills the band, results under the form */
+@media (max-width: 767px) {
+.page :global([data-slice-type="calculator"] .kbkg-estimator-wrapper) {
+    width: 100% !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+}
+
+.page :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+    padding: 20px 14px 103px !important;
+}
 }

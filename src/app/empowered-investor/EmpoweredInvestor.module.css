@@ -25,49 +25,156 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Hero                                                             */
+/* Partner header — live's co-brand header: #f4f7fb, at least 10vh  */
+/* and 93px tall; the logos share 44% of the row (174px each at 1440,*/
+/* 20px apart), the buttons sit at the right. ≤1024px the logos      */
+/* take half the row; ≤767px they fill it and the buttons drop below. */
 /* ---------------------------------------------------------------- */
 
+.partnerHeader header {
+    padding: 0 20px;
+}
+
+.partnerHeader header > div {
+    min-height: max(10vh, 93px);
+    padding: 0;
+    gap: 0;
+}
+
+.partnerHeader header > div > div:first-child {
+    flex: 0 0 44%;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.partnerHeader header > div > div:first-child > * {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+}
+
+.partnerHeader header img {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+}
+
+.partnerHeader header > div > div:last-child {
+    flex: 0 0 50%;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .partnerHeader header > div > div:first-child {
+        flex-basis: 50%;
+        padding-right: 2px;
+    }
+
+    .partnerHeader header > div > div:last-child {
+        flex-basis: 49%;
+    }
+}
+
+@media (max-width: 767px) {
+    .partnerHeader header > div {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .partnerHeader header > div > div:first-child {
+        flex-basis: 100%;
+        width: 100%;
+        min-height: 93px;
+        padding: 0 0 0 2%;
+    }
+
+    .partnerHeader header > div > div:last-child {
+        flex-basis: 100%;
+        gap: 20px;
+    }
+
+    /* 55px button on phones, as live */
+    .partnerHeader header > div > div:last-child > a:last-child {
+        padding: 19.5px 20px;
+        font-size: 16px;
+    }
+
+    .partnerHeader header > div > div:last-child > a:first-child {
+        font-size: 16px;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero — a 46px white spacer, then eyebrow and headline on the left */
+/* and the welcome copy on the right: two columns 2px apart in the   */
+/* 1280px row (full width ≤1024px); stacked with 16px padding ≤767px */
+/* ---------------------------------------------------------------- */
+
+/* No side padding: below 1280px the columns run to the viewport edge */
 .hero {
     width: 100%;
-    padding: 46px 20 24px 20px;
+    padding: 46px 0 0;
     background: #ffffff;
 }
 
 .heroInner {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(1.5rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
     max-width: 1280px;
     margin: 0 auto;
 }
 
-.heroHeadline {
-    flex: 1 1 46%;
-    min-width: 0;
-}
-
+.heroHeadline,
 .heroIntro {
-    flex: 1 1 54%;
     min-width: 0;
-    line-height: 1.6;
-    padding-top: 0rem;
-
 }
 
+.eyebrow,
+.eyebrow p {
+    margin: 0;
+    color: #284074;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+}
+
+/* Partner name, bolded in Prismic, is red on live */
+.eyebrow strong {
+    font-weight: 700;
+    color: var(--ei-red);
+}
+
+.eyebrow a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.heading {
+    margin: 0;
+    color: var(--ei-navy);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+/* Live separates the two paragraphs with an empty one (27px) */
 .heroIntro p {
-    margin: 0 0 27px;
-    overflow-wrap: break-word;
+    margin: 0;
+    color: #284074;
     font-size: 18px;
     font-weight: 600;
-    color: #284074;
+    line-height: 27px;
+    overflow-wrap: break-word;
 }
 
-.heroIntro p:last-child {
-    margin-bottom: 0;
+.heroIntro p + p {
+    margin-top: 27px;
 }
 
-/* Partner names are emphasised in the live copy. */
 .heroIntro strong {
     font-weight: 600;
     color: var(--ei-red);
@@ -82,143 +189,221 @@
     text-decoration: underline;
 }
 
-.eyebrow {
-    margin: 0 0 2px;
-    font-size: 18px;
-    color: #284074;
-    font-weight: 700;
-    /* letter-spacing: 0.04em; */
-    text-transform: uppercase;
-}
-
-/* Rich text: keep each paragraph tight, as the old single <p> was. */
-.eyebrow p {
-    margin: 0;
-    color: #284074;
-    font-size: 18px;
-}
-
-/* Partner name, bolded in Prismic — same emphasis as in the intro. */
-.eyebrow strong {
-    font-weight: 700;
-    color: var(--ei-red);
-}
-
-.eyebrow a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.eyebrow a:hover {
-    text-decoration: underline;
-}
-
-.heading {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1;
-    font-weight: 700;
-    color: var(--ei-navy);
-    text-wrap: balance;
-}
-
-/* ---------------------------------------------------------------- */
-/* Responsive                                                       */
-/* ---------------------------------------------------------------- */
-
-@media (max-width: 1023px) {
-    .heroInner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1.25rem;
-    }
-
-    .heroHeadline,
-    .heroIntro {
-        flex: 1 1 auto;
-        width: 100%;
-    }
-
-    .heroIntro {
-        padding-top: 0;
-    }
-}
-
-@media (max-width: 639px) {
+@media (max-width: 767px) {
     .hero {
-        padding-top: 1.5rem;
+        padding: 62px 16px 16px;
+    }
+
+    .heroInner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+    }
+
+    .eyebrow,
+    .eyebrow p {
+        font-size: 12px;
+        line-height: 18px;
     }
 
     .heading {
         font-size: 25px;
-    }
-
-    .eyebrow {
-        font-size: 12px;
+        line-height: 25px;
     }
 }
 
-.empoweredInvestorSlices :global([class*="customQuote"]) {
+/* ---------------------------------------------------------------- */
+/* Pricing — live shows neither the loyalty banner nor the custom   */
+/* quote on this page                                                */
+/* ---------------------------------------------------------------- */
 
+.empoweredInvestorSlices :global([class*="customQuote"]) {
     display: none;
 }
 
 .empoweredInvestorSlices :global([class*="loyalty"]) {
-
     display: none;
 }
 
 .empoweredInvestorSlices :global([class*="featureLists"]) {
-
     width: 760px;
     justify-content: space-around;
-
 }
 
 @media (max-width: 1023px) {
     .empoweredInvestorSlices :global([class*="featureLists"]) {
-
         width: auto;
-        justify-content: space-around;
         padding: 0;
-
     }
 }
 
 /* ---------------------------------------------------------------- */
-/* Partner header                                                   */
+/* How it Works — live layout, as on REI Busy Season                   */
 /* ---------------------------------------------------------------- */
 
-/*
- * Passed to PartnerHeader as `partnerLogoClassName`, so it lands on the
- * partner logo <img> alongside PartnerHeader's own `.partnerLogo`.
- * The class is repeated to outrank that rule and its breakpoint caps
- * (0,2,0 vs 0,1,0) whatever order the two stylesheets load in.
- */
-.partnerLogo.partnerLogo {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    height: 4.3em;
-    max-height: none;
-    object-fit: contain;
+/* Desktop: live's step copy ends in an empty line (220px items) and
+   the button sits the 20px section gap below */
+@media (min-width: 1025px) {
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__content"]) {
+        min-height: 130px;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] a[class*="__cta"]) {
+        margin-top: 0;
+    }
 }
 
-@media (max-width: 1023px) {
-    .partnerLogo.partnerLogo {
-        display: block;
+/* How it Works — live keeps the four steps in a row down to ~880px
+   (the slice switches to its vertical timeline at 1024px), so the
+   horizontal layout is restored between 881px and 1024px. */
+@media (min-width: 881px) and (max-width: 1024px) {
+    /* Live squeezes the row into 45% of the band, so the copy wraps */
+    .empoweredInvestorSlices :global([data-slice-type="steps"] ol),
+    .empoweredInvestorSlices :global([data-slice-type="steps"] ul) {
+        flex-direction: row;
+        width: 45%;
+        max-width: none;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] li[class*="__step"]) {
+        flex-direction: column;
+        align-items: normal;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__highlight"]) {
+        flex-direction: row;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__line"]) {
         width: auto;
-        max-width: 100%;
-        height: 2.5em;
-        max-height: none;
-        object-fit: contain;
+        height: 2px;
+        min-height: 0;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__spacer"]) {
+        width: 10px;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__content"]) {
+        display: block;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__title"]) {
+        margin-top: 10px;
     }
 }
+
+/* Vertical timeline (≤880px): copy 100px from the left of the icon */
+@media (max-width: 880px) {
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__spacer"]) {
+        width: 10px;
+    }
+
+    /* 10px more below: live's empty step description keeps its margin */
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__content"]) {
+        justify-content: flex-start;
+        padding: 10px 10px 20px;
+    }
+
+    /* Icons at the top of each step; the connector fills the space below */
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__highlight"] > [class*="__line"]:first-child) {
+        flex: 0 0 0;
+        min-height: 0;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__title"]) {
+        margin-top: 10px;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] [class*="__highlight"] > [class*="__line"]:last-child) {
+        min-height: 0;
+    }
+
+    /* Steps 1 and 3 end in an empty line on live, so they stay 130px */
+    .empoweredInvestorSlices :global([data-slice-type="steps"] li:nth-child(1) [class*="__content"]),
+    .empoweredInvestorSlices :global([data-slice-type="steps"] li:nth-child(3) [class*="__content"]) {
+        min-height: 130px;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] a[class*="__cta"]) {
+        margin-top: 0;
+    }
+}
+
+/* Tablet: the timeline is 45% of the band, centred */
+@media (min-width: 768px) and (max-width: 880px) {
+    .empoweredInvestorSlices :global([data-slice-type="steps"] ol),
+    .empoweredInvestorSlices :global([data-slice-type="steps"] ul) {
+        width: 45%;
+        max-width: none;
+    }
+}
+
+/* How it Works button and foot in the 881–1024px row layout */
+@media (min-width: 881px) and (max-width: 1024px) {
+    .empoweredInvestorSlices :global([data-slice-type="steps"] a[class*="__cta"]) {
+        margin-top: 25px;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"]) {
+        padding-bottom: 45px;
+    }
+}
+
+/* Phones: 60px above and below, 48px step icons */
+@media (max-width: 767px) {
+    .empoweredInvestorSlices :global([data-slice-type="steps"]) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="steps"] img[class*="__iconImage"]) {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Calculator — 14px spacer and 20px gap above and below the card;   */
+/* full-bleed on tablet and phones, results under the form ≤768px    */
+/* ---------------------------------------------------------------- */
 
 .empoweredInvestorSlices :global([data-slice-type="calculator"]) {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px 60px;
-    background-color: #fff;
+    padding: 34px 20px;
+    background-color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .empoweredInvestorSlices :global([data-slice-type="calculator"]) {
+        padding: 34px 0;
+    }
+}
+
+/* 40px between the form and the results, as live */
+@media (min-width: 769px) {
+    .empoweredInvestorSlices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+        gap: 40px !important;
+    }
+
+    /* Live spaces the columns with the gap alone and sizes the results
+       column without its 40px inset, so the form is 40px narrower */
+    .empoweredInvestorSlices :global([data-slice-type="calculator"] .kbkg-estimator-form) {
+        padding: 0 !important;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+        box-sizing: content-box !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .empoweredInvestorSlices :global([data-slice-type="calculator"] .kbkg-estimator-body) {
+        flex-direction: column !important;
+    }
+
+    .empoweredInvestorSlices :global([data-slice-type="calculator"] .kbkg-estimator-results) {
+        padding: 8px 0 0 40px !important;
+        border-left: 1px solid #e2e8f0 !important;
+    }
 }
