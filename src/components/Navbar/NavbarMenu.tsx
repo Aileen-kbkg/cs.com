@@ -1,8 +1,9 @@
 "use client";
 
-import { LinkField } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
-import { useEffect, useRef, useState } from "react";
+import { asLink, ImageField, isFilled, LinkField } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./Navbar.module.css";
 
@@ -13,6 +14,10 @@ export type NavItem = {
 };
 
 type Cta = { label: string; link: LinkField } | null;
+
+/** Live smartmenus timing: open 250ms after hover, close 500ms after leaving. */
+const SHOW_DELAY = 250;
+const HIDE_DELAY = 500;
 
 const CaretDown = () => (
   <svg viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -26,178 +31,263 @@ const ChevronRight = () => (
   </svg>
 );
 
+/** Font Awesome "align-right", the live header's menu icon. */
 const MenuIcon = () => (
-  <svg
-    aria-hidden="true"
-    className="e-font-icon-svg e-fas-align-right"
-    viewBox="0 0 448 512"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill="currentColor"
-      d="M16 224h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm416 192H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm3.17-384H172.83A12.82 12.82 0 0 0 160 44.83v38.34A12.82 12.82 0 0 0 172.83 96h262.34A12.82 12.82 0 0 0 448 83.17V44.83A12.82 12.82 0 0 0 435.17 32zm0 256H172.83A12.82 12.82 0 0 0 160 300.83v38.34A12.82 12.82 0 0 0 172.83 352h262.34A12.82 12.82 0 0 0 448 339.17v-38.34A12.82 12.82 0 0 0 435.17 288z"
-    />
+  <svg aria-hidden="true" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 224h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm416 192H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm3.17-384H172.83A12.82 12.82 0 0 0 160 44.83v38.34A12.82 12.82 0 0 0 172.83 96h262.34A12.82 12.82 0 0 0 448 83.17V44.83A12.82 12.82 0 0 0 435.17 32zm0 256H172.83A12.82 12.82 0 0 0 160 300.83v38.34A12.82 12.82 0 0 0 172.83 352h262.34A12.82 12.82 0 0 0 448 339.17v-38.34A12.82 12.82 0 0 0 435.17 288z" />
   </svg>
 );
 
+/** Elementor's popup close icon (eicon-close). */
 const CloseIcon = () => (
-  <svg
-    aria-hidden="true"
-    className="e-font-icon-svg e-fas-times"
-    viewBox="0 0 352 512"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill="currentColor"
-      d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-    />
+  <svg aria-hidden="true" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+    <path d="M742 167L500 408 258 167C246 154 233 150 217 150 196 150 179 158 167 167 154 179 150 196 150 212 150 229 154 242 171 254L408 500 167 742C138 771 138 800 167 829 196 858 225 858 254 829L496 587 738 829C750 842 767 846 783 846 800 846 817 842 829 829 842 817 846 804 846 783 846 767 842 750 829 737L588 500 833 258C863 229 863 200 833 171 804 137 775 137 742 167Z" />
   </svg>
 );
 
-/** Menu, dropdown and header buttons (interactive part of the navbar). */
+/** "/faq/" → "/faq"; anchors and query strings are kept separately. */
+const splitUrl = (link: LinkField | null) => {
+  const url = link ? asLink(link) : null;
+  if (!url) return null;
+  try {
+    const parsed = new URL(url, "https://www.costsegregation.com");
+    const external =
+      /^https?:/i.test(url) && !/(^|\.)costsegregation\.com$/i.test(parsed.hostname);
+    if (external) return null;
+    const path = parsed.pathname.replace(/\/+$/, "") || "/";
+    return { path, hash: parsed.hash.replace(/^#/, "") };
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Live (WordPress) marks the item for the current page and the parent of a
+ * current child. Anchor items (/#calculator) only light up on the home
+ * page while their section is on screen, as Elementor's scroll spy does.
+ */
+const useActiveItem = (items: NavItem[]) => {
+  const pathname = (usePathname() || "/").replace(/\/+$/, "") || "/";
+  const [anchorInView, setAnchorInView] = useState<string | null>(null);
+
+  const anchors = items
+    .map((item) => splitUrl(item.link))
+    .filter((url): url is { path: string; hash: string } => Boolean(url?.hash))
+    .filter((url) => url.path === pathname)
+    .map((url) => url.hash);
+  const anchorKey = anchors.join(",");
+
+  // The section under the middle of the viewport. Looked up on every check,
+  // because the home page renders its sections on the client.
+  useEffect(() => {
+    if (!anchorKey) return;
+    const ids = anchorKey.split(",");
+    const check = () => {
+      const middle = window.innerHeight / 2;
+      const current = ids.find((id) => {
+        const box = document.getElementById(id)?.getBoundingClientRect();
+        return Boolean(box && box.top <= middle && box.bottom > middle);
+      });
+      setAnchorInView(current ?? null);
+    };
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+      setAnchorInView(null);
+    };
+  }, [anchorKey]);
+
+  const matches = (link: LinkField | null) => {
+    const url = splitUrl(link);
+    if (!url || url.path === "/" && !url.hash) return false;
+    if (url.hash) return url.path === pathname && url.hash === anchorInView;
+    return url.path === pathname;
+  };
+
+  return (item: NavItem) => {
+    if (matches(item.link)) return true;
+    if (item.children.some((child) => matches(child.link))) return true;
+    // A section item also covers its articles: /resources/<uid>.
+    const url = splitUrl(item.link);
+    return Boolean(
+      item.children.length && url && !url.hash && url.path !== "/" &&
+        pathname.startsWith(`${url.path}/`),
+    );
+  };
+};
+
+/** Menu, dropdown, header buttons and the mobile menu popup. */
 export default function NavbarMenu({
   items,
+  logo,
   signIn,
   getStarted,
 }: {
   items: NavItem[];
+  logo: ImageField | null;
   signIn: Cta;
   getStarted: Cta;
 }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [openMobileSub, setOpenMobileSub] = useState<number | null>(null);
-  const navRef = useRef<HTMLDivElement>(null);
+  const timer = useRef<number | null>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const isActive = useActiveItem(items);
+  const pathname = usePathname();
 
-  const closeAll = () => {
-    setOpenDropdown(null);
-    setOpenMobileSub(null);
-    setMobileOpen(false);
+  const clearTimer = () => {
+    if (timer.current !== null) window.clearTimeout(timer.current);
+    timer.current = null;
   };
 
-  // Desktop dropdown closes on outside click. The mobile sheet has its own
-  // close button and backdrop, so it is deliberately not closed here.
-  useEffect(() => {
-    const onClick = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
-      }
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeAll();
-    };
-    document.addEventListener("click", onClick);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("click", onClick);
-      document.removeEventListener("keydown", onKey);
-    };
+  const openSoon = (index: number) => {
+    clearTimer();
+    timer.current = window.setTimeout(() => setOpenDropdown(index), SHOW_DELAY);
+  };
+
+  const closeSoon = () => {
+    clearTimer();
+    timer.current = window.setTimeout(() => setOpenDropdown(null), HIDE_DELAY);
+  };
+
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+    setOpenMobileSub(null);
   }, []);
 
-  // Lock page scroll behind the open sheet.
+  // Escape closes the dropdown and the mobile menu.
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setOpenDropdown(null);
+      if (mobileOpen) {
+        closeMobile();
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [mobileOpen, closeMobile]);
+
+  useEffect(() => clearTimer, []);
+
+  // A new route closes everything.
+  useEffect(() => {
+    setOpenDropdown(null);
+    closeMobile();
+  }, [pathname, closeMobile]);
+
+  // Mobile menu: lock the page behind it, focus the close button.
   useEffect(() => {
     if (!mobileOpen) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
     return () => {
       document.body.style.overflow = previous;
     };
   }, [mobileOpen]);
 
-  // Close if the viewport grows past the burger breakpoint.
+  // The popup only exists at burger widths.
   useEffect(() => {
     const query = window.matchMedia("(min-width: 1025px)");
     const onChange = (event: MediaQueryListEvent) => {
-      if (event.matches) closeAll();
+      if (event.matches) closeMobile();
     };
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);
-  }, []);
-
-  /* ---------------- Desktop menu ---------------- */
-
-  const desktopMenu = (
-    <ul className={styles.menu}>
-      {items.map((item, index) => {
-        const hasChildren = item.children.length > 0;
-        const isOpen = openDropdown === index;
-        return (
-          <li
-            key={`${item.label}-${index}`}
-            className={styles.menuItem}
-            onMouseEnter={hasChildren ? () => setOpenDropdown(index) : undefined}
-            onMouseLeave={hasChildren ? () => setOpenDropdown(null) : undefined}
-            onBlur={
-              hasChildren
-                ? (event) => {
-                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                    setOpenDropdown((current) => (current === index ? null : current));
-                  }
-                }
-                : undefined
-            }
-          >
-            <div className={styles.itemRow}>
-              {item.link ? (
-                <PrismicNextLink field={item.link} className={styles.item}>
-                  {item.label}
-                </PrismicNextLink>
-              ) : (
-                <span className={styles.item}>{item.label}</span>
-              )}
-              {hasChildren && (
-                <button
-                  type="button"
-                  className={styles.subArrow}
-                  aria-label={`${item.label} submenu`}
-                  aria-expanded={isOpen}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    setOpenDropdown(isOpen ? null : index);
-                  }}
-                >
-                  <CaretDown />
-                </button>
-              )}
-            </div>
-            {hasChildren && (
-              <ul className={`${styles.subMenu} ${isOpen ? styles.subMenuOpen : ""}`}>
-                {item.children.map((child) => (
-                  <li key={child.label}>
-                    <PrismicNextLink
-                      field={child.link}
-                      className={styles.subItem}
-                      onClick={() => setOpenDropdown(null)}
-                    >
-                      {child.label}
-                    </PrismicNextLink>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        );
-      })}
-    </ul>
-  );
+  }, [closeMobile]);
 
   return (
-    <div className={styles.right} ref={navRef}>
+    <div className={styles.right}>
       <nav className={styles.nav} aria-label="Main navigation">
-        {desktopMenu}
+        <ul className={styles.menu}>
+          {items.map((item, index) => {
+            const hasChildren = item.children.length > 0;
+            const isOpen = openDropdown === index;
+            const active = isActive(item);
+            const itemClass = [
+              styles.item,
+              active ? styles.itemActive : "",
+              isOpen ? styles.itemHighlighted : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
+
+            return (
+              <li
+                key={`${item.label}-${index}`}
+                className={styles.menuItem}
+                onMouseEnter={hasChildren ? () => openSoon(index) : undefined}
+                onMouseLeave={hasChildren ? closeSoon : undefined}
+                onFocus={hasChildren ? () => setOpenDropdown(index) : undefined}
+                onBlur={
+                  hasChildren
+                    ? (event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                        setOpenDropdown((current) => (current === index ? null : current));
+                      }
+                    }
+                    : undefined
+                }
+              >
+                {item.link ? (
+                  <PrismicNextLink
+                    field={item.link}
+                    className={itemClass}
+                    aria-current={active ? "page" : undefined}
+                    aria-haspopup={hasChildren ? "true" : undefined}
+                    aria-expanded={hasChildren ? isOpen : undefined}
+                  >
+                    {item.label}
+                    {hasChildren && (
+                      <span className={styles.subArrow}>
+                        <CaretDown />
+                      </span>
+                    )}
+                  </PrismicNextLink>
+                ) : (
+                  <span className={itemClass}>{item.label}</span>
+                )}
+
+                {hasChildren && (
+                  <ul
+                    className={`${styles.subMenu} ${isOpen ? styles.subMenuOpen : ""}`}
+                    onMouseEnter={clearTimer}
+                  >
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <PrismicNextLink
+                          field={child.link}
+                          className={styles.subItem}
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          {child.label}
+                        </PrismicNextLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
+        </ul>
 
         <button
+          ref={toggleRef}
           type="button"
-          className={`${styles.toggle} cs-mobile-toggle`}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          className={styles.toggle}
+          aria-label="Open menu"
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
-          onClick={(event) => {
-            event.stopPropagation();
-            setMobileOpen((open) => !open);
-          }}
+          onClick={() => setMobileOpen(true)}
         >
-          {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+          <MenuIcon />
         </button>
       </nav>
 
@@ -225,95 +315,124 @@ export default function NavbarMenu({
         </PrismicNextLink>
       )}
 
-      {/* Mobile sheet. Rendered only when open */}
+      {/* Mobile menu — the live Elementor popup #927 */}
       {mobileOpen && (
         <div
-          id="mobile-navigation"
-          className={`${styles.sheet} cs-mobile-sheet`}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Site menu"
+          className={styles.popup}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) closeMobile();
+          }}
         >
-          <div className={styles.sheetInner}>
-            <ul className={styles.sheetMenu}>
-              {items.map((item, index) => {
-                const hasChildren = item.children.length > 0;
-                const isOpen = openMobileSub === index;
-                return (
-                  <li key={`${item.label}-m-${index}`} className={styles.sheetItem}>
-                    <div className={styles.sheetRow}>
-                      {item.link ? (
-                        <PrismicNextLink
-                          field={item.link}
-                          className={styles.sheetLink}
-                          onClick={closeAll}
-                        >
-                          {item.label}
-                        </PrismicNextLink>
-                      ) : (
-                        <span className={styles.sheetLink}>{item.label}</span>
-                      )}
+          <div
+            id="mobile-navigation"
+            className={styles.popupPanel}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+          >
+            <button
+              ref={closeRef}
+              type="button"
+              className={styles.popupClose}
+              aria-label="Close menu"
+              onClick={() => {
+                closeMobile();
+                toggleRef.current?.focus();
+              }}
+            >
+              <CloseIcon />
+            </button>
 
-                      {hasChildren && (
-                        <button
-                          type="button"
-                          className={`${styles.sheetCaret} ${isOpen ? styles.sheetCaretOpen : ""
-                            }`}
-                          aria-label={`${item.label} submenu`}
-                          aria-expanded={isOpen}
-                          onClick={() => setOpenMobileSub(isOpen ? null : index)}
-                        >
-                          <CaretDown />
-                        </button>
-                      )}
-                    </div>
-
-                    {hasChildren && isOpen && (
-                      <ul className={styles.sheetSubMenu}>
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <PrismicNextLink
-                              field={child.link}
-                              className={styles.sheetSubLink}
-                              onClick={closeAll}
-                            >
-                              {child.label}
-                            </PrismicNextLink>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div className={styles.sheetFooter}>
-              {signIn && (
-                <PrismicNextLink
-                  field={signIn.link}
-                  className={styles.sheetSignIn}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  onClick={closeAll}
-                >
-                  {signIn.label}
-                </PrismicNextLink>
+            <div className={styles.popupInner}>
+              {logo && isFilled.image(logo) && (
+                <a href="/" className={styles.popupLogo} onClick={closeMobile}>
+                  <PrismicNextImage field={logo} sizes="200px" fallbackAlt="" />
+                </a>
               )}
-              {getStarted && (
-                <PrismicNextLink
-                  field={getStarted.link}
-                  className={styles.sheetGetStarted}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  onClick={closeAll}
-                >
-                  <span>{getStarted.label}</span>
-                  <span className={styles.getStartedIcon}>
-                    <ChevronRight />
-                  </span>
-                </PrismicNextLink>
-              )}
+
+              <ul className={styles.popupMenu}>
+                {items.map((item, index) => {
+                  const hasChildren = item.children.length > 0;
+                  const isOpen = openMobileSub === index;
+                  const active = isActive(item);
+                  return (
+                    <li key={`${item.label}-m-${index}`}>
+                      <div className={styles.popupRow}>
+                        {item.link ? (
+                          <PrismicNextLink
+                            field={item.link}
+                            className={styles.popupLink}
+                            aria-current={active ? "page" : undefined}
+                            onClick={closeMobile}
+                          >
+                            {item.label}
+                          </PrismicNextLink>
+                        ) : (
+                          <span className={styles.popupLink}>{item.label}</span>
+                        )}
+                        {hasChildren && (
+                          <button
+                            type="button"
+                            className={`${styles.popupCaret} ${isOpen ? styles.popupCaretOpen : ""}`}
+                            aria-label={`${item.label} submenu`}
+                            aria-expanded={isOpen}
+                            aria-controls={`mobile-sub-${index}`}
+                            onClick={() => setOpenMobileSub(isOpen ? null : index)}
+                          >
+                            <CaretDown />
+                          </button>
+                        )}
+                      </div>
+
+                      {hasChildren && isOpen && (
+                        <ul id={`mobile-sub-${index}`} className={styles.popupSubMenu}>
+                          {item.children.map((child) => (
+                            <li key={child.label}>
+                              <PrismicNextLink
+                                field={child.link}
+                                className={styles.subItem}
+                                onClick={closeMobile}
+                              >
+                                {child.label}
+                              </PrismicNextLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className={styles.popupDivider} aria-hidden="true" />
+
+              <div className={styles.popupButtons}>
+                {signIn && (
+                  <PrismicNextLink
+                    field={signIn.link}
+                    className={`${styles.signIn} ${styles.popupSignIn}`}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    onClick={closeMobile}
+                  >
+                    {signIn.label}
+                  </PrismicNextLink>
+                )}
+                {getStarted && (
+                  <PrismicNextLink
+                    field={getStarted.link}
+                    className={`${styles.getStarted} ${styles.popupGetStarted}`}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    onClick={closeMobile}
+                  >
+                    <span>{getStarted.label}</span>
+                    <span className={styles.getStartedIcon}>
+                      <ChevronRight />
+                    </span>
+                  </PrismicNextLink>
+                )}
+              </div>
             </div>
           </div>
         </div>

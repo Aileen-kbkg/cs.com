@@ -1,14 +1,10 @@
 import { Content, isFilled, LinkField } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 
 import NavbarMenu, { type NavItem } from "./NavbarMenu";
-import './MainNavigation.css';
-import './Navbar.module.css';
-import announcementStyles from "@/slices/AnnouncementBar/AnnouncementBar.module.css";
-
+import "./MainNavigation.css";
 
 type NavbarProps = {
   /** Optional: pass the site_settings document if the layout already fetched it. */
@@ -19,9 +15,9 @@ const linkOrNull = (field: LinkField | undefined) => (field && isFilled.link(fie
 
 /**
  * Site header — matches the live costsegregation.com Elementor header (#11):
- * logo, horizontal menu with a Resources dropdown, Sign In / Get Started,
- * burger menu ≤1024px, and the blue newsletter bar. Content comes from the
- * `site_settings` singleton.
+ * logo, horizontal menu with a Resources dropdown and Sign In / Get Started,
+ * and the menu icon with the full-screen menu popup ≤1024px. Content comes
+ * from the `site_settings` singleton.
  */
 export default async function Navbar({ settings }: NavbarProps = {}) {
   const doc =
@@ -48,7 +44,6 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
     }));
 
   return (
-
     <header className="cs-header-wrapper">
       <div className="cs-header__bar">
         <div className="cs-header__bar-inner">
@@ -72,6 +67,7 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
 
           <NavbarMenu
             items={items}
+            logo={isFilled.image(data.logo) ? data.logo : null}
             signIn={
               data.sign_in_label && linkOrNull(data.sign_in_link)
                 ? {
@@ -91,14 +87,6 @@ export default async function Navbar({ settings }: NavbarProps = {}) {
           />
         </div>
       </div>
-
-    {/* {isFilled.richText(data.announcement) && (
-  <div className={announcementStyles.bar}>
-    <div className={announcementStyles.inner}>
-      <PrismicRichText field={data.announcement} />
-    </div>
-  </div>
-)} */}
     </header>
   );
 }
