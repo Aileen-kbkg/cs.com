@@ -1,31 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import type { ImageField } from "@prismicio/client";
 import SliceZone from "@/components/SliceZone";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
 /**
  * Scratch page for testing the Prismic MCP connection: it renders the
- * `test` singleton's slices and is kept out of search results.
- *
- * The generated types still type this slice zone as empty; remove the
- * cast after "Pull to local".
+ * `shared_section` document with the UID below and is kept out of search
+ * results. shared_section already allows the slices the test uses, so the
+ * page can be built through MCP without changing any type.
  */
-type TestDocument = {
-	data: {
-		slices: never[];
-		meta_title: string | null;
-		meta_description: string | null;
-		meta_image: ImageField;
-	};
-};
+const UID = "mcp-test";
 
 async function getPage() {
 	const client = createClient();
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	return (client as any).getSingle("test") as Promise<TestDocument>;
+	return client.getByUID("shared_section", UID);
 }
 
 export async function generateMetadata(): Promise<Metadata> {
