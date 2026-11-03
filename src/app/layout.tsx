@@ -123,6 +123,14 @@ export default async function RootLayout({
         <Script id="ghl-chat-open" strategy="afterInteractive">
           {`setTimeout(function(){var w=window.leadConnector;if(!window.matchMedia("(max-width: 767px)").matches&&w&&w.chatWidget){w.chatWidget.openWidget();}},10000);`}
         </Script>
+
+        {/* KBKG URL Passthrough (ported from the WordPress plugin): copies the
+            landing page's query parameters (UTM, affiliate…) onto links to
+            app.costsegregation.com when they are clicked, without overriding
+            parameters a link already has. */}
+        <Script id="kbkg-url-passthrough" strategy="afterInteractive">
+          {`(function(){var params=window.location.search.substring(1);if(!params)return;document.addEventListener('click',function(e){var link=e.target.closest&&e.target.closest('a');if(!link)return;var href=link.getAttribute('href');if(!href)return;try{var url=new URL(href,window.location.origin);if(url.hostname!=='app.costsegregation.com')return;new URLSearchParams(params).forEach(function(value,key){if(!url.searchParams.has(key))url.searchParams.set(key,value);});link.setAttribute('href',url.toString());}catch(ex){}},true);})();`}
+        </Script>
       </body>
     </html>
   );
