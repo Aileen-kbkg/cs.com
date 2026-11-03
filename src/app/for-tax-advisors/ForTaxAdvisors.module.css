@@ -530,6 +530,14 @@
     border: 2px solid #284074;
 }
 
+/* Live fills the button navy on hover (the rule above outranks the
+   slice's own hover). */
+.page>[data-slice-type="product_cards"] li>a:hover,
+.page>[data-slice-type="product_cards"] li>a:focus-visible {
+    color: #fff;
+    background: #284074;
+}
+
 .page>[data-slice-type="product_cards"] [class*="cta"] {
     text-transform: capitalize;
 }

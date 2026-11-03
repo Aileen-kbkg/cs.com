@@ -236,6 +236,14 @@
     line-height: 16px;
 }
 
+/* Live fills the button navy on hover (the rule above outranks the
+   slice's own hover). */
+.page :global([data-slice-type="product_cards"] li > a:hover),
+.page :global([data-slice-type="product_cards"] li > a:focus-visible) {
+    color: #fff;
+    background: #284074;
+}
+
 /* ---------------------------------------------------------------- */
 /* Tablet (≤1024px)                                                 */
 /* ---------------------------------------------------------------- */

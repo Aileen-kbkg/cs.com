@@ -358,6 +358,14 @@
     line-height: 16px;
 }
 
+/* Live fills the button navy on hover (the rule above outranks the
+   slice's own hover). */
+.page :global([data-slice-type="product_cards"] li > a:hover),
+.page :global([data-slice-type="product_cards"] li > a:focus-visible) {
+    background: var(--cpa-navy);
+    color: #fff;
+}
+
 /* ---------------------------------------------------------------- */
 /* Connect with KBKG — 60px under the cards, 100px above the footer  */
 /* ---------------------------------------------------------------- */

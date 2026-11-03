@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Content, isFilled, KeyTextField, LinkField, NumberField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -29,10 +30,14 @@ const Testimonials = ({ slice }: TestimonialsProps) => {
   const primary = slice.primary as Primary;
   const reviews = slice.items.filter((item) => isFilled.richText(item.quote) || item.author);
   const hasRating = typeof primary.rating === "number" || Boolean(primary.source_label);
-  // Skip the "4.9/5" prefix when the label already contains it.
-  const showRating =
-    typeof primary.rating === "number" &&
-    !primary.source_label?.includes(`${primary.rating}/5`);
+  // Skip the "4.9/5" prefix when the label already contains it; the
+  // value inside the label is bolded instead, as on the live site.
+  const ratingValue = typeof primary.rating === "number" ? `${primary.rating}/5` : "";
+  const showRating = Boolean(ratingValue) && !primary.source_label?.includes(ratingValue);
+  const labelParts =
+    ratingValue && primary.source_label?.includes(ratingValue)
+      ? primary.source_label.split(ratingValue)
+      : null;
 
   const cards = reviews.map((item, index) => (
     <div key={`${item.author ?? "review"}-${index}`} className={styles.card}>
@@ -75,9 +80,16 @@ const Testimonials = ({ slice }: TestimonialsProps) => {
               <StarIcon />
             </span>
             <p className={styles.ratingText}>
-              {showRating && <strong>{primary.rating}/5</strong>}
+              {showRating && <strong>{ratingValue}</strong>}
               {showRating && primary.source_label && " "}
-              {primary.source_label}
+              {labelParts
+                ? labelParts.map((part, index) => (
+                    <Fragment key={index}>
+                      {index > 0 && <strong>{ratingValue}</strong>}
+                      {part}
+                    </Fragment>
+                  ))
+                : primary.source_label}
             </p>
           </div>
         )}
