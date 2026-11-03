@@ -417,7 +417,10 @@ export default function Estimator({
           resetResults();
         }}
       />
-      <div className={"kbkg-field-error" + (errors.address ? " kbkg-visible" : "")}>
+      <div
+        id="kbkg-address-error"
+        className={"kbkg-field-error" + (errors.address ? " kbkg-visible" : "")}
+      >
         Please enter a property address.
       </div>
     </div>
@@ -449,7 +452,10 @@ export default function Estimator({
           }}
         />
       </div>
-      <div className={"kbkg-field-error" + (errors.price ? " kbkg-visible" : "")}>
+      <div
+        id="kbkg-price-error"
+        className={"kbkg-field-error" + (errors.price ? " kbkg-visible" : "")}
+      >
         Please enter a valid purchase price.
       </div>
     </div>
@@ -490,6 +496,7 @@ export default function Estimator({
         />
         <button
           type="button"
+          id="kbkg-date-cal-btn"
           className="kbkg-date-cal-btn"
           title="Open calendar"
           onClick={(event) => {
@@ -506,6 +513,7 @@ export default function Estimator({
         </button>
         <input
           ref={dateHiddenRef}
+          id="kbkg-date-hidden"
           type="date"
           style={{
             position: "absolute",
@@ -527,7 +535,10 @@ export default function Estimator({
           }}
         />
       </div>
-      <div className={"kbkg-field-error" + (errors.date ? " kbkg-visible" : "")}>
+      <div
+        id="kbkg-date-error"
+        className={"kbkg-field-error" + (errors.date ? " kbkg-visible" : "")}
+      >
         Please enter a valid date (MM/DD/YYYY).
       </div>
     </div>
@@ -572,7 +583,10 @@ export default function Estimator({
           </option>
         ))}
       </select>
-      <div className={"kbkg-field-error" + (errors.type ? " kbkg-visible" : "")}>
+      <div
+        id="kbkg-type-error"
+        className={"kbkg-field-error" + (errors.type ? " kbkg-visible" : "")}
+      >
         Please select a property type.
       </div>
     </div>
@@ -596,7 +610,9 @@ export default function Estimator({
           </div>
           <span className="kbkg-result-label">{content.deductionsLabel}</span>
         </div>
-        <div className="kbkg-result-value">{deductionsText}</div>
+        <div className="kbkg-result-value" id="kbkg-deductions-value">
+          {deductionsText}
+        </div>
         <div className="kbkg-result-description">{content.deductionsDescription}</div>
       </div>
       <div className="kbkg-result-card">
@@ -609,11 +625,14 @@ export default function Estimator({
           </div>
           <span className="kbkg-result-label">{content.savingsLabel}</span>
         </div>
-        <div className="kbkg-result-value">{savingsText}</div>
-        <div className="kbkg-result-assumption">{result ? content.savingsNote : ""}</div>
+        <div className="kbkg-result-value" id="kbkg-savings-value">
+          {savingsText}
+        </div>
+        <div className="kbkg-result-assumption" id="kbkg-savings-assumption">{result ? content.savingsNote : ""}</div>
       </div>
       <button
         type="button"
+        id="kbkg-email-btn"
         className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
         onClick={openEmailModal}
       >
@@ -623,11 +642,24 @@ export default function Estimator({
         {content.emailButtonLabel}
       </button>
       {apiError ? (
-        <div className="kbkg-error-msg">{apiError}</div>
+        <div className="kbkg-error-msg" id="kbkg-results-helper">
+          {apiError}
+        </div>
       ) : (
-        !result && <div className="kbkg-results-helper">{content.helperText}</div>
+        // Kept in the page and hidden once results show, as on live.
+        <div
+          className="kbkg-results-helper"
+          id="kbkg-results-helper"
+          style={result ? { display: "none" } : undefined}
+        >
+          {content.helperText}
+        </div>
       )}
-      <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
+      <div
+        className="kbkg-disclaimer"
+        id="kbkg-disclaimer"
+        style={{ display: result ? "block" : "none" }}
+      >
         {content.disclaimer}
       </div>
     </div>
@@ -661,6 +693,7 @@ export default function Estimator({
       )}
       <button
         type="button"
+        id="kbkg-email-btn"
         className={"kbkg-email-btn" + (result ? " kbkg-shown" : "")}
         onClick={openEmailModal}
       >
@@ -669,7 +702,11 @@ export default function Estimator({
         </Svg>{" "}
         {content.emailButtonLabel}
       </button>
-      <div className="kbkg-disclaimer" style={{ display: result ? "block" : "none" }}>
+      <div
+        className="kbkg-disclaimer"
+        id="kbkg-disclaimer"
+        style={{ display: result ? "block" : "none" }}
+      >
         {content.disclaimer}
       </div>
     </div>
@@ -714,11 +751,12 @@ return (
                   />
                   <span className="kbkg-toggle-slider" />
                 </label>
-                <span className="kbkg-toggle-text">{shortTerm ? "Yes" : "No"}</span>
+                <span className="kbkg-toggle-text" id="kbkg-toggle-label">{shortTerm ? "Yes" : "No"}</span>
               </div>
             </div>
             <button
               type="button"
+              id="kbkg-estimate-btn"
               className="kbkg-submit-btn"
               onClick={estimate}
               disabled={calculating}
@@ -733,6 +771,7 @@ return (
       </div>
       {/* Email modal */}
       <div
+        id="kbkg-email-modal"
         className={"kbkg-modal-overlay" + (emailOpen ? " kbkg-modal-open" : "")}
         onClick={(event) => {
           if (event.target === event.currentTarget) setEmailOpen(false);
@@ -744,7 +783,12 @@ return (
           aria-modal="true"
           aria-label={content.emailFormTitle}
         >
-          <button type="button" className="kbkg-modal-close" onClick={() => setEmailOpen(false)}>
+          <button
+            type="button"
+            id="kbkg-modal-close"
+            className="kbkg-modal-close"
+            onClick={() => setEmailOpen(false)}
+          >
             ×
           </button>
           <div className="kbkg-modal-title">
@@ -766,34 +810,52 @@ return (
             </div>
             <div className="kbkg-modal-summary-row">
               <span className="kbkg-modal-summary-label">Property Address:</span>
-              <span className="kbkg-modal-summary-value">{address.trim()}</span>
+              <span className="kbkg-modal-summary-value" id="kbkg-modal-address">
+                {address.trim()}
+              </span>
             </div>
             <div className="kbkg-modal-summary-row">
               <span className="kbkg-modal-summary-label">Purchase Price:</span>
-              <span className="kbkg-modal-summary-value">{formatMoney(priceNumber)}</span>
+              <span className="kbkg-modal-summary-value" id="kbkg-modal-price">
+                {formatMoney(priceNumber)}
+              </span>
             </div>
             <div className="kbkg-modal-summary-row">
               <span className="kbkg-modal-summary-label">Property Type:</span>
-              <span className="kbkg-modal-summary-value">{propertyType}</span>
+              <span className="kbkg-modal-summary-value" id="kbkg-modal-type">
+                {propertyType}
+              </span>
             </div>
             <div className="kbkg-modal-summary-row">
               <span className="kbkg-modal-summary-label">Purchase Date:</span>
-              <span className="kbkg-modal-summary-value">{formatDateDisplay(date.trim())}</span>
+              <span className="kbkg-modal-summary-value" id="kbkg-modal-date">
+                {formatDateDisplay(date.trim())}
+              </span>
             </div>
             {strApplies && (
-              <div className="kbkg-modal-summary-row" style={{ display: "flex" }}>
+              <div
+                className="kbkg-modal-summary-row"
+                id="kbkg-modal-str-row"
+                style={{ display: "flex" }}
+              >
                 <span className="kbkg-modal-summary-label">Short-Term Rental:</span>
-                <span className="kbkg-modal-summary-value">{shortTerm ? "Yes" : "No"}</span>
+                <span className="kbkg-modal-summary-value" id="kbkg-modal-str">
+                  {shortTerm ? "Yes" : "No"}
+                </span>
               </div>
             )}
             <hr className="kbkg-modal-summary-divider" />
             <div className="kbkg-modal-summary-row">
               <span className="kbkg-modal-summary-label">Year 1 Deductions:</span>
-              <span className="kbkg-modal-summary-value kbkg-green">{deductionsText}</span>
+              <span className="kbkg-modal-summary-value kbkg-green" id="kbkg-modal-deductions">
+                {deductionsText}
+              </span>
             </div>
             <div className="kbkg-modal-summary-row">
               <span className="kbkg-modal-summary-label">Year 1 Tax Savings:</span>
-              <span className="kbkg-modal-summary-value kbkg-green">{savingsText}</span>
+              <span className="kbkg-modal-summary-value kbkg-green" id="kbkg-modal-savings">
+                {savingsText}
+              </span>
             </div>
           </div>
           <div className="kbkg-modal-form-row">
@@ -838,6 +900,7 @@ return (
           <div className="kbkg-modal-buttons">
             <button
               type="button"
+              id="kbkg-modal-cancel-btn"
               className="kbkg-modal-cancel-btn"
               onClick={() => setEmailOpen(false)}
             >
@@ -845,6 +908,7 @@ return (
             </button>
             <button
               type="button"
+              id="kbkg-modal-send-btn"
               className="kbkg-modal-send-btn"
               onClick={sendEmail}
               disabled={emailStatus !== "idle"}
@@ -861,12 +925,14 @@ return (
             </button>
           </div>
           <div
+            id="kbkg-modal-error"
             className="kbkg-modal-error"
             style={{ display: emailMessage?.type === "error" ? "block" : "none" }}
           >
             {emailMessage?.type === "error" ? emailMessage.text : ""}
           </div>
           <div
+            id="kbkg-modal-success"
             className="kbkg-modal-success"
             style={{ display: emailMessage?.type === "success" ? "block" : "none" }}
           >
@@ -877,6 +943,7 @@ return (
       </div>
       {/* Contact modal (shown before results) */}
       <div
+        id="kbkg-contact-modal"
         className={"kbkg-contact-modal-overlay" + (contactOpen ? " kbkg-modal-open" : "")}
         onClick={(event) => {
           if (event.target === event.currentTarget) setContactOpen(false);
@@ -890,6 +957,7 @@ return (
         >
           <button
             type="button"
+            id="kbkg-contact-close"
             className="kbkg-contact-modal-close"
             onClick={() => setContactOpen(false)}
           >
@@ -960,10 +1028,19 @@ return (
               </select>
             </div>
           )}
-          <button type="button" className="kbkg-contact-submit-btn" onClick={submitContact}>
+          <button
+            type="button"
+            id="kbkg-contact-submit"
+            className="kbkg-contact-submit-btn"
+            onClick={submitContact}
+          >
             {content.contactButtonLabel}
           </button>
-          <div className="kbkg-contact-error" style={{ display: contactError ? "block" : "none" }}>
+          <div
+            id="kbkg-contact-error"
+            className="kbkg-contact-error"
+            style={{ display: contactError ? "block" : "none" }}
+          >
             Please fill in all required fields.
           </div>
         </div>
