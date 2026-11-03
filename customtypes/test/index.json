@@ -5,26 +5,7 @@
     "Main": {
       "slices": {
         "config": {
-          "choices": {
-            "announcement_bar": {
-              "type": "SharedSlice"
-            },
-            "page_hero": {
-              "type": "SharedSlice"
-            },
-            "feature_grid": {
-              "type": "SharedSlice"
-            },
-            "text_with_image": {
-              "type": "SharedSlice"
-            },
-            "faq_accordion": {
-              "type": "SharedSlice"
-            },
-            "cta_banner": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         },
         "fieldset": "Slice Zone",
         "type": "Slices"

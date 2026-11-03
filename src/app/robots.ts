@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: "*",
 			allow: "/",
-			disallow: ["/api/", "/slice-simulator/", "/mcp-test/"],
+			disallow: ["/api/", "/slice-simulator/"],
 		},
 		sitemap: `${SITE_URL}/sitemap.xml`,
 	};
