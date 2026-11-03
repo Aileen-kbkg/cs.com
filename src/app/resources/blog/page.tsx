@@ -120,11 +120,7 @@ export default async function Page({ searchParams }: Props) {
 							) : (
 								<Link
 									key={pageNumber}
-									href={
-										pageNumber === 1
-											? "/resources/blog/"
-											: `/resources/blog?page=${pageNumber}`
-									}
+									href={pagePath(pageNumber)}
 									className={styles.pageLink}
 								>
 									<span className={styles.srOnly}>Page </span>
