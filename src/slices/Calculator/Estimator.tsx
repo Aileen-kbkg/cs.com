@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import HubSpotTestForm from "@/components/HubSpotForm";
 import {
+  getCookie,
   getPersistedAffiliateId,
   getPersistedGoogleClickParams,
   getPersistedUtmParams,
@@ -12,6 +12,8 @@ import {
 const TAX_RATE = 0.35;
 const ESTIMATE_ENDPOINT = "/api/estimator";
 const EMAIL_ENDPOINT = "/api/estimator/email";
+const HUBSPOT_FORM_URL =
+  "https://api.hsforms.com/submissions/v3/integration/submit/3615782/1883c298-1b07-4401-98fc-cd428ae7b37d";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MONTHS = [
   "January",
@@ -175,7 +177,11 @@ export default function Estimator({
   const [calculating, setCalculating] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const [result, setResult] = useState<Result | null>(null);
+  const [pending, setPending] = useState<Result>({ low: 0, high: 0 });
   const [contactOpen, setContactOpen] = useState(false);
+  const [contact, setContact] = useState({ fname: "", lname: "", email: "", source: "" });
+  const [contactErrors, setContactErrors] = useState({ fname: false, lname: false, email: false });
+  const [contactError, setContactError] = useState(false);
   const [emailOpen, setEmailOpen] = useState(false);
   const [emailForm, setEmailForm] = useState({ fname: "", lname: "", email: "" });
   const [emailErrors, setEmailErrors] = useState({ fname: false, lname: false, email: false });
@@ -232,7 +238,10 @@ export default function Estimator({
       const low = data?.result?.estimatedAdditionalTaxDeductionsYear1Low;
       const high = data?.result?.estimatedAdditionalTaxDeductionsYear1High;
       if (low != null && high != null) {
-        setResult({ low, high });
+        // Results stay hidden until the contact form is submitted, as on live.
+        setPending({ low, high });
+        setContactErrors({ fname: false, lname: false, email: false });
+        setContactError(false);
         setContactOpen(true);
       } else {
         setApiError("Could not calculate estimate. Please check your inputs.");
@@ -257,37 +266,80 @@ export default function Estimator({
   const savingsText = result
     ? `${formatMoney(result.low * TAX_RATE)} to ${formatMoney(result.high * TAX_RATE)}`
     : "$0";
-  /**
-   * Prefills the contact form with the estimate and attribution, matching
-   * the fields the live estimator sends to HubSpot.
-   */
-  const hubSpotValues = (): Record<string, string> => {
-    if (!result) return {};
-    const [month, day, year] = date.trim().split("/");
-    const values: Record<string, string> = {
-      full_property_address: address.trim(),
-      building_basis: String(priceNumber),
-      date_of_purchase:
-        year && month && day
-          ? `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
-          : "",
-      property_type_dropdown: propertyType,
-      shortterm_or_vacation_rental: shortTerm ? "true" : "false",
-      cost_segregation_calculator_low_tax_deductions_year_1: String(Math.round(result.low)),
-      cost_segregation_calculator_high_tax_deductions_year_1: String(Math.round(result.high)),
-      year_1_tax_savings_low_end: String(Math.round(result.low * TAX_RATE)),
-      year_1_tax_savings_high_end: String(Math.round(result.high * TAX_RATE)),
-      affiliate_id: getPersistedAffiliateId(),
-    };
+  const submitToHubSpot = () => {
+    const fields: { name: string; value: string }[] = [
+      { name: "firstname", value: contact.fname.trim() },
+      { name: "lastname", value: contact.lname.trim() },
+      { name: "email", value: contact.email.trim() },
+      { name: "discovery_source", value: contact.source },
+      { name: "full_property_address", value: address.trim() },
+      { name: "building_basis", value: String(priceNumber) },
+      { name: "date_of_purchase", value: date.trim() },
+      { name: "property_type_dropdown", value: propertyType },
+      { name: "shortterm_or_vacation_rental", value: shortTerm ? "true" : "false" },
+      {
+        name: "cost_segregation_calculator_low_tax_deductions_year_1",
+        value: String(Math.round(pending.low)),
+      },
+      {
+        name: "cost_segregation_calculator_high_tax_deductions_year_1",
+        value: String(Math.round(pending.high)),
+      },
+      { name: "year_1_tax_savings_low_end", value: String(Math.round(pending.low * TAX_RATE)) },
+      { name: "year_1_tax_savings_high_end", value: String(Math.round(pending.high * TAX_RATE)) },
+    ];
     const utms = getPersistedUtmParams();
     (Object.keys(UTM_TO_HS_FIELD) as (keyof typeof UTM_TO_HS_FIELD)[]).forEach((key) => {
-      if (utms[key]) values[UTM_TO_HS_FIELD[key]] = utms[key];
+      if (utms[key]) fields.push({ name: UTM_TO_HS_FIELD[key], value: utms[key] });
     });
+    const affiliateId = getPersistedAffiliateId();
+    if (affiliateId) fields.push({ name: "affiliate_id", value: affiliateId });
     const clicks = getPersistedGoogleClickParams();
-    Object.entries(GOOGLE_CLICK_TO_HS_FIELD).forEach(([key, field]) => {
-      if (clicks[key]) values[field] = clicks[key];
+    Object.keys(GOOGLE_CLICK_TO_HS_FIELD).forEach((key) => {
+      if (clicks[key]) fields.push({ name: GOOGLE_CLICK_TO_HS_FIELD[key], value: clicks[key] });
     });
-    return values;
+    const context: Record<string, string> = {
+      pageUri: window.location.href,
+      pageName: document.title,
+    };
+    const hutk = getCookie("hubspotutk");
+    if (hutk) context.hutk = hutk;
+
+    fetch(HUBSPOT_FORM_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields, context }),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(
+            `HubSpot submission failed (${response.status}): ${await response.text()}`,
+          );
+        }
+      })
+      .catch((error) => console.error("HubSpot submission error:", error));
+  };
+
+  const submitContact = () => {
+    const nextErrors = {
+      fname: !contact.fname.trim(),
+      lname: !contact.lname.trim(),
+      email: !EMAIL_PATTERN.test(contact.email.trim()),
+    };
+    setContactErrors(nextErrors);
+    if (Object.values(nextErrors).some(Boolean)) {
+      setContactError(true);
+      return;
+    }
+    setContactError(false);
+    setResult(pending);
+    setContactOpen(false);
+    setEmailForm({
+      fname: contact.fname.trim(),
+      lname: contact.lname.trim(),
+      email: contact.email.trim(),
+    });
+    submitToHubSpot();
   };
   const sendEmail = async () => {
     const nextErrors = {
@@ -852,10 +904,68 @@ return (
               <p>{content.contactText}</p>
             </div>
           )}
-          <HubSpotTestForm
-            active={contactOpen}
-            fieldValues={contactOpen ? hubSpotValues() : undefined}
-          />
+          <div className="kbkg-contact-form-row">
+            <div className="kbkg-contact-form-group" style={{ marginBottom: 0 }}>
+              <label htmlFor="kbkg-contact-fname">First Name *</label>
+              <input
+                type="text"
+                id="kbkg-contact-fname"
+                placeholder="John"
+                className={contactErrors.fname ? "kbkg-input-error" : undefined}
+                value={contact.fname}
+                onChange={(event) => setContact((prev) => ({ ...prev, fname: event.target.value }))}
+              />
+            </div>
+            <div className="kbkg-contact-form-group" style={{ marginBottom: 0 }}>
+              <label htmlFor="kbkg-contact-lname">Last Name *</label>
+              <input
+                type="text"
+                id="kbkg-contact-lname"
+                placeholder="Smith"
+                className={contactErrors.lname ? "kbkg-input-error" : undefined}
+                value={contact.lname}
+                onChange={(event) => setContact((prev) => ({ ...prev, lname: event.target.value }))}
+              />
+            </div>
+          </div>
+          <div className="kbkg-contact-form-group">
+            <label htmlFor="kbkg-contact-email">Email *</label>
+            <input
+              type="email"
+              id="kbkg-contact-email"
+              placeholder="john@example.com"
+              className={contactErrors.email ? "kbkg-input-error" : undefined}
+              value={contact.email}
+              onChange={(event) => setContact((prev) => ({ ...prev, email: event.target.value }))}
+            />
+          </div>
+          {content.discoverySources.length > 0 && (
+            <div className="kbkg-contact-form-group">
+              <label htmlFor="kbkg-contact-source">
+                How did you first hear about CostSegregation.com?
+              </label>
+              <select
+                id="kbkg-contact-source"
+                value={contact.source}
+                onChange={(event) =>
+                  setContact((prev) => ({ ...prev, source: event.target.value }))
+                }
+              >
+                <option value="">Please Select</option>
+                {content.discoverySources.map((source) => (
+                  <option key={source} value={source}>
+                    {source}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          <button type="button" className="kbkg-contact-submit-btn" onClick={submitContact}>
+            {content.contactButtonLabel}
+          </button>
+          <div className="kbkg-contact-error" style={{ display: contactError ? "block" : "none" }}>
+            Please fill in all required fields.
+          </div>
         </div>
       </div>
     </>
