@@ -51,7 +51,9 @@ const ProductCards = ({ slice }: ProductCardsProps) => {
 									<PrismicNextImage
 										field={item.image}
 										className={styles.icon}
-										sizes="96px"
+										// Some pages show the icon up to ~183px wide (the
+										// For CPAs logo), so ask for enough pixels to stay sharp.
+										sizes="200px"
 										fallbackAlt=""
 									/>
 								</div>
