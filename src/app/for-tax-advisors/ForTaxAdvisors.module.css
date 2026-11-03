@@ -49,8 +49,7 @@
 
 .page>section a:not([class]) {
     color: var(--fta-blue);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration: none;
 }
 
 .page>section a:not([class]):hover {
@@ -408,6 +407,12 @@
     border-radius: 10px;
 }
 
+/* Live's "Leave A Review" keeps its blue on hover. */
+.page>[data-slice-type="testimonials"]>div>div:last-child>a:hover,
+.page>[data-slice-type="testimonials"]>div>div:last-child>a:focus {
+    background-color: var(--fta-blue);
+}
+
 .page>[data-slice-type="testimonials"]>div>div:last-child>a svg {
     width: 25px;
     height: 25px;
@@ -536,12 +541,22 @@
     line-height: 1.6;
 }
 
+/* Live's arrow is a "›" glyph on the text baseline, not a centred icon. */
 .page>[data-slice-type="cta_banner"]>div>a {
+    display: inline-block;
     padding: 16px 32px;
     font-size: 25px;
     font-weight: 600;
     line-height: 1.2;
     border-radius: 6px;
+}
+
+.page>[data-slice-type="cta_banner"]>div>a>span:last-child {
+    display: none;
+}
+
+.page>[data-slice-type="cta_banner"]>div>a::after {
+    content: " \203A";
 }
 
 .page>[data-slice-type="cta_banner"]>div>a:hover,
@@ -575,5 +590,19 @@
 @media (max-width: 700px) {
     .page>[data-slice-type="cta_banner"]>div {
         width: min(900px, calc(90% - 48px));
+    }
+}
+
+/* Small phones: live's 92% - 48px column leaves headings like "Why CPAs
+   Choose CostSegregation.com" wider than the screen, so use the full
+   width less a 20px gutter and let long words wrap. */
+@media (max-width: 480px) {
+    .page>:is([data-slice-type="page_hero"], [data-slice-type="feature_grid"], [data-slice-type="quote_with_image"])>div,
+    .page>[data-slice-type="cta_banner"]>div {
+        width: calc(100% - 40px);
+    }
+
+    .page :is(h1, h2, h3) {
+        overflow-wrap: break-word;
     }
 }

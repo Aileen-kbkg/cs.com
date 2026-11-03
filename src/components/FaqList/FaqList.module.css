@@ -141,6 +141,8 @@
 
 .answer p {
     margin: 0 0 24px;
+    /* The global p colour would otherwise replace --faq-text. */
+    color: inherit;
     overflow-wrap: break-word;
 }
 
@@ -156,8 +158,7 @@
 
 .answer a {
     color: var(--faq-blue);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration: none;
     overflow-wrap: break-word;
 }
 

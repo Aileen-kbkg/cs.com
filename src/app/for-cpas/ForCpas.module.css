@@ -63,6 +63,7 @@
     font-weight: 700;
     line-height: 1;
     text-wrap: wrap;
+    overflow-wrap: break-word;
 }
 
 /* Title with its icon: the row carries the heading's 20px gap, and the
@@ -232,6 +233,12 @@
 /* The button sits 20px under the dots — the section's own gap. */
 .page :global([data-slice-type="testimonials"] [class*="ctaWrap"]) {
     margin-top: 0;
+}
+
+/* Live's "Leave A Review" keeps its blue on hover. */
+.page :global([data-slice-type="testimonials"] [class*="ctaWrap"] a:hover),
+.page :global([data-slice-type="testimonials"] [class*="ctaWrap"] a:focus) {
+    background-color: var(--cpa-blue);
 }
 
 @media (min-width: 1024px) {
@@ -448,5 +455,13 @@
 
     .page :global([data-slice-type="product_cards"] ul) {
         grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Small phones: at 30px "CostSegregation.com" is wider than a 320px
+   screen, so the headings scale with the viewport below 400px. */
+@media screen and (max-width: 400px) {
+    .page {
+        --cpa-h2: min(1.88rem, 8vw);
     }
 }
