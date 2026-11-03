@@ -168,7 +168,7 @@
 
 /* Live's arrow is a 15px "›" glyph, not an icon. */
 .page>[data-slice-type="page_hero"] h1~div:last-child>a::after {
-    content: "A";
+    content: "\203A";
     font-size: 15px;
 }
 

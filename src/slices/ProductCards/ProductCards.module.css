@@ -114,7 +114,8 @@
 .button {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    /* Elementor's 5px icon spacing */
+    gap: 5px;
     margin-top: auto;
 
 
@@ -153,8 +154,8 @@
 }
 
 .buttonIcon svg {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 16px;
+    height: 16px;
 }
 
 /* Optional solid button below the grid ("Connect with KBKG") */
