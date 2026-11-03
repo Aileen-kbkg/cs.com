@@ -95,12 +95,12 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 24px;
+    margin: 0 0 22px;
     padding: 7px 16px;
     color: var(--fta-navy);
     font-size: 13px;
     font-weight: 600;
-    line-height: normal;
+    line-height: 1.5;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     background: #fff;
@@ -162,9 +162,14 @@
     background: var(--fta-navy);
 }
 
-.page>[data-slice-type="page_hero"] h1~div:last-child>a svg {
-    width: 9px;
-    height: 9px;
+.page>[data-slice-type="page_hero"] h1~div:last-child>a>span:last-child {
+    display: none;
+}
+
+/* Live's arrow is a 15px "›" glyph, not an icon. */
+.page>[data-slice-type="page_hero"] h1~div:last-child>a::after {
+    content: "A";
+    font-size: 15px;
 }
 
 .page>[data-slice-type="page_hero"] h1~div:last-child>p {
@@ -204,6 +209,7 @@
     max-width: none;
     margin: 0 0 18px;
     color: var(--fta-navy);
+    font-family: var(--fta-font);
     font-size: 17px;
     line-height: 1.65;
     text-align: left;
@@ -239,6 +245,7 @@
 
 .page>[data-slice-type="feature_grid"] article p {
     color: var(--fta-muted);
+    font-family: var(--fta-font);
     font-size: 15.5px;
     text-align: left;
 }
@@ -392,10 +399,23 @@
     background: var(--fta-band);
 }
 
-/* Live cards are a fixed 400px wide (3 / 2 / 1 visible). On phones that
-   is wider than the screen, so cap it there instead of cutting it off. */
-.page>[data-slice-type="testimonials"] [class*="carousel"] {
-    --slide-w: min(400px, 100%);
+/* Live shows 3 / 2 / 1 cards (Swiper breakpoints 1024px and 767px),
+   each sharing the row width with 40px gaps. */
+@media (min-width: 1024px) {
+    .page>[data-slice-type="testimonials"] [class*="carousel"] {
+        --per-view: 3;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1023px) {
+    .page>[data-slice-type="testimonials"] [class*="carousel"] {
+        --per-view: 2;
+    }
+}
+
+/* The button sits 20px under the dots — the section's own gap. */
+.page>[data-slice-type="testimonials"] [class*="ctaWrap"] {
+    margin-top: 0;
 }
 
 .page>[data-slice-type="testimonials"]>div>div:last-child>a {
@@ -435,18 +455,21 @@
 
 .page>[data-slice-type="product_cards"] h2 {
     margin: 0 0 20px;
+    color: #284074;
     line-height: 1;
 }
 
 .page>[data-slice-type="product_cards"] ul {
-    /* 3 columns from ~900px (as live at 1024px+), 2 below that, 1 on
-       phones — live squeezes 3 columns down to 211px at 768px. */
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    /* 3 columns down to Elementor's 768px tablet size, 1 below, as live */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 40px;
     margin: 0;
 }
 
+/* White cards, at least 581px tall as live */
 .page>[data-slice-type="product_cards"] li {
+    min-height: 581px;
+    background: #fff;
     gap: 20px;
     align-items: center;
     text-align: center;
@@ -481,7 +504,8 @@
     margin: 0;
     color: #333;
     font-family: var(--fta-heading-font);
-    font-size: 20px;
+    /* Live's Elementor h6 and body sizes scale with the viewport. */
+    font-size: clamp(0.94rem, 0.83rem + 0.47vw, 1.25rem);
     font-weight: 700;
     line-height: 1;
 }
@@ -494,8 +518,8 @@
     margin: 0;
     color: #333;
     font-family: var(--fta-system-font);
-    font-size: 16px;
-    line-height: 24px;
+    font-size: clamp(0.75rem, 0.66rem + 0.75vw, 1rem);
+    line-height: 1.5;
     text-align: center;
 }
 
@@ -503,7 +527,11 @@
     margin-top: auto;
     color: #284074;
     background: #fff;
-    border: 1.6px solid #284074;
+    border: 2px solid #284074;
+}
+
+.page>[data-slice-type="product_cards"] [class*="cta"] {
+    text-transform: capitalize;
 }
 
 /* ---------------------------------------------------------------- */
@@ -544,6 +572,8 @@
 /* Live's arrow is a "›" glyph on the text baseline, not a centred icon. */
 .page>[data-slice-type="cta_banner"]>div>a {
     display: inline-block;
+    width: auto;
+    font-family: var(--fta-font);
     padding: 16px 32px;
     font-size: 25px;
     font-weight: 600;
@@ -574,16 +604,9 @@
     }
 }
 
-/* Two product columns: centre the odd card under the other two. */
-@media (min-width: 600px) and (max-width: 914px) {
+@media (max-width: 767px) {
     .page>[data-slice-type="product_cards"] ul {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .page>[data-slice-type="product_cards"] li:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        justify-self: center;
-        width: calc((100% - 40px) / 2);
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
@@ -593,10 +616,10 @@
     }
 }
 
-/* Small phones: live's 92% - 48px column leaves headings like "Why CPAs
-   Choose CostSegregation.com" wider than the screen, so use the full
-   width less a 20px gutter and let long words wrap. */
-@media (max-width: 480px) {
+/* Small phones (below 390px): live's 92% - 48px column leaves headings
+   like "Why CPAs Choose CostSegregation.com" wider than the screen, so use
+   the full width less a 20px gutter and let long words wrap. */
+@media (max-width: 389px) {
     .page>:is([data-slice-type="page_hero"], [data-slice-type="feature_grid"], [data-slice-type="quote_with_image"])>div,
     .page>[data-slice-type="cta_banner"]>div {
         width: calc(100% - 40px);

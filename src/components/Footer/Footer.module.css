@@ -118,6 +118,10 @@
   display: inline-block;
   vertical-align: middle;
   width: auto;
+  /* Shrinks inside its column on very narrow screens (320px). */
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left bottom;
   height: 78px;
   margin-bottom: 1px;
 }
