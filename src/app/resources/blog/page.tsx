@@ -9,28 +9,34 @@ export const dynamic = "force-dynamic";
 
 const POSTS_PER_PAGE = 6;
 
-export const metadata: Metadata = {
-	title: "Blog - Cost Segregation",
-	description:
-		"Read our cost segregation blog for expert insights, tax strategies, and tips on maximizing real estate depreciation benefits.",
-	alternates: {
-		canonical: "/resources/blog/",
-	},
-	openGraph: {
-		title: "Blog - Cost Segregation",
-		description:
-			"Read our cost segregation blog for expert insights, tax strategies, and tips on maximizing real estate depreciation benefits.",
-		type: "article",
-	},
-};
-
 type Props = {
 	searchParams: Promise<{ page?: string }>;
 };
 
+const TITLE = "Blog - Cost Segregation";
+const DESCRIPTION =
+	"Read our cost segregation blog for expert insights, tax strategies, and tips on maximizing real estate depreciation benefits.";
+
+/** Page URLs match WordPress: /resources/blog/, then /resources/blog/2/ and so on. */
+const pagePath = (pageNumber: number) =>
+	pageNumber === 1 ? "/resources/blog/" : `/resources/blog/${pageNumber}/`;
+
+const toPageNumber = (page: string | undefined) => Math.max(1, Number(page) || 1);
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+	const { page } = await searchParams;
+
+	return {
+		title: TITLE,
+		description: DESCRIPTION,
+		alternates: { canonical: pagePath(toPageNumber(page)) },
+		openGraph: { title: TITLE, description: DESCRIPTION, type: "article" },
+	};
+}
+
 export default async function Page({ searchParams }: Props) {
 	const { page } = await searchParams;
-	const currentPage = Math.max(1, Number(page) || 1);
+	const currentPage = toPageNumber(page);
 
 	const client = createClient();
 

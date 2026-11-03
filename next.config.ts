@@ -44,7 +44,7 @@ const nextConfig: NextConfig = {
       },
       // ...and every other /resources/blog/ post lives under /resources/.
       {
-        source: `/resources/blog/:uid((?!(?:${legacyBlogPosts})(?:/|$))[^/]+)`,
+        source: `/resources/blog/:uid((?!(?:${legacyBlogPosts}|\\d+)(?:/|$))[^/]+)`,
         destination: "/resources/:uid/",
         permanent: true,
       },
@@ -59,6 +59,11 @@ const nextConfig: NextConfig = {
 
   async rewrites() {
     return [
+      // Blog listing pages keep their WordPress URLs: /resources/blog/2/.
+      {
+        source: "/resources/blog/:page(\\d+)",
+        destination: "/resources/blog/?page=:page",
+      },
       {
         source: `/resources/blog/:uid(${legacyBlogPosts})`,
         destination: "/resources/:uid/",
