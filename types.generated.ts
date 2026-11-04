@@ -1074,6 +1074,66 @@ interface ResourcesDocumentData {
  */
 export type ResourcesDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ResourcesDocumentData>, "resources", Lang>;
 
+type ServicesDocumentDataSlicesSlice = HeroSlice | ProductCardsSlice | CtaBannerSlice
+
+/**
+ * Content for Services documents
+ */
+interface ServicesDocumentData {
+	/**
+	 * Slice Zone field in *Services*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: services.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Services*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: services.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Services*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: services.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Services*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: services.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Services document from Prismic
+ *
+ * - **API ID**: `services`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ServicesDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ServicesDocumentData>, "services", Lang>;
+
 type SharedSectionDocumentDataSlicesSlice = FeatureGridSlice | SuccessStoriesSlice | TestimonialsSlice | TextWithImageSlice | CalculatorSlice | ExpertGridSlice | CtaBannerSlice | ProductCardsSlice | PricingSlice | StepsSlice | AnnouncementBarSlice
 
 /**
@@ -2088,7 +2148,7 @@ interface TutorialDocumentData {
  */
 export type TutorialDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<TutorialDocumentData>, "tutorial", Lang>;
 
-export type AllDocumentTypes = AboutDocument | AffiliateProgramDocument | BlogPostDocument | EmpoweredInvestorDocument | FaqDocument | ForCpasDocument | ForTaxAdvisorsDocument | HomeDocument | ReiBusyseasonDocument | ResourcesDocument | SharedSectionDocument | SiteSettingsDocument | StayConnectedDocument | TestDocument | TrendsEbookDocument | TutorialDocument;
+export type AllDocumentTypes = AboutDocument | AffiliateProgramDocument | BlogPostDocument | EmpoweredInvestorDocument | FaqDocument | ForCpasDocument | ForTaxAdvisorsDocument | HomeDocument | ReiBusyseasonDocument | ResourcesDocument | ServicesDocument | SharedSectionDocument | SiteSettingsDocument | StayConnectedDocument | TestDocument | TrendsEbookDocument | TutorialDocument;
 
 /**
  * Primary content in *AnnouncementBar → Default → Primary*
@@ -3641,6 +3701,21 @@ type PostListSliceVariation = PostListSliceDefault
 export type PostListSlice = prismic.SharedSlice<"post_list", PostListSliceVariation>;
 
 /**
+ * Item in *Pricing → Default → Primary → Note under the button*
+ */
+export interface PricingSliceDefaultPrimaryNoteUnderTheButtonItem {
+	/**
+	 * plan_note field in *Pricing → Default → Primary → Note under the button*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.default.primary.note_under_the_button[].plan_note
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	plan_note: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *Pricing → Default → Primary*
  */
 export interface PricingSliceDefaultPrimary {
@@ -3803,6 +3878,16 @@ export interface PricingSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	custom_quote_text: prismic.RichTextField;
+	
+	/**
+	 * Note under the button field in *Pricing → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing.default.primary.note_under_the_button[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	note_under_the_button: prismic.GroupField<Simplify<PricingSliceDefaultPrimaryNoteUnderTheButtonItem>>;
 	
 	/**
 	 * Custom CSS Class field in *Pricing → Default → Primary*
@@ -4558,6 +4643,21 @@ type SuccessStoriesSliceVariation = SuccessStoriesSliceDefault
 export type SuccessStoriesSlice = prismic.SharedSlice<"success_stories", SuccessStoriesSliceVariation>;
 
 /**
+ * Item in *Testimonials → Default → Primary → Reviews per visit*
+ */
+export interface TestimonialsSliceDefaultPrimaryReviewsPerVisitItem {
+	/**
+	 * random_count field in *Testimonials → Default → Primary → Reviews per visit*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: testimonials.default.primary.reviews_per_visit[].random_count
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	random_count: prismic.NumberField;
+}
+
+/**
  * Primary content in *Testimonials → Default → Primary*
  */
 export interface TestimonialsSliceDefaultPrimary {
@@ -4620,6 +4720,16 @@ export interface TestimonialsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	review_cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Reviews per visit field in *Testimonials → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: testimonials.default.primary.reviews_per_visit[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	reviews_per_visit: prismic.GroupField<Simplify<TestimonialsSliceDefaultPrimaryReviewsPerVisitItem>>;
 	
 	/**
 	 * Custom CSS Class field in *Testimonials → Default → Primary*
@@ -4764,6 +4874,16 @@ export interface TextWithImageSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Icon field in *TextWithImage → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: text_with_image.default.primary.icon
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	icon: prismic.ImageField<never>;
 	
 	/**
 	 * Custom CSS Class field in *TextWithImage → Default → Primary*
@@ -4915,6 +5035,9 @@ declare module "@prismicio/client" {
 			ResourcesDocumentData,
 			ResourcesDocumentDataCardsItem,
 			ResourcesDocumentDataSlicesSlice,
+			ServicesDocument,
+			ServicesDocumentData,
+			ServicesDocumentDataSlicesSlice,
 			SharedSectionDocument,
 			SharedSectionDocumentData,
 			SharedSectionDocumentDataSlicesSlice,
@@ -4995,6 +5118,7 @@ declare module "@prismicio/client" {
 			PostListSliceVariation,
 			PostListSliceDefault,
 			PricingSlice,
+			PricingSliceDefaultPrimaryNoteUnderTheButtonItem,
 			PricingSliceDefaultPrimary,
 			PricingSliceDefaultItem,
 			PricingSliceVariation,
@@ -5027,6 +5151,7 @@ declare module "@prismicio/client" {
 			SuccessStoriesSliceVariation,
 			SuccessStoriesSliceDefault,
 			TestimonialsSlice,
+			TestimonialsSliceDefaultPrimaryReviewsPerVisitItem,
 			TestimonialsSliceDefaultPrimary,
 			TestimonialsSliceDefaultItem,
 			TestimonialsSliceVariation,
