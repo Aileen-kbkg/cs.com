@@ -1074,7 +1074,7 @@ interface ResourcesDocumentData {
  */
 export type ResourcesDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ResourcesDocumentData>, "resources", Lang>;
 
-type ServicesDocumentDataSlicesSlice = HeroSlice | ProductCardsSlice | CtaBannerSlice
+type ServicesDocumentDataSlicesSlice = PageHeroSlice | HeroSlice | ProductCardsSlice | CtaBannerSlice
 
 /**
  * Content for Services documents

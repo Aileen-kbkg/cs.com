@@ -6,6 +6,9 @@
       "slices": {
         "config": {
           "choices": {
+            "page_hero": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             },
