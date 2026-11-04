@@ -118,7 +118,7 @@
     line-height: 1.2;
     font-weight: 700;
     color: var(--twi-navy);
-    text-wrap: balance;
+    /* text-wrap: balance; */
 }
 
 /* Title with an icon in a pale circle beside it */
