@@ -44,7 +44,7 @@
 }
 
 /* Live's header has no vertical padding; Sign In and Get Started sit 20px apart. */
-:global(header):has(.partnerLogo) > div {
+:global(header):has(.partnerLogo)>div {
     min-height: 0;
     padding: 0;
 }
@@ -350,6 +350,7 @@
     border-radius: 10px !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
 }
+
 /* Partner title is 25px on phones, as live */
 @media (max-width: 767px) {
     .slices :global([data-slice-type="partner_offer"] h2[class*="__title"]) {
@@ -560,6 +561,7 @@
    (the slice switches to its vertical timeline at 1024px), so the
    horizontal layout is restored between 881px and 1024px. */
 @media (min-width: 881px) and (max-width: 1024px) {
+
     /* Live squeezes the row into 45% of the band, so the copy wraps */
     .slices :global([data-slice-type="steps"] ol),
     .slices :global([data-slice-type="steps"] ul) {
@@ -607,7 +609,7 @@
     /* The hidden lead-in and tail take no space */
     .slices :global([data-slice-type="steps"] li:first-child [class*="__highlight"] > [class*="__line"]:first-child),
     .slices :global([data-slice-type="steps"] li:last-child [class*="__highlight"] > [class*="__line"]:last-child) {
-        min-height: 0;
+        min-height: 0px;
     }
 }
 
