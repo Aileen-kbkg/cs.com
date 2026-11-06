@@ -300,7 +300,7 @@
     left: 0;
     width: 10%;
     height: 0;
-    border-top: 2.4px solid var(--wics-blue);
+    border-top: 3px solid var(--wics-blue);
     border-radius: 0;
     background: none;
 }
@@ -872,4 +872,8 @@
     .page [data-slice-type="faq_accordion"] button {
         transition: none;
     }
+}
+
+.page [data-slice-type="faq_accordion"] li a:hover {
+    text-decoration: none;
 }
