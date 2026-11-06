@@ -1,0 +1,67 @@
+{
+  "format": "page",
+  "id": "testimonials",
+  "label": "Testimonials",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "announcement_bar": {
+              "type": "SharedSlice"
+            },
+            "page_hero": {
+              "type": "SharedSlice"
+            },
+            "text_with_image": {
+              "type": "SharedSlice"
+            },
+            "testimonial_grid": {
+              "type": "SharedSlice"
+            },
+            "testimonials": {
+              "type": "SharedSlice"
+            },
+            "success_stories": {
+              "type": "SharedSlice"
+            },
+            "cta_banner": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": {
+          "label": "Meta Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

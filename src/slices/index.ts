@@ -25,6 +25,7 @@ import AnnouncementBar from "./AnnouncementBar";
 import PartnerOffer from "./PartnerOffer";
 import ProcessSteps from "./ProcessSteps";
 import PropertyCards from "./PropertyCards";
+import TestimonialGrid from "./TestimonialGrid";
 
 export const components = {
 	calculator: Calculator,
@@ -52,4 +53,5 @@ export const components = {
 	partner_offer: PartnerOffer,
 	process_steps: ProcessSteps,
 	property_cards: PropertyCards,
+	testimonial_grid: TestimonialGrid,
 };
