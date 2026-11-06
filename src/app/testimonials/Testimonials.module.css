@@ -1,0 +1,17 @@
+/*
+ * Testimonials page — overrides scoped to this page only.
+ */
+
+.page {
+	display: block;
+	width: 100%;
+}
+
+/*
+ * Text With Image used as the page hero: the slice has no side padding of
+ * its own (other pages add it), so the text met the screen edge between
+ * 768px and its 1200px content width.
+ */
+.page :global([data-slice-type="text_with_image"]) {
+	padding-inline: 20px;
+}

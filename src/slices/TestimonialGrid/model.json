@@ -1,0 +1,204 @@
+{
+  "id": "testimonial_grid",
+  "type": "SharedSlice",
+  "name": "TestimonialGrid",
+  "description": "Client testimonials as a responsive card grid, or as larger featured cards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Grid",
+      "description": "Responsive grid of testimonial cards",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Section title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "custom_class": {
+          "type": "Text",
+          "config": {
+            "label": "Custom CSS Class",
+            "placeholder": "Optional CSS class name for custom styling this slice."
+          }
+        }
+      },
+      "items": {
+        "client_name": {
+          "type": "Text",
+          "config": {
+            "label": "Client name",
+            "placeholder": ""
+          }
+        },
+        "company_name": {
+          "type": "Text",
+          "config": {
+            "label": "Company name",
+            "placeholder": ""
+          }
+        },
+        "client_designation": {
+          "type": "Text",
+          "config": {
+            "label": "Client designation",
+            "placeholder": ""
+          }
+        },
+        "client_image": {
+          "type": "Image",
+          "config": {
+            "label": "Client photo or company logo (optional)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "testimonial": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Testimonial",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "property_type": {
+          "type": "Text",
+          "config": {
+            "label": "Property type (optional)",
+            "placeholder": ""
+          }
+        },
+        "video_url": {
+          "type": "Link",
+          "config": {
+            "label": "Video testimonial URL (optional)",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        }
+      }
+    },
+    {
+      "id": "featured",
+      "name": "Featured",
+      "description": "Larger cards for highlighted, longer testimonials",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Section title",
+            "placeholder": ""
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "custom_class": {
+          "type": "Text",
+          "config": {
+            "label": "Custom CSS Class",
+            "placeholder": "Optional CSS class name for custom styling this slice."
+          }
+        }
+      },
+      "items": {
+        "client_name": {
+          "type": "Text",
+          "config": {
+            "label": "Client name",
+            "placeholder": ""
+          }
+        },
+        "company_name": {
+          "type": "Text",
+          "config": {
+            "label": "Company name",
+            "placeholder": ""
+          }
+        },
+        "client_designation": {
+          "type": "Text",
+          "config": {
+            "label": "Client designation",
+            "placeholder": ""
+          }
+        },
+        "client_image": {
+          "type": "Image",
+          "config": {
+            "label": "Client photo or company logo (optional)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "testimonial": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Testimonial",
+            "placeholder": "",
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "property_type": {
+          "type": "Text",
+          "config": {
+            "label": "Property type (optional)",
+            "placeholder": ""
+          }
+        },
+        "video_url": {
+          "type": "Link",
+          "config": {
+            "label": "Video testimonial URL (optional)",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": false,
+            "repeat": false
+          }
+        }
+      }
+    }
+  ]
+}
