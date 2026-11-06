@@ -1,9 +1,0 @@
-/*
- * Services page.
- *
- * Slice overrides for this page go here, scoped to `.page`, so the shared
- * slice components keep their default look on every other page.
- */
-
-.page {
-}
