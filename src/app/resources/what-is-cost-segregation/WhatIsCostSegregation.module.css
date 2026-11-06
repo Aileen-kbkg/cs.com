@@ -412,7 +412,7 @@
 
 .page :is([data-slice-type="property_cards"], [data-slice-type="product_cards"]) li a:hover {
     background: transparent;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 /* The slice's arrow icon isn't shown on the live cards. */
@@ -649,6 +649,11 @@
 
 .page [data-slice-type="faq_accordion"] [role="region"] p:last-child {
     margin-bottom: 0;
+}
+
+/* White minus icon when FAQ is opened */
+.page [data-slice-type="faq_accordion"] button[aria-expanded="true"]>span:first-child {
+    background-color: #ffffff;
 }
 
 /* ---------------------------------------------------------------- */
